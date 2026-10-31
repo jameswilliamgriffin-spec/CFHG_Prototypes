@@ -221,6 +221,18 @@ p, li, dd, figcaption {
 	transform: none;
 }
 
+/* Hero: the arched illustration starts level with the top of the heading,
+   rather than sinking to the bottom of the column. */
+@media (min-width: 60em) {
+	.cfhg-c-hero__grid {
+		align-items: start;
+	}
+
+	.cfhg-c-hero__media {
+		margin-top: 0.12em;
+	}
+}
+
 /* 4. Sticky navigation bar (desktop, where the bar is shown) ---------------- */
 @media (min-width: 64em) {
 	.cfhg-c-header {
