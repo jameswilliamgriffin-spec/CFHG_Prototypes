@@ -1,0 +1,519 @@
+/*
+ * CFHG Option C: UI polish pass.
+ *
+ * Loaded after main.css. Plain CSS driven by classes and data attributes,
+ * ready to move into the theme and onto Elementor widgets (see
+ * README-ui-pass.md). Hidden-until-revealed states apply only under
+ * html.cfhg-ui and only when motion is allowed.
+ *
+ *  1. Tokens
+ *  2. Base: type, focus, selection, scrollbar
+ *  3. Components: links, labels, index card, footer, text size
+ *  4. Sticky navigation bar
+ *  5. Island scroller
+ *  6. Programme timeline
+ *  7. Motion
+ *  8. Page transitions
+ *  9. Print
+ */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+	--ui-ease: var(--cfhg-c-ease, cubic-bezier(0.2, 0.7, 0.2, 1));
+	--ui-dur: 300ms;
+	--ui-dur-fast: 200ms;
+	--ui-focus: var(--cfhg-c-sea);
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+html {
+	scrollbar-color: var(--cfhg-c-ink-soft) var(--cfhg-c-paper);
+	hanging-punctuation: first allow-end;
+}
+
+h1, h2, h3, h4,
+.cfhg-c-intro__statement {
+	text-wrap: balance;
+}
+
+p, li, dd, figcaption {
+	text-wrap: pretty;
+}
+
+:focus-visible {
+	outline: 3px solid var(--ui-focus);
+	outline-offset: 3px;
+}
+
+.cfhg-c-nav,
+.cfhg-c-support,
+.cfhg-c-way--share,
+.cfhg-c-footer {
+	--ui-focus: var(--cfhg-c-gold);
+}
+
+::selection {
+	background: var(--cfhg-c-sea);
+	color: var(--cfhg-c-white);
+}
+
+/* 3. Components ------------------------------------------------------------ */
+
+/* Buttons press in briefly. */
+.cfhg-c-btn,
+.cfhg-c-textsize__btn,
+.cfhg-c-scroller__btn,
+.cfhg-c-menu-toggle {
+	-webkit-tap-highlight-color: transparent;
+	transition: transform var(--ui-dur-fast) var(--ui-ease), background-color var(--ui-dur) var(--ui-ease), color var(--ui-dur) var(--ui-ease), border-color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-c-btn:active,
+.cfhg-c-textsize__btn:active,
+.cfhg-c-scroller__btn:active:not([aria-disabled="true"]),
+.cfhg-c-menu-toggle:active {
+	transform: translateY(1px) scale(0.98);
+}
+
+.cfhg-c-btn__arrow {
+	display: inline-block;
+	transition: transform var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-c-btn:hover .cfhg-c-btn__arrow,
+.cfhg-c-btn:focus-visible .cfhg-c-btn__arrow {
+	transform: translateX(3px);
+}
+
+/* Text links read as sentence case, with a rule that thickens. Buttons
+   keep their capitals; these are links, not buttons. */
+.cfhg-c-link-arrow,
+.cfhg-c-btn--text {
+	border-bottom: 0;
+	padding-bottom: 0.2rem;
+	font-size: 1rem;
+	letter-spacing: 0;
+	text-transform: none;
+	background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+	transition: background-size var(--ui-dur) var(--ui-ease), color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-c-link-arrow:hover,
+.cfhg-c-link-arrow:focus-visible,
+.cfhg-c-btn--text:hover,
+.cfhg-c-btn--text:focus-visible {
+	background-size: 100% 2px;
+}
+
+.cfhg-c-prose a {
+	text-underline-offset: 0.2em;
+	transition: text-underline-offset var(--ui-dur) var(--ui-ease), text-decoration-color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-c-prose a:hover {
+	text-underline-offset: 0.3em;
+}
+
+/* Labels that remain are plain sentence case. */
+.cfhg-c-meta,
+.cfhg-c-island-card__more,
+.cfhg-c-card-index__heading,
+.cfhg-c-card-index__list dt,
+.cfhg-c-facts dt,
+.cfhg-c-programme__month,
+.cfhg-c-footer__heading,
+.cfhg-c-preview-label {
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.cfhg-c-meta {
+	gap: 0.4rem;
+	font-weight: 500;
+}
+
+.cfhg-c-meta__sep {
+	width: auto;
+	height: auto;
+	background: none;
+}
+
+.cfhg-c-meta__sep::before {
+	content: "\00B7";
+}
+
+.cfhg-c-card-index__heading {
+	font-family: var(--cfhg-c-serif);
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.cfhg-c-card-index__list dt {
+	font-size: 0.8125rem;
+}
+
+/* "Today" is information, so it stays, as words rather than a lozenge. */
+.cfhg-c-card-index__today {
+	padding: 0;
+	background: none;
+	color: var(--cfhg-c-red);
+	font-weight: 700;
+	letter-spacing: 0;
+}
+
+.cfhg-c-footer__heading {
+	font-family: var(--cfhg-c-serif);
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.cfhg-c-preview-label {
+	font-weight: 500;
+}
+
+.ui-postnav-label {
+	display: block;
+	margin-bottom: 0.25rem;
+	color: var(--cfhg-c-muted);
+	font-size: 0.9375rem;
+	font-weight: 500;
+}
+
+.cfhg-c-island-card__more {
+	font-size: 0.9375rem;
+}
+
+/* Island cards lost their label bars, so the photograph starts the card. */
+.cfhg-c-island-card__media {
+	background: var(--cfhg-c-tint);
+}
+
+/* Ways in: the numbers and eyebrows are gone; give the heading its space. */
+.cfhg-c-way__body > .cfhg-c-h3:first-child {
+	margin-top: 0;
+}
+
+/* Text size: the chosen size is confirmed beside the buttons for a moment. */
+.cfhg-c-textsize {
+	position: relative;
+}
+
+.ui-size-note {
+	position: absolute;
+	top: calc(100% + 0.4rem);
+	right: 0;
+	z-index: 5;
+	padding: 0.3rem 0.6rem;
+	border: 1px solid var(--cfhg-c-ink);
+	background: var(--cfhg-c-white);
+	color: var(--cfhg-c-ink);
+	font-size: 0.875rem;
+	font-weight: 600;
+	white-space: nowrap;
+	opacity: 0;
+	transform: translateY(-0.25rem);
+	transition: opacity var(--ui-dur) var(--ui-ease), transform var(--ui-dur) var(--ui-ease);
+	pointer-events: none;
+}
+
+.ui-size-note.is-shown {
+	opacity: 1;
+	transform: none;
+}
+
+/* 4. Sticky navigation bar (desktop, where the bar is shown) ---------------- */
+@media (min-width: 64em) {
+	.cfhg-c-header {
+		position: sticky;
+		top: calc(var(--ui-top-h, 0px) * -1);
+		z-index: 60;
+	}
+
+	.cfhg-c-header.is-stuck .cfhg-c-nav {
+		box-shadow: 0 6px 18px -12px rgba(19, 32, 45, 0.55);
+	}
+
+	.cfhg-c-nav > .cfhg-c-container {
+		position: relative;
+	}
+
+	.ui-nav-logo {
+		position: absolute;
+		top: 50%;
+		left: var(--cfhg-c-gutter, 1.25rem);
+		display: flex;
+		align-items: center;
+		opacity: 0;
+		visibility: hidden;
+		transform: translate(-0.75rem, -50%);
+		transition: opacity var(--ui-dur) var(--ui-ease), transform var(--ui-dur) var(--ui-ease), visibility 0s linear var(--ui-dur);
+	}
+
+	.ui-nav-logo img {
+		width: auto;
+		height: 2.25rem;
+	}
+
+	.cfhg-c-header.is-stuck.has-logo-room .ui-nav-logo {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(0, -50%);
+		transition: opacity var(--ui-dur) var(--ui-ease), transform var(--ui-dur) var(--ui-ease), visibility 0s;
+	}
+}
+
+@media (max-width: 63.99em) {
+	.ui-nav-logo {
+		display: none;
+	}
+}
+
+/* 5. Island scroller -------------------------------------------------------- */
+
+/* The card nearest the middle steps forward onto its tinted shadow. */
+.cfhg-c-island-card {
+	transition: transform 450ms var(--ui-ease), box-shadow 450ms var(--ui-ease);
+}
+
+[data-cfhg-focus] .is-focus .cfhg-c-island-card {
+	transform: translate(-0.25rem, -0.25rem);
+	box-shadow: 0.5rem 0.5rem 0 var(--cfhg-c-tint);
+}
+
+/* Parallax inside each card image as the row moves (set by ui-pass.js). */
+[data-cfhg-focus] .cfhg-c-island-card__media img {
+	scale: 1.14;
+	translate: calc(var(--cfhg-x, 0) * -5%) 0;
+}
+
+.cfhg-c-island-card:hover .cfhg-c-island-card__media img {
+	transform: scale(1.03);
+}
+
+/* Progress through the row, beside the arrows. */
+.ui-progress {
+	position: relative;
+	flex: none;
+	width: clamp(5rem, 12vw, 9rem);
+	align-self: center;
+	height: 2px;
+	margin-inline: var(--cfhg-c-s4, 1rem);
+	overflow: hidden;
+	background: var(--cfhg-c-line);
+}
+
+.ui-progress span {
+	position: absolute;
+	inset: 0;
+	background: var(--cfhg-c-ink);
+	transform-origin: 0 50%;
+	transform: scaleX(var(--cfhg-p, 0.3));
+	transition: transform 160ms linear;
+}
+
+.cfhg-c-scroller__controls {
+	display: flex;
+	align-items: center;
+}
+
+/* 6. Programme timeline ----------------------------------------------------- */
+
+/* A rule runs down between the dates and the events; it fills as the list
+   is read, and each event's marker fills when the rule reaches it. */
+[data-cfhg-timeline] {
+	--ui-line-x: calc(6.5rem + 1.25rem);
+	position: relative;
+}
+
+[data-cfhg-timeline] .cfhg-c-programme__item {
+	column-gap: 2.5rem;
+}
+
+[data-cfhg-timeline]::before,
+[data-cfhg-timeline]::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--ui-line-x);
+	width: 1px;
+	background: var(--cfhg-c-line);
+}
+
+[data-cfhg-timeline]::after {
+	width: 2px;
+	margin-left: -0.5px;
+	background: var(--cfhg-c-red);
+	transform-origin: 50% 0;
+	transform: scaleY(var(--cfhg-p, 1));
+}
+
+[data-cfhg-timeline] .cfhg-c-programme__item {
+	position: relative;
+}
+
+[data-cfhg-timeline] .cfhg-c-programme__item::before {
+	content: "";
+	position: absolute;
+	top: calc(var(--cfhg-c-s5, 1.5rem) + 0.55rem);
+	left: var(--ui-line-x);
+	z-index: 1;
+	width: 0.7rem;
+	height: 0.7rem;
+	margin-left: -0.35rem;
+	border: 2px solid var(--cfhg-c-red);
+	border-radius: 50%;
+	background: var(--cfhg-c-paper);
+	transition: background-color var(--ui-dur) var(--ui-ease);
+}
+
+[data-cfhg-timeline] .cfhg-c-programme__item.is-past::before,
+.cfhg-ui-static [data-cfhg-timeline] .cfhg-c-programme__item::before {
+	background: var(--cfhg-c-red);
+}
+
+/* 7. Motion ----------------------------------------------------------------- */
+
+/* The theme's general fade-up is retired: the motion now lives in a few
+   places that earn it. */
+.cfhg-c-reveal-ready [data-cfhg-c-reveal] {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	/* 7.1 Hero: the heading is printed left to right, the illustration is
+	   uncovered from the base of its arch, and the index card is laid on
+	   top of it last. */
+	.cfhg-ui .cfhg-load-ink {
+		-webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+		mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+		-webkit-mask-size: 260% 100%;
+		mask-size: 260% 100%;
+		animation: ui-print 1400ms var(--ui-ease) 120ms both;
+	}
+
+	.cfhg-ui .cfhg-load-print {
+		animation: ui-uncover 1200ms var(--ui-ease) 250ms both;
+	}
+
+	.cfhg-ui .cfhg-load-print img {
+		animation: ui-settle-image 1600ms var(--ui-ease) 250ms both;
+	}
+
+	.cfhg-ui .cfhg-load-card {
+		animation: ui-lay-card 900ms var(--ui-ease) 1000ms both;
+	}
+
+	.cfhg-ui .cfhg-load-fade {
+		animation: ui-rise 700ms var(--ui-ease) both;
+		animation-delay: calc(500ms + var(--d, 0) * 120ms);
+	}
+
+	/* 7.2 The logo-colour rule draws itself, one colour at a time. */
+	.cfhg-ui [data-cfhg-draw] span {
+		transform-origin: 0 50%;
+		transition: transform 600ms var(--ui-ease);
+	}
+
+	.cfhg-ui [data-cfhg-draw]:not(.is-in) span {
+		transform: scaleX(0);
+	}
+
+	.cfhg-ui [data-cfhg-draw] span:nth-child(2) { transition-delay: 80ms; }
+	.cfhg-ui [data-cfhg-draw] span:nth-child(3) { transition-delay: 160ms; }
+	.cfhg-ui [data-cfhg-draw] span:nth-child(4) { transition-delay: 240ms; }
+	.cfhg-ui [data-cfhg-draw] span:nth-child(5) { transition-delay: 320ms; }
+	.cfhg-ui [data-cfhg-draw] span:nth-child(6) { transition-delay: 400ms; }
+
+	/* 7.3 Way-in photographs open like a shutter. */
+	.cfhg-ui .cfhg-c-way__media {
+		transition: clip-path 1000ms var(--ui-ease);
+	}
+
+	.cfhg-ui .cfhg-c-way__media:not(.is-in) {
+		clip-path: inset(0 0 100% 0);
+	}
+
+	.cfhg-ui .cfhg-c-way__media.is-in {
+		clip-path: inset(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-cfhg-focus] .cfhg-c-island-card__media img {
+		scale: 1;
+		translate: none;
+	}
+}
+
+@keyframes ui-print {
+	from { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+	to { -webkit-mask-position: 0 0; mask-position: 0 0; }
+}
+
+@keyframes ui-uncover {
+	from { clip-path: inset(100% 0 0 0); }
+	to { clip-path: inset(0); }
+}
+
+@keyframes ui-settle-image {
+	from { transform: scale(1.12); }
+	to { transform: scale(1); }
+}
+
+@keyframes ui-lay-card {
+	from { opacity: 0; transform: translate(-1rem, -1.5rem) rotate(-3deg); }
+	60% { opacity: 1; }
+	to { opacity: 1; transform: none; }
+}
+
+@keyframes ui-rise {
+	from { opacity: 0; transform: translateY(0.75rem); }
+	to { opacity: 1; transform: none; }
+}
+
+/* 8. Page transitions: the browser's own cross-fade between preview pages
+   (Chromium; other browsers simply navigate). Off for reduced motion. */
+@view-transition {
+	navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+}
+
+/* 9. Print ------------------------------------------------------------------ */
+@media print {
+	.cfhg-c-header, .cfhg-c-footer, .cfhg-c-ring, .cfhg-c-scroller, .cfhg-c-actions, .post-navigation {
+		display: none !important;
+	}
+
+	html {
+		font-size: 100% !important;
+	}
+
+	body, .cfhg-c-pagehead, .cfhg-c-island__head, .cfhg-c-section {
+		background: #fff !important;
+		color: #000 !important;
+	}
+
+	.cfhg-c-prose a[href^="http"]::after {
+		content: " (" attr(href) ")";
+	}
+
+	img {
+		max-height: 9cm;
+		break-inside: avoid;
+	}
+
+	* {
+		animation: none !important;
+		clip-path: none !important;
+		-webkit-mask-image: none !important;
+		mask-image: none !important;
+	}
+}

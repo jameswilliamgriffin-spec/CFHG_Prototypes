@@ -1,9 +1,27 @@
+# Only the landing page, the three previews, the pitch deck and their assets
+# are served. Everything else stays out of the deployment.
 Inspiration
 Logo ideas/logo2.png
+Presentation/pitch-deck-structure.md
 New Website 2026 site map.pdf
 Previous conversation.rtf
 presentation.md
 prompts.md
-Presentation/pitch-deck-structure.md
-.gitignore
+wordpress
+scripts
+package.json
 README.md
+.gitignore
+0 Client documents
+1 Brand
+Website Image Library
+Website Imagery
+image-sources
+.claude
+.playwright-mcp
+preview-backup-a
+preview-backup-b
+preview-backup-c
+preview/README-ui-pass.md
+preview-b/README-ui-pass.md
+preview-c/README-ui-pass.md

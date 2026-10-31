@@ -1,0 +1,139 @@
+/*
+ * CFHG Option A: design tokens.
+ *
+ * Lifted from the structure of outil.org (type ratios, spacing rhythm, radii,
+ * motion timing) and re-coloured from the CFHG palm logo: the gold, red,
+ * green and sea of the ring, and the navy of the palm.
+ *
+ * The same values are written to Elementor's Global Colours and Global Fonts
+ * by Appearance > CFHG Setup (see inc/elementor.php). The body block at the end
+ * reads Elementor's globals back, so editing a global colour in Elementor
+ * updates the theme templates too. The hex values here are the fallbacks.
+ */
+
+/* Fonts: self-hosted variable fonts (SIL Open Font Licence, see fonts/OFL.txt). */
+@font-face {
+	font-family: "Montagu Slab";
+	src: url("../fonts/montagu-slab-var.woff2") format("woff2");
+	font-weight: 400 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Hanken Grotesk";
+	src: url("../fonts/hanken-grotesk-var.woff2") format("woff2");
+	font-weight: 400 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Hanken Grotesk";
+	src: url("../fonts/hanken-grotesk-italic-var.woff2") format("woff2");
+	font-weight: 400 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+:root {
+	/* Colour */
+	--cfhg-gold: #F2B42A;
+	--cfhg-gold-soft: #FCE6AF;
+	--cfhg-gold-pale: #FFF6DF;
+	--cfhg-navy: #0E1F38;
+	--cfhg-navy-soft: #3B4A60;
+	--cfhg-paper: #FBF6EC;
+	--cfhg-sand: #F4ECDD;
+	--cfhg-sand-deep: #EADFCB;
+	--cfhg-clay: #C8402F;
+	--cfhg-green: #187A43;
+	--cfhg-sea: #0F7896;
+	--cfhg-sea-pale: #E3F1F5;
+	--cfhg-line: #CDBFA8;
+	--cfhg-white: #FFFFFF;
+	--cfhg-ink: var(--cfhg-navy);
+	--cfhg-ink-soft: var(--cfhg-navy-soft);
+	--cfhg-line-dark: rgba(251, 246, 236, 0.22);
+
+	/* Type families */
+	--cfhg-font-display: "Montagu Slab", "Rockwell", "Roboto Slab", Georgia, serif;
+	--cfhg-font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+	/* Type scale: fluid between 375px and 1728px wide */
+	--cfhg-fs-display: clamp(3.25rem, 1.2rem + 8.2vw, 9.5rem);
+	--cfhg-fs-h1: clamp(2.6rem, 1.3rem + 5.4vw, 7rem);
+	--cfhg-fs-h2: clamp(2.2rem, 1.25rem + 3.7vw, 5.25rem);
+	--cfhg-fs-h3: clamp(1.6rem, 1.15rem + 1.9vw, 3.25rem);
+	--cfhg-fs-h4: clamp(1.3rem, 1.1rem + 0.8vw, 1.875rem);
+	--cfhg-fs-lead: clamp(1.18rem, 1.05rem + 0.5vw, 1.45rem);
+	--cfhg-fs-body: 1.0625rem;
+	--cfhg-fs-small: 0.9375rem;
+	--cfhg-fs-label: 0.8125rem;
+
+	--cfhg-lh-tight: 0.92;
+	--cfhg-lh-heading: 0.98;
+	--cfhg-lh-snug: 1.25;
+	--cfhg-lh-body: 1.55;
+
+	--cfhg-ls-display: -0.02em;
+	--cfhg-ls-heading: -0.015em;
+	--cfhg-ls-label: 0.06em;
+
+	/* Spacing: the outil.org rhythm (5, 10, 15, 20, 30, 45, 60, 80px) */
+	--cfhg-sp-2xs: 0.3125rem;
+	--cfhg-sp-xs: 0.625rem;
+	--cfhg-sp-sm: 0.9375rem;
+	--cfhg-sp-md: 1.25rem;
+	--cfhg-sp-lg: 1.875rem;
+	--cfhg-sp-xl: 2.8125rem;
+	--cfhg-sp-2xl: 3.75rem;
+	--cfhg-sp-3xl: 5rem;
+	--cfhg-sp-section: clamp(5.5rem, 3.5rem + 7vw, 10rem);
+
+	/* Layout */
+	--cfhg-gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3.75rem);
+	--cfhg-gap: clamp(0.9375rem, 0.5rem + 1.8vw, 2.5rem);
+	--cfhg-max: 1800px;
+	--cfhg-measure: 44rem;
+	--cfhg-header-h: clamp(5.25rem, 4.6rem + 2vw, 7rem);
+
+	/* Shape */
+	--cfhg-r-xs: 0.3125rem;
+	--cfhg-r-sm: 0.625rem;
+	--cfhg-r-md: 1.25rem;
+	--cfhg-r-lg: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+	--cfhg-r-pill: 999px;
+
+	/* Motion: outil.org uses plain ease at 0.2s, 0.3s and 0.5s */
+	--cfhg-ease: ease;
+	--cfhg-dur-fast: 0.2s;
+	--cfhg-dur: 0.3s;
+	--cfhg-dur-slow: 0.5s;
+
+	/* Button disc */
+	--cfhg-disc: 3rem;
+	--cfhg-disc-lg: 3.5rem;
+
+	/* Arrow glyphs for pseudo-elements, one per colour */
+	--cfhg-arrow-navy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 10h13M11 4.5 16.5 10 11 15.5' fill='none' stroke='%230E1F38' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	--cfhg-arrow-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 10h13M11 4.5 16.5 10 11 15.5' fill='none' stroke='%23FBF6EC' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/*
+ * Read Elementor's Global Colours back. Elementor defines them on the body
+ * (as --e-global-color-{id}); when Elementor is absent the fallbacks apply.
+ */
+body {
+	--cfhg-gold: var(--e-global-color-cfhgold, #F2B42A);
+	--cfhg-gold-soft: var(--e-global-color-cfhglow, #FCE6AF);
+	--cfhg-navy: var(--e-global-color-cfhnavy, #0E1F38);
+	--cfhg-navy-soft: var(--e-global-color-cfhsoft, #3B4A60);
+	--cfhg-paper: var(--e-global-color-cfhpapr, #FBF6EC);
+	--cfhg-sand: var(--e-global-color-cfhsand, #F4ECDD);
+	--cfhg-sand-deep: var(--e-global-color-cfhdune, #EADFCB);
+	--cfhg-clay: var(--e-global-color-cfhclay, #C8402F);
+	--cfhg-green: var(--e-global-color-cfhgren, #187A43);
+	--cfhg-sea: var(--e-global-color-cfhseaa, #0F7896);
+	--cfhg-line: var(--e-global-color-cfhline, #CDBFA8);
+	--cfhg-ink: var(--cfhg-navy);
+	--cfhg-ink-soft: var(--cfhg-navy-soft);
+}

@@ -1,2 +1,20 @@
 .DS_Store
 **/.DS_Store
+
+# Private client material and large source files: kept on this machine only
+0 Client documents/
+1 Brand/
+Website Image Library/
+Website Imagery/
+image-sources/
+
+# Build artefacts and local tooling
+wordpress/*.zip
+node_modules/
+.claude/
+.playwright-mcp/
+
+# UI pass backups (local comparison only)
+preview-backup-a/
+preview-backup-b/
+preview-backup-c/

@@ -1,5 +1,33 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/presentation.html" }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/a",
+      "destination": "/preview/",
+      "permanent": false
+    },
+    {
+      "source": "/b",
+      "destination": "/preview-b/",
+      "permanent": false
+    },
+    {
+      "source": "/c",
+      "destination": "/preview-c/",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
   ]
 }

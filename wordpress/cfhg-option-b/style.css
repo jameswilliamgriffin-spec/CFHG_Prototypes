@@ -1,0 +1,20 @@
+/*
+Theme Name: CFHG Option B
+Theme URI: https://caribbeanfamilyhistorygroup.org/
+Author: Creative Alliance
+Author URI: https://creativealliance.org.uk/
+Description: Design option B for the Caribbean Family History Group. A warm, album-like theme built for Elementor: colour-coded sections from the CFHG logo, tilted snapshot photographs, oval photo windows, a side-panel menu and design tokens shared with Elementor's global colours and fonts.
+Version: 1.0.0
+Requires at least: 6.3
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: cfhg
+Tags: custom-logo, custom-menu, featured-images, full-width-template, translation-ready, one-column, wide-blocks
+*/
+
+/*
+ * The theme's styles live in assets/css/tokens.css and assets/css/main.css,
+ * which are enqueued from inc/enqueue.php. This file only carries the theme header.
+ */

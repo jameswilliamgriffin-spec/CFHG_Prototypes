@@ -1,0 +1,653 @@
+{
+  "_note": "Default copy for the theme. PHP reads it through cfhg_c_content(); the static preview builder reads the same file. Paths are site-relative and become home_url() links in WordPress.",
+  "site": {
+    "name": "Caribbean Family History Group",
+    "short": "CFHG",
+    "tagline": "Caribbean genealogy from Solihull and Birmingham",
+    "email": "cfhg.sol.birm@gmail.com",
+    "venue": "Solihull Core Library",
+    "venue_room": "Computer room, first floor",
+    "address": [
+      "Solihull Core Library",
+      "Theatre Square",
+      "Solihull",
+      "B91 3RG"
+    ],
+    "meeting_rule": "Last Saturday of the month, except May, August and December",
+    "meeting_time": "10am to 1pm",
+    "meeting_where": "Solihull Core Library and on Zoom",
+    "fees": {
+      "first_visit": "Free",
+      "per_visit": "£5",
+      "annual": "£20"
+    }
+  },
+  "header": {
+    "donate": {
+      "label": "Donate",
+      "url": "/support-us/"
+    },
+    "member": {
+      "label": "Become a member",
+      "url": "/membership/"
+    },
+    "utility": [
+      {
+        "label": "Contact",
+        "url": "/contact/"
+      },
+      {
+        "label": "Newsletter",
+        "url": "#newsletter"
+      }
+    ],
+    "primary": [
+      {
+        "label": "Research",
+        "url": "/research/"
+      },
+      {
+        "label": "Islands",
+        "url": "/islands/"
+      },
+      {
+        "label": "What’s on",
+        "url": "/whats-on/"
+      },
+      {
+        "label": "Stories",
+        "url": "/news/"
+      },
+      {
+        "label": "Membership",
+        "url": "/membership/"
+      },
+      {
+        "label": "About us",
+        "url": "/about/"
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Caribbean Family History Group",
+      "title": "Trace your Caribbean family, one record at a time.",
+      "lead": "We are a volunteer group based at Solihull Core Library, helping people research ancestors from Jamaica, Barbados, St Kitts and Nevis, Trinidad, Montserrat and across the Caribbean. Beginners and researchers with forty years behind them share the same table.",
+      "primary": {
+        "label": "Come to a meeting",
+        "url": "/membership/"
+      },
+      "secondary": {
+        "label": "Start your research",
+        "url": "/research/"
+      },
+      "image": "generated/hero-hillside-bay",
+      "image_alt": "Screenprint-style illustration of a royal palm and a coral stone wall above a bay, with a chain of islands on the horizon.",
+      "card_heading": "Next meeting",
+      "card_link": {
+        "label": "Plan your first visit",
+        "url": "/membership/"
+      }
+    },
+    "intro": {
+      "eyebrow": "Who we are",
+      "statement": "The Caribbean Family History Group is a group of volunteers who enjoy genealogy and share what they learn. Some of us have been researching for over forty years, some for a few months.",
+      "body": "We started in Solihull and Birmingham. Since the pandemic, members also join from across the UK, the USA, Jamaica and Trinidad. We help each other read the records, find the right archive and keep going when a line goes quiet.",
+      "link": {
+        "label": "About the group",
+        "url": "/about/"
+      }
+    },
+    "islands": {
+      "eyebrow": "Research by island",
+      "heading": "Every island keeps its records differently.",
+      "lead": "Parish registers, slave registers, civil records and archives vary from island to island. Start with the one your family came from.",
+      "all": {
+        "label": "All islands",
+        "url": "/islands/"
+      }
+    },
+    "ways": {
+      "eyebrow": "Three ways in",
+      "heading": "Where would you like to start?",
+      "meet": {
+        "label": "Meet us",
+        "heading": "Come to a meeting",
+        "body": "We meet on the last Saturday of the month, except May, August and December, in the first-floor computer room at Solihull Core Library and on Zoom. Bring a name, a date or a photograph and someone will help you take the next step.",
+        "facts": [
+          {
+            "term": "First visit",
+            "detail": "Free"
+          },
+          {
+            "term": "After that",
+            "detail": "£5 a visit"
+          },
+          {
+            "term": "Membership",
+            "detail": "£20 a year"
+          }
+        ],
+        "link": {
+          "label": "Plan your first visit",
+          "url": "/membership/"
+        },
+        "image": "library/research-table-library-landscape",
+        "image_alt": "Illustrative photograph: three people around a library table looking through photographs and notes."
+      },
+      "research": {
+        "label": "Research",
+        "heading": "Research with us",
+        "body": "Our guides come from questions members have asked at meetings. Read one before you start, or bring it with you.",
+        "links": [
+          {
+            "label": "Five steps to start your family tree",
+            "url": "/research/"
+          },
+          {
+            "label": "Using FamilySearch at Solihull libraries",
+            "url": "/news/solihull-familysearch-library/"
+          },
+          {
+            "label": "Which DNA kit?",
+            "url": "/news/which-dna-kit/"
+          },
+          {
+            "label": "The British West India Regiment",
+            "url": "/news/british-west-india-regiment/"
+          },
+          {
+            "label": "Pedigree and family group charts to print",
+            "url": "/research/"
+          }
+        ],
+        "image": "library/map-of-the-caribbean-on-a-table",
+        "image_alt": "Illustrative photograph: hands with a pencil over a large printed map of the Caribbean."
+      },
+      "share": {
+        "label": "Share",
+        "heading": "Found something? Tell us.",
+        "body": "A baptism entry, a ship’s list, a photograph with a name on the back. Members’ finds become talks, exhibition panels and stories on this site, and they often help someone else break through.",
+        "link": {
+          "label": "Share a record or story",
+          "url": "/contact/"
+        },
+        "image": "library/family-album-pages-portrait",
+        "image_alt": "Illustrative photograph: an open family album of black and white prints held on a lap."
+      }
+    },
+    "whats_on": {
+      "eyebrow": "What’s on",
+      "heading": "Coming up",
+      "lead": "Monthly meetings follow a set pattern, so you can plan ahead. Sub-group dates, talks and exhibitions are added as they are confirmed.",
+      "meeting_title": "Monthly research meeting",
+      "meeting_label": "Meeting",
+      "extras": [
+        {
+          "label": "AGM",
+          "title": "Annual General Meeting",
+          "when": "May 2027, date to be confirmed",
+          "where": "Solihull Core Library and on Zoom"
+        },
+        {
+          "label": "Social",
+          "title": "Windrush Dinner and Dance, with the WAWI Project",
+          "when": "June 2027, date to be confirmed",
+          "where": "Venue to be announced"
+        }
+      ],
+      "all": {
+        "label": "Full calendar",
+        "url": "/whats-on/"
+      }
+    },
+    "support": {
+      "eyebrow": "Support the group",
+      "heading": "Membership is £20 a year.",
+      "body": "Your membership keeps the group running: Zoom, exhibition materials, speakers’ expenses and our place in the Family History Federation, which also handles our membership payments.",
+      "note": "Committee roles open at the AGM each May. Anyone who has been with us for six months can stand.",
+      "note_link": {
+        "label": "See the roles",
+        "url": "/membership/#committee"
+      }
+    },
+    "news": {
+      "eyebrow": "From the group",
+      "heading": "Stories and news",
+      "all": {
+        "label": "All stories and news",
+        "url": "/news/"
+      }
+    }
+  },
+  "islands": [
+    {
+      "slug": "jamaica",
+      "name": "Jamaica",
+      "label": "Sub-group",
+      "summary": "Parish registers from 1664, civil registration from 1878, and our largest sub-group to help you read them.",
+      "image": "generated/island-jamaica-blue-mountains",
+      "image_alt": "Screenprint-style illustration of the Blue Mountains of Jamaica: terraced coffee on a hillside, a tin-roofed house and cloud in the valley.",
+      "body": [
+        [
+          "p",
+          "Most of our members have a Jamaican line, so this is where the group has the most experience. The records are good, but they are spread across several archives and websites, and it helps to know which to try first."
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "ul",
+          [
+            "Anglican parish registers of baptisms, marriages and burials survive for some parishes from 1664. Copies are held by the Registrar General’s Department in Spanish Town, and many were filmed by FamilySearch.",
+            "Civil registration of births and deaths began in 1878 and of marriages in 1880.",
+            "The slave registers for Jamaica, taken every three years from 1817 to 1832, are at The National Archives in Kew and online through Ancestry.",
+            "The Jamaica Archives and Records Department in Spanish Town holds wills, court records and many church records."
+          ]
+        ],
+        [
+          "h2",
+          "How the group can help"
+        ],
+        [
+          "p",
+          "Bring what you have to a monthly meeting. Members can show you how to search the FamilySearch collections free of charge at any Solihull library, and how to read the older registers. We have also had talks on Jewish ancestry in Jamaica."
+        ],
+        [
+          "h2",
+          "The Jamaica sub-group"
+        ],
+        [
+          "p",
+          "The Jamaica sub-group meets between the main meetings to work through research in more depth. Dates are posted in What’s on."
+        ]
+      ]
+    },
+    {
+      "slug": "barbados",
+      "name": "Barbados",
+      "label": "Sub-group",
+      "summary": "Some of the oldest parish registers in the Caribbean, and a sub-group that works through them together.",
+      "image": "generated/island-barbados-chattel-houses",
+      "image_alt": "Screenprint-style illustration of three painted wooden chattel houses on coral stone blocks in Barbados, with sugar cane behind and a breadfruit tree.",
+      "body": [
+        [
+          "p",
+          "Barbados was settled by the English in 1627 and stayed under British rule until independence in 1966, so its records are unusually continuous. That makes it a rewarding island to research, if you know where to look."
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "ul",
+          [
+            "Anglican parish registers start in the 1630s for St Michael and later for the other ten parishes.",
+            "The Barbados Department of Archives at Black Rock, St Michael, holds parish registers, wills and deeds.",
+            "The slave registers for Barbados, taken from 1817 to 1834, are at The National Archives in Kew and online through Ancestry.",
+            "Many Barbados registers have been filmed by FamilySearch and can be searched free at Solihull libraries."
+          ]
+        ],
+        [
+          "h2",
+          "The Barbados sub-group"
+        ],
+        [
+          "p",
+          "The Barbados sub-group meets between the main meetings. Dates are posted in What’s on. New members are welcome at any stage of their research."
+        ]
+      ]
+    },
+    {
+      "slug": "st-kitts-and-nevis",
+      "name": "St Kitts and Nevis",
+      "label": "Sub-group",
+      "summary": "Two islands with separate archives. Our sub-group helps you work out which records you need.",
+      "image": "generated/island-st-kitts-nevis-narrows",
+      "image_alt": "Screenprint-style illustration looking from St Kitts across The Narrows to the cloud-capped cone of Nevis Peak, with century plants in flower.",
+      "body": [
+        [
+          "p",
+          "St Kitts and Nevis became one country at independence in 1983, but for most of their history the two islands kept their own records. Knowing which island a family came from saves a lot of searching."
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "ul",
+          [
+            "The National Archives of St Kitts and Nevis in Basseterre holds government records for St Kitts.",
+            "On Nevis, the Nevis Historical and Conservation Society in Charlestown keeps historical records and can help with enquiries.",
+            "The slave registers for both islands, taken from 1817 to 1834, are at The National Archives in Kew and online through Ancestry.",
+            "Anglican and Methodist registers for both islands were filmed by FamilySearch."
+          ]
+        ],
+        [
+          "h2",
+          "The St Kitts and Nevis sub-group"
+        ],
+        [
+          "p",
+          "The sub-group meets between the main meetings. Dates are posted in What’s on."
+        ]
+      ]
+    },
+    {
+      "slug": "trinidad-and-tobago",
+      "name": "Trinidad and Tobago",
+      "label": "Research guide",
+      "summary": "Spanish, French and British records side by side, and the records of indentured workers from India.",
+      "image": "generated/island-trinidad-caroni",
+      "image_alt": "Screenprint-style illustration of the Caroni Swamp in Trinidad at dusk, with mangrove roots and scarlet ibis flying over the water.",
+      "body": [
+        [
+          "p",
+          "Trinidad was a Spanish colony until the British took it in 1797, and many of its early settlers were French. Tobago was a separate colony until 1889. Each layer left records in a different language and a different place."
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "ul",
+          [
+            "Early Catholic registers may be written in Spanish or French. Many are held by the churches themselves.",
+            "The National Archives of Trinidad and Tobago in Port of Spain holds government records, including registers of indentured immigrants from India between 1845 and 1917.",
+            "Civil registration records are held by the Registrar General.",
+            "The slave registers for both islands are at The National Archives in Kew and online through Ancestry."
+          ]
+        ],
+        [
+          "h2",
+          "How the group can help"
+        ],
+        [
+          "p",
+          "Members are researching Trinidad lines now, and we have welcomed Ann Dardain from the Trinidad archives as a guest speaker. Ask at a meeting and we will put you in touch."
+        ]
+      ]
+    },
+    {
+      "slug": "montserrat",
+      "name": "Montserrat",
+      "label": "Members’ stories",
+      "summary": "A small island with a large diaspora. Read how one member traced her family from Montserrat back to Africa.",
+      "image": "generated/island-montserrat-soufriere",
+      "image_alt": "Screenprint-style illustration of Montserrat from the green northern hills, with the ash-grey Soufriere Hills volcano and a plume of steam.",
+      "body": [
+        [
+          "p",
+          "Montserrat’s early settlers included many Irish families, which is why so many Montserratian surnames are Irish. The eruptions of the Soufriere Hills volcano from 1995 left the capital, Plymouth, abandoned and moved much of the population to the north of the island and to Britain."
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "ul",
+          [
+            "Some records were damaged or moved after the eruptions, so check what survives before you plan a search.",
+            "The Montserrat National Trust can help with local history enquiries.",
+            "The slave registers for Montserrat, taken from 1817 to 1834, are at The National Archives in Kew and online through Ancestry.",
+            "Anglican and Catholic registers were filmed by FamilySearch."
+          ]
+        ],
+        [
+          "h2",
+          "Ursula’s story"
+        ],
+        [
+          "p",
+          "One of our members, Ursula, traced her family from Montserrat back to Africa. Her story is one of the reasons we started publishing members’ research on this site."
+        ],
+        [
+          "p",
+          "There is no Montserrat sub-group yet. If your family is from Montserrat, tell us and we will put you in touch with other members researching the island."
+        ]
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "solihull-familysearch-library",
+      "title": "How Solihull’s libraries came to hold Caribbean records",
+      "date": "2026-10-02",
+      "category": "Group history",
+      "excerpt": "In 2011, at the group’s request, Solihull Central Library became a FamilySearch affiliate. Here is how that happened and what it means for your research.",
+      "image": "library/atlas-open-at-the-caribbean",
+      "image_alt": "Illustrative photograph: hands holding an atlas open at a map of the Caribbean.",
+      "body": [
+        [
+          "p",
+          "In 2006 and 2007, Solihull Libraries and Solihull College ran a series of ten-week family history courses for people tracing ancestors from the Caribbean. They were the first full-length courses of their kind in the UK, funded through the European Social Fund’s Equal Engage programme. The Caribbean Family History Group grew out of them."
+        ],
+        [
+          "h2",
+          "Bringing the films to Solihull"
+        ],
+        [
+          "p",
+          "At the time, most Caribbean records were not online. Members travelled to London to view microfilms at the London Family History Centre. So the group asked Solihull Central Library to become an affiliate FamilySearch centre, which it did in 2011. Members could then order Caribbean microfilms to Solihull, and the films stayed there for anyone to use."
+        ],
+        [
+          "h2",
+          "From microfilm to free online access"
+        ],
+        [
+          "p",
+          "In 2017 FamilySearch replaced microfilm ordering with online access to its digitised collections. Some of those collections can only be viewed at a FamilySearch affiliate library. Solihull was the first local authority in the UK to have every one of its libraries made an affiliate, so you can search them free of charge at any Solihull library."
+        ],
+        [
+          "quote",
+          "Most of the records were not yet available online. Group members had been travelling to London to view the films."
+        ],
+        [
+          "h2",
+          "What this means for you"
+        ],
+        [
+          "p",
+          "If a FamilySearch record shows a camera icon with a key, it may open at a Solihull library when it will not open at home. Bring a list of what you want to see to a meeting and a member will show you how."
+        ]
+      ]
+    },
+    {
+      "slug": "black-history-month-exhibition",
+      "title": "Our Black History Month exhibition at Solihull Core Library",
+      "date": "2026-10-01",
+      "category": "Exhibitions",
+      "excerpt": "Every October the library gives the group free space for an exhibition. This year’s panels show how members found their families in the records.",
+      "image": "library/notes-and-photographs-flatlay",
+      "image_alt": "Illustrative photograph: a notebook, pencil and black and white photographs spread across a wooden table.",
+      "body": [
+        [
+          "p",
+          "Every October, Solihull Core Library gives the group free space to hold an exhibition for Black History Month. We are grateful to the library for its support, year after year."
+        ],
+        [
+          "p",
+          "This year’s panels follow members’ research from a single name to a family tree, and show the records that made the difference: parish registers, slave registers, passenger lists and military papers."
+        ],
+        [
+          "h2",
+          "Visit, then come to a meeting"
+        ],
+        [
+          "p",
+          "The exhibition is free and open during library hours. If it sets you thinking about your own family, come to a monthly meeting. Your first visit is free."
+        ]
+      ]
+    },
+    {
+      "slug": "which-dna-kit",
+      "title": "Which DNA kit? A plain guide before you buy",
+      "date": "2026-09-12",
+      "category": "Research tips",
+      "excerpt": "What a DNA test can and cannot tell you, and how the main companies differ, from members who have tested.",
+      "image": "library/dna-kit-on-a-desk",
+      "image_alt": "Illustrative photograph: a plain white DNA kit box beside a notebook and laptop on a desk.",
+      "body": [
+        [
+          "p",
+          "A DNA test will not hand you a family tree. What it will do is match you with living relatives who have also tested, and those matches can confirm a line you have found in the records or point you to one you have not."
+        ],
+        [
+          "h2",
+          "The main choices"
+        ],
+        [
+          "ul",
+          [
+            "AncestryDNA has the largest database of testers, so it usually gives the most matches. It works best alongside an Ancestry family tree.",
+            "MyHeritage has a strong European database and lets you upload results from other companies.",
+            "Y-DNA and mitochondrial DNA tests follow a single direct paternal or maternal line. They are useful for particular questions rather than as a first test."
+          ]
+        ],
+        [
+          "h2",
+          "Before you test"
+        ],
+        [
+          "p",
+          "Write down what you want to find out, and build as much of your tree from records as you can. Matches are far easier to place when you already know your great-grandparents. Bring your results to a meeting and members who have tested will help you read them."
+        ]
+      ]
+    },
+    {
+      "slug": "british-west-india-regiment",
+      "title": "Researching the British West India Regiment",
+      "date": "2026-08-20",
+      "category": "Research tips",
+      "excerpt": "Two regiments with similar names, two sets of records. Where to look for a soldier in the family.",
+      "image": "library/hands-holding-a-photo-album",
+      "image_alt": "Illustrative photograph: hands holding an open album of old photographs.",
+      "body": [
+        [
+          "p",
+          "Many Caribbean families have a soldier in their story. Before you search, check which regiment you are looking for, because two have very similar names."
+        ],
+        [
+          "ul",
+          [
+            "The West India Regiments were raised in 1795 and served until 1927.",
+            "The British West Indies Regiment was raised in 1915 for the First World War, and served in Egypt, Palestine, Italy, France and Belgium until 1919."
+          ]
+        ],
+        [
+          "h2",
+          "Where the records are"
+        ],
+        [
+          "p",
+          "The National Archives in Kew holds most of the surviving service records. Papers for soldiers discharged before 1913 are in series WO 97. Many First World War service records were destroyed by bombing in 1940; those that survive are in WO 363 and WO 364. Medal index cards in WO 372 cover most men who served overseas."
+        ],
+        [
+          "p",
+          "Our military research lead can help with questions at any meeting."
+        ]
+      ]
+    }
+  ],
+  "pages": {
+    "membership": {
+      "title": "Membership and meetings",
+      "standfirst": "Your first visit is free. After that it is £5 a visit, or £20 for a year’s membership.",
+      "body": [
+        [
+          "h2",
+          "When and where we meet"
+        ],
+        [
+          "p",
+          "The group meets on the last Saturday of the month, except May, August and December. Meetings are in the computer room on the first floor of Solihull Core Library and on Zoom, so you can join from anywhere."
+        ],
+        [
+          "h2",
+          "What happens at a meeting"
+        ],
+        [
+          "p",
+          "Each meeting has an agenda, often a guest speaker or a member’s talk, and plenty of time to work on your own research with help from others. Bring a laptop if you have one, and whatever you already know about your family."
+        ],
+        [
+          "h2",
+          "Joining"
+        ],
+        [
+          "ul",
+          [
+            "First visit: free.",
+            "After that: £5 a visit.",
+            "Annual membership: £20. Payments are taken through the Family History Federation."
+          ]
+        ],
+        [
+          "p",
+          "Membership is open to anyone aged 18 or over, and younger people are welcome with a parent or guardian."
+        ],
+        [
+          "h2",
+          "Photographs and video",
+          "photos"
+        ],
+        [
+          "p",
+          "We take photographs and video at some events. If you would rather not appear, fill in our non-permission form and send it to the group, and we will make sure you are left out."
+        ],
+        [
+          "h2",
+          "The committee",
+          "committee"
+        ],
+        [
+          "p",
+          "The group is run by a core committee of volunteers elected at the AGM each May. Roles include Chair, Secretary, Treasurer, Membership Secretary, Events Co-ordinator, Newsletter Co-ordinator, Website Administrator, Senior Researcher and Military Research Expert. Anyone who has been active in the group for six months can stand. We all give our time freely, so expectations are flexible."
+        ]
+      ]
+    }
+  },
+  "footer": {
+    "about": "A volunteer-run genealogy group helping people trace their Caribbean ancestors since 2006.",
+    "newsletter_heading": "The newsletter",
+    "newsletter_body": "News, meeting dates and research tips, four times a year.",
+    "newsletter_button": "Sign up",
+    "partners": "Member of the Family History Federation. Working with Solihull Libraries and the Why Are West Indians in this Country (WAWI) Project.",
+    "legal": [
+      {
+        "label": "Privacy and cookies",
+        "url": "/privacy-policy/"
+      },
+      {
+        "label": "Photo permission",
+        "url": "/membership/#photos"
+      }
+    ]
+  },
+  "not_found": {
+    "eyebrow": "Page not found",
+    "title": "This page has gone missing from the record.",
+    "body": "It may have moved when the site was rebuilt, or the link may have a typing error. Try a search, or start from one of these.",
+    "links": [
+      {
+        "label": "Research guides",
+        "url": "/research/"
+      },
+      {
+        "label": "Islands",
+        "url": "/islands/"
+      },
+      {
+        "label": "What’s on",
+        "url": "/whats-on/"
+      },
+      {
+        "label": "Membership and meetings",
+        "url": "/membership/"
+      }
+    ],
+    "image": "library/atlas-open-at-the-caribbean",
+    "image_alt": "Illustrative photograph: hands holding an atlas open at a map of the Caribbean."
+  }
+}

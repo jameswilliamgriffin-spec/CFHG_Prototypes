@@ -1,0 +1,66 @@
+/* Block editor: the theme's fonts and text styles, so posts look the same
+   while they are being written. */
+
+@font-face {
+	font-family: "Newsreader";
+	src: url("../fonts/newsreader-latin-var.woff2") format("woff2");
+	font-weight: 200 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Newsreader";
+	src: url("../fonts/newsreader-italic-latin-var.woff2") format("woff2");
+	font-weight: 200 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Source Sans 3";
+	src: url("../fonts/source-sans-3-latin-var.woff2") format("woff2");
+	font-weight: 200 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+body {
+	background: #fbfaf6;
+	color: #13202d;
+	font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+	font-size: 1.125rem;
+	line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+.editor-post-title__input {
+	font-family: "Newsreader", Georgia, serif;
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+}
+
+h2 {
+	font-size: 2.125rem;
+}
+
+h3 {
+	font-size: 1.375rem;
+}
+
+a {
+	color: #00568f;
+}
+
+blockquote {
+	padding-left: 1.25em;
+	border-left: 4px solid #f0b424;
+	font-family: "Newsreader", Georgia, serif;
+	font-size: 1.625rem;
+	font-style: italic;
+	line-height: 1.35;
+}

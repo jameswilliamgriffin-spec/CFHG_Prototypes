@@ -1,0 +1,464 @@
+/*
+ * CFHG Option B: UI polish pass.
+ *
+ * Loaded after main.css. Plain CSS driven by classes and data attributes,
+ * so it can move into the theme and onto Elementor widgets (see
+ * README-ui-pass.md). Hidden-until-revealed states only apply under
+ * html.cfhg-ui and only when motion is allowed.
+ *
+ *  1. Tokens
+ *  2. Base: type, focus, selection, scrollbar
+ *  3. Components
+ *  4. Layout fixes after the AI tell removal
+ *  5. Motion
+ *  6. Page transitions
+ *  7. Print
+ */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+	--ui-ease: var(--cfhg-ease, cubic-bezier(0.22, 1, 0.36, 1));
+	--ui-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--ui-dur: 320ms;
+	--ui-dur-fast: 220ms;
+	--ui-focus: var(--cfhg-ink);
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+html {
+	scrollbar-color: var(--cfhg-ink-soft) var(--cfhg-cream);
+	hanging-punctuation: first allow-end;
+}
+
+h1, h2, h3, h4,
+.cfhg-join__big,
+.cfhg-slide__title {
+	text-wrap: balance;
+}
+
+p, li, dd, figcaption {
+	text-wrap: pretty;
+}
+
+.cfhg-prose {
+	max-width: min(var(--cfhg-measure, 44rem), 68ch);
+}
+
+:focus-visible {
+	outline: 3px solid var(--ui-focus);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+.cfhg-join__band,
+.cfhg-footer__band {
+	--ui-focus: var(--cfhg-highlight);
+}
+
+::selection {
+	background: var(--cfhg-highlight);
+	color: var(--cfhg-ink);
+}
+
+/* 3. Components ------------------------------------------------------------ */
+
+/* Every button presses in a touch. */
+.cfhg-btn,
+.cfhg-header__join,
+.cfhg-menu-toggle,
+.cfhg-search__button,
+.cfhg-carousel__btn {
+	-webkit-tap-highlight-color: transparent;
+	transition: transform var(--ui-dur-fast) var(--ui-ease), background-color var(--ui-dur) var(--ui-ease), color var(--ui-dur) var(--ui-ease), opacity var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-btn:active,
+.cfhg-header__join:active,
+.cfhg-menu-toggle:active,
+.cfhg-search__button:active,
+.cfhg-carousel__btn:active {
+	transform: scale(0.96);
+}
+
+/* The icon square nudges its arrow forward on hover. */
+.cfhg-btn__icon .cfhg-arrow {
+	transition: transform var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-btn:hover .cfhg-btn__icon .cfhg-arrow,
+.cfhg-btn:focus-visible .cfhg-btn__icon .cfhg-arrow {
+	transform: translateX(3px);
+}
+
+/* Text links: a highlighter stroke slides in under the words. */
+.cfhg-btn--text {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.3em;
+	background: linear-gradient(var(--cfhg-highlight), var(--cfhg-highlight)) 0 88% / 0 0.45em no-repeat;
+	transition: background-size var(--ui-dur) var(--ui-ease), text-decoration-color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-btn--text:hover,
+.cfhg-btn--text:focus-visible {
+	background-size: 100% 0.45em;
+	text-decoration-color: transparent;
+}
+
+.cfhg-prose a,
+.cfhg-footer__links a,
+.cfhg-footer a {
+	text-underline-offset: 0.22em;
+	transition: text-underline-offset var(--ui-dur) var(--ui-ease), color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-prose a:hover,
+.cfhg-footer a:hover {
+	text-underline-offset: 0.34em;
+}
+
+.cfhg-footer__links a .cfhg-arrow {
+	transition: transform var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-footer__links a:hover .cfhg-arrow,
+.cfhg-footer__links a:focus-visible .cfhg-arrow {
+	transform: translateX(0.25rem);
+}
+
+/* Labels that stay are sentence case, not tracked microtext. */
+.cfhg-facts dt,
+.cfhg-next__label {
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.cfhg-facts dt {
+	font-weight: 500;
+}
+
+/* Footer column headings that replaced the green-bar eyebrows. */
+.ui-col-heading {
+	margin: 0 0 var(--cfhg-sp-xs);
+	font-family: var(--cfhg-font-display);
+	font-size: 1.125rem;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 1.2;
+	text-transform: none;
+}
+
+.ui-col-heading::before {
+	content: none;
+	display: none;
+}
+
+/* Story slides: the photograph eases forward on hover or focus. */
+.cfhg-slide__media {
+	overflow: hidden;
+}
+
+.cfhg-slide__media img {
+	transition: transform 700ms var(--ui-ease);
+}
+
+.cfhg-slide:hover .cfhg-slide__media img,
+.cfhg-slide:focus-within .cfhg-slide__media img {
+	transform: scale(1.04);
+}
+
+.cfhg-slide__meta,
+.cfhg-page-hero__meta {
+	font-variant-numeric: tabular-nums;
+}
+
+.cfhg-page-hero__meta {
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.cfhg-page-hero__meta a {
+	color: inherit;
+	text-underline-offset: 0.22em;
+}
+
+/* Carousel progress, in place of the 1/3 counters. */
+.ui-progress {
+	position: relative;
+	width: min(12rem, 40vw);
+	height: 3px;
+	overflow: hidden;
+	border-radius: 3px;
+	background: var(--cfhg-line);
+}
+
+.ui-progress span {
+	position: absolute;
+	inset: 0;
+	background: var(--cfhg-ink);
+	transform-origin: 0 50%;
+	transform: scaleX(var(--cfhg-p, 0.3));
+	transition: transform 160ms linear;
+}
+
+.cfhg-carousel__nav .ui-progress {
+	margin: 0 auto 0 0;
+	align-self: center;
+}
+
+/* Search field. */
+.cfhg-search__input {
+	transition: border-color var(--ui-dur) var(--ui-ease), box-shadow var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-search__input:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px var(--cfhg-ink);
+}
+
+/* Header, once scrolled: the hairline becomes a soft edge. */
+.cfhg-header.is-scrolled .cfhg-header__bar {
+	box-shadow: 0 1px 0 var(--cfhg-line), 0 10px 24px -18px rgba(16, 33, 59, 0.35);
+}
+
+/* 4. Layout fixes after the AI tell removal --------------------------------- */
+
+/* "Next meeting" is now the section heading, above the big date. */
+.ui-meeting-title {
+	margin: 0 0 var(--cfhg-sp-xs);
+}
+
+.cfhg-meeting__card .cfhg-date + .cfhg-meeting__heading {
+	margin-top: var(--cfhg-sp-sm);
+}
+
+/* The meeting photograph's caption: plain words on a soft scrim. */
+.cfhg-meeting__media::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0;
+	height: 40%;
+	background: linear-gradient(transparent, rgba(16, 33, 59, 0.55));
+	pointer-events: none;
+}
+
+.ui-caption {
+	position: absolute;
+	left: var(--cfhg-sp-sm);
+	right: var(--cfhg-sp-sm);
+	bottom: var(--cfhg-sp-sm);
+	z-index: 1;
+	color: var(--cfhg-white);
+	font-size: var(--cfhg-fs-small);
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+/* 5. Motion ----------------------------------------------------------------- */
+
+/* The theme's generic fade-up is retired. The scattered notes and tilted
+   snapshots keep their landing, because that is this option's character. */
+.cfhg-reveal-ready [data-reveal=""]:not(.cfhg-note):not(.is-revealed) {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	/* 5.1 Hero load: the circle opens like an iris, the small circles pop in
+	   one after another, the words arrive and the highlighter sweeps "Trace". */
+	.cfhg-ui .cfhg-load-iris {
+		animation: ui-iris 1200ms var(--ui-ease) 80ms both;
+	}
+
+	.cfhg-ui .cfhg-load-iris img {
+		animation: ui-ease-in-photo 1600ms var(--ui-ease) 80ms both;
+	}
+
+	.cfhg-ui .cfhg-load-pop {
+		animation: ui-pop 700ms var(--ui-spring) both;
+		animation-delay: calc(650ms + var(--i, 0) * 110ms);
+	}
+
+	.cfhg-ui .cfhg-hero__dot--white.cfhg-load-pop,
+	.cfhg-ui .cfhg-hero__dot--blue.cfhg-load-pop {
+		animation: ui-pop 700ms var(--ui-spring) both, cfhg-float 7s var(--ui-ease) 1.6s infinite alternate;
+		animation-delay: calc(650ms + var(--i, 0) * 110ms), 1.6s;
+	}
+
+	.cfhg-ui .cfhg-load-fade {
+		animation: ui-rise 700ms var(--ui-ease) both;
+		animation-delay: calc(150ms + var(--d, 0) * 90ms);
+	}
+
+	.cfhg-ui .cfhg-hero__title em {
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		animation: ui-mark 800ms var(--ui-ease) 650ms both;
+	}
+
+	.cfhg-ui .cfhg-avatars > * {
+		animation: ui-slide-in 600ms var(--ui-ease) both;
+	}
+
+	.cfhg-ui .cfhg-avatars > :nth-child(1) { animation-delay: 520ms; }
+	.cfhg-ui .cfhg-avatars > :nth-child(2) { animation-delay: 600ms; }
+	.cfhg-ui .cfhg-avatars > :nth-child(3) { animation-delay: 680ms; }
+	.cfhg-ui .cfhg-avatars > :nth-child(4) { animation-delay: 760ms; }
+
+	/* 5.2 Highlighter strokes draw in when they reach the reader. */
+	.cfhg-ui [data-cfhg-mark] {
+		background-repeat: no-repeat;
+		background-size: 0 100%;
+		transition: background-size 900ms var(--ui-ease) 150ms;
+	}
+
+	.cfhg-ui [data-cfhg-mark].is-in {
+		background-size: 100% 100%;
+	}
+
+	/* 5.3 "Come along": the giant words open out as the band scrolls past,
+	   and the photograph behind drifts more slowly. */
+	.cfhg-ui [data-cfhg-track] {
+		letter-spacing: calc(0.12em - var(--cfhg-p, 0.5) * 0.16em);
+		transform: translateX(calc((0.5 - var(--cfhg-p, 0.5)) * 6%));
+		will-change: transform;
+	}
+
+	.cfhg-ui [data-cfhg-parallax] img {
+		scale: 1.12;
+		translate: 0 calc((var(--cfhg-p, 0.5) - 0.5) * -8%);
+	}
+
+	@supports (animation-timeline: view()) {
+		.cfhg-ui [data-cfhg-track].is-css-scroll {
+			animation: ui-track linear both;
+			animation-timeline: view();
+		}
+
+		.cfhg-ui [data-cfhg-parallax].is-css-scroll img {
+			animation: ui-drift linear both;
+			animation-timeline: view();
+		}
+	}
+
+	/* 5.4 Header logo eases down to its scrolled size. */
+	.cfhg-ui .cfhg-header__brand {
+		animation: ui-rise 600ms var(--ui-ease) both;
+	}
+}
+
+@keyframes ui-iris {
+	from { clip-path: circle(8% at 50% 58%); }
+	to { clip-path: circle(71% at 50% 50%); }
+}
+
+@keyframes ui-ease-in-photo {
+	from { transform: scale(1.18); }
+	to { transform: scale(1); }
+}
+
+@keyframes ui-pop {
+	from { transform: scale(0); }
+	to { transform: scale(1); }
+}
+
+@keyframes ui-rise {
+	from { opacity: 0; transform: translateY(0.75rem); }
+	to { opacity: 1; transform: none; }
+}
+
+@keyframes ui-mark {
+	from { background-size: 0 100%; }
+	to { background-size: 100% 100%; }
+}
+
+@keyframes ui-slide-in {
+	from { opacity: 0; transform: translateX(-0.75rem); }
+	to { opacity: 1; transform: none; }
+}
+
+@keyframes ui-track {
+	from { letter-spacing: 0.12em; transform: translateX(3%); }
+	to { letter-spacing: -0.04em; transform: translateX(-3%); }
+}
+
+@keyframes ui-drift {
+	from { translate: 0 4%; }
+	to { translate: 0 -4%; }
+}
+
+/* 6. Page transitions: the browser's own cross-fade between preview pages
+   (Chromium; other browsers simply navigate). Off for reduced motion. */
+@view-transition {
+	navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+}
+
+/* 7. Print ------------------------------------------------------------------ */
+@media print {
+	.cfhg-header,
+	.cfhg-menu,
+	.cfhg-footer__band,
+	.cfhg-footer__col,
+	.cfhg-preview-label,
+	.cfhg-actions,
+	.cfhg-shape,
+	.cfhg-skip {
+		display: none !important;
+	}
+
+	html,
+	body {
+		background: #fff !important;
+		color: #000 !important;
+		font-size: 11pt;
+	}
+
+	.cfhg-footer__card,
+	.cfhg-card {
+		box-shadow: none !important;
+		background: none !important;
+	}
+
+	.cfhg-page-hero,
+	.cfhg-content {
+		padding-top: 0 !important;
+	}
+
+	.cfhg-prose {
+		max-width: none;
+	}
+
+	.cfhg-prose a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.85em;
+	}
+
+	.cfhg-prose h2,
+	.cfhg-prose h3 {
+		break-after: avoid;
+	}
+
+	img {
+		max-height: 9cm;
+		object-fit: contain !important;
+		break-inside: avoid;
+	}
+
+	.cfhg-load-iris,
+	.cfhg-load-fade,
+	.cfhg-load-pop,
+	[data-cfhg-mark] {
+		opacity: 1 !important;
+		clip-path: none !important;
+		transform: none !important;
+		animation: none !important;
+		background-size: 100% 100% !important;
+	}
+}

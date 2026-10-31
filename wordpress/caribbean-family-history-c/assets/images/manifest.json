@@ -1,0 +1,90 @@
+{
+ "generated/hero-hillside-bay-560": {
+  "w": 560,
+  "h": 700
+ },
+ "generated/hero-hillside-bay": {
+  "w": 900,
+  "h": 1125
+ },
+ "generated/island-barbados-chattel-houses-640": {
+  "w": 640,
+  "h": 426
+ },
+ "generated/island-barbados-chattel-houses": {
+  "w": 1200,
+  "h": 799
+ },
+ "generated/island-jamaica-blue-mountains-640": {
+  "w": 640,
+  "h": 427
+ },
+ "generated/island-jamaica-blue-mountains": {
+  "w": 1200,
+  "h": 800
+ },
+ "generated/island-montserrat-soufriere-640": {
+  "w": 640,
+  "h": 427
+ },
+ "generated/island-montserrat-soufriere": {
+  "w": 1200,
+  "h": 800
+ },
+ "generated/island-st-kitts-nevis-narrows-640": {
+  "w": 640,
+  "h": 426
+ },
+ "generated/island-st-kitts-nevis-narrows": {
+  "w": 1200,
+  "h": 799
+ },
+ "generated/island-trinidad-caroni-640": {
+  "w": 640,
+  "h": 426
+ },
+ "generated/island-trinidad-caroni": {
+  "w": 1200,
+  "h": 799
+ },
+ "generated/texture-madras": {
+  "w": 600,
+  "h": 600
+ },
+ "library/atlas-open-at-the-caribbean": {
+  "w": 800,
+  "h": 800
+ },
+ "library/dna-kit-on-a-desk": {
+  "w": 800,
+  "h": 800
+ },
+ "library/family-album-pages-portrait": {
+  "w": 640,
+  "h": 800
+ },
+ "library/hands-holding-a-photo-album": {
+  "w": 1200,
+  "h": 800
+ },
+ "library/local-history-walk": {
+  "w": 1200,
+  "h": 675
+ },
+ "library/map-of-the-caribbean-on-a-table": {
+  "w": 1200,
+  "h": 800
+ },
+ "library/notes-and-photographs-flatlay": {
+  "w": 1200,
+  "h": 800
+ },
+ "library/research-help-at-a-laptop": {
+  "w": 1200,
+  "h": 675
+ },
+ "library/research-table-library-landscape": {
+  "w": 1200,
+  "h": 675
+ }
+}

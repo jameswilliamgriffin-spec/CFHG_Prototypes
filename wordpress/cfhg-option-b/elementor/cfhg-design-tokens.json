@@ -1,0 +1,201 @@
+{
+  "_about": "CFHG Option B design tokens. Appearance > CFHG Setup writes these into Elementor automatically. The same values are CSS custom properties in assets/css/tokens.css.",
+  "global_colours": {
+    "system": [
+      {
+        "slot": "Primary",
+        "name": "Primary (headings)",
+        "hex": "#10213B"
+      },
+      {
+        "slot": "Secondary",
+        "name": "Secondary (green)",
+        "hex": "#137A4D"
+      },
+      {
+        "slot": "Text",
+        "name": "Text",
+        "hex": "#10213B"
+      },
+      {
+        "slot": "Accent",
+        "name": "Accent (buttons)",
+        "hex": "#137A4D"
+      }
+    ],
+    "custom": [
+      {
+        "id": "cfbcrem",
+        "name": "CFHG B Cream",
+        "hex": "#F6F1EA",
+        "css": "--cfhg-cream"
+      },
+      {
+        "id": "cfbsand",
+        "name": "CFHG B Sand",
+        "hex": "#ECE4D9",
+        "css": "--cfhg-sand"
+      },
+      {
+        "id": "cfbwhit",
+        "name": "CFHG B White",
+        "hex": "#FFFFFF",
+        "css": "--cfhg-white"
+      },
+      {
+        "id": "cfbinkk",
+        "name": "CFHG B Ink",
+        "hex": "#10213B",
+        "css": "--cfhg-ink"
+      },
+      {
+        "id": "cfbsoft",
+        "name": "CFHG B Ink soft",
+        "hex": "#4B5567",
+        "css": "--cfhg-ink-soft"
+      },
+      {
+        "id": "cfbcorl",
+        "name": "CFHG B Coral",
+        "hex": "#F26B57",
+        "css": "--cfhg-coral"
+      },
+      {
+        "id": "cfbgold",
+        "name": "CFHG B Gold",
+        "hex": "#F6C343",
+        "css": "--cfhg-gold"
+      },
+      {
+        "id": "cfbhigh",
+        "name": "CFHG B Highlighter",
+        "hex": "#FFE873",
+        "css": "--cfhg-highlight"
+      },
+      {
+        "id": "cfbgren",
+        "name": "CFHG B Green",
+        "hex": "#2FA36B",
+        "css": "--cfhg-green"
+      },
+      {
+        "id": "cfbdeep",
+        "name": "CFHG B Green deep",
+        "hex": "#137A4D",
+        "css": "--cfhg-green-deep"
+      },
+      {
+        "id": "cfbseaa",
+        "name": "CFHG B Sea",
+        "hex": "#45BCD0",
+        "css": "--cfhg-sea"
+      },
+      {
+        "id": "cfbblue",
+        "name": "CFHG B Blue",
+        "hex": "#5B8DEF",
+        "css": "--cfhg-blue"
+      },
+      {
+        "id": "cfbline",
+        "name": "CFHG B Line",
+        "hex": "#D9CFC1",
+        "css": "--cfhg-line"
+      }
+    ]
+  },
+  "global_fonts": [
+    {
+      "slot": "Primary",
+      "name": "Heading",
+      "family": "Jost",
+      "weight": 400,
+      "transform": "uppercase",
+      "size_px": {
+        "desktop": 64,
+        "tablet": 48,
+        "mobile": 34
+      }
+    },
+    {
+      "slot": "Secondary",
+      "name": "Display",
+      "family": "Jost",
+      "weight": 400,
+      "transform": "uppercase",
+      "size_px": {
+        "desktop": 104,
+        "tablet": 76,
+        "mobile": 46
+      }
+    },
+    {
+      "slot": "Text",
+      "name": "Body",
+      "family": "Outfit",
+      "weight": 300,
+      "size_px": {
+        "desktop": 17,
+        "tablet": 17,
+        "mobile": 17
+      }
+    },
+    {
+      "slot": "Accent",
+      "name": "Label",
+      "family": "Jost",
+      "weight": 500,
+      "transform": "uppercase",
+      "size_px": {
+        "desktop": 15,
+        "tablet": 15,
+        "mobile": 14
+      }
+    },
+    {
+      "slot": "Custom",
+      "id": "cfblead",
+      "name": "Lead",
+      "family": "Outfit",
+      "weight": 300,
+      "size_px": {
+        "desktop": 22,
+        "tablet": 20,
+        "mobile": 19
+      }
+    },
+    {
+      "slot": "Custom",
+      "id": "cfbnumb",
+      "name": "Numbers",
+      "family": "Jost",
+      "weight": 400,
+      "size_px": {
+        "desktop": 96,
+        "tablet": 80,
+        "mobile": 64
+      }
+    }
+  ],
+  "layout": {
+    "container_width_px": 1600,
+    "section_padding_px": {
+      "desktop": "140 32 0 32",
+      "tablet": "110 24 0 24",
+      "mobile": "80 18 0 18"
+    },
+    "radius_px": {
+      "xs": 5,
+      "sm": 6,
+      "md": 12.5,
+      "lg": 20
+    }
+  },
+  "motion": {
+    "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "quick": "cubic-bezier(0.25, 1, 0.5, 1)",
+    "fast": "0.25s",
+    "standard": "0.35s",
+    "reveal": "0.8s"
+  }
+}

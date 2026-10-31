@@ -1,0 +1,522 @@
+/*
+ * CFHG Option A: UI polish pass.
+ *
+ * Loaded after main.css. Everything here is portable to the theme: plain CSS,
+ * driven by classes and data attributes (see README-ui-pass.md).
+ * Hidden-until-revealed states only apply under html.cfhg-ui (added in the
+ * head, removed again if ui-pass.js never runs) and only when motion is allowed.
+ *
+ *  1. Tokens
+ *  2. Base: type, focus, selection, scrollbar
+ *  3. Components: buttons, links, meta lines, footer
+ *  4. Layout fixes after the AI tell removal
+ *  5. Island marquee
+ *  6. Motion: hero load, reveals, ink, parallax
+ *  7. Page transitions
+ *  8. Print
+ */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+	--ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--ui-dur: 320ms;
+	--ui-dur-fast: 220ms;
+	--ui-dur-slow: 900ms;
+	--ui-focus: var(--cfhg-navy);
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+html {
+	scrollbar-color: var(--cfhg-navy-soft) var(--cfhg-paper);
+	hanging-punctuation: first allow-end;
+}
+
+h1, h2, h3, h4,
+.cfhg-statement,
+.cfhg-story__title {
+	text-wrap: balance;
+}
+
+p, li, dd, figcaption {
+	text-wrap: pretty;
+}
+
+.cfhg-prose {
+	max-width: min(var(--cfhg-measure), 68ch);
+}
+
+/* One focus ring everywhere: thick, offset, and in the panel's own ink. */
+:focus-visible {
+	outline: 3px solid var(--ui-focus);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+.cfhg-on-dark {
+	--ui-focus: var(--cfhg-gold);
+}
+
+::selection {
+	background: var(--cfhg-navy);
+	color: var(--cfhg-gold);
+}
+
+/* 3. Components ------------------------------------------------------------ */
+
+/* Buttons press in, briefly. */
+.cfhg-btn,
+.cfhg-header__join,
+.cfhg-menu-toggle,
+.cfhg-search__button {
+	transition: transform var(--ui-dur-fast) var(--ui-ease), background-color var(--ui-dur) var(--ui-ease), color var(--ui-dur) var(--ui-ease);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.cfhg-btn:active,
+.cfhg-header__join:active,
+.cfhg-menu-toggle:active,
+.cfhg-search__button:active {
+	transform: scale(0.97);
+}
+
+.cfhg-btn__disc,
+.cfhg-btn__disc .cfhg-arrow {
+	transition-timing-function: var(--ui-ease);
+	transition-duration: var(--ui-dur);
+}
+
+
+/* Text links: an underline that draws in rather than thickening. */
+.cfhg-btn--text {
+	text-decoration: none;
+	background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+	padding-bottom: 0.3em;
+	transition: background-size var(--ui-dur) var(--ui-ease), transform var(--ui-dur-fast) var(--ui-ease);
+}
+
+.cfhg-btn--text:hover,
+.cfhg-btn--text:focus-visible {
+	background-size: 100% 2px;
+}
+
+.cfhg-prose a,
+.cfhg-footer__email,
+.cfhg-footer__photo a,
+.cfhg-footer__legal a {
+	text-underline-offset: 0.22em;
+	transition: text-decoration-color var(--ui-dur) var(--ui-ease), text-underline-offset var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-prose a:hover,
+.cfhg-footer__email:hover,
+.cfhg-footer__photo a:hover,
+.cfhg-footer__legal a:hover {
+	text-underline-offset: 0.32em;
+}
+
+/* Labels that stay (definition terms, the next meeting line) are sentence
+   case: still clear, no longer letter-spaced microtext. */
+.cfhg-facts dt,
+.cfhg-next__label {
+	font-size: var(--cfhg-fs-small);
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+/* Category in the date line, where the tag chips used to be. */
+.cfhg-story__meta,
+.cfhg-page-hero__meta {
+	font-variant-numeric: tabular-nums;
+}
+
+.cfhg-page-hero__meta a {
+	color: inherit;
+	text-underline-offset: 0.22em;
+}
+
+/* Footer: the column heading that replaced the eyebrow. */
+.ui-col-heading {
+	margin: 0 0 var(--cfhg-sp-xs);
+	font-family: var(--cfhg-font-body);
+	font-size: var(--cfhg-fs-small);
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.cfhg-footer__links a {
+	transition: color var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-footer__links a svg {
+	transition: transform var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-footer__links a:hover svg,
+.cfhg-footer__links a:focus-visible svg {
+	transform: translateX(0.3rem);
+}
+
+/* Search field on the 404 page. */
+.cfhg-search__input {
+	transition: border-color var(--ui-dur) var(--ui-ease), box-shadow var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-search__input:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px var(--cfhg-navy);
+}
+
+/* Stories: the whole card carries the focus ring, at the same weight. */
+.cfhg-story:focus-within {
+	outline-width: 3px;
+}
+
+/* Stories: the photograph eases in, the card lifts its arrow. */
+.cfhg-story__media img {
+	transition: transform 700ms var(--ui-ease);
+}
+
+.cfhg-story:hover .cfhg-story__media img,
+.cfhg-story:focus-within .cfhg-story__media img {
+	transform: scale(1.045);
+}
+
+/* 4. Layout fixes after the AI tell removal --------------------------------- */
+
+/* Header: the logo stands on its own, larger, with no white pill. Once the
+   page scrolls, the bar takes the paper ground so the logo stays legible
+   over the navy and photographic sections. */
+:root {
+	--ui-logo-h: clamp(3rem, 2.3rem + 2.4vw, 5rem);
+	--cfhg-header-h: calc(var(--ui-logo-h) + 2rem);
+}
+
+.cfhg-header__bar {
+	padding-block: 1rem;
+	transition: background-color var(--ui-dur) var(--ui-ease), box-shadow var(--ui-dur) var(--ui-ease), padding var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-header__brand {
+	flex: none;
+	padding: 0;
+	border-radius: 0;
+	background: none;
+}
+
+.cfhg-header__brand .cfhg-logo {
+	height: var(--ui-logo-h);
+	transition: height var(--ui-dur) var(--ui-ease);
+}
+
+.cfhg-header.is-scrolled .cfhg-header__bar {
+	max-width: none;
+	padding-block: 0.55rem;
+	padding-inline: max(var(--cfhg-gutter), calc((100% - var(--cfhg-max)) / 2 + var(--cfhg-gutter)));
+	background: rgba(251, 246, 236, 0.95);
+	box-shadow: 0 1px 0 var(--cfhg-line);
+}
+
+.cfhg-header.is-scrolled .cfhg-logo {
+	height: calc(var(--ui-logo-h) * 0.72);
+}
+
+/* Hero: no longer stretched to the full screen height. The photograph's top
+   lines up with the top of the question, and the words below follow on
+   rather than sinking to the bottom. */
+@media (min-width: 1024px) {
+	.cfhg-hero {
+		padding-bottom: clamp(2.5rem, 1rem + 3vw, 4rem);
+	}
+
+	.cfhg-hero__inner {
+		align-items: start;
+		min-height: 0;
+	}
+
+	.cfhg-hero__media {
+		align-self: start;
+		margin-top: 0.06em;
+	}
+}
+
+.cfhg-hero__foot {
+	margin-top: 0;
+}
+
+/* The scroll cue is gone, so the hero foot is one column at every width. */
+.cfhg-hero__foot {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+/* The first visit line under "Next meeting". */
+.ui-meeting-lead {
+	margin: var(--cfhg-sp-sm) 0 var(--cfhg-sp-lg);
+	font-size: var(--cfhg-fs-lead);
+	line-height: var(--cfhg-lh-snug);
+	color: var(--cfhg-gold-soft);
+}
+
+/* Partners: left-aligned like every other section head. */
+.cfhg-partners__head {
+	text-align: left;
+}
+
+.cfhg-partners__head .cfhg-h2 {
+	margin-inline: 0;
+}
+
+/* 5. Island marquee: the islands the group researches, set large ------------ */
+.cfhg-marquee {
+	overflow: hidden;
+	padding-block: clamp(2.5rem, 1.5rem + 4vw, 5.5rem) 0;
+	color: var(--cfhg-navy);
+	user-select: none;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.cfhg-marquee__track {
+	display: flex;
+	width: max-content;
+	font-family: var(--cfhg-font-display);
+	font-size: clamp(3rem, 1.6rem + 6vw, 8.5rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	white-space: nowrap;
+}
+
+.cfhg-marquee__track span {
+	display: inline-flex;
+	align-items: center;
+}
+
+/* Alternate solid and outlined names, joined by a gold disc. */
+.cfhg-marquee__track span:nth-child(even) {
+	color: transparent;
+	-webkit-text-stroke: 1.5px var(--cfhg-navy);
+}
+
+.cfhg-marquee__track span::after {
+	content: "";
+	flex: none;
+	width: 0.28em;
+	height: 0.28em;
+	margin-inline: 0.45em;
+	border-radius: 50%;
+	background: var(--cfhg-gold);
+}
+
+/* Without motion the names simply sit in a row and wrap. */
+@media (prefers-reduced-motion: reduce) {
+	.cfhg-marquee {
+		-webkit-mask-image: none;
+		mask-image: none;
+		padding-inline: var(--cfhg-gutter);
+	}
+
+	.cfhg-marquee__track {
+		flex-wrap: wrap;
+		width: auto;
+		row-gap: 0.15em;
+		font-size: clamp(1.5rem, 1rem + 2.6vw, 4rem);
+		white-space: normal;
+	}
+
+	.cfhg-marquee__track [data-cfhg-clone] {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.cfhg-marquee.is-running .cfhg-marquee__track {
+		animation: ui-marquee var(--ui-marquee-dur, 60s) linear infinite;
+	}
+
+	.cfhg-marquee:hover .cfhg-marquee__track,
+	.cfhg-marquee.is-paused .cfhg-marquee__track {
+		animation-play-state: paused;
+	}
+}
+
+@keyframes ui-marquee {
+	to { transform: translateX(-50%); }
+}
+
+/* 6. Motion ----------------------------------------------------------------- */
+
+/* The theme's one-size fade-up is retired: only chosen elements move now. */
+.cfhg-reveal-ready [data-reveal]:not(.is-revealed) {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	/* 6.1 Hero load: the logo settles, the question rises word by word, the
+	   album photograph is uncovered from the bottom up, then the rest follows. */
+	.cfhg-ui .cfhg-header__brand {
+		animation: ui-settle 700ms var(--ui-ease) both;
+	}
+
+	.cfhg-ui [data-cfhg-split]:not(.is-split) {
+		opacity: 0;
+	}
+
+	.cfhg-ui .cfhg-word {
+		display: inline-block;
+		overflow: clip;
+		overflow-clip-margin: 0.12em;
+		padding-bottom: 0.08em;
+		margin-bottom: -0.08em;
+		vertical-align: top;
+	}
+
+	.cfhg-ui .cfhg-word > span {
+		display: inline-block;
+		animation: ui-word-up 900ms var(--ui-ease) both;
+		animation-delay: calc(120ms + var(--i, 0) * 70ms);
+	}
+
+	.cfhg-ui .cfhg-load-wipe {
+		animation: ui-uncover 1100ms var(--ui-ease) both;
+	}
+
+	.cfhg-ui .cfhg-load-wipe img {
+		animation: ui-settle-image 1500ms var(--ui-ease) both;
+	}
+
+	.cfhg-ui .cfhg-load-rise {
+		animation: ui-fade-rise 800ms var(--ui-ease) 650ms both;
+	}
+
+	/* 6.2 Chosen reveals, each with its own treatment. */
+	.cfhg-ui [data-cfhg-reveal="wipe"] {
+		transition: clip-path 1100ms var(--ui-ease);
+	}
+
+	.cfhg-ui [data-cfhg-reveal="wipe"]:not(.is-in) {
+		clip-path: inset(0 100% 0 0 round var(--cfhg-r-md));
+	}
+
+	.cfhg-ui [data-cfhg-reveal="wipe"].is-in {
+		clip-path: inset(0 0 0 0 round var(--cfhg-r-md));
+	}
+
+	.cfhg-ui [data-cfhg-reveal="grow"] {
+		transition: clip-path 1000ms var(--ui-ease), transform 1000ms var(--ui-ease);
+	}
+
+	.cfhg-ui [data-cfhg-reveal="grow"]:not(.is-in) {
+		clip-path: inset(6% 4% 6% 4% round var(--cfhg-r-lg));
+		transform: scale(0.98);
+	}
+
+	.cfhg-ui [data-cfhg-reveal="grow"].is-in {
+		clip-path: inset(0 0 0 0 round var(--cfhg-r-lg));
+	}
+
+	/* Step numbers rise into place as each step arrives. */
+	.cfhg-ui .cfhg-steps > li::before {
+		transition: transform 700ms var(--ui-ease), opacity 700ms var(--ui-ease);
+	}
+
+	.cfhg-ui .cfhg-steps > li[data-reveal]:not(.is-revealed)::before {
+		opacity: 0;
+		transform: translateY(0.4em);
+	}
+
+	/* 6.3 The statement inks in as it is read (see ui-pass.js). */
+	.cfhg-ui [data-cfhg-ink].is-inking .cfhg-ink-word {
+		opacity: calc(0.22 + 0.78 * var(--ink, 1));
+		transition: opacity 120ms linear;
+	}
+
+	/* 6.4 Photo strip depth: each photograph drifts at its own speed. */
+	.cfhg-ui [data-cfhg-parallax] img {
+		scale: 1.12;
+		translate: 0 calc(var(--cfhg-p, 0) * var(--cfhg-speed, 1) * 4%);
+		will-change: translate;
+	}
+
+	/* Where the browser supports scroll-driven animation, CSS does the work. */
+	@supports (animation-timeline: view()) {
+		.cfhg-ui [data-cfhg-parallax].is-css-scroll img {
+			translate: none;
+			animation: ui-drift linear both;
+			animation-timeline: view();
+		}
+	}
+}
+
+@keyframes ui-drift {
+	from { translate: 0 calc(var(--cfhg-speed, 1) * 4%); }
+	to { translate: 0 calc(var(--cfhg-speed, 1) * -4%); }
+}
+
+@keyframes ui-settle {
+	from { opacity: 0; transform: translateY(-0.75rem) scale(0.96); }
+	to { opacity: 1; transform: none; }
+}
+
+@keyframes ui-word-up {
+	from { transform: translateY(105%); }
+	to { transform: none; }
+}
+
+@keyframes ui-uncover {
+	from { clip-path: inset(100% 0 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes ui-settle-image {
+	from { transform: scale(1.14); }
+	to { transform: scale(1); }
+}
+
+@keyframes ui-fade-rise {
+	from { opacity: 0; transform: translateY(1rem); }
+	to { opacity: 1; transform: none; }
+}
+
+/* 7. Page transitions: the browser's own cross-fade between preview pages
+   (Chromium; other browsers simply navigate). Off for reduced motion. */
+@view-transition {
+	navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+}
+
+/* 8. Print: inner pages print as a clean article ---------------------------- */
+@media print {
+	.cfhg-header, .cfhg-menu, .cfhg-footer__nav, .cfhg-footer__meeting, .cfhg-preview-label, .cfhg-marquee, .cfhg-actions {
+		display: none !important;
+	}
+
+	body, .cfhg-hero, .cfhg-footer, .cfhg-story {
+		background: #fff !important;
+		color: #000 !important;
+	}
+
+	.cfhg-page-hero, .cfhg-content {
+		padding-top: 0 !important;
+	}
+
+	.cfhg-prose a[href^="http"]::after {
+		content: " (" attr(href) ")";
+	}
+
+	img {
+		max-height: 9cm;
+		break-inside: avoid;
+	}
+
+	* {
+		animation: none !important;
+		clip-path: none !important;
+	}
+}

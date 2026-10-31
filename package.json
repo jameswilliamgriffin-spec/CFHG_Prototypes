@@ -1,0 +1,15 @@
+{
+  "name": "cfhg-website",
+  "private": true,
+  "description": "Caribbean Family History Group website: WordPress theme options and a static design preview for client review.",
+  "scripts": {
+    "build:preview": "node scripts/build-preview.mjs",
+    "build:preview:b": "node scripts/build-preview-b.mjs",
+    "build:previews": "node scripts/build-preview.mjs && node scripts/build-preview-b.mjs",
+    "build:preview-c": "node scripts/build-preview-c.mjs",
+    "build:site": "node scripts/build-site.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

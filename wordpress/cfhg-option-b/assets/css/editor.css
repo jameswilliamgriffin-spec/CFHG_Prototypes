@@ -1,0 +1,48 @@
+/*
+ * Block editor styles, so posts and pages look close to the front end while
+ * editing. Loaded alongside tokens.css via add_editor_style().
+ */
+
+body,
+.editor-styles-wrapper {
+	font-family: var(--cfhg-font-body);
+	font-size: 1.125rem;
+	line-height: 1.6;
+	color: var(--cfhg-ink);
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+	font-weight: 400;
+	line-height: 1.02;
+	letter-spacing: -0.015em;
+}
+
+.editor-styles-wrapper .editor-post-title__input,
+.editor-styles-wrapper h1.wp-block-post-title {
+	font-size: var(--cfhg-fs-h1);
+}
+
+.editor-styles-wrapper h2 {
+	font-size: var(--cfhg-fs-h3);
+}
+
+.editor-styles-wrapper h3 {
+	font-size: var(--cfhg-fs-h4);
+}
+
+.editor-styles-wrapper a {
+	color: inherit;
+	text-decoration-color: var(--cfhg-gold);
+	text-decoration-thickness: 2px;
+}
+
+.editor-styles-wrapper blockquote {
+	padding-left: 1.875rem;
+	border-left: 4px solid var(--cfhg-gold);
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	line-height: 1.25;
+}

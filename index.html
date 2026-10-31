@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Website design options | Caribbean Family History Group</title>
+	<meta name="description" content="Three design options for the new Caribbean Family History Group website.">
+	<link rel="icon" href="site/cfhg-logo.png">
+	<style>
+		:root {
+			--ink: #13202d;
+			--muted: #4f5a64;
+			--paper: #f6f4ef;
+			--card: #ffffff;
+			--line: #e1ddd3;
+			--sea: #00568f;
+			--sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+			--gutter: clamp(1rem, 4vw, 2.5rem);
+			--ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+		}
+
+		*, *::before, *::after { box-sizing: border-box; }
+
+		html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font-family: var(--sans);
+			font-size: 1.0625rem;
+			line-height: 1.6;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		img { display: block; max-width: 100%; height: auto; }
+
+		h1, h2, p, ol { margin: 0; }
+
+		:focus-visible { outline: 3px solid var(--sea); outline-offset: 3px; }
+
+		.ring { display: flex; height: 4px; }
+		.ring span { flex: 1; }
+		.ring span:nth-child(1) { background: #e42424; }
+		.ring span:nth-child(2) { background: #f0b424; }
+		.ring span:nth-child(3) { background: #0c9048; }
+		.ring span:nth-child(4) { background: #18b4cc; }
+		.ring span:nth-child(5) { background: #006cb4; }
+		.ring span:nth-child(6) { background: #001830; }
+
+		.wrap {
+			width: 100%;
+			max-width: calc(75rem + 2 * var(--gutter));
+			margin-inline: auto;
+			padding-inline: var(--gutter);
+		}
+
+		.top {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			padding-block: 1.5rem;
+		}
+
+		.top img { width: auto; height: 3rem; }
+
+		.top p {
+			color: var(--muted);
+			font-size: 0.875rem;
+			text-align: right;
+		}
+
+		.intro {
+			max-width: 46rem;
+			padding-block: clamp(2.5rem, 1rem + 6vw, 6rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+		}
+
+		.eyebrow {
+			margin-bottom: 1rem;
+			color: var(--muted);
+			font-size: 0.8125rem;
+			font-weight: 600;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+			font-weight: 650;
+			line-height: 1.08;
+			letter-spacing: -0.025em;
+			text-wrap: balance;
+		}
+
+		.lead {
+			max-width: 38rem;
+			margin-top: 1.25rem;
+			color: var(--muted);
+			font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+		}
+
+		.options {
+			display: grid;
+			gap: clamp(1.25rem, 2.5vw, 2rem);
+			padding: 0;
+			list-style: none;
+		}
+
+		@media (min-width: 56em) {
+			.options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		}
+
+		.option {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			overflow: hidden;
+			border: 1px solid var(--line);
+			border-radius: 0.75rem;
+			background: var(--card);
+			color: inherit;
+			text-decoration: none;
+			transition: border-color 0.3s, box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+		}
+
+		.option:hover {
+			border-color: var(--ink);
+			box-shadow: 0 1.25rem 2.5rem -1.5rem rgba(19, 32, 45, 0.35);
+			transform: translateY(-4px);
+		}
+
+		.option__shot {
+			overflow: hidden;
+			aspect-ratio: 16 / 10;
+			border-bottom: 1px solid var(--line);
+			background: var(--paper);
+		}
+
+		.option__shot img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+			transition: transform 0.8s var(--ease);
+		}
+
+		.option:hover .option__shot img { transform: scale(1.03); }
+
+		.option__body {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			padding: 1.5rem 1.5rem 1.75rem;
+		}
+
+		.option__label {
+			color: var(--muted);
+			font-size: 0.8125rem;
+			font-weight: 600;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.option h2 {
+			margin-top: 0.35rem;
+			font-size: 1.5rem;
+			font-weight: 650;
+			line-height: 1.2;
+			letter-spacing: -0.015em;
+		}
+
+		.option__text {
+			margin-top: 0.6rem;
+			color: var(--muted);
+		}
+
+		.option__cta {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-top: auto;
+			padding-top: 1.5rem;
+			font-weight: 600;
+		}
+
+		.option__cta span { transition: transform 0.4s var(--ease); }
+		.option:hover .option__cta span { transform: translateX(4px); }
+
+		.note {
+			max-width: 44rem;
+			padding-block: clamp(2rem, 1rem + 3vw, 3rem) 1rem;
+			color: var(--muted);
+			font-size: 0.9375rem;
+		}
+
+		.foot {
+			padding-block: 1.5rem 2.5rem;
+			color: var(--muted);
+			font-size: 0.875rem;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { transition-duration: 0.01ms !important; }
+			.option:hover { transform: none; }
+		}
+	</style>
+</head>
+<body>
+	<div class="ring" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+	<header class="wrap top">
+		<img src="site/cfhg-logo.png" alt="Caribbean Family History Group" width="271" height="80">
+		<p>Website design options<br>October 2026</p>
+	</header>
+
+	<main class="wrap">
+		<section class="intro" aria-labelledby="title">
+			<p class="eyebrow">Your new website</p>
+			<h1 id="title">Three designs for the Caribbean Family History Group</h1>
+			<p class="lead">Each option is a working preview of the same website. Open one, click through the pages, try it on your phone, and note what you like. Ideas can be mixed between options.</p>
+		</section>
+
+		<ol class="options">
+			<li>
+				<a class="option" href="preview/">
+					<span class="option__shot"><img src="site/option-a.webp" srcset="site/option-a-640.webp 640w, site/option-a.webp 1200w" sizes="(min-width: 56em) 24rem, 100vw" width="1200" height="750" alt=""></span>
+					<div class="option__body">
+						<span class="option__label">Option A</span>
+						<h2>Bold and confident</h2>
+						<span class="option__text">Big gold and navy panels, strong headings, and a strip of photographs that runs across the page.</span>
+						<span class="option__cta">View option A <span aria-hidden="true">&rarr;</span></span>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="option" href="preview-b/">
+					<span class="option__shot"><img src="site/option-b.webp" srcset="site/option-b-640.webp 640w, site/option-b.webp 1200w" sizes="(min-width: 56em) 24rem, 100vw" width="1200" height="750" alt="" loading="lazy"></span>
+					<div class="option__body">
+						<span class="option__label">Option B</span>
+						<h2>Bright and personal</h2>
+						<span class="option__text">A warm cream page in the colours of the logo, with photographs laid out like snapshots on a table.</span>
+						<span class="option__cta">View option B <span aria-hidden="true">&rarr;</span></span>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="option" href="preview-c/">
+					<span class="option__shot"><img src="site/option-c.webp" srcset="site/option-c-640.webp 640w, site/option-c.webp 1200w" sizes="(min-width: 56em) 24rem, 100vw" width="1200" height="750" alt="" loading="lazy"></span>
+					<div class="option__body">
+						<span class="option__label">Option C</span>
+						<h2>Calm and considered</h2>
+						<span class="option__text">A quiet, museum-style site with a text-size button, illustrated island pages and clear routes in.</span>
+						<span class="option__cta">View option C <span aria-hidden="true">&rarr;</span></span>
+					</div>
+				</a>
+			</li>
+		</ol>
+
+		<p class="note">These are design previews with sample text. The photographs are illustrations, and some details, such as meeting times, are placeholders until the group confirms them.</p>
+	</main>
+
+	<footer class="wrap foot">
+		<p>Prepared for the Caribbean Family History Group. Not the live website.</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+{
+  "_about": "CFHG Option A design tokens. Appearance > CFHG Setup writes these into Elementor automatically. Use this file if you need to enter them by hand in Elementor > Site Settings, or to check values. The same values are CSS custom properties in assets/css/tokens.css.",
+  "global_colours": {
+    "system": [
+      {
+        "slot": "Primary",
+        "used_by": "Heading widget default",
+        "name": "Primary (headings)",
+        "hex": "#0E1F38"
+      },
+      {
+        "slot": "Secondary",
+        "used_by": "A few widgets",
+        "name": "Secondary (gold)",
+        "hex": "#F2B42A"
+      },
+      {
+        "slot": "Text",
+        "used_by": "Text Editor widget default",
+        "name": "Text",
+        "hex": "#0E1F38"
+      },
+      {
+        "slot": "Accent",
+        "used_by": "Button widget default",
+        "name": "Accent (buttons)",
+        "hex": "#C8402F"
+      }
+    ],
+    "custom": [
+      {
+        "id": "cfhgold",
+        "name": "CFHG Gold",
+        "hex": "#F2B42A",
+        "css": "--cfhg-gold",
+        "use": "Opening panel, membership panel, button discs"
+      },
+      {
+        "id": "cfhnavy",
+        "name": "CFHG Navy",
+        "hex": "#0E1F38",
+        "css": "--cfhg-navy",
+        "use": "Text, meeting panel, solid buttons"
+      },
+      {
+        "id": "cfhsoft",
+        "name": "CFHG Navy soft",
+        "hex": "#3B4A60",
+        "css": "--cfhg-navy-soft",
+        "use": "Secondary text"
+      },
+      {
+        "id": "cfhpapr",
+        "name": "CFHG Paper",
+        "hex": "#FBF6EC",
+        "css": "--cfhg-paper",
+        "use": "Menu panel, text on dark"
+      },
+      {
+        "id": "cfhsand",
+        "name": "CFHG Sand",
+        "hex": "#F4ECDD",
+        "css": "--cfhg-sand",
+        "use": "Footer, page title bands, cards"
+      },
+      {
+        "id": "cfhdune",
+        "name": "CFHG Sand deep",
+        "hex": "#EADFCB",
+        "css": "--cfhg-sand-deep",
+        "use": "Alternate cards"
+      },
+      {
+        "id": "cfhglow",
+        "name": "CFHG Gold soft",
+        "hex": "#FCE6AF",
+        "css": "--cfhg-gold-soft",
+        "use": "Research help card"
+      },
+      {
+        "id": "cfhclay",
+        "name": "CFHG Clay red",
+        "hex": "#C8402F",
+        "css": "--cfhg-clay",
+        "use": "Step numbers, hover states"
+      },
+      {
+        "id": "cfhgren",
+        "name": "CFHG Green",
+        "hex": "#187A43",
+        "css": "--cfhg-green",
+        "use": "Free price on light backgrounds"
+      },
+      {
+        "id": "cfhseaa",
+        "name": "CFHG Sea",
+        "hex": "#0F7896",
+        "css": "--cfhg-sea",
+        "use": "Notes and first tag"
+      },
+      {
+        "id": "cfhline",
+        "name": "CFHG Line",
+        "hex": "#CDBFA8",
+        "css": "--cfhg-line",
+        "use": "Hairline rules"
+      }
+    ]
+  },
+  "global_fonts": [
+    {
+      "slot": "Primary",
+      "name": "Heading",
+      "family": "Hanken Grotesk",
+      "weight": 400,
+      "size_px": {
+        "desktop": 76,
+        "tablet": 56,
+        "mobile": 38
+      },
+      "line_height_em": 0.95,
+      "letter_spacing_em": -0.015
+    },
+    {
+      "slot": "Secondary",
+      "name": "Display",
+      "family": "Montagu Slab",
+      "weight": 600,
+      "size_px": {
+        "desktop": 136,
+        "tablet": 96,
+        "mobile": 52
+      },
+      "line_height_em": 0.92,
+      "letter_spacing_em": -0.02
+    },
+    {
+      "slot": "Text",
+      "name": "Body",
+      "family": "Hanken Grotesk",
+      "weight": 400,
+      "size_px": {
+        "desktop": 17,
+        "tablet": 17,
+        "mobile": 17
+      },
+      "line_height_em": 1.55,
+      "letter_spacing_em": 0
+    },
+    {
+      "slot": "Accent",
+      "name": "Label",
+      "family": "Hanken Grotesk",
+      "weight": 600,
+      "size_px": {
+        "desktop": 13,
+        "tablet": 13,
+        "mobile": 12
+      },
+      "line_height_em": 1.2,
+      "letter_spacing_em": 0.06,
+      "transform": "uppercase"
+    },
+    {
+      "slot": "Custom",
+      "id": "cfhlead",
+      "name": "Lead",
+      "family": "Hanken Grotesk",
+      "weight": 400,
+      "size_px": {
+        "desktop": 23,
+        "tablet": 21,
+        "mobile": 19
+      },
+      "line_height_em": 1.3
+    },
+    {
+      "slot": "Custom",
+      "id": "cfhh3",
+      "name": "Heading small",
+      "family": "Hanken Grotesk",
+      "weight": 400,
+      "size_px": {
+        "desktop": 46,
+        "tablet": 36,
+        "mobile": 26
+      },
+      "line_height_em": 1.0,
+      "letter_spacing_em": -0.01
+    }
+  ],
+  "layout": {
+    "container_width_px": 1680,
+    "section_padding_px": {
+      "desktop": "160 60 0 60",
+      "tablet": "120 40 0 40",
+      "mobile": "88 20 0 20"
+    },
+    "radius_px": {
+      "xs": 5,
+      "sm": 10,
+      "md": 20,
+      "lg": 40
+    }
+  },
+  "motion": {
+    "easing": "ease",
+    "fast": "0.2s",
+    "standard": "0.3s",
+    "slow": "0.5s",
+    "button_hover": "disc scales to 1.15, arrow to 0.87"
+  }
+}
