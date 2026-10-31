@@ -62,10 +62,10 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 1rem;
-			padding-block: 1.5rem;
+			padding-block: 1rem;
 		}
 
-		.top img { width: auto; height: 3rem; }
+		.top img { width: auto; height: clamp(4rem, 2.6rem + 3.5vw, 6rem); }
 
 		.top p {
 			color: var(--muted);
@@ -74,21 +74,19 @@
 		}
 
 		.intro {
-			max-width: 46rem;
-			padding-block: clamp(2.5rem, 1rem + 6vw, 6rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+			display: grid;
+			gap: 0.75rem 2.5rem;
+			align-items: end;
+			padding-block: clamp(1rem, 0.5rem + 1.5vw, 2rem) clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
 		}
 
-		.eyebrow {
-			margin-bottom: 1rem;
-			color: var(--muted);
-			font-size: 0.8125rem;
-			font-weight: 600;
-			letter-spacing: 0.12em;
-			text-transform: uppercase;
+		@media (min-width: 56em) {
+			.intro { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
 		}
 
 		h1 {
-			font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+			max-width: 18em;
+			font-size: clamp(1.75rem, 1.25rem + 1.6vw, 2.75rem);
 			font-weight: 650;
 			line-height: 1.08;
 			letter-spacing: -0.025em;
@@ -96,8 +94,7 @@
 		}
 
 		.lead {
-			max-width: 38rem;
-			margin-top: 1.25rem;
+			max-width: 32rem;
 			color: var(--muted);
 			font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 		}
@@ -153,28 +150,28 @@
 			display: flex;
 			flex: 1;
 			flex-direction: column;
-			padding: 1.5rem 1.5rem 1.75rem;
+			padding: 1.1rem 1.25rem 1.25rem;
 		}
 
 		.option__label {
 			color: var(--muted);
-			font-size: 0.8125rem;
+			font-size: 0.875rem;
 			font-weight: 600;
-			letter-spacing: 0.12em;
-			text-transform: uppercase;
 		}
 
 		.option h2 {
-			margin-top: 0.35rem;
-			font-size: 1.5rem;
+			margin-top: 0.15rem;
+			font-size: 1.3125rem;
 			font-weight: 650;
 			line-height: 1.2;
 			letter-spacing: -0.015em;
 		}
 
 		.option__text {
-			margin-top: 0.6rem;
+			margin-top: 0.4rem;
 			color: var(--muted);
+			font-size: 0.9375rem;
+			line-height: 1.5;
 		}
 
 		.option__cta {
@@ -182,7 +179,7 @@
 			align-items: center;
 			gap: 0.5rem;
 			margin-top: auto;
-			padding-top: 1.5rem;
+			padding-top: 0.9rem;
 			font-weight: 600;
 		}
 
@@ -218,9 +215,8 @@
 
 	<main class="wrap">
 		<section class="intro" aria-labelledby="title">
-			<p class="eyebrow">Your new website</p>
 			<h1 id="title">Three designs for the Caribbean Family History Group</h1>
-			<p class="lead">Each option is a working preview of the same website. Open one, click through the pages, try it on your phone, and note what you like. Ideas can be mixed between options.</p>
+			<p class="lead">Each is a working preview of the same website. Click through the pages, try it on your phone, and mix ideas between them.</p>
 		</section>
 
 		<ol class="options">
