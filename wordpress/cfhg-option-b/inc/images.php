@@ -21,9 +21,10 @@ defined( 'ABSPATH' ) || exit;
 function cfhg_image_manifest() {
 	return array(
 		'three-generations-with-an-album-on-the-sofa' => array(
-			'sizes' => array( 900 => 507, 1600 => 900 ),
+			'sizes' => array( 640 => 360, 960 => 540, 1400 => 788 ),
 			'alt'   => __( 'A grandmother, her daughter and her grandson looking through a photo album together on the sofa.', 'cfhg' ),
 			'focus' => '60% 45%',
+			'ext'   => 'webp',
 		),
 		'sharing-an-old-photograph-on-a-bench'        => array(
 			'sizes' => array( 480 => 600, 800 => 1000 ),
@@ -107,6 +108,17 @@ function cfhg_image_defaults() {
 }
 
 /**
+ * File extension of a theme image: jpg unless the manifest says otherwise.
+ *
+ * @param string $slug Manifest key.
+ * @return string
+ */
+function cfhg_theme_image_ext( $slug ) {
+	$manifest = cfhg_image_manifest();
+	return empty( $manifest[ $slug ]['ext'] ) ? 'jpg' : $manifest[ $slug ]['ext'];
+}
+
+/**
  * URL of the largest version of a theme image.
  *
  * @param string $slug Manifest key.
@@ -118,7 +130,7 @@ function cfhg_theme_image_url( $slug ) {
 		return '';
 	}
 	$widths = array_keys( $manifest[ $slug ]['sizes'] );
-	return CFHG_URI . '/assets/images/' . $slug . '-' . max( $widths ) . '.jpg';
+	return CFHG_URI . '/assets/images/' . $slug . '-' . max( $widths ) . '.' . cfhg_theme_image_ext( $slug );
 }
 
 /**
@@ -152,7 +164,7 @@ function cfhg_theme_image( $slug, $args = array() ) {
 	ksort( $item['sizes'] );
 	$srcset = array();
 	foreach ( $item['sizes'] as $w => $h ) {
-		$srcset[] = esc_url( CFHG_URI . '/assets/images/' . $slug . '-' . $w . '.jpg' ) . ' ' . (int) $w . 'w';
+		$srcset[] = esc_url( CFHG_URI . '/assets/images/' . $slug . '-' . $w . '.' . cfhg_theme_image_ext( $slug ) ) . ' ' . (int) $w . 'w';
 	}
 	$largest_w = max( array_keys( $item['sizes'] ) );
 	$largest_h = $item['sizes'][ $largest_w ];
@@ -229,7 +241,7 @@ function cfhg_logo_markup( $class = '' ) {
 	}
 	return sprintf(
 		'<img src="%1$s" width="798" height="240" alt="%2$s" class="%3$s">',
-		esc_url( CFHG_URI . '/assets/images/cfhg-logo-horizontal.png' ),
+		esc_url( CFHG_URI . '/assets/images/cfhg-logo-horizontal.webp' ),
 		esc_attr__( 'Caribbean Family History Group', 'cfhg' ),
 		esc_attr( trim( 'cfhg-logo ' . $class ) )
 	);

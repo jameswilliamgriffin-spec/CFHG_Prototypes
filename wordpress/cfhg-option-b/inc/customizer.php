@@ -53,7 +53,7 @@ function cfhg_customizer_fields() {
 			'title'  => __( 'Opening panel', 'cfhg' ),
 			'panel'  => 'cfhg_home',
 			'fields' => array(
-				'hero_kicker'          => array( 'text', __( 'Label above the heading', 'cfhg' ), '' ),
+				'home_title'           => array( 'text', __( 'Homepage title in the browser tab', 'cfhg' ), __( 'Also the title search engines show. Leave blank for the site name.', 'cfhg' ) ),
 				'hero_heading'         => array( 'inline', __( 'Heading', 'cfhg' ), __( 'Put one word in <em></em> to set it in italic on a yellow highlight.', 'cfhg' ) ),
 				'hero_text'            => array( 'textarea', __( 'Introduction', 'cfhg' ), '' ),
 				'hero_primary_label'   => array( 'text', __( 'Main button label', 'cfhg' ), '' ),
@@ -80,8 +80,8 @@ function cfhg_customizer_fields() {
 			'title'       => __( 'Meetings and prices', 'cfhg' ),
 			'description' => __( 'The next meeting date is worked out automatically: the last Saturday of each month, skipping the months below.', 'cfhg' ),
 			'fields'      => array(
-				'meeting_kicker'          => array( 'text', __( 'Label', 'cfhg' ), '' ),
-				'meeting_heading'         => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
+				'meeting_kicker'          => array( 'text', __( 'Heading', 'cfhg' ), __( 'Also used beside the date in the opening panel, menu and footer.', 'cfhg' ) ),
+				'meeting_heading'         => array( 'inline', __( 'Highlighted line under the date', 'cfhg' ), '' ),
 				'meeting_venue'           => array( 'text', __( 'Where', 'cfhg' ), '' ),
 				'meeting_short_where'     => array( 'text', __( 'Where (short version)', 'cfhg' ), __( 'Used in the opening panel, menu and footer.', 'cfhg' ) ),
 				'meeting_online'          => array( 'text', __( 'Online', 'cfhg' ), '' ),
@@ -91,7 +91,7 @@ function cfhg_customizer_fields() {
 				'meeting_override_date'   => array( 'date', __( 'Override the next date', 'cfhg' ), __( 'Use this if a meeting moves. It stops applying once the date has passed.', 'cfhg' ) ),
 				'meeting_note'            => array( 'text', __( 'Note', 'cfhg' ), '' ),
 				'meeting_image'           => array( 'image', __( 'Image', 'cfhg' ), '' ),
-				'meeting_image_label'     => array( 'text', __( 'Label on the image', 'cfhg' ), '' ),
+				'meeting_image_label'     => array( 'text', __( 'Caption on the image', 'cfhg' ), __( 'Leave blank to hide.', 'cfhg' ) ),
 				'meeting_cta_label'       => array( 'text', __( 'Main button label', 'cfhg' ), '' ),
 				'meeting_cta_url'         => array( 'link', __( 'Main button link', 'cfhg' ), $link_help ),
 				'meeting_secondary_label' => array( 'text', __( 'Email link label', 'cfhg' ), '' ),
@@ -115,7 +115,6 @@ function cfhg_customizer_fields() {
 			'title'  => __( 'Start here', 'cfhg' ),
 			'panel'  => 'cfhg_home',
 			'fields' => array(
-				'start_kicker'     => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'start_heading'    => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'start_text'       => array( 'textarea', __( 'Paragraph', 'cfhg' ), '' ),
 				'start_steps'      => array( 'list', __( 'Steps', 'cfhg' ), $list_help . ' ' . __( 'Title | text', 'cfhg' ) ),
@@ -127,7 +126,6 @@ function cfhg_customizer_fields() {
 			'title'  => __( 'Research by island', 'cfhg' ),
 			'panel'  => 'cfhg_home',
 			'fields' => array(
-				'islands_kicker'  => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'islands_heading' => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'islands_text'    => array( 'textarea', __( 'Paragraph', 'cfhg' ), '' ),
 				'islands_list'    => array( 'list', __( 'Islands', 'cfhg' ), $list_help . ' ' . __( 'Name | link | note', 'cfhg' ) ),
@@ -139,7 +137,6 @@ function cfhg_customizer_fields() {
 			'panel'       => 'cfhg_home',
 			'description' => __( 'The latest three posts in the category below are shown. Until there are any, starter cards are shown instead.', 'cfhg' ),
 			'fields'      => array(
-				'stories_kicker'     => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'stories_heading'    => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'stories_read_label' => array( 'text', __( 'Button label on each story', 'cfhg' ), '' ),
 				'stories_category'   => array( 'text', __( 'Category slug', 'cfhg' ), '' ),
@@ -151,7 +148,6 @@ function cfhg_customizer_fields() {
 			'title'  => __( 'Research help', 'cfhg' ),
 			'panel'  => 'cfhg_home',
 			'fields' => array(
-				'help_kicker'    => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'help_heading'   => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'help_text'      => array( 'textarea', __( 'Paragraph', 'cfhg' ), '' ),
 				'help_cta_label' => array( 'text', __( 'Button label', 'cfhg' ), '' ),
@@ -164,7 +160,6 @@ function cfhg_customizer_fields() {
 			'panel'  => 'cfhg_home',
 			'fields' => array(
 				'join_big'             => array( 'text', __( 'Large words across the photograph', 'cfhg' ), '' ),
-				'join_kicker'          => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'join_heading'         => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'join_text'            => array( 'textarea', __( 'Paragraph', 'cfhg' ), '' ),
 				'join_cta_label'       => array( 'text', __( 'Button label', 'cfhg' ), '' ),
@@ -177,7 +172,6 @@ function cfhg_customizer_fields() {
 			'title'  => __( 'Partners', 'cfhg' ),
 			'panel'  => 'cfhg_home',
 			'fields' => array(
-				'partners_kicker'  => array( 'text', __( 'Label', 'cfhg' ), '' ),
 				'partners_heading' => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'partners_list'    => array( 'list', __( 'Partners', 'cfhg' ), $list_help . ' ' . __( 'Name | text | link', 'cfhg' ) ),
 			),

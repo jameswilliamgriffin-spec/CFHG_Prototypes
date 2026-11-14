@@ -25,13 +25,18 @@ Appearance > Customize > CFHG homepage.
 
 Requires WordPress 6.3+ and PHP 7.4+. No build step.
 
+Version 1.1.0 adds the polish pass the client approved in the static preview:
+the motion, the labels taken off the headings, WebP images and new icons. See
+`UI-PASS.md` for what changed and `ELEMENTOR.md` ("Polish effects") for how to
+use it in Elementor.
+
 ## Where to edit things
 
 | What | Where |
 |---|---|
 | Homepage (Elementor version) | Pages > Home > Edit with Elementor |
 | Homepage (theme version) | Appearance > Customize > CFHG homepage |
-| The opening heading, its label, the line beside the portraits and the circle photograph | Customize > CFHG homepage > Opening panel |
+| The homepage's title in the browser tab, the opening heading, the line beside the portraits and the circle photograph | Customize > CFHG homepage > Opening panel |
 | The group in numbers | Customize > CFHG homepage > Our group in numbers (one per line: number, a bar, what it means) |
 | Meeting venue, time, prices, months off, a moved date | Customize > Meetings and prices |
 | Email, social links, header Join button, footer | Customize > Contact, social, header and footer |

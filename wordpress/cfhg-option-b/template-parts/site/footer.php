@@ -28,7 +28,7 @@ $cfhg_photo   = cfhg_url( cfhg_mod( 'footer_photo_url' ) );
 		</div>
 
 		<nav class="cfhg-footer__col" aria-label="<?php esc_attr_e( 'Footer', 'cfhg' ); ?>">
-			<p class="cfhg-footer__heading"><?php esc_html_e( 'Explore', 'cfhg' ); ?></p>
+			<h2 class="cfhg-footer__heading ui-col-heading"><?php esc_html_e( 'Explore', 'cfhg' ); ?></h2>
 			<?php
 			wp_nav_menu(
 				array(
@@ -43,7 +43,7 @@ $cfhg_photo   = cfhg_url( cfhg_mod( 'footer_photo_url' ) );
 		</nav>
 
 		<div class="cfhg-footer__col">
-			<p class="cfhg-footer__heading"><?php echo esc_html( cfhg_mod( 'meeting_kicker' ) ); ?></p>
+			<h2 class="cfhg-footer__heading ui-col-heading"><?php echo esc_html( cfhg_mod( 'meeting_kicker' ) ); ?></h2>
 			<?php if ( cfhg_next_meeting() ) : ?>
 				<p class="cfhg-footer__date"><?php echo esc_html( cfhg_next_meeting_date( 'l j F' ) ); ?></p>
 			<?php endif; ?>
@@ -52,7 +52,7 @@ $cfhg_photo   = cfhg_url( cfhg_mod( 'footer_photo_url' ) );
 		</div>
 
 		<div class="cfhg-footer__col">
-			<p class="cfhg-footer__heading"><?php esc_html_e( 'Contact', 'cfhg' ); ?></p>
+			<h2 class="cfhg-footer__heading ui-col-heading"><?php esc_html_e( 'Contact', 'cfhg' ); ?></h2>
 			<?php if ( cfhg_mailto() ) : ?>
 				<p><a class="cfhg-footer__email" href="<?php echo esc_url( cfhg_mailto() ); ?>"><?php echo cfhg_email_display(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- entities only. ?></a></p>
 			<?php endif; ?>

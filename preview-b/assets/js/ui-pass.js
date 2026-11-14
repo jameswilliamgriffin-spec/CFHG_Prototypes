@@ -1,8 +1,7 @@
 /**
  * CFHG Option B: UI polish pass. Plain JavaScript, no dependencies.
  *
- * Effects are opt-in through data attributes, so they can be attached to
- * Elementor widgets later (Advanced > Attributes):
+ * Effects are opt-in through data attributes:
  *
  *   data-cfhg-mark       a highlighter stroke that draws in when seen
  *   data-cfhg-count      a number that counts up once, keeping any suffix
@@ -10,8 +9,17 @@
  *   data-cfhg-parallax   the image inside drifts more slowly than the page
  *   data-cfhg-carousel   (existing) gains a progress bar
  *
- * Nothing is hidden unless html.cfhg-ui is present; the head script removes
- * that class again if this file never runs.
+ * Free Elementor can add CSS classes to a widget but not attributes, so two
+ * classes stand in for them (Advanced > CSS Classes):
+ *
+ *   cfhg-ui-track        on a Heading: its words open out as they scroll past
+ *   cfhg-ui-parallax     on a container with a background photograph
+ *
+ * Highlighter strokes and counters need no class: the theme's components and
+ * the [cfhg_*] shortcodes already print the attributes.
+ *
+ * Nothing is hidden unless html.cfhg-ui is present; the head script in
+ * inc/enqueue.php removes that class again if this file never runs.
  */
 ( function () {
 	'use strict';
@@ -39,6 +47,16 @@
 		}, { rootMargin: margin || '0px 0px -15% 0px' } );
 		io.observe( el );
 	}
+
+	/* 0. Elementor stand-ins: turn the classes into the attributes below. */
+	each( '.cfhg-ui-track', function ( el ) {
+		( el.querySelector( '.elementor-heading-title' ) || el ).setAttribute( 'data-cfhg-track', '' );
+	} );
+	each( '.cfhg-ui-parallax', function ( el ) {
+		if ( ! el.hasAttribute( 'data-cfhg-parallax' ) ) {
+			el.setAttribute( 'data-cfhg-parallax', 'bg' );
+		}
+	} );
 
 	/* 1. Highlighter strokes. */
 	each( '[data-cfhg-mark]', function ( el ) {
@@ -132,6 +150,10 @@
 	each( '[data-cfhg-track], [data-cfhg-parallax]', function ( el ) {
 		if ( cssScroll ) {
 			el.classList.add( 'is-css-scroll' );
+			return;
+		}
+		/* A background photograph only drifts where CSS can do it. */
+		if ( 'bg' === el.getAttribute( 'data-cfhg-parallax' ) ) {
 			return;
 		}
 		if ( ! hasIO ) {

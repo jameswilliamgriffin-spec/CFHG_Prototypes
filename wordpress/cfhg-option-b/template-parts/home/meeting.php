@@ -1,7 +1,8 @@
 <?php
 /**
- * Homepage: next meeting. A white card with the date set large, beside a
- * photograph with a label. The date is worked out automatically.
+ * Homepage: next meeting. A white card headed "Next meeting" with the date
+ * set large, beside a photograph with a caption. The date is worked out
+ * automatically.
  *
  * @package CFHG
  */
@@ -13,9 +14,11 @@ $cfhg_mail = cfhg_mailto();
 <section class="cfhg-section cfhg-meeting" id="next-meeting" aria-labelledby="cfhg-meeting-title">
 	<div class="cfhg-container cfhg-meeting__grid">
 		<div class="cfhg-card cfhg-meeting__card" data-reveal>
-			<p class="cfhg-label"><?php echo esc_html( cfhg_mod( 'meeting_kicker' ) ); ?></p>
+			<h2 class="cfhg-h3 cfhg-meeting__heading ui-meeting-title" id="cfhg-meeting-title"><?php echo esc_html( cfhg_mod( 'meeting_kicker' ) ); ?></h2>
 			<?php echo cfhg_component_next_meeting( 'title' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<h2 class="cfhg-h3 cfhg-meeting__heading" id="cfhg-meeting-title"><span class="cfhg-highlight"><?php echo wp_kses( cfhg_mod( 'meeting_heading' ), cfhg_inline_kses() ); ?></span></h2>
+			<?php if ( cfhg_mod( 'meeting_heading' ) ) : ?>
+				<p class="cfhg-h3 cfhg-meeting__heading"><span class="cfhg-highlight" data-cfhg-mark><?php echo wp_kses( cfhg_mod( 'meeting_heading' ), cfhg_inline_kses() ); ?></span></p>
+			<?php endif; ?>
 			<?php echo cfhg_component_next_meeting( 'facts' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo cfhg_component_prices(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<div class="cfhg-actions">
@@ -30,7 +33,7 @@ $cfhg_mail = cfhg_mailto();
 		<figure class="cfhg-meeting__media" data-reveal>
 			<?php echo cfhg_setting_image( 'meeting_image', array( 'sizes' => '(min-width: 1024px) 52vw, 92vw' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php if ( cfhg_mod( 'meeting_image_label' ) ) : ?>
-				<figcaption class="cfhg-chip"><?php echo esc_html( cfhg_mod( 'meeting_image_label' ) ); ?></figcaption>
+				<figcaption class="ui-caption"><?php echo esc_html( cfhg_mod( 'meeting_image_label' ) ); ?></figcaption>
 			<?php endif; ?>
 		</figure>
 	</div>

@@ -30,8 +30,10 @@ function cfhg_defaults() {
 		'header_join_label'      => __( 'Join', 'cfhg' ),
 		'header_join_url'        => '/join/',
 
+		/* The homepage's title in the browser tab and search results. */
+		'home_title'             => __( 'Caribbean Family History Group: trace your Caribbean family in Solihull and online', 'cfhg' ),
+
 		/* Opening panel: words on the left, a photograph in a large circle on the right. */
-		'hero_kicker'            => __( 'Volunteer family history group', 'cfhg' ),
 		'hero_heading'           => __( '<em>Trace</em> your Caribbean family with people who’ve done it', 'cfhg' ),
 		'hero_text'              => __( 'We’re a volunteer group helping people trace families from Jamaica, Barbados, Trinidad, St Kitts and Nevis and right across the Caribbean. We meet on the last Saturday of the month at Solihull Core Library and on Zoom.', 'cfhg' ),
 		'hero_primary_label'     => __( 'Come to a meeting', 'cfhg' ),
@@ -62,7 +64,7 @@ function cfhg_defaults() {
 		'meeting_skip_months'    => '5,8,12',
 		'meeting_override_date'  => '',
 		'meeting_note'           => __( 'Our AGM takes place every May.', 'cfhg' ),
-		'meeting_image_label'    => __( 'Solihull Core Library', 'cfhg' ),
+		'meeting_image_label'    => __( 'Solihull Core Library, where we meet', 'cfhg' ),
 		'meeting_cta_label'      => __( 'Plan your first visit', 'cfhg' ),
 		'meeting_cta_url'        => '/whats-on/',
 		'meeting_secondary_label'=> __( 'Ask for the Zoom link', 'cfhg' ),
@@ -91,7 +93,6 @@ function cfhg_defaults() {
 		),
 
 		/* Start here: five coloured step tiles. */
-		'start_kicker'           => __( 'New to family history?', 'cfhg' ),
 		'start_heading'          => __( 'Start here: five steps', 'cfhg' ),
 		'start_text'             => __( 'You don’t need a subscription or any experience. You need a notebook, some patience and the people in your family who remember.', 'cfhg' ),
 		/* Title | text. ASSUMPTION: drafted for the group to check against the 5-steps video. */
@@ -109,8 +110,7 @@ function cfhg_defaults() {
 		'start_link_url'         => '/research/start-here/',
 
 		/* Research by island */
-		'islands_kicker'         => __( 'Research by island', 'cfhg' ),
-		'islands_heading'        => __( 'Where was your family from?', 'cfhg' ),
+		'islands_heading'        => __( 'Research by island', 'cfhg' ),
 		'islands_text'           => __( 'Every island kept its records differently, so where you start depends on where your family came from. Each guide covers the key records, the archives, what you can search online and who in the group knows that island best.', 'cfhg' ),
 		/* Name | link | note. ASSUMPTION: page addresses. */
 		'islands_list'           => implode(
@@ -126,15 +126,13 @@ function cfhg_defaults() {
 		'islands_image'          => 0,
 
 		/* Stories carousel */
-		'stories_kicker'         => __( 'Stories and research', 'cfhg' ),
-		'stories_heading'        => __( 'From the group', 'cfhg' ),
+		'stories_heading'        => __( 'Stories and research', 'cfhg' ),
 		'stories_read_label'     => __( 'Read the story', 'cfhg' ),
 		'stories_link_label'     => __( 'All stories', 'cfhg' ),
 		'stories_link_url'       => '/stories/',
 		'stories_category'       => 'stories',
 
 		/* Research help */
-		'help_kicker'            => __( 'Research help', 'cfhg' ),
 		'help_heading'           => __( 'Stuck? Ask us.', 'cfhg' ),
 		'help_text'              => __( 'Between us we cover Jamaica, the other islands and military records. Tell us who you’re looking for and what you’ve tried so far, and we’ll pass your question to the person best placed to help. We’re all volunteers, so a reply can take a little while.', 'cfhg' ),
 		'help_cta_label'         => __( 'Ask a research question', 'cfhg' ),
@@ -143,7 +141,6 @@ function cfhg_defaults() {
 
 		/* Membership: a photograph band with a large word across it. */
 		'join_big'               => __( 'Come along', 'cfhg' ),
-		'join_kicker'            => __( 'Membership', 'cfhg' ),
 		'join_heading'           => __( 'Join the group for £20 a year', 'cfhg' ),
 		'join_text'              => __( 'Come to a meeting first and see if we’re for you. Membership is paid through the Family History Federation. Our AGM is held every May, and committee roles open up each year if you’d like to get more involved.', 'cfhg' ),
 		'join_cta_label'         => __( 'Become a member', 'cfhg' ),
@@ -152,8 +149,7 @@ function cfhg_defaults() {
 		'join_image'             => 0,
 
 		/* Partners. Name | text | link */
-		'partners_kicker'        => __( 'Who we work with', 'cfhg' ),
-		'partners_heading'       => __( 'The partners we rely on', 'cfhg' ),
+		'partners_heading'       => __( 'Who we work with', 'cfhg' ),
 		'partners_list'          => implode(
 			"\n",
 			array(

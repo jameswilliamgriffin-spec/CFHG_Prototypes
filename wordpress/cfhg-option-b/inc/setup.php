@@ -117,15 +117,44 @@ function cfhg_excerpt_length() {
 add_filter( 'excerpt_length', 'cfhg_excerpt_length' );
 
 /**
- * Use the CFHG badge as the site icon fallback when none is set.
+ * Use icons cut from the CFHG palm badge when no Site Icon is set.
  */
 function cfhg_fallback_site_icon() {
 	if ( has_site_icon() ) {
 		return;
 	}
 	printf(
-		'<link rel="icon" href="%1$s" sizes="512x512" type="image/png">' . "\n",
-		esc_url( CFHG_URI . '/assets/images/cfhg-logo-badge.png' )
+		'<link rel="icon" href="%1$s" sizes="32x32" type="image/png">' . "\n" . '<link rel="apple-touch-icon" href="%2$s">' . "\n",
+		esc_url( CFHG_URI . '/assets/images/favicon-32.png' ),
+		esc_url( CFHG_URI . '/assets/images/apple-touch-icon.png' )
 	);
 }
 add_action( 'wp_head', 'cfhg_fallback_site_icon', 5 );
+
+/**
+ * Page titles: "Page | Caribbean Family History Group", and on the
+ * homepage the descriptive title set in the Customizer.
+ *
+ * @return string
+ */
+function cfhg_title_separator() {
+	return '|';
+}
+add_filter( 'document_title_separator', 'cfhg_title_separator' );
+
+/**
+ * Homepage title from the Customizer (Opening panel > Homepage title).
+ *
+ * @param string $title Title WordPress would use; empty to let it decide.
+ * @return string
+ */
+function cfhg_home_document_title( $title ) {
+	if ( is_front_page() && ! is_paged() ) {
+		$custom = trim( (string) cfhg_mod( 'home_title' ) );
+		if ( '' !== $custom ) {
+			return esc_html( $custom );
+		}
+	}
+	return $title;
+}
+add_filter( 'pre_get_document_title', 'cfhg_home_document_title' );

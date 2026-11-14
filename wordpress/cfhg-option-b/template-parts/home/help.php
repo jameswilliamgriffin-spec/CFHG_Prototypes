@@ -12,7 +12,6 @@ defined( 'ABSPATH' ) || exit;
 		<div class="cfhg-help__card" data-reveal>
 			<?php echo cfhg_shape( 'hibiscus', 'cfhg-help__flower' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<div class="cfhg-help__copy">
-				<p class="cfhg-label"><?php echo esc_html( cfhg_mod( 'help_kicker' ) ); ?></p>
 				<h2 class="cfhg-h2" id="cfhg-help-title"><?php echo wp_kses( cfhg_mod( 'help_heading' ), cfhg_inline_kses() ); ?></h2>
 				<p><?php echo esc_html( cfhg_mod( 'help_text' ) ); ?></p>
 				<?php echo cfhg_button( cfhg_mod( 'help_cta_label' ), cfhg_mod( 'help_cta_url' ), 'green' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

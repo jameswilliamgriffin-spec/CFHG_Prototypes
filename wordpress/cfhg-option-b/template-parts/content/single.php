@@ -7,27 +7,36 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$cfhg_cats = get_the_category();
+/* The topic: the first category other than Stories, which every story is in. */
+$cfhg_topic = null;
+foreach ( (array) get_the_category() as $cfhg_cat ) {
+	if ( sanitize_title( cfhg_mod( 'stories_category' ) ) !== $cfhg_cat->slug ) {
+		$cfhg_topic = $cfhg_cat;
+		break;
+	}
+}
 ?>
 <main id="main" class="cfhg-main">
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'cfhg-entry' ); ?>>
 		<header class="cfhg-page-hero">
 			<div class="cfhg-container">
-				<?php if ( $cfhg_cats ) : ?>
-					<ul class="cfhg-story__tags" aria-label="<?php esc_attr_e( 'Topics', 'cfhg' ); ?>">
-						<?php foreach ( array_slice( $cfhg_cats, 0, 3 ) as $cfhg_i => $cfhg_cat ) : ?>
-							<li class="cfhg-tag<?php echo 0 === $cfhg_i ? ' cfhg-tag--first' : ''; ?>"><a href="<?php echo esc_url( get_category_link( $cfhg_cat ) ); ?>"><?php echo esc_html( $cfhg_cat->name ); ?></a></li>
-						<?php endforeach; ?>
-					</ul>
-				<?php endif; ?>
 				<?php the_title( '<h1 class="cfhg-h1 cfhg-page-hero__title">', '</h1>' ); ?>
-				<p class="cfhg-page-hero__meta"><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time></p>
+				<p class="cfhg-page-hero__meta"><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time><?php if ( $cfhg_topic ) : ?><span class="ui-meta-sep" aria-hidden="true"> · </span><a href="<?php echo esc_url( get_category_link( $cfhg_topic ) ); ?>"><?php echo esc_html( $cfhg_topic->name ); ?></a><?php endif; ?></p>
 			</div>
 		</header>
 
 		<?php if ( has_post_thumbnail() ) : ?>
 			<figure class="cfhg-container cfhg-entry__media cfhg-rounded">
-				<?php the_post_thumbnail( 'cfhg-wide', array( 'sizes' => '(min-width: 1200px) 1200px, 92vw' ) ); ?>
+				<?php
+				the_post_thumbnail(
+					'cfhg-wide',
+					array(
+						'sizes'         => '(min-width: 1200px) 1200px, 92vw',
+						'loading'       => 'eager',
+						'fetchpriority' => 'high',
+					)
+				);
+				?>
 			</figure>
 		<?php endif; ?>
 

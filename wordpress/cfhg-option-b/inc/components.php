@@ -19,10 +19,12 @@ defined( 'ABSPATH' ) || exit;
  * - title:  the date set large, e.g. "Saturday 31 October".
  * - facts:  where, online, when and time as a definition list.
  *
- * @param string $style inline, title or facts.
+ * @param string   $style inline, title or facts.
+ * @param string   $class Extra class for the inline line (e.g. cfhg-load-fade).
+ * @param int|null $delay Stagger step for the load animation (--d).
  * @return string
  */
-function cfhg_component_next_meeting( $style = 'inline' ) {
+function cfhg_component_next_meeting( $style = 'inline', $class = '', $delay = null ) {
 	$date = cfhg_next_meeting();
 	$time = trim( (string) cfhg_mod( 'meeting_time' ) );
 
@@ -66,12 +68,43 @@ function cfhg_component_next_meeting( $style = 'inline' ) {
 	}
 
 	return sprintf(
-		'<p class="cfhg-next"><span class="cfhg-next__label">%1$s</span> <strong>%2$s</strong>%3$s<span class="cfhg-next__where">%4$s</span></p>',
+		'<p class="%5$s"%6$s><span class="cfhg-next__label">%1$s</span> <strong>%2$s</strong>%3$s<span class="cfhg-next__where">%4$s</span></p>',
 		esc_html( cfhg_mod( 'meeting_kicker' ) ),
 		esc_html( wp_date( 'l j F', $ts, $tz ) ),
 		$time ? esc_html( ', ' . $time ) : '',
-		esc_html( cfhg_mod( 'meeting_short_where' ) )
+		esc_html( cfhg_mod( 'meeting_short_where' ) ),
+		esc_attr( trim( 'cfhg-next ' . $class ) ),
+		cfhg_delay_style( $delay )
 	);
+}
+
+/**
+ * Inline style for a staggered load animation step, e.g. style="--d:2".
+ *
+ * @param int|null $delay Step, or null for none.
+ * @return string Attribute markup with a leading space, or ''.
+ */
+function cfhg_delay_style( $delay ) {
+	return null === $delay ? '' : ' style="--d:' . absint( $delay ) . '"';
+}
+
+/**
+ * Whether a figure should count up when it comes into view: whole numbers
+ * above zero with an optional prefix or suffix ("40+", "9"), but not years
+ * ("2011") and not "£0", where counting up would look silly.
+ *
+ * @param string $figure The figure as written.
+ * @return bool
+ */
+function cfhg_counts_up( $figure ) {
+	$figure = trim( (string) $figure );
+	if ( ! preg_match( '/^(\D*)(\d+)(\D*)$/u', $figure, $m ) ) {
+		return false;
+	}
+	if ( (int) $m[2] < 1 ) {
+		return false;
+	}
+	return ! ( '' === $m[1] && '' === $m[3] && preg_match( '/^(1[89]|20)\d\d$/', $m[2] ) );
 }
 
 /**
@@ -110,9 +143,10 @@ function cfhg_component_numbers() {
 	$html = '<ul class="cfhg-notes">';
 	foreach ( cfhg_lines( 'numbers_list', 2 ) as $row ) {
 		$html .= sprintf(
-			'<li class="cfhg-note"><span class="cfhg-note__num">%1$s</span> <span class="cfhg-note__text">%2$s</span></li>',
+			'<li class="cfhg-note"><span class="cfhg-note__num"%3$s>%1$s</span> <span class="cfhg-note__text">%2$s</span></li>',
 			esc_html( $row[0] ),
-			esc_html( $row[1] )
+			esc_html( $row[1] ),
+			cfhg_counts_up( $row[0] ) ? ' data-cfhg-count' : ''
 		);
 	}
 	return $html . '</ul>';
@@ -178,9 +212,11 @@ function cfhg_component_snapshot( $setting, $tone = 'coral', $shape = 'portrait'
  * Opening panel: a row of small round portraits ending in the palm badge,
  * beside one line about the members. The portraits are decorative.
  *
+ * @param string   $class Extra class (e.g. cfhg-load-fade).
+ * @param int|null $delay Stagger step for the load animation (--d).
  * @return string
  */
-function cfhg_component_hero_proof() {
+function cfhg_component_hero_proof( $class = '', $delay = null ) {
 	$text = cfhg_mod( 'hero_proof_text' );
 	if ( ! $text ) {
 		return '';
@@ -196,15 +232,19 @@ function cfhg_component_hero_proof() {
 		) . '</span>';
 	}
 	return sprintf(
-		'<div class="cfhg-hero__proof"><span class="cfhg-avatars" aria-hidden="true">%1$s<span class="cfhg-avatars__badge"><img src="%2$s" width="511" height="512" alt="" loading="lazy" decoding="async"></span></span><p>%3$s</p></div>',
+		'<div class="%4$s"%5$s><span class="cfhg-avatars" aria-hidden="true">%1$s<span class="cfhg-avatars__badge"><img src="%2$s" width="511" height="512" alt="" loading="lazy" decoding="async"></span></span><p>%3$s</p></div>',
 		$faces,
 		esc_url( CFHG_URI . '/assets/images/cfhg-logo-badge.png' ),
-		esc_html( $text )
+		esc_html( $text ),
+		esc_attr( trim( 'cfhg-hero__proof ' . $class ) ),
+		cfhg_delay_style( $delay )
 	);
 }
 
 /**
- * One slide in the story carousel.
+ * One slide in the story carousel. The first tag (the topic) joins the date
+ * line, "14 October 2026 · Research"; the carousel's progress bar replaces
+ * the old "1/3" counters.
  *
  * @param array $card  Tags, meta, title, text, url, image (escaped markup).
  * @param int   $index Position.
@@ -215,22 +255,19 @@ function cfhg_component_story_slide( $card, $index, $total ) {
 	$tones = array( 'sand', 'sea', 'gold', 'green', 'coral' );
 	$tone  = $tones[ $index % count( $tones ) ];
 
-	$tags = '';
-	foreach ( (array) $card['tags'] as $tag ) {
-		$tags .= '<li class="cfhg-tag">' . esc_html( $tag ) . '</li>';
-	}
+	$tags  = array_values( array_filter( array_map( 'strval', (array) $card['tags'] ) ) );
+	$meta  = array_filter( array( esc_html( (string) $card['meta'] ), $tags ? esc_html( $tags[0] ) : '' ) );
+	$sep   = '<span class="ui-meta-sep" aria-hidden="true"> · </span>';
 
 	return sprintf(
-		'<article class="cfhg-slide cfhg-slide--%1$s%2$s" aria-roledescription="%3$s" aria-label="%4$s">%5$s<div class="cfhg-slide__body"><div class="cfhg-slide__top">%6$s<span class="cfhg-slide__count">%7$s</span></div>%8$s<h3 class="cfhg-slide__title">%9$s</h3>%10$s%11$s</div></article>',
+		'<article class="cfhg-slide cfhg-slide--%1$s%2$s" aria-roledescription="%3$s" aria-label="%4$s">%5$s<div class="cfhg-slide__body">%6$s<h3 class="cfhg-slide__title">%7$s</h3>%8$s%9$s</div></article>',
 		esc_attr( $tone ),
 		$card['image'] ? '' : ' cfhg-slide--text',
 		esc_attr__( 'slide', 'cfhg' ),
 		/* translators: 1: slide number, 2: number of slides. */
 		esc_attr( sprintf( __( '%1$d of %2$d', 'cfhg' ), $index + 1, $total ) ),
 		$card['image'] ? '<div class="cfhg-slide__media">' . $card['image'] . '</div>' : '',
-		$tags ? '<ul class="cfhg-slide__tags" aria-label="' . esc_attr__( 'Topics', 'cfhg' ) . '">' . $tags . '</ul>' : '<span></span>',
-		esc_html( ( $index + 1 ) . '/' . $total ),
-		$card['meta'] ? '<p class="cfhg-slide__meta">' . esc_html( $card['meta'] ) . '</p>' : '',
+		$meta ? '<p class="cfhg-slide__meta">' . implode( $sep, $meta ) . '</p>' : '',
 		esc_html( $card['title'] ),
 		$card['text'] ? '<p class="cfhg-slide__text">' . esc_html( $card['text'] ) . '</p>' : '',
 		cfhg_button( cfhg_mod( 'stories_read_label' ), $card['url'], 'mark', 'cfhg-slide__cta' )

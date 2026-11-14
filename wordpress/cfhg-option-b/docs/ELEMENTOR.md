@@ -61,7 +61,7 @@
 | Class | On | Effect |
 |---|---|---|
 | `cfhg-display`, `cfhg-h1`, `cfhg-h2`, `cfhg-h3` | Heading | Uppercase Jost at the fluid sizes |
-| `cfhg-label` | Heading (set to P) | Small uppercase label with a green bar |
+| `cfhg-label` | Heading (set to P) | Small uppercase label with a green bar. The homepage no longer uses these (see `UI-PASS.md`), but the class still works. |
 | `cfhg-lead`, `cfhg-body` | Text Editor | Lead and body text |
 | `cfhg-el-btn cfhg-el-btn--mark` | Button | Highlighter button with an icon square (main action) |
 | `cfhg-el-btn cfhg-el-btn--green` | Button | Deep green with white text |
@@ -72,8 +72,10 @@
 | `cfhg-el-img cfhg-el-img--rounded` | Image | Rounded corners; add `cfhg-el-img--fill` to fill its column |
 | `cfhg-el-img cfhg-el-img--disc` | Image | Photograph in a sea-blue circle; runs off the right edge on desktop when its column has class `cfhg-el-hero-art` |
 | `cfhg-el-hero-title` | Heading | The opening heading; one word in `<em>` is set italic on a highlighter band |
-| `cfhg-el-kicker` | Text Editor holding `<p class="cfhg-hero__kicker">` | White pill label with a coral dot |
-| `cfhg-el-chip` | Heading, positioned absolute | White pill label on a photograph |
+| `cfhg-el-kicker` | Text Editor holding `<p class="cfhg-hero__kicker">` | White pill label with a coral dot (no longer on the homepage) |
+| `cfhg-el-chip` | Heading, positioned absolute | White pill label on a photograph (replaced on the homepage by `cfhg-el-caption`) |
+| `cfhg-el-scrim` | Container holding a photograph | Soft dark fade along the bottom, for a caption |
+| `cfhg-el-caption` | Heading (set to P), positioned absolute, inside `cfhg-el-scrim` | Plain white caption over the photograph |
 | `cfhg-el-big` | Heading | Giant light word across a photograph band |
 | `cfhg-el-card-title` | Heading | Card title with a hairline beneath |
 | `cfhg-el-shape--gold`, `--green`, `--coral` | Shortcode widget with `[cfhg_shape]` | Colours the shape |
@@ -87,6 +89,23 @@ Text Editor lists styled by the theme (paste the HTML in the Text tab):
 - `<ul class="cfhg-partners__list">` with `<li><h3><a href="…">Name</a></h3><p>Text</p></li>`
 
 Colours for notes, steps, islands and partners are applied in order automatically.
+
+## Polish effects
+
+The motion and finishing touches from the polish pass (`UI-PASS.md`) work in Elementor through classes, added in **Advanced > CSS Classes**. Elementor's free version can't add the data attributes the theme templates use, so these classes stand in for them.
+
+| Effect | How, in Elementor |
+|---|---|
+| Fade and rise on load | `cfhg-load-fade`, plus `cfhg-load-d1`, `d2` or `d3` to stagger it |
+| Circle opens like an iris on load | `cfhg-load-iris` on the Image widget |
+| Shape pops in on load | `cfhg-load-pop`, plus `cfhg-load-i1`, `i2` or `i3` |
+| Big words open out as they scroll past | `cfhg-ui-track` on the Heading |
+| Background photograph drifts more slowly | `cfhg-ui-parallax` on the container with the background image. It runs where the browser supports CSS scroll-driven animation (Chrome, Edge, Safari 26), and otherwise stays still. |
+| Highlighter stroke draws in when seen | In the Heading's text: `<span class="cfhg-highlight" data-cfhg-mark>Words</span>` |
+| Numbers count up | Automatic: the `cfhg-notes` list from `[cfhg_numbers]` or the Customizer copy already carries `data-cfhg-count`. If you type the list by hand, add `data-cfhg-count` to each `cfhg-note__num` span. |
+| Carousel progress bar | Automatic in `[cfhg_stories]` |
+
+Button presses, the highlighter stroke under text links, focus rings and type polish apply to the `cfhg-el-btn` buttons and theme classes with nothing to add.
 
 ## Shortcodes
 
@@ -110,23 +129,24 @@ Sections are top-level containers: **Boxed 1600px**, Column, padding
 plus the class below.
 
 1. **Opening panel** (`cfhg-el-hero`, ID `top`). Boxed 1600px, Row (Column on tablet and mobile), min height 100vh on desktop, padding 120 / 32 / 64 / 32.
-   - A 50% column: the `cfhg-el-kicker` Text Editor, the H1 `cfhg-el-hero-title`, the lead, the `[cfhg_hero_proof]` Shortcode, a Row of buttons (`--mark --big`, `--text`) and the inline meeting Shortcode.
-   - A 50% column with class `cfhg-el-hero-art`, holding Image `cfhg-el-img--disc`.
+   - A 50% column: the H1 `cfhg-el-hero-title`, the lead, the `[cfhg_hero_proof]` Shortcode, a Row of buttons (`--mark --big`, `--text`) and the inline meeting Shortcode. Each has `cfhg-load-fade`, staggered `d1`, `d2`, `d3`, `d3`.
+   - A 50% column with class `cfhg-el-hero-art`, holding Image `cfhg-el-img--disc cfhg-load-iris`.
    - Not rebuilt: the small white, coral, blue and gold circles (decorative).
 2. **Who we are** (`cfhg-el-intro`). A Row: snapshot Shortcode (24% width, `cfhg-intro__snap--left`), a white card (44%), and a second snapshot (`--right`).
-3. **Next meeting** (`cfhg-el-meeting`, ID `next-meeting`). A Row: a white card (label, `title` Shortcode, H2 with a `cfhg-highlight` span, `facts` and prices Shortcodes, buttons) and a 55% column with Image `--rounded --fill` plus an absolutely positioned `cfhg-el-chip` heading.
+3. **Next meeting** (`cfhg-el-meeting`, ID `next-meeting`). A Row: a white card (H2 "Next meeting" with `cfhg-h3 ui-meeting-title`, the `title` Shortcode, a P heading `cfhg-h3` holding `<span class="cfhg-highlight" data-cfhg-mark>`, `facts` and prices Shortcodes, buttons) and a 55% column with class `cfhg-el-scrim`: Image `--rounded --fill` plus an absolutely positioned `cfhg-el-caption` heading.
 4. **Our group in numbers** (`cfhg-el-numbers`). A centred H2, then a Text Editor with the `cfhg-notes` list.
 5. **Start here** (`cfhg-el-start`, ID `start-here`). A split head Row, a Text Editor with the `cfhg-steps` list, and a button.
-6. **Research by island** (`cfhg-el-islands`). A 54% column (label, H2, text, `cfhg-places` list) and a 42% CFHG B Gold column (radius 20, Image `--oval`, positioned palm frond Shortcode).
+6. **Research by island** (`cfhg-el-islands`). A 54% column (H2, text, `cfhg-places` list) and a 42% CFHG B Gold column (radius 20, Image `--oval`, positioned palm frond Shortcode).
 7. **Stories** (`cfhg-el-stories`). A head Row, then the `[cfhg_stories]` Shortcode.
 8. **Research help** (`cfhg-el-help`). A CFHG B Sand Row (radius 20, padding 56) with a copy column, an Image `--rounded`, and a coral hibiscus anchored top-right.
 9. **Membership** (`cfhg-el-join`, ID `join`).
-   - A container with the photograph as its background (cover, navy overlay at 30%), holding the `cfhg-el-big` heading.
+   - A container with the photograph as its background (cover, navy overlay at 30%) and class `cfhg-ui-parallax`, holding the `cfhg-el-big cfhg-ui-track` heading.
    - Then a white card (60%) with a top margin of -140px so it overlaps the band.
-10. **Partners** (`cfhg-el-partners`). Label, H2, then a white card holding the `cfhg-partners__list` list.
+10. **Partners** (`cfhg-el-partners`). H2, then a white card holding the `cfhg-partners__list` list.
 
 ## Differences between the Elementor and theme homepages
 
 - **The opening panel's small circles are theme-only.** They're decorative.
+- **The background drift needs a recent browser.** In the theme, the membership photograph drifts in every browser (with a JavaScript fallback). In Elementor it's a background image, which only CSS can move, so it stays still where scroll-driven animation isn't supported.
 - **Reveal animations differ slightly.** Elements in Elementor fade in through the theme's script where the list markup is used (notes, steps, islands, partners). Use Elementor's Motion Effects for anything else.
 - **Where the lists are edited depends on the version.** In the theme version they come from the Customizer; in the Elementor version they're HTML you edit in place.

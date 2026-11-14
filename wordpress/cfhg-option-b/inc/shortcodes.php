@@ -33,7 +33,13 @@ function cfhg_register_shortcodes() {
 			return cfhg_component_next_meeting( sanitize_key( $atts['style'] ) );
 		}
 	);
-	add_shortcode( 'cfhg_hero_proof', 'cfhg_component_hero_proof' );
+	add_shortcode(
+		'cfhg_hero_proof',
+		static function () {
+			/* No arguments: the component's own parameters are for the templates. */
+			return cfhg_component_hero_proof();
+		}
+	);
 	add_shortcode( 'cfhg_prices', 'cfhg_component_prices' );
 	add_shortcode( 'cfhg_numbers', 'cfhg_component_numbers' );
 	add_shortcode( 'cfhg_steps', 'cfhg_component_steps' );

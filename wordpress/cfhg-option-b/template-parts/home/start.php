@@ -11,7 +11,6 @@ defined( 'ABSPATH' ) || exit;
 	<div class="cfhg-container">
 		<div class="cfhg-split-head" data-reveal>
 			<div>
-				<p class="cfhg-label"><?php echo esc_html( cfhg_mod( 'start_kicker' ) ); ?></p>
 				<h2 class="cfhg-h2" id="cfhg-start-title"><?php echo wp_kses( cfhg_mod( 'start_heading' ), cfhg_inline_kses() ); ?></h2>
 			</div>
 			<p class="cfhg-lead cfhg-split-head__text"><?php echo esc_html( cfhg_mod( 'start_text' ) ); ?></p>

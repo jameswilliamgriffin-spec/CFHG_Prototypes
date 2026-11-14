@@ -45,7 +45,10 @@ if ( is_search() ) {
 					the_post();
 					$cfhg_tags = array();
 					foreach ( (array) get_the_category() as $cfhg_cat ) {
-						$cfhg_tags[] = $cfhg_cat->name;
+						/* Every story is in Stories, so it says nothing as a topic. */
+						if ( sanitize_title( cfhg_mod( 'stories_category' ) ) !== $cfhg_cat->slug ) {
+							$cfhg_tags[] = $cfhg_cat->name;
+						}
 					}
 					if ( 'page' === get_post_type() ) {
 						$cfhg_tags = array( __( 'Page', 'cfhg' ) );

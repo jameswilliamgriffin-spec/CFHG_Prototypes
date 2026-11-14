@@ -403,10 +403,7 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 	$para = static function ( $key ) {
 		return '<p>' . esc_html( cfhg_mod( $key ) ) . '</p>';
 	};
-	$label = static function ( $key ) {
-		return cfhg_el_heading( esc_html( cfhg_mod( $key ) ), 'p', 'cfhg-label' );
-	};
-	$buttons = static function ( $items ) {
+	$buttons = static function ( $items, $class = '' ) {
 		return cfhg_el_row(
 			array_values( array_filter( $items ) ),
 			array(
@@ -414,13 +411,18 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 				'flex_wrap'             => 'wrap',
 				'flex_align_items'      => 'center',
 				'flex_gap'              => cfhg_el_gap( 20 ),
+				'css_classes'           => $class,
 			)
 		);
 	};
 
 	$sections = array();
 
-	/* 1. Opening panel: the words beside a photograph in a large circle. */
+	/*
+	 * 1. Opening panel: the words beside a photograph in a large circle. On
+	 * load the circle opens like an iris and the words rise in turn
+	 * (cfhg-load-* classes, assets/css/ui-pass.css).
+	 */
 	$sections[] = cfhg_el_container(
 		array(
 			'html_tag'              => 'section',
@@ -445,22 +447,22 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 			cfhg_el_column(
 				50,
 				array(
-					cfhg_el_text( '<p class="cfhg-hero__kicker">' . esc_html( $m( 'hero_kicker' ) ) . '</p>', 'cfhg-el-kicker' ),
-					cfhg_el_heading( wp_kses( $m( 'hero_heading' ), cfhg_inline_kses() ), 'h1', 'cfhg-el-hero-title' ),
-					cfhg_el_text( $para( 'hero_text' ), 'cfhg-lead cfhg-el-narrow' ),
-					cfhg_el_shortcode( '[cfhg_hero_proof]' ),
+					cfhg_el_heading( wp_kses( $m( 'hero_heading' ), cfhg_inline_kses() ), 'h1', 'cfhg-el-hero-title cfhg-load-fade' ),
+					cfhg_el_text( $para( 'hero_text' ), 'cfhg-lead cfhg-el-narrow cfhg-load-fade cfhg-load-d1' ),
+					cfhg_el_shortcode( '[cfhg_hero_proof]', 'cfhg-load-fade cfhg-load-d2' ),
 					$buttons(
 						array(
 							cfhg_el_button( $m( 'hero_primary_label' ), $m( 'hero_primary_url' ), 'mark', 'cfhg-el-btn--big' ),
 							cfhg_el_button( $m( 'hero_secondary_label' ), $m( 'hero_secondary_url' ), 'text' ),
-						)
+						),
+						'cfhg-load-fade cfhg-load-d3'
 					),
-					cfhg_el_shortcode( '[cfhg_next_meeting style="inline"]' ),
+					cfhg_el_shortcode( '[cfhg_next_meeting style="inline"]', 'cfhg-load-fade cfhg-load-d3' ),
 				)
 			),
 			cfhg_el_column(
 				50,
-				array( cfhg_el_image( 'hero_image', 'cfhg-el-img cfhg-el-img--disc', $image_map ) ),
+				array( cfhg_el_image( 'hero_image', 'cfhg-el-img--disc cfhg-load-iris', $image_map ) ),
 				array( 'css_classes' => 'cfhg-el-hero-art' )
 			),
 		),
@@ -518,9 +520,9 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 				array(
 					cfhg_el_card(
 						array(
-							$label( 'meeting_kicker' ),
+							cfhg_el_heading( esc_html( $m( 'meeting_kicker' ) ), 'h2', 'cfhg-h3 ui-meeting-title' ),
 							cfhg_el_shortcode( '[cfhg_next_meeting style="title"]' ),
-							cfhg_el_heading( '<span class="cfhg-highlight">' . wp_kses( $m( 'meeting_heading' ), cfhg_inline_kses() ) . '</span>', 'h2', 'cfhg-h3' ),
+							$m( 'meeting_heading' ) ? cfhg_el_heading( '<span class="cfhg-highlight" data-cfhg-mark>' . wp_kses( $m( 'meeting_heading' ), cfhg_inline_kses() ) . '</span>', 'p', 'cfhg-h3' ) : null,
 							cfhg_el_shortcode( '[cfhg_next_meeting style="facts"]' ),
 							cfhg_el_shortcode( '[cfhg_prices]' ),
 							$buttons(
@@ -536,20 +538,21 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 						55,
 						array(
 							cfhg_el_image( 'meeting_image', 'cfhg-el-img--rounded cfhg-el-img--fill', $image_map ),
-							cfhg_el_widget(
+							$m( 'meeting_image_label' ) ? cfhg_el_widget(
 								'heading',
 								array(
 									'title'                 => esc_html( $m( 'meeting_image_label' ) ),
 									'header_size'           => 'p',
-									'_css_classes'          => 'cfhg-el-chip',
+									'_css_classes'          => 'cfhg-el-caption',
 									'_position'             => 'absolute',
 									'_offset_orientation_h' => 'start',
 									'_offset_x'             => cfhg_el_size( 16 ),
 									'_offset_orientation_v' => 'end',
 									'_offset_y_end'         => cfhg_el_size( 16 ),
 								)
-							),
-						)
+							) : null,
+						),
+						array( 'css_classes' => 'cfhg-el-scrim' )
 					),
 				),
 				array( 'flex_align_items' => 'stretch', 'flex_gap' => cfhg_el_gap( 32 ) )
@@ -581,7 +584,7 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 		array(
 			cfhg_el_row(
 				array(
-					cfhg_el_column( 58, array( $label( 'start_kicker' ), cfhg_el_heading( wp_kses( $m( 'start_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ) ) ),
+					cfhg_el_column( 58, array( cfhg_el_heading( wp_kses( $m( 'start_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ) ) ),
 					cfhg_el_column( 38, array( cfhg_el_text( $para( 'start_text' ), 'cfhg-lead' ) ) ),
 				),
 				array(
@@ -604,7 +607,6 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 					cfhg_el_column(
 						54,
 						array(
-							$label( 'islands_kicker' ),
 							cfhg_el_heading( wp_kses( $m( 'islands_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ),
 							cfhg_el_text( $para( 'islands_text' ) ),
 							cfhg_el_text( cfhg_component_islands(), 'cfhg-body cfhg-el-list' ),
@@ -642,7 +644,7 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 		array(
 			cfhg_el_row(
 				array(
-					cfhg_el_column( 60, array( $label( 'stories_kicker' ), cfhg_el_heading( wp_kses( $m( 'stories_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ) ) ),
+					cfhg_el_column( 60, array( cfhg_el_heading( wp_kses( $m( 'stories_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ) ) ),
 					cfhg_el_button( $m( 'stories_link_label' ), $m( 'stories_link_url' ), 'text' ),
 				),
 				array(
@@ -664,7 +666,6 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 					cfhg_el_column(
 						46,
 						array(
-							$label( 'help_kicker' ),
 							cfhg_el_heading( wp_kses( $m( 'help_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ),
 							cfhg_el_text( $para( 'help_text' ) ),
 							cfhg_el_button( $m( 'help_cta_label' ), $m( 'help_cta_url' ), 'green' ),
@@ -712,12 +713,14 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 					'background_overlay_opacity'    => cfhg_el_size( 0.3 ),
 					'border_radius'                 => cfhg_el_box( 'px', 20, 20, 20, 20 ),
 					'padding'                       => cfhg_el_box( 'px', 12, 12, 12, 12 ),
+					/* As the band scrolls past, the photograph drifts more slowly. */
+					'css_classes'                   => 'cfhg-ui-parallax',
 				),
-				array( cfhg_el_heading( esc_html( $m( 'join_big' ) ), 'p', 'cfhg-el-big' ) )
+				/* ...and the large words open out (assets/js/ui-pass.js). */
+				array( cfhg_el_heading( esc_html( $m( 'join_big' ) ), 'p', 'cfhg-el-big cfhg-ui-track' ) )
 			),
 			cfhg_el_card(
 				array(
-					$label( 'join_kicker' ),
 					cfhg_el_heading( wp_kses( $m( 'join_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ),
 					cfhg_el_text( $para( 'join_text' ), 'cfhg-lead' ),
 					$buttons(
@@ -747,7 +750,6 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 	$sections[] = cfhg_el_section(
 		'cfhg-el-partners',
 		array(
-			$label( 'partners_kicker' ),
 			cfhg_el_heading( wp_kses( $m( 'partners_heading' ), cfhg_inline_kses() ), 'h2', 'cfhg-h2' ),
 			cfhg_el_card(
 				array( cfhg_el_text( cfhg_component_partners(), 'cfhg-body cfhg-el-list' ) ),
@@ -801,7 +803,8 @@ function cfhg_import_theme_image( $slug ) {
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 
 	$width = max( array_keys( $manifest[ $slug ]['sizes'] ) );
-	$file  = $slug . '-' . $width . '.jpg';
+	$ext   = cfhg_theme_image_ext( $slug );
+	$file  = $slug . '-' . $width . '.' . $ext;
 	$path  = CFHG_DIR . '/assets/images/' . $file;
 	if ( ! file_exists( $path ) ) {
 		return 0;
@@ -814,7 +817,7 @@ function cfhg_import_theme_image( $slug ) {
 
 	$id = media_handle_sideload(
 		array(
-			'name'     => $slug . '.jpg',
+			'name'     => $slug . '.' . $ext,
 			'tmp_name' => $tmp,
 		),
 		0,

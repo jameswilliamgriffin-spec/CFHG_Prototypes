@@ -15,11 +15,22 @@ function cfhg_enqueue_assets() {
 
 	wp_enqueue_style( 'cfhg-tokens', $css . 'tokens.css', array(), CFHG_VERSION );
 	wp_enqueue_style( 'cfhg-main', $css . 'main.css', array( 'cfhg-tokens' ), CFHG_VERSION );
+	wp_enqueue_style( 'cfhg-ui-pass', $css . 'ui-pass.css', array( 'cfhg-main' ), CFHG_VERSION );
 
 	wp_enqueue_script(
 		'cfhg-main',
 		CFHG_URI . '/assets/js/main.js',
 		array(),
+		CFHG_VERSION,
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+	wp_enqueue_script(
+		'cfhg-ui-pass',
+		CFHG_URI . '/assets/js/ui-pass.js',
+		array( 'cfhg-main' ),
 		CFHG_VERSION,
 		array(
 			'in_footer' => true,
@@ -49,8 +60,22 @@ add_action( 'wp_head', 'cfhg_preload_fonts', 1 );
  */
 function cfhg_js_class() {
 	echo "<script>document.documentElement.classList.add('cfhg-js');</script>\n";
+	/*
+	 * Opt in to the load animations in assets/css/ui-pass.css. If ui-pass.js
+	 * has not run within three seconds the class comes off again, so a
+	 * blocked or failed script can never leave anything hidden.
+	 */
+	echo "<script>(function(r){r.classList.add('cfhg-ui');setTimeout(function(){if(!window.cfhgUi){r.classList.remove('cfhg-ui');}},3000);})(document.documentElement);</script>\n";
 }
 add_action( 'wp_head', 'cfhg_js_class', 0 );
+
+/**
+ * Browser chrome colour: the page's cream.
+ */
+function cfhg_theme_color() {
+	echo '<meta name="theme-color" content="#F6F1EA">' . "\n";
+}
+add_action( 'wp_head', 'cfhg_theme_color', 1 );
 
 /**
  * Load the theme fonts and tokens inside the block editor too.

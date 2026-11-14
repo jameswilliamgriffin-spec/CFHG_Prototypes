@@ -12,9 +12,12 @@ Static site for client review, deployed on Vercel.
 
 Every page is `noindex, nofollow`, and `robots.txt` blocks crawlers.
 
-## UI polish pass (do not rebuild yet)
+## UI polish pass
 
-The three preview folders have had a hand-edited polish pass that is not yet in the WordPress themes: AI-tell removal, `assets/css/ui-pass.css`, `assets/js/ui-pass.js` and some HTML changes. Each preview has a `README-ui-pass.md` describing it. **Running any build script below will overwrite that work.** Port the changes into the themes first. The untouched originals are kept locally in `preview-backup-a`, `preview-backup-b` and `preview-backup-c` (git- and Vercel-ignored).
+Each option had a hand-edited polish pass in its static preview: AI-tell removal, `assets/css/ui-pass.css`, `assets/js/ui-pass.js` and some HTML changes.
+
+- **Option B (chosen by the client):** ported into the theme, `wordpress/cfhg-option-b` version 1.1.0 (see its `docs/UI-PASS.md`). `/preview-b` is now rebuilt from the theme.
+- **Options A and C:** still only in their previews, each described in a `README-ui-pass.md`. The build skips a preview while that file is there, so the hand-made work can't be overwritten. The untouched originals are kept locally in `preview-backup-a`, `preview-backup-b` and `preview-backup-c` (git- and Vercel-ignored).
 
 ## Rebuilding
 
@@ -24,7 +27,13 @@ The previews are generated from the WordPress themes in `wordpress/`:
 npm run build:site
 ```
 
-This rebuilds all three previews, adds `site/meeting-dates.js` to every preview page (so "next meeting" dates stay current after deployment), and checks the landing page links. Commit the output; Vercel serves the files as they are, with no build step.
+Or just one option, for example B:
+
+```bash
+npm run build:site -- b
+```
+
+This rebuilds the previews, adds `site/meeting-dates.js` to every preview page (so "next meeting" dates stay current after deployment), and checks the landing page links. Commit the output; Vercel serves the files as they are, with no build step.
 
 ## Not in this repository
 

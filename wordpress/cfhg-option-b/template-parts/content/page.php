@@ -25,7 +25,17 @@ $cfhg_parent = wp_get_post_parent_id( get_the_ID() );
 
 		<?php if ( has_post_thumbnail() ) : ?>
 			<figure class="cfhg-container cfhg-entry__media cfhg-rounded">
-				<?php the_post_thumbnail( 'cfhg-wide', array( 'sizes' => '(min-width: 1200px) 1200px, 92vw' ) ); ?>
+				<?php
+				/* Near the top of the page, so it loads straight away. */
+				the_post_thumbnail(
+					'cfhg-wide',
+					array(
+						'sizes'         => '(min-width: 1200px) 1200px, 92vw',
+						'loading'       => 'eager',
+						'fetchpriority' => 'high',
+					)
+				);
+				?>
 			</figure>
 		<?php endif; ?>
 

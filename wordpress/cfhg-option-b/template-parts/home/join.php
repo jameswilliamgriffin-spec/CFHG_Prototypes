@@ -1,7 +1,8 @@
 <?php
 /**
  * Homepage: membership. A photograph band with large words across it, and a
- * white card overlapping its lower edge.
+ * white card overlapping its lower edge. As the band scrolls past, the words
+ * open out and the photograph drifts more slowly (assets/js/ui-pass.js).
  *
  * @package CFHG
  */
@@ -12,16 +13,15 @@ $cfhg_mail = cfhg_mailto();
 ?>
 <section class="cfhg-section cfhg-join" id="join" aria-labelledby="cfhg-join-title">
 	<div class="cfhg-join__band">
-		<figure class="cfhg-join__image">
+		<figure class="cfhg-join__image" data-cfhg-parallax="1">
 			<?php echo cfhg_setting_image( 'join_image', array( 'sizes' => '100vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</figure>
 		<?php if ( cfhg_mod( 'join_big' ) ) : ?>
-			<p class="cfhg-join__big" aria-hidden="true"><?php echo esc_html( cfhg_mod( 'join_big' ) ); ?></p>
+			<p class="cfhg-join__big" aria-hidden="true" data-cfhg-track><?php echo esc_html( cfhg_mod( 'join_big' ) ); ?></p>
 		<?php endif; ?>
 	</div>
 	<div class="cfhg-container">
 		<div class="cfhg-card cfhg-join__card" data-reveal>
-			<p class="cfhg-label"><?php echo esc_html( cfhg_mod( 'join_kicker' ) ); ?></p>
 			<h2 class="cfhg-h2" id="cfhg-join-title"><?php echo wp_kses( cfhg_mod( 'join_heading' ), cfhg_inline_kses() ); ?></h2>
 			<p class="cfhg-lead"><?php echo esc_html( cfhg_mod( 'join_text' ) ); ?></p>
 			<div class="cfhg-actions">
