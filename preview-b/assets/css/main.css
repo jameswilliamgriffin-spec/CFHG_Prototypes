@@ -1383,6 +1383,80 @@ body.cfhg-menu-open {
 	}
 }
 
+/* 6.5a Card icons: stickers on the number notes and the step tiles.
+   The icon is a class on the card (cfhg-icon--calendar), drawn with
+   ::after, so the list markup still survives Elementor's Text Editor. */
+.cfhg-has-icon {
+	position: relative;
+}
+
+.cfhg-has-icon::after {
+	content: "";
+	position: absolute;
+	width: var(--cfhg-icon-size, 3.5rem);
+	aspect-ratio: 1;
+	background: center / contain no-repeat;
+	filter: drop-shadow(0 4px 6px rgba(16, 33, 59, 0.18));
+	pointer-events: none;
+}
+
+/* On the notes: a sticker pressed onto the top corner, against the tilt. */
+.cfhg-note.cfhg-has-icon {
+	--cfhg-icon-size: 3.25rem;
+	padding-top: 2.4rem;
+}
+
+.cfhg-note.cfhg-has-icon::after {
+	top: -0.9rem;
+	right: -0.6rem;
+	transform: rotate(calc(var(--tilt, 0deg) * -3));
+}
+
+/* On the steps: beside the big number. */
+.cfhg-steps > li.cfhg-has-icon::after {
+	top: 1rem;
+	right: 1rem;
+	transform: rotate(-6deg);
+}
+
+.cfhg-steps > li.cfhg-has-icon:nth-child(even)::after {
+	transform: rotate(5deg);
+}
+
+.cfhg-icon--pocket-watch::after { background-image: url("../images/icons/pocket-watch.svg"); }
+.cfhg-icon--book-stack::after { background-image: url("../images/icons/book-stack.svg"); }
+.cfhg-icon--calendar::after { background-image: url("../images/icons/calendar.svg"); }
+.cfhg-icon--three-islands::after { background-image: url("../images/icons/three-islands.svg"); }
+.cfhg-icon--globe-plane::after { background-image: url("../images/icons/globe-plane.svg"); }
+.cfhg-icon--ticket::after { background-image: url("../images/icons/ticket.svg"); }
+.cfhg-icon--notepad-pencil::after { background-image: url("../images/icons/notepad-pencil.svg"); }
+.cfhg-icon--thought-question::after { background-image: url("../images/icons/thought-question.svg"); }
+.cfhg-icon--signpost::after { background-image: url("../images/icons/signpost.svg"); }
+.cfhg-icon--magnifier-record::after { background-image: url("../images/icons/magnifier-record.svg"); }
+.cfhg-icon--family-tree::after { background-image: url("../images/icons/family-tree.svg"); }
+
+@media (min-width: 600px) {
+	.cfhg-note.cfhg-has-icon {
+		--cfhg-icon-size: 4rem;
+		padding-top: 1.1rem;
+	}
+
+	.cfhg-steps > li.cfhg-has-icon {
+		--cfhg-icon-size: 4rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.cfhg-note.cfhg-has-icon {
+		--cfhg-icon-size: 4.75rem;
+	}
+
+	.cfhg-note.cfhg-has-icon::after {
+		top: -1.4rem;
+		right: -1rem;
+	}
+}
+
 /* 6.6 Research by island: colour bars beside an oval window */
 .cfhg-islands__grid {
 	display: grid;
@@ -2305,6 +2379,354 @@ select:focus {
 .cfhg-search__button:hover .cfhg-btn__disc,
 .cfhg-search__button:focus-visible .cfhg-btn__disc {
 	background: var(--cfhg-gold);
+}
+
+/* 7.1 Starting your family tree: the five steps guide page
+   (inc/guide.php). The same classes are used on the Elementor version. */
+.cfhg-guide__video {
+	margin-top: var(--cfhg-sp-lg);
+}
+
+.cfhg-guide__player {
+	margin: 0;
+}
+
+.cfhg-guide__player video,
+.elementor-widget.cfhg-guide__player video {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	box-shadow: 0 30px 60px -40px rgba(16, 33, 59, 0.55);
+}
+
+.cfhg-guide__player figcaption,
+.elementor-widget.cfhg-guide__caption p {
+	margin: 0.75rem 0 0;
+	font-size: var(--cfhg-fs-small);
+	color: var(--cfhg-ink-soft);
+}
+
+/* Your family tree: two big questions, each with a coloured rule. */
+.cfhg-guide__questions {
+	display: grid;
+	gap: var(--cfhg-sp-sm) var(--cfhg-gap);
+	margin: var(--cfhg-sp-md) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cfhg-guide__questions li {
+	padding-top: var(--cfhg-sp-xs);
+	border-top: 4px solid var(--cfhg-blue);
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h3);
+	line-height: 1.15;
+}
+
+.cfhg-guide__questions li:nth-child(2) {
+	border-top-color: var(--cfhg-coral);
+}
+
+@media (min-width: 768px) {
+	.cfhg-guide__questions {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* The five steps: one per row, alternating sides, each in its own colour. */
+.cfhg-guide__list {
+	display: grid;
+	gap: var(--cfhg-sp-section);
+	margin: var(--cfhg-sp-lg) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cfhg-guide-step {
+	--tone: var(--cfhg-coral);
+	display: grid;
+	gap: var(--cfhg-sp-md) var(--cfhg-gap);
+	align-items: center;
+}
+
+.cfhg-guide-step--2 { --tone: var(--cfhg-gold); }
+.cfhg-guide-step--3 { --tone: var(--cfhg-green); }
+.cfhg-guide-step--4 { --tone: var(--cfhg-sea); }
+.cfhg-guide-step--5 { --tone: var(--cfhg-blue); }
+
+.cfhg-guide-step__num {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 var(--cfhg-sp-xs);
+	padding-top: var(--cfhg-sp-xs);
+	border-top: 6px solid var(--tone);
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-number);
+	font-weight: 400;
+	line-height: 0.9;
+	/* Ink, not the step colour: gold and sea are too pale on cream to read. */
+	color: var(--cfhg-ink);
+}
+
+/* The icon sits beside the number here, not on a corner. */
+.cfhg-guide-step__num.cfhg-has-icon::after {
+	position: static;
+	flex: none;
+	--cfhg-icon-size: 4.5rem;
+	transform: rotate(-6deg);
+}
+
+.cfhg-guide-step__title,
+.elementor-widget.cfhg-guide-step__title .elementor-heading-title {
+	margin: 0;
+}
+
+.cfhg-guide-step__question {
+	margin: 0.5rem 0 var(--cfhg-sp-sm);
+	color: var(--cfhg-ink-soft);
+}
+
+.cfhg-guide-step__copy > p:not([class]),
+.cfhg-guide-step p:not([class]) {
+	max-width: 34rem;
+	font-size: var(--cfhg-fs-lead, 1.25rem);
+	line-height: 1.45;
+}
+
+.cfhg-guide-step__media {
+	margin: 0;
+}
+
+.cfhg-guide-step__media img,
+.elementor-widget.cfhg-guide-step__media img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: var(--cfhg-r-lg);
+	box-shadow: 14px 14px 0 var(--tone);
+}
+
+@media (min-width: 1024px) {
+	.cfhg-guide-step {
+		grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+	}
+
+	.cfhg-guide-step:nth-child(even) .cfhg-guide-step__copy {
+		order: 2;
+	}
+
+	.cfhg-guide-step:nth-child(even) .cfhg-guide-step__media img {
+		box-shadow: -14px 14px 0 var(--tone);
+	}
+}
+
+/* Bullets: a dot in the step's colour. */
+.cfhg-guide__points {
+	display: grid;
+	gap: 0.85rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cfhg-guide__points li {
+	position: relative;
+	padding-left: 1.75rem;
+	font-size: 1.125rem;
+	line-height: 1.45;
+}
+
+.cfhg-guide__points li::before {
+	content: "";
+	position: absolute;
+	top: 0.5em;
+	left: 0.2rem;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background: var(--tone, var(--cfhg-coral));
+}
+
+/* Step 3: records and documents, people and objects. */
+.cfhg-guide__groups {
+	display: grid;
+	gap: var(--cfhg-sp-sm);
+}
+
+.cfhg-guide__group {
+	padding-left: var(--cfhg-sp-sm);
+	border-left: 4px solid var(--tone);
+}
+
+.cfhg-guide__group h4 {
+	margin: 0 0 0.35rem;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-guide__group p {
+	margin: 0;
+	font-size: 1.125rem;
+	line-height: 1.45;
+	color: var(--cfhg-ink-soft);
+}
+
+/* Completing charts: a navy band with three white cards. */
+.cfhg-guide__charts {
+	margin-top: var(--cfhg-sp-section);
+	padding: var(--cfhg-sp-section) 0;
+	background: var(--cfhg-ink);
+	color: var(--cfhg-cream);
+}
+
+.cfhg-guide__charts > .cfhg-container > .cfhg-h2,
+.cfhg-guide__charts .elementor-widget.cfhg-h2 .elementor-heading-title {
+	color: var(--cfhg-cream);
+}
+
+.cfhg-guide__charts > .cfhg-container > .cfhg-lead,
+.cfhg-guide__charts .elementor-widget.cfhg-lead p {
+	margin: 0.5rem 0 0;
+	color: var(--cfhg-highlight);
+}
+
+.cfhg-guide__chart-grid {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin-top: var(--cfhg-sp-lg);
+}
+
+.cfhg-guide-card {
+	--tone: var(--cfhg-coral);
+	color: var(--cfhg-ink);
+	border-top: 6px solid var(--tone);
+}
+
+/* The theme's cards; Elementor's card containers set their own padding. */
+.cfhg-guide-card:not(.e-con) {
+	padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+}
+
+.cfhg-guide-card:nth-child(2),
+.cfhg-guide-card:nth-child(2) * { --tone: var(--cfhg-green); }
+.cfhg-guide-card:nth-child(3),
+.cfhg-guide-card:nth-child(3) * { --tone: var(--cfhg-blue); }
+
+.cfhg-guide-card .cfhg-h3 {
+	margin: 0 0 var(--cfhg-sp-sm);
+}
+
+.cfhg-guide-card .cfhg-guide__points li {
+	font-size: 1rem;
+}
+
+.cfhg-guide__note {
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0.85rem 1rem;
+	border-radius: var(--cfhg-r-sm, 0.5rem);
+	background: var(--cfhg-sand);
+	font-size: var(--cfhg-fs-small);
+	line-height: 1.45;
+}
+
+@media (min-width: 1024px) {
+	.cfhg-guide__chart-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* Even and odd. */
+.cfhg-guide__evenodd {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--cfhg-sp-xs);
+}
+
+.cfhg-guide__evenodd p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.35;
+}
+
+.cfhg-guide__evenodd strong {
+	display: block;
+	font-family: var(--cfhg-font-display);
+	font-size: 2.5rem;
+	font-weight: 500;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.cfhg-guide__evenodd .is-even,
+.cfhg-pedigree__n.is-even { color: var(--cfhg-green-deep); }
+.cfhg-guide__evenodd .is-odd,
+.cfhg-pedigree__n.is-odd { color: #C2412F; }
+
+/* A small pedigree chart: you, your parents, your grandparents. */
+.cfhg-pedigree {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: repeat(4, auto);
+	gap: 0.4rem 0.6rem;
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0.8rem;
+	line-height: 1.2;
+}
+
+.cfhg-pedigree__person {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.4rem 0.5rem;
+	border: 1px solid var(--cfhg-line);
+	border-radius: 0.5rem;
+	background: var(--cfhg-cream);
+}
+
+.cfhg-pedigree__person--1 { grid-column: 1; grid-row: 1 / 5; align-self: center; }
+.cfhg-pedigree__person--2 { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+.cfhg-pedigree__person--3 { grid-column: 2; grid-row: 3 / 5; align-self: center; }
+.cfhg-pedigree__person--4 { grid-column: 3; grid-row: 1; }
+.cfhg-pedigree__person--5 { grid-column: 3; grid-row: 2; }
+.cfhg-pedigree__person--6 { grid-column: 3; grid-row: 3; }
+.cfhg-pedigree__person--7 { grid-column: 3; grid-row: 4; }
+
+.cfhg-pedigree__n {
+	flex: none;
+	font-family: var(--cfhg-font-display);
+	font-size: 1.25rem;
+	font-weight: 500;
+	line-height: 1;
+}
+
+.cfhg-guide__cta-card {
+	max-width: 52rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.cfhg-guide__cta-card:not(.e-con) {
+	padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+}
+
+.cfhg-guide__cta-card:not(.e-con) > * + * {
+	margin-top: var(--cfhg-sp-sm);
+}
+
+.cfhg-guide__cta-card .cfhg-actions,
+.cfhg-guide__cta-card .cfhg-next {
+	justify-content: center;
 }
 
 /* 404 */

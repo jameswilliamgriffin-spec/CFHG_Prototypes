@@ -153,8 +153,36 @@ function cfhg_next_meeting() {
  * @return string
  */
 function cfhg_next_meeting_date( $format = 'l j F' ) {
-	$date = cfhg_next_meeting();
+	$date = cfhg_next_meeting_info()['date'];
 	return $date ? wp_date( $format, $date->getTimestamp(), wp_timezone() ) : '';
+}
+
+/**
+ * Everything the site shows about the next meeting: the date, the time,
+ * where, and a link to the event's page when there is one.
+ *
+ * The theme's own answer comes from the Customizer (Meetings and prices):
+ * the usual pattern, time and place. The CFHG Site plugin replaces it with
+ * the real next event from Events, through the cfhg_next_meeting_info
+ * filter, whenever there is one.
+ *
+ * @return array{date: DateTimeImmutable|null, time: string, where: string, url: string, title: string}
+ */
+function cfhg_next_meeting_info() {
+	static $info = null;
+	if ( null === $info ) {
+		$info = apply_filters(
+			'cfhg_next_meeting_info',
+			array(
+				'date'  => cfhg_next_meeting(),
+				'time'  => trim( (string) cfhg_mod( 'meeting_time' ) ),
+				'where' => (string) cfhg_mod( 'meeting_short_where' ),
+				'url'   => '',
+				'title' => '',
+			)
+		);
+	}
+	return $info;
 }
 
 /**

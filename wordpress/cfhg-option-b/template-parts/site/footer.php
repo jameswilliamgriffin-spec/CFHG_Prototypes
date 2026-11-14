@@ -44,10 +44,11 @@ $cfhg_photo   = cfhg_url( cfhg_mod( 'footer_photo_url' ) );
 
 		<div class="cfhg-footer__col">
 			<h2 class="cfhg-footer__heading ui-col-heading"><?php echo esc_html( cfhg_mod( 'meeting_kicker' ) ); ?></h2>
-			<?php if ( cfhg_next_meeting() ) : ?>
-				<p class="cfhg-footer__date"><?php echo esc_html( cfhg_next_meeting_date( 'l j F' ) ); ?></p>
+			<?php $cfhg_next = cfhg_next_meeting_info(); ?>
+			<?php if ( $cfhg_next['date'] ) : ?>
+				<p class="cfhg-footer__date"><?php echo esc_html( cfhg_next_meeting_date( 'l j F' ) . ( $cfhg_next['time'] ? ', ' . $cfhg_next['time'] : '' ) ); ?></p>
 			<?php endif; ?>
-			<p class="cfhg-footer__venue"><?php echo esc_html( cfhg_mod( 'meeting_short_where' ) ); ?></p>
+			<p class="cfhg-footer__venue"><?php echo esc_html( $cfhg_next['where'] ); ?></p>
 			<?php echo cfhg_button( cfhg_mod( 'join_cta_label' ), cfhg_mod( 'join_cta_url' ), 'mark' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 

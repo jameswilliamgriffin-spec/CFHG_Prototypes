@@ -80,34 +80,35 @@ function cfhg_defaults() {
 
 		/* The group in numbers. Number | what it means. Every figure is from the group's own document. */
 		'numbers_title'          => __( 'Our group in numbers', 'cfhg' ),
+		/* Number | what it means | icon (see cfhg_card_icons() in inc/components.php). */
 		'numbers_list'           => implode(
 			"\n",
 			array(
-				__( '40+ | years: the longest any of us has been researching', 'cfhg' ),
-				__( '2011 | the year Solihull Libraries became a FamilySearch affiliate, at our request', 'cfhg' ),
-				__( '9 | meetings a year, on the last Saturday of the month', 'cfhg' ),
-				__( '3 | island research groups: Jamaica, Barbados, and St Kitts and Nevis', 'cfhg' ),
-				__( '4 | countries our members join from', 'cfhg' ),
-				__( '£0 | for your first visit', 'cfhg' ),
+				__( '40+ | years: the longest any of us has been researching | pocket-watch', 'cfhg' ),
+				__( '2011 | the year Solihull Libraries became a FamilySearch affiliate, at our request | book-stack', 'cfhg' ),
+				__( '9 | meetings a year, on the last Saturday of the month | calendar', 'cfhg' ),
+				__( '3 | island research groups: Jamaica, Barbados, and St Kitts and Nevis | three-islands', 'cfhg' ),
+				__( '4 | countries our members join from | globe-plane', 'cfhg' ),
+				__( '£0 | for your first visit | ticket', 'cfhg' ),
 			)
 		),
 
 		/* Start here: five coloured step tiles. */
 		'start_heading'          => __( 'Start here: five steps', 'cfhg' ),
 		'start_text'             => __( 'You don’t need a subscription or any experience. You need a notebook, some patience and the people in your family who remember.', 'cfhg' ),
-		/* Title | text. ASSUMPTION: drafted for the group to check against the 5-steps video. */
+		/* Title | text | icon. From the group's "Starting your family tree" presentation. */
 		'start_steps'            => implode(
 			"\n",
 			array(
-				__( 'Write down what you know | Start with yourself, then your parents and grandparents. Names, dates, places, and any certificates you have at home.', 'cfhg' ),
-				__( 'Talk to your elders | Ask about names, villages, churches and nicknames, and how the family came to Britain or wherever they settled.', 'cfhg' ),
-				__( 'Draw your family tree | Put everything on a pedigree chart so you can see what’s missing. Our charts are free to download.', 'cfhg' ),
-				__( 'Search the records | Many Caribbean church registers are free on FamilySearch, and every Solihull library gives free access to its digitised collections.', 'cfhg' ),
-				__( 'Bring us your brick wall | When you get stuck, come to a meeting. Someone in the room has usually been stuck in the same place.', 'cfhg' ),
+				__( 'Write down what you know | Search your own memory, ask family, friends and elders, and look through family homes and Bibles. | notepad-pencil', 'cfhg' ),
+				__( 'Decide what you want to learn | Start with the generation closest to you, and turn the gaps in what you know into specific questions. | thought-question', 'cfhg' ),
+				__( 'Choose a resource | Census, military and emigration records, or people and objects: relatives, photographs, even tombstones. | signpost', 'cfhg' ),
+				__( 'Learn from the resource | Search the record, talk to the person or study the object, and write down what you discover. | magnifier-record', 'cfhg' ),
+				__( 'Use the information | Organise what you found, look for new clues and add it to your tree. Then begin the five steps again. | family-tree', 'cfhg' ),
 			)
 		),
-		'start_link_label'       => __( 'Watch our five steps video', 'cfhg' ),
-		'start_link_url'         => '/research/start-here/',
+		'start_link_label'       => __( 'Read the five steps in full', 'cfhg' ),
+		'start_link_url'         => '/starting-your-family-tree/',
 
 		/* Research by island */
 		'islands_heading'        => __( 'Research by island', 'cfhg' ),

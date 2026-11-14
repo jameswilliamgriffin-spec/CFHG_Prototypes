@@ -107,6 +107,39 @@ The motion and finishing touches from the polish pass (`UI-PASS.md`) work in Ele
 
 Button presses, the highlighter stroke under text links, focus rings and type polish apply to the `cfhg-el-btn` buttons and theme classes with nothing to add.
 
+## Card icons
+
+The number notes and step tiles carry icon stickers through a class on each list item, so they come through Elementor's Text Editor unharmed:
+
+- `<li class="cfhg-note cfhg-has-icon cfhg-icon--calendar">`
+- `<li class="cfhg-steps__item cfhg-has-icon cfhg-icon--signpost">`
+
+Icons: pocket-watch, book-stack, calendar, three-islands, globe-plane, ticket, notepad-pencil, thought-question, signpost, magnifier-record, family-tree. The `[cfhg_numbers]` and `[cfhg_steps]` shortcodes, and the homepage CFHG Setup builds, add them for you.
+
+## The five steps guide page
+
+Appearance > CFHG Setup > **Create the five steps page** builds "Starting your family tree" from Elementor widgets:
+
+1. A title and introduction.
+2. A Video widget (self hosted, from the theme's `assets/video` folder, with its poster).
+3. "Your family tree": an H2 and a Text Editor holding `<ul class="cfhg-guide__questions">`.
+4. "Five basic steps": one Row per step with class `cfhg-guide-step cfhg-guide-step--1` to `--5` (this sets the step's colour), alternating sides. The copy column holds the step number (a Text Editor with `<p class="cfhg-guide-step__num cfhg-has-icon cfhg-icon--…">`), an H3 `cfhg-h2 cfhg-guide-step__title`, the question (`cfhg-lead cfhg-guide-step__question`) and the list (`cfhg-guide__points`) or groups (`cfhg-guide__groups`). The image column holds an Image with `cfhg-guide-step__media`, which gets the coloured offset shadow.
+5. "Completing charts": a section with class `cfhg-guide__charts` (the navy band) holding three white cards with class `cfhg-guide-card`. The middle card's Text Editor holds the even and odd key (`cfhg-guide__evenodd`) and the small pedigree chart (`cfhg-pedigree`).
+6. A white card `cfhg-guide__cta-card` with the next meeting Shortcode and two buttons.
+
+Running the button again rebuilds the same page, replacing any edits made in Elementor.
+
+## Events (CFHG Site plugin)
+
+Free Elementor can't list custom content, so events go in through Shortcode widgets:
+
+| Shortcode | Shows |
+|---|---|
+| `[cfhg_events]` | Upcoming events. Add `limit="4"`, `island="jamaica"`, `group="barbados"`, `type="talk"` or `when="past"` |
+| `[cfhg_calendar_links]` | "Add all our meetings to your calendar" |
+
+An Elementor What's On page: an H1, a Text Editor for the introduction, an H2 "Coming up", `[cfhg_events when="upcoming" limit="20"]`, `[cfhg_calendar_links]`, an H2 "Recent events" and `[cfhg_events when="past" limit="12"]`. On an island page, `[cfhg_events island="jamaica" limit="4"]` lists that island's events. The `[cfhg_next_meeting]` shortcodes already show the real next event.
+
 ## Shortcodes
 
 | Shortcode | Shows |

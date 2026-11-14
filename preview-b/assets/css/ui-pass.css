@@ -361,7 +361,20 @@ p, li, dd, figcaption {
 		}
 	}
 
-	/* 5.4 Header logo eases down to its scrolled size. */
+	/* 5.4 Card icons give a little wiggle when their card is hovered. */
+	.cfhg-has-icon::after {
+		transition: transform 420ms var(--ui-spring);
+	}
+
+	.cfhg-note.cfhg-has-icon:hover::after {
+		transform: rotate(calc(var(--tilt, 0deg) * -3 + 10deg)) scale(1.08);
+	}
+
+	.cfhg-steps > li.cfhg-has-icon:hover::after {
+		transform: rotate(8deg) scale(1.08);
+	}
+
+	/* 5.5 Header logo eases down to its scrolled size. */
 	.cfhg-ui .cfhg-header__brand {
 		animation: ui-rise 600ms var(--ui-ease) both;
 	}

@@ -25,6 +25,17 @@ Appearance > Customize > CFHG homepage.
 
 Requires WordPress 6.3+ and PHP 7.4+. No build step.
 
+Version 1.3.0 works with the **CFHG Site** plugin (`wordpress/cfhg-site`),
+which adds Events. With it, "Next meeting" everywhere shows the real next
+event and links to it, each event has its own page (`single-cfhg_event.php`),
+and the "CFHG What's On" page template lists upcoming and past events. Without
+the plugin, the theme works exactly as before. See "Events" below.
+
+Version 1.2.0 adds the group's real five steps (from their "Starting your
+family tree" presentation), an icon sticker on every number and step card, and
+the "Starting your family tree" guide page with the explainer video. See
+"Card icons" and "The five steps guide page" below.
+
 Version 1.1.0 adds the polish pass the client approved in the static preview:
 the motion, the labels taken off the headings, WebP images and new icons. See
 `UI-PASS.md` for what changed and `ELEMENTOR.md` ("Polish effects") for how to
@@ -37,7 +48,9 @@ use it in Elementor.
 | Homepage (Elementor version) | Pages > Home > Edit with Elementor |
 | Homepage (theme version) | Appearance > Customize > CFHG homepage |
 | The homepage's title in the browser tab, the opening heading, the line beside the portraits and the circle photograph | Customize > CFHG homepage > Opening panel |
-| The group in numbers | Customize > CFHG homepage > Our group in numbers (one per line: number, a bar, what it means) |
+| The group in numbers | Customize > CFHG homepage > Our group in numbers (one per line: number, a bar, what it means, and optionally a bar and an icon name) |
+| The five steps on the homepage | Customize > CFHG homepage > Start here (one per line: title, a bar, text, and optionally a bar and an icon name) |
+| The five steps guide page ("Starting your family tree") | Pages > Starting your family tree > Edit with Elementor. Created from Appearance > CFHG Setup > Create the five steps page. |
 | Meeting venue, time, prices, months off, a moved date | Customize > Meetings and prices |
 | Email, social links, header Join button, footer | Customize > Contact, social, header and footer |
 | Menus | Appearance > Menus. Menu items are colour-coded automatically, in order. |
@@ -138,3 +151,58 @@ All are marked `ASSUMPTION` in `inc/defaults.php` and editable without code:
   (shortlist 01/02). If a coral refinement (04 or 05) is chosen, the coral and gold
   are already in this palette, so it should need only small adjustments in Elementor's
   Global Colours.
+
+## Card icons
+
+Every card in "Our group in numbers" and "Start here" carries a small icon
+sticker, drawn for this theme in `assets/images/icons/` (SVG, about 700 bytes
+each). Each list line can name its icon after a second bar:
+
+    40+ | years: the longest any of us has been researching | pocket-watch
+
+Leave the icon off to get the usual one for that position, or write `none`.
+The icons are: pocket-watch, book-stack, calendar, three-islands, globe-plane,
+ticket, notepad-pencil, thought-question, signpost, magnifier-record and
+family-tree. The list lives in `cfhg_card_icons()` in `inc/components.php`; to
+add one, draw a 96 × 96 SVG in the same style, add it there and add its
+`.cfhg-icon--name::after` rule in `assets/css/main.css` (section 6.5a).
+
+The icon is a class on the card (`cfhg-icon--calendar`), shown with CSS rather
+than an inline image, so the list HTML survives being pasted into Elementor's
+Text Editor.
+
+## The five steps guide page
+
+"Starting your family tree" (`/starting-your-family-tree/`) is the page the
+homepage's "Read the five steps in full" button links to. It has the explainer
+video, the two "Your family tree" questions, the five steps in full with a
+photograph each, how to complete pedigree charts and family group records, and
+a call to come to a meeting.
+
+- **Words:** `inc/guide-content.json`, taken from the group's presentation.
+  The static preview reads the same file.
+- **Create it:** Appearance > CFHG Setup > Create the five steps page. With
+  Elementor, it is built from Elementor widgets so every word is editable
+  there. Without Elementor it uses the "CFHG Five steps guide" page template.
+- **Video:** `assets/video/cfhg-five-steps.mp4` (720p, 5.7 MB, from the
+  18 MB master in `2 Brand Assets`) and its poster frame. It has no captions
+  yet: if a voiceover is added, add captions too.
+
+## Events
+
+Events come from the CFHG Site plugin (see its README). The theme:
+
+- **Next meeting** (opening panel, meeting card, menu and footer) asks
+  `cfhg_next_meeting_info()` in `inc/template-tags.php`. The plugin fills it
+  with the next event of the group chosen in Events > Settings, with its time,
+  where, and a link to its page. With no upcoming events, the Customizer's
+  pattern (last Saturday, skipping May, August and December) is used, so the
+  homepage is never empty.
+- **One event:** `single-cfhg_event.php`. The title and date, a cancelled
+  notice if it is cancelled, the short description, the write-up afterwards,
+  and a "When and where" card with Add to my calendar and Ask for the Zoom
+  link.
+- **What's On:** a page using the **CFHG What's On** template (Page
+  attributes > Template). It shows the page's own words, then Coming up, a
+  calendar subscription link, then Recent events.
+- **Styles:** `assets/css/main.css` section 7.2.

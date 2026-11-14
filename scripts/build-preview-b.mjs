@@ -51,10 +51,12 @@ const HOOKS = {
 	'template-parts/content/single.php': ['cfhg-page-hero__meta', 'ui-meta-sep', "cfhg_mod( 'stories_category' )", "'loading'       => 'eager'", 'cfhg-post-nav', "'plain'"],
 	'template-parts/content/listing.php': ['cfhg-page-hero__lead', 'cfhg-listing', 'cfhg-stories__list', "cfhg_mod( 'stories_category' )", 'cfhg_component_story_slide'],
 	'404.php': ['cfhg-notfound', 'cfhg-notfound__flower', 'cfhg-notfound__frond', 'cfhg-notfound__card', 'We can’t find that page.'],
+	'inc/guide.php': ['function cfhg_guide_markup(', 'cfhg-guide__video', 'cfhg-guide__questions', 'cfhg-guide-step cfhg-guide-step--', 'cfhg-guide-step__num', 'cfhg-guide__groups', 'cfhg-guide__charts', 'cfhg-guide__chart-grid', 'cfhg-guide__evenodd', 'cfhg-pedigree__person', 'cfhg-guide__cta-card', "home_url( '/#next-meeting' )", 'function cfhg_elementor_guide_data('],
+	'page-templates/template-guide.php': ['cfhg_guide_markup()'],
 	'inc/enqueue.php': ["'ui-pass.css'", "/assets/js/ui-pass.js'", "r.classList.add('cfhg-ui')", 'theme-color'],
 	'inc/setup.php': ['favicon-32.png', 'apple-touch-icon.png', "return '|';", "cfhg_mod( 'home_title' )"],
 	'searchform.php': ['cfhg-search__input', 'cfhg-search__button'],
-	'inc/components.php': ['cfhg-date__day', 'cfhg-date__rest', 'cfhg-facts__row', 'cfhg-prices__row', 'cfhg-notes', 'cfhg-note__num', 'data-cfhg-count', 'function cfhg_counts_up(', 'cfhg-steps__title', 'cfhg-places__name', 'cfhg-snap__photo', 'cfhg-snap__sticker', 'ui-meta-sep', 'cfhg-slide__cta', 'cfhg-carousel__track', 'data-cfhg-prev', 'cfhg-partner__name', 'cfhg-next__where', 'cfhg-hero__proof', 'cfhg-avatars__face', 'cfhg-avatars__badge', 'avatar-flat-cap', 'avatar-album', 'avatar-smiling'],
+	'inc/components.php': ['cfhg-date__day', 'cfhg-date__rest', 'cfhg-facts__row', 'cfhg-prices__row', 'cfhg-notes', 'cfhg-note__num', 'data-cfhg-count', 'function cfhg_counts_up(', 'function cfhg_card_icons(', 'function cfhg_card_icon_class(', 'cfhg-has-icon cfhg-icon--', 'cfhg-steps__title', 'cfhg-places__name', 'cfhg-snap__photo', 'cfhg-snap__sticker', 'ui-meta-sep', 'cfhg-slide__cta', 'cfhg-carousel__track', 'data-cfhg-prev', 'cfhg-partner__name', 'cfhg-next__where', 'cfhg-hero__proof', 'cfhg-avatars__face', 'cfhg-avatars__badge', 'avatar-flat-cap', 'avatar-album', 'avatar-smiling'],
 	'inc/template-tags.php': ['cfhg-btn__label', 'cfhg-btn__icon', "'cfhg-btn cfhg-btn--' . $variant"],
 	'inc/class-cfhg-menu-walker.php': ['cfhg-menu__link', 'cfhg-menu__label'],
 	'inc/images.php': ['function cfhg_shape(', 'cfhg-shape cfhg-shape--', 'function cfhg_theme_image_ext(', 'cfhg-logo-horizontal.webp'],
@@ -93,6 +95,24 @@ const IMAGE_DEFAULTS = Object.fromEntries([...imagesSrc.matchAll(/'(\w+_image|in
 if (Object.keys(MANIFEST).length < 9) fail('could not read the image manifest from inc/images.php');
 for (const k of ['hero_image', 'intro_photo_1', 'intro_photo_2', 'meeting_image', 'islands_image', 'help_image', 'join_image', 'footer_image']) if (!IMAGE_DEFAULTS[k]) fail(`no default image for ${k}`);
 
+/* Card icons: slugs from cfhg_card_icons() in inc/components.php. */
+const componentsSrc = read('inc/components.php');
+const ICONS = new Set([...(componentsSrc.match(/function cfhg_card_icons\(\) \{[\s\S]*?\n\}/) || [''])[0].matchAll(/'([a-z-]+)'\s*=>\s*__\(/g)].map((m) => m[1]));
+if (ICONS.size < 11) fail('could not read the card icons from inc/components.php');
+/* Mirrors cfhg_card_icon_class(). */
+function iconClass(named, defaults, index) {
+	let slug = String(named || '').toLowerCase().replace(/[^a-z0-9_-]/g, '');
+	if (slug === 'none') return '';
+	if (!slug && defaults[index]) slug = defaults[index];
+	return ICONS.has(slug) ? ` cfhg-has-icon cfhg-icon--${slug}` : '';
+}
+const NOTE_ICONS = [...((componentsSrc.match(/function cfhg_component_numbers\(\) \{\s*\$icons\s*=\s*array\(([^)]*)\)/) || [])[1] || '').matchAll(/'([a-z-]+)'/g)].map((m) => m[1]);
+const STEP_ICONS = [...((componentsSrc.match(/function cfhg_component_steps\(\) \{\s*\$icons\s*=\s*array\(([^)]*)\)/) || [])[1] || '').matchAll(/'([a-z-]+)'/g)].map((m) => m[1]);
+if (NOTE_ICONS.length !== 6 || STEP_ICONS.length !== 5) fail('could not read the default card icons from inc/components.php');
+
+/* The five steps guide page: the same JSON the theme reads. */
+const GUIDE = JSON.parse(read('inc/guide-content.json'));
+
 const SHAPES = Object.fromEntries(['hibiscus', 'palm-frond', 'wave'].map((n) => [n, read(`assets/images/shapes/${n}.svg`)]));
 const shape = (name, cls = '') => `<span class="cfhg-shape cfhg-shape--${name}${cls ? ' ' + cls : ''}" aria-hidden="true">${SHAPES[name]}</span>`;
 
@@ -104,8 +124,10 @@ const lines = (key, n) => D[key].split('\n').filter((l) => l.trim()).map((l) => 
 
 /* 3. Links ------------------------------------------------------------------ */
 
-const PAGES = { home: 'index.html', page: 'who-we-are.html', archive: 'stories.html', single: 'tracing-ancestors-back-to-the-period-of-slavery.html', notfound: '404.html' };
+const PAGES = { home: 'index.html', page: 'who-we-are.html', archive: 'stories.html', single: 'tracing-ancestors-back-to-the-period-of-slavery.html', notfound: '404.html', guide: `${GUIDE.slug}.html` };
 const LINK_MAP = {
+	[`/${GUIDE.slug}/`]: PAGES.guide,
+	'/#next-meeting': `${PAGES.home}#next-meeting`,
 	'/': PAGES.home,
 	'/who-we-are/': PAGES.page,
 	'/contact/': `${PAGES.page}#contact`,
@@ -207,7 +229,7 @@ function slide(c, i, total) {
 /* 5. Page frame: header.php, footer.php and their parts ---------------------- */
 
 const MENU = [['Research', '/research/'], ['What’s On', '/whats-on/'], ['Stories', '/stories/'], ['Who We Are', '/who-we-are/'], ['Join the group', '/join/'], ['Contact', '/contact/']];
-const PREVIEW_NAV = [['Home', PAGES.home], ['Inner page', PAGES.page], ['Stories', PAGES.archive], ['Story', PAGES.single], ['404', PAGES.notfound]];
+const PREVIEW_NAV = [['Home', PAGES.home], ['Five steps', PAGES.guide], ['Inner page', PAGES.page], ['Stories', PAGES.archive], ['Story', PAGES.single], ['404', PAGES.notfound]];
 
 function header(current) {
 	const items = MENU.map(([label, u]) => {
@@ -336,10 +358,10 @@ function homepage() {
 	<figure class="cfhg-meeting__media" data-reveal>${settingImg('meeting_image', { sizes: '(min-width: 1024px) 52vw, 92vw' })}${D.meeting_image_label ? `<figcaption class="ui-caption">${esc(D.meeting_image_label)}</figcaption>` : ''}</figure>
 </div></section>`;
 
-	const notes = `<ul class="cfhg-notes">${lines('numbers_list', 2).map(([n, t]) => `<li class="cfhg-note"><span class="cfhg-note__num"${countsUp(n) ? ' data-cfhg-count' : ''}>${esc(n)}</span> <span class="cfhg-note__text">${esc(t)}</span></li>`).join('')}</ul>`;
+	const notes = `<ul class="cfhg-notes">${lines('numbers_list', 3).map(([n, t, ic], i) => `<li class="cfhg-note${iconClass(ic, NOTE_ICONS, i)}"><span class="cfhg-note__num"${countsUp(n) ? ' data-cfhg-count' : ''}>${esc(n)}</span> <span class="cfhg-note__text">${esc(t)}</span></li>`).join('')}</ul>`;
 	const numbers = `<section class="cfhg-section cfhg-numbers" aria-labelledby="cfhg-numbers-title"><div class="cfhg-container"><h2 class="cfhg-h2 cfhg-numbers__title" id="cfhg-numbers-title" data-reveal>${esc(D.numbers_title)}</h2>${notes}</div></section>`;
 
-	const steps = `<ol class="cfhg-steps">${lines('start_steps', 2).map(([t, x]) => `<li class="cfhg-steps__item"><h3 class="cfhg-steps__title">${esc(t)}</h3><p class="cfhg-steps__text">${esc(x)}</p></li>`).join('')}</ol>`;
+	const steps = `<ol class="cfhg-steps">${lines('start_steps', 3).map(([t, x, ic], i) => `<li class="cfhg-steps__item${iconClass(ic, STEP_ICONS, i)}"><h3 class="cfhg-steps__title">${esc(t)}</h3><p class="cfhg-steps__text">${esc(x)}</p></li>`).join('')}</ol>`;
 	const start = `<section class="cfhg-section cfhg-start" id="start-here" aria-labelledby="cfhg-start-title"><div class="cfhg-container">
 	<div class="cfhg-split-head" data-reveal><div><h2 class="cfhg-h2" id="cfhg-start-title">${esc(D.start_heading)}</h2></div><p class="cfhg-lead cfhg-split-head__text">${esc(D.start_text)}</p></div>
 	${steps}<div class="cfhg-actions cfhg-start__actions">${btn(D.start_link_label, D.start_link_url, 'mark')}</div>
@@ -440,6 +462,27 @@ function single() {
 	});
 }
 
+/* Mirrors cfhg_guide_markup() in inc/guide.php. */
+function guide() {
+	const G = GUIDE;
+	const list = (items, cls = 'cfhg-guide__points') => `<ul class="${cls}">${items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
+	const body = (st) => (st.points ? list(st.points) : '') + (st.text ? st.text.map((t) => `<p>${esc(t)}</p>`).join('') : '') + (st.groups ? `<div class="cfhg-guide__groups">${st.groups.map((g) => `<div class="cfhg-guide__group"><h4>${esc(g.title)}</h4><p>${esc(g.text)}</p></div>`).join('')}</div>` : '');
+	const num = (i, st) => `<p class="cfhg-guide-step__num${ICONS.has(st.icon) ? ` cfhg-has-icon cfhg-icon--${st.icon}` : ''}"><span class="screen-reader-text">Step </span>${String(i + 1).padStart(2, '0')}</p>`;
+	const steps = G.steps.map((st, i) => `<li class="cfhg-guide-step cfhg-guide-step--${i + 1}" id="step-${i + 1}"><div class="cfhg-guide-step__copy">${num(i, st)}<h3 class="cfhg-h2 cfhg-guide-step__title">${esc(st.title)}</h3>${st.question ? `<p class="cfhg-lead cfhg-guide-step__question">${esc(st.question)}</p>` : ''}${body(st)}</div><figure class="cfhg-guide-step__media">${img(st.image, { sizes: '(min-width: 1024px) 40vw, 92vw' })}</figure></li>`).join('');
+	const C = G.charts;
+	const n = C.numbering;
+	const numbering = `<div class="cfhg-guide__evenodd"><p><strong class="is-even">Even</strong> ${esc(n.even)}</p><p><strong class="is-odd">Odd</strong> ${esc(n.odd)}</p></div><ol class="cfhg-pedigree" aria-label="How a pedigree chart is numbered">${n.chart.map(([k, who]) => { const v = +k; const kind = v === 1 ? 'is-you' : v % 2 === 0 ? 'is-even' : 'is-odd'; return `<li class="cfhg-pedigree__person cfhg-pedigree__person--${v}"><span class="cfhg-pedigree__n ${kind}">${v}</span> ${esc(who)}</li>`; }).join('')}</ol>`;
+	const video = `<figure class="cfhg-guide__player"><video controls playsinline preload="metadata" poster="${A}/video/${G.video.poster}" width="1280" height="720"><source src="${A}/video/${G.video.file}" type="video/mp4"></video><figcaption>${esc(G.video.label)}</figcaption></figure>`;
+	const cta = `<h2 class="cfhg-h2" id="cfhg-guide-cta">${esc(G.cta.heading)}</h2><p class="cfhg-lead">${esc(G.cta.text)}</p>${nmInline()}<div class="cfhg-actions">${btn(D.meeting_cta_label, '/#next-meeting', 'mark', 'cfhg-btn--big')}${btn(D.meeting_secondary_label, MAIL, 'text')}</div>`;
+	return page({
+		file: PAGES.guide,
+		title: `${G.title} | Caribbean Family History Group`,
+		description: G.lead,
+		bodyClass: 'page page-template-template-guide cfhg cfhg-overlay-header',
+		main: `<main id="main" class="cfhg-main cfhg-guide"><header class="cfhg-page-hero"><div class="cfhg-container"><h1 class="cfhg-h1 cfhg-page-hero__title">${esc(G.title)}</h1><p class="cfhg-lead cfhg-page-hero__lead">${esc(G.lead)}</p></div></header><div class="cfhg-container cfhg-guide__video">${video}</div><section class="cfhg-section cfhg-guide__before" aria-labelledby="cfhg-guide-before"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-before">${esc(G.before.heading)}</h2>${list(G.before.questions, 'cfhg-guide__questions')}</div></section><section class="cfhg-section cfhg-guide__steps" aria-labelledby="cfhg-guide-steps"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-steps">${esc(G.steps_heading)}</h2><ol class="cfhg-guide__list">${steps}</ol></div></section><section class="cfhg-guide__charts" aria-labelledby="cfhg-guide-charts"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-charts">${esc(C.heading)}</h2><p class="cfhg-lead">${esc(C.lead)}</p><div class="cfhg-guide__chart-grid"><article class="cfhg-card cfhg-guide-card"><h3 class="cfhg-h3">${esc(C.record.title)}</h3>${list(C.record.points)}<p class="cfhg-guide__note">${esc(C.record.note)}</p></article><article class="cfhg-card cfhg-guide-card"><h3 class="cfhg-h3">${esc(n.title)}</h3>${numbering}<p class="cfhg-guide__note">${esc(n.note)}</p></article><article class="cfhg-card cfhg-guide-card"><h3 class="cfhg-h3">${esc(C.family.title)}</h3>${list(C.family.points)}</article></div></div></section><section class="cfhg-section cfhg-guide__cta" aria-labelledby="cfhg-guide-cta"><div class="cfhg-container"><div class="cfhg-card cfhg-guide__cta-card">${cta}</div></div></section></main>`,
+	});
+}
+
 function notFound() {
 	return page({
 		file: PAGES.notfound,
@@ -474,10 +517,10 @@ if (fs.existsSync(OUT)) {
 fs.mkdirSync(OUT, { recursive: true });
 /* Mark the folder as ours straight away, so a failed build can still be cleaned up next time. */
 fs.writeFileSync(path.join(OUT, MARKER), 'Build in progress.\n');
-for (const dir of ['css', 'js', 'fonts', 'images']) {
+for (const dir of ['css', 'js', 'fonts', 'images', 'video']) {
 	fs.cpSync(path.join(THEME, 'assets', dir), path.join(OUT, 'assets', dir), { recursive: true, filter: (src) => !src.endsWith('.DS_Store') });
 }
-const pages = { [PAGES.home]: homepage(), [PAGES.page]: innerPage(), [PAGES.archive]: archive(), [PAGES.single]: single(), [PAGES.notfound]: notFound() };
+const pages = { [PAGES.home]: homepage(), [PAGES.guide]: guide(), [PAGES.page]: innerPage(), [PAGES.archive]: archive(), [PAGES.single]: single(), [PAGES.notfound]: notFound() };
 for (const [file, html] of Object.entries(pages)) {
 	if (/[—–]/.test(html)) fail(`${file} contains an em or en dash`);
 	fs.writeFileSync(path.join(OUT, file), html);

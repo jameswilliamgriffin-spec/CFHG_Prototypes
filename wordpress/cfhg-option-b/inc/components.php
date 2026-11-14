@@ -25,8 +25,9 @@ defined( 'ABSPATH' ) || exit;
  * @return string
  */
 function cfhg_component_next_meeting( $style = 'inline', $class = '', $delay = null ) {
-	$date = cfhg_next_meeting();
-	$time = trim( (string) cfhg_mod( 'meeting_time' ) );
+	$info = cfhg_next_meeting_info();
+	$date = $info['date'];
+	$time = $info['time'];
 
 	if ( 'facts' === $style ) {
 		$rows = array(
@@ -59,20 +60,21 @@ function cfhg_component_next_meeting( $style = 'inline', $class = '', $delay = n
 
 	if ( 'title' === $style ) {
 		return sprintf(
-			'<p class="cfhg-date"><time datetime="%1$s"><span class="cfhg-date__day">%2$s</span> <span class="cfhg-date__rest">%3$s</span></time>%4$s</p>',
+			'<p class="cfhg-date"><time datetime="%1$s"><span class="cfhg-date__day">%2$s</span> <span class="cfhg-date__rest">%3$s</span></time>%4$s</p>%5$s',
 			esc_attr( wp_date( 'Y-m-d', $ts, $tz ) ),
 			esc_html( wp_date( 'l', $ts, $tz ) ),
 			esc_html( wp_date( 'j F', $ts, $tz ) ),
-			$time ? ' <span class="cfhg-date__time">' . esc_html( $time ) . '</span>' : ''
+			$time ? ' <span class="cfhg-date__time">' . esc_html( $time ) . '</span>' : '',
+			$info['url'] ? '<p class="cfhg-date__more"><a href="' . esc_url( $info['url'] ) . '">' . esc_html__( 'Details and add to your calendar', 'cfhg' ) . '</a></p>' : ''
 		);
 	}
 
 	return sprintf(
 		'<p class="%5$s"%6$s><span class="cfhg-next__label">%1$s</span> <strong>%2$s</strong>%3$s<span class="cfhg-next__where">%4$s</span></p>',
 		esc_html( cfhg_mod( 'meeting_kicker' ) ),
-		esc_html( wp_date( 'l j F', $ts, $tz ) ),
+		$info['url'] ? '<a href="' . esc_url( $info['url'] ) . '">' . esc_html( wp_date( 'l j F', $ts, $tz ) ) . '</a>' : esc_html( wp_date( 'l j F', $ts, $tz ) ),
 		$time ? esc_html( ', ' . $time ) : '',
-		esc_html( cfhg_mod( 'meeting_short_where' ) ),
+		esc_html( $info['where'] ),
 		esc_attr( trim( 'cfhg-next ' . $class ) ),
 		cfhg_delay_style( $delay )
 	);
@@ -134,19 +136,66 @@ function cfhg_component_prices() {
 }
 
 /**
+ * The card icons: small stickers drawn for the theme, in
+ * assets/images/icons. Each is shown by a class on its card
+ * (cfhg-icon--calendar), so the same markup works when pasted into
+ * Elementor's Text Editor, which strips inline SVG.
+ *
+ * @return array<string, string> Slug => what it shows.
+ */
+function cfhg_card_icons() {
+	return array(
+		'pocket-watch'     => __( 'Pocket watch', 'cfhg' ),
+		'book-stack'       => __( 'Stack of books', 'cfhg' ),
+		'calendar'         => __( 'Calendar', 'cfhg' ),
+		'three-islands'    => __( 'Islands and a palm tree', 'cfhg' ),
+		'globe-plane'      => __( 'Globe and flight path', 'cfhg' ),
+		'ticket'           => __( 'Ticket', 'cfhg' ),
+		'notepad-pencil'   => __( 'Notepad and pencil', 'cfhg' ),
+		'thought-question' => __( 'Thought bubble', 'cfhg' ),
+		'signpost'         => __( 'Signpost', 'cfhg' ),
+		'magnifier-record' => __( 'Magnifying glass over a record', 'cfhg' ),
+		'family-tree'      => __( 'Family tree', 'cfhg' ),
+	);
+}
+
+/**
+ * Class for a card's icon: the one named on its line, else the default
+ * for its position, else none. "none" switches the icon off.
+ *
+ * @param string $named    Icon named in the list line (may be empty).
+ * @param array  $defaults Default slugs by position.
+ * @param int    $index    Position.
+ * @return string Class names with a leading space, or ''.
+ */
+function cfhg_card_icon_class( $named, $defaults, $index ) {
+	$slug = sanitize_key( (string) $named );
+	if ( 'none' === $slug ) {
+		return '';
+	}
+	if ( '' === $slug && isset( $defaults[ $index ] ) ) {
+		$slug = $defaults[ $index ];
+	}
+	return isset( cfhg_card_icons()[ $slug ] ) ? ' cfhg-has-icon cfhg-icon--' . $slug : '';
+}
+
+/**
  * The group in numbers: scattered coloured notes, after the reference's
- * "year in numbers". Colours are assigned in CSS by position.
+ * "year in numbers". Colours are assigned in CSS by position, and each
+ * note carries an icon sticker.
  *
  * @return string
  */
 function cfhg_component_numbers() {
-	$html = '<ul class="cfhg-notes">';
-	foreach ( cfhg_lines( 'numbers_list', 2 ) as $row ) {
+	$icons = array( 'pocket-watch', 'book-stack', 'calendar', 'three-islands', 'globe-plane', 'ticket' );
+	$html  = '<ul class="cfhg-notes">';
+	foreach ( cfhg_lines( 'numbers_list', 3 ) as $i => $row ) {
 		$html .= sprintf(
-			'<li class="cfhg-note"><span class="cfhg-note__num"%3$s>%1$s</span> <span class="cfhg-note__text">%2$s</span></li>',
+			'<li class="cfhg-note%4$s"><span class="cfhg-note__num"%3$s>%1$s</span> <span class="cfhg-note__text">%2$s</span></li>',
 			esc_html( $row[0] ),
 			esc_html( $row[1] ),
-			cfhg_counts_up( $row[0] ) ? ' data-cfhg-count' : ''
+			cfhg_counts_up( $row[0] ) ? ' data-cfhg-count' : '',
+			esc_attr( cfhg_card_icon_class( $row[2], $icons, $i ) )
 		);
 	}
 	return $html . '</ul>';
@@ -158,12 +207,14 @@ function cfhg_component_numbers() {
  * @return string
  */
 function cfhg_component_steps() {
-	$html = '<ol class="cfhg-steps">';
-	foreach ( cfhg_lines( 'start_steps', 2 ) as $row ) {
+	$icons = array( 'notepad-pencil', 'thought-question', 'signpost', 'magnifier-record', 'family-tree' );
+	$html  = '<ol class="cfhg-steps">';
+	foreach ( cfhg_lines( 'start_steps', 3 ) as $i => $row ) {
 		$html .= sprintf(
-			'<li class="cfhg-steps__item"><h3 class="cfhg-steps__title">%1$s</h3><p class="cfhg-steps__text">%2$s</p></li>',
+			'<li class="cfhg-steps__item%3$s"><h3 class="cfhg-steps__title">%1$s</h3><p class="cfhg-steps__text">%2$s</p></li>',
 			esc_html( $row[0] ),
-			esc_html( $row[1] )
+			esc_html( $row[1] ),
+			esc_attr( cfhg_card_icon_class( $row[2], $icons, $i ) )
 		);
 	}
 	return $html . '</ol>';

@@ -108,7 +108,7 @@ function cfhg_customizer_fields() {
 			'panel'  => 'cfhg_home',
 			'fields' => array(
 				'numbers_title' => array( 'text', __( 'Title', 'cfhg' ), '' ),
-				'numbers_list'  => array( 'list', __( 'Numbers', 'cfhg' ), $list_help . ' ' . __( 'Number | what it means. Up to six look best.', 'cfhg' ) ),
+				'numbers_list'  => array( 'list', __( 'Numbers', 'cfhg' ), $list_help . ' ' . __( 'Number | what it means | icon. Up to six look best.', 'cfhg' ) . ' ' . cfhg_card_icon_help() ),
 			),
 		),
 		'cfhg_start'    => array(
@@ -117,7 +117,7 @@ function cfhg_customizer_fields() {
 			'fields' => array(
 				'start_heading'    => array( 'inline', __( 'Heading', 'cfhg' ), '' ),
 				'start_text'       => array( 'textarea', __( 'Paragraph', 'cfhg' ), '' ),
-				'start_steps'      => array( 'list', __( 'Steps', 'cfhg' ), $list_help . ' ' . __( 'Title | text', 'cfhg' ) ),
+				'start_steps'      => array( 'list', __( 'Steps', 'cfhg' ), $list_help . ' ' . __( 'Title | text | icon', 'cfhg' ) . ' ' . cfhg_card_icon_help() ),
 				'start_link_label' => array( 'text', __( 'Link label', 'cfhg' ), '' ),
 				'start_link_url'   => array( 'link', __( 'Link', 'cfhg' ), $link_help ),
 			),
@@ -353,4 +353,17 @@ function cfhg_sanitize_months( $value ) {
 		}
 	);
 	return implode( ',', array_unique( $months ) );
+}
+
+/**
+ * Help text listing the card icons.
+ *
+ * @return string
+ */
+function cfhg_card_icon_help() {
+	return sprintf(
+		/* translators: %s: comma-separated icon names. */
+		__( 'Icons: %s. Leave the icon out to use the usual one for that position, or write none.', 'cfhg' ),
+		implode( ', ', array_keys( cfhg_card_icons() ) )
+	);
 }
