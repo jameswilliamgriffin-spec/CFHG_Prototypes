@@ -623,6 +623,110 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	}
 }
 
+/* Information pages: a readable column of text under each heading. */
+.cfhg-page__section .elementor-widget.cfhg-el-prose,
+.cfhg-page__section .cfhg-el-prose {
+	max-width: 42rem;
+}
+
+.cfhg-el-prose h3 {
+	margin: 1.75em 0 0.4em;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+}
+
+.cfhg-el-prose p,
+.cfhg-el-prose li {
+	line-height: 1.55;
+}
+
+.cfhg-el-prose ul {
+	padding-left: 1.2em;
+}
+
+.cfhg-el-prose li + li {
+	margin-top: 0.3em;
+}
+
+/* Stories: a grid of cards. */
+.cfhg-story-grid {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-story-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.cfhg-story-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.cfhg-story-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+}
+
+.cfhg-story-card__media {
+	display: block;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: var(--cfhg-sand);
+}
+
+.cfhg-story-card__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.cfhg-story-card__body {
+	display: grid;
+	gap: 0.6rem;
+	align-content: start;
+	padding: clamp(1.1rem, 0.8rem + 1vw, 1.75rem);
+}
+
+.cfhg-story-card__meta,
+.cfhg-story-card__text {
+	margin: 0;
+	font-size: var(--cfhg-fs-small);
+	color: var(--cfhg-ink-soft);
+}
+
+.cfhg-story-card__title {
+	margin: 0;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-story-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.cfhg-story-card__title a:hover,
+.cfhg-story-card__title a:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
 /* 7. "On this page" links ---------------------------------------------------- */
 
 .cfhg-jump ul,

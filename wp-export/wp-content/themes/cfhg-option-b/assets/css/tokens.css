@@ -1,0 +1,123 @@
+/*
+ * CFHG Option B: design tokens.
+ *
+ * Lifted from the structure of the UPA DI 2023-2024 annual report site:
+ * a warm cream ground, white cards at a 12.5px radius, colour-coded sections,
+ * an uppercase geometric display face over a light geometric body, a
+ * highlighter yellow for calls to action, and quick ease-out motion.
+ * The section colours are re-drawn from the CFHG palm logo's ring: coral (red),
+ * gold, green, sea and blue. Their purple and lilac are dropped.
+ *
+ * Appearance > CFHG Setup writes the same values to Elementor's Global Colours
+ * and Global Fonts. The body block at the end reads them back from Elementor.
+ */
+
+@font-face {
+	font-family: "Jost";
+	src: url("../fonts/jost-var.woff2") format("woff2");
+	font-weight: 300 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Jost";
+	src: url("../fonts/jost-italic-var.woff2") format("woff2");
+	font-weight: 300 700;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Outfit";
+	src: url("../fonts/outfit-var.woff2") format("woff2");
+	font-weight: 300 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	/* Colour */
+	--cfhg-cream: #F6F1EA;
+	--cfhg-sand: #ECE4D9;
+	--cfhg-white: #FFFFFF;
+	--cfhg-ink: #10213B;
+	--cfhg-ink-soft: #4B5567;
+	--cfhg-coral: #F26B57;
+	--cfhg-gold: #F6C343;
+	--cfhg-highlight: #FFE873;
+	--cfhg-green: #2FA36B;
+	--cfhg-green-deep: #137A4D;
+	--cfhg-sea: #45BCD0;
+	--cfhg-blue: #5B8DEF;
+	--cfhg-line: #D9CFC1;
+
+	/* Type families */
+	--cfhg-font-display: "Jost", "Futura", "Century Gothic", "Avenir Next", Arial, sans-serif;
+	--cfhg-font-body: "Outfit", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+
+	/* Type scale: fluid between 375px and 1728px wide */
+	--cfhg-fs-display: clamp(2.4rem, 1.15rem + 3.9vw, 5.5rem);
+	--cfhg-fs-h1: clamp(2.2rem, 1.2rem + 3.1vw, 4.6rem);
+	--cfhg-fs-h2: clamp(1.85rem, 1.1rem + 2.35vw, 3.6rem);
+	--cfhg-fs-h3: clamp(1.45rem, 1.05rem + 1.25vw, 2.35rem);
+	--cfhg-fs-h4: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+	--cfhg-fs-lead: clamp(1.15rem, 1.02rem + 0.45vw, 1.4rem);
+	--cfhg-fs-number: clamp(3.4rem, 2rem + 4.4vw, 6.25rem);
+	--cfhg-fs-body: 1.0625rem;
+	--cfhg-fs-small: 0.9375rem;
+	--cfhg-fs-label: 0.9375rem;
+
+	--cfhg-lh-display: 0.92;
+	--cfhg-lh-heading: 1;
+	--cfhg-lh-snug: 1.3;
+	--cfhg-lh-body: 1.5;
+
+	/* Spacing: the reference's 16, 24, 32, 48, 64px steps and 90 to 200px sections */
+	--cfhg-sp-2xs: 0.5rem;
+	--cfhg-sp-xs: 1rem;
+	--cfhg-sp-sm: 1.5rem;
+	--cfhg-sp-md: 2rem;
+	--cfhg-sp-lg: 3rem;
+	--cfhg-sp-xl: 4rem;
+	--cfhg-sp-section: clamp(5rem, 3rem + 6vw, 8.75rem);
+
+	/* Layout */
+	--cfhg-gutter: clamp(1.125rem, 0.7rem + 1.8vw, 2rem);
+	--cfhg-gap: clamp(1.1rem, 0.7rem + 1.5vw, 2rem);
+	--cfhg-max: 1680px;
+	--cfhg-logo-h: clamp(3rem, 2.3rem + 2.6vw, 5rem);
+	--cfhg-header-h: calc(var(--cfhg-logo-h) + 1.7rem);
+
+	/* Shape */
+	--cfhg-r-xs: 0.3rem;
+	--cfhg-r-sm: 0.4rem;
+	--cfhg-r-md: 0.78rem;
+	--cfhg-r-lg: 1.25rem;
+	--cfhg-r-pill: 999px;
+
+	/* Motion: the reference's ease-out curves */
+	--cfhg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--cfhg-ease-quick: cubic-bezier(0.25, 1, 0.5, 1);
+	--cfhg-dur-fast: 0.25s;
+	--cfhg-dur: 0.35s;
+	--cfhg-dur-slow: 0.8s;
+
+	/* Arrow glyph for pseudo-elements */
+	--cfhg-arrow-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 10h13M11 4.5 16.5 10 11 15.5' fill='none' stroke='%2310213B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Read Elementor's Global Colours back (defined on the body by Elementor). */
+body {
+	--cfhg-cream: var(--e-global-color-cfbcrem, #F6F1EA);
+	--cfhg-sand: var(--e-global-color-cfbsand, #ECE4D9);
+	--cfhg-white: var(--e-global-color-cfbwhit, #FFFFFF);
+	--cfhg-ink: var(--e-global-color-cfbinkk, #10213B);
+	--cfhg-ink-soft: var(--e-global-color-cfbsoft, #4B5567);
+	--cfhg-coral: var(--e-global-color-cfbcorl, #F26B57);
+	--cfhg-gold: var(--e-global-color-cfbgold, #F6C343);
+	--cfhg-highlight: var(--e-global-color-cfbhigh, #FFE873);
+	--cfhg-green: var(--e-global-color-cfbgren, #2FA36B);
+	--cfhg-green-deep: var(--e-global-color-cfbdeep, #137A4D);
+	--cfhg-sea: var(--e-global-color-cfbseaa, #45BCD0);
+	--cfhg-blue: var(--e-global-color-cfbblue, #5B8DEF);
+	--cfhg-line: var(--e-global-color-cfbline, #D9CFC1);
+}

@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'CFHG_VERSION', '1.6.1' );
+define( 'CFHG_VERSION', '1.7.0' );
 define( 'CFHG_DIR', get_template_directory() );
 define( 'CFHG_URI', get_template_directory_uri() );
 
@@ -26,6 +26,7 @@ require_once CFHG_DIR . '/inc/elementor.php';
 require_once CFHG_DIR . '/inc/elementor-template.php';
 require_once CFHG_DIR . '/inc/guide.php';
 require_once CFHG_DIR . '/inc/island.php';
+require_once CFHG_DIR . '/inc/pages.php';
 
 if ( is_admin() ) {
 	require_once CFHG_DIR . '/inc/admin.php';

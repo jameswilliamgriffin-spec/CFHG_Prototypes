@@ -1,24 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
+  "outputDirectory": "wp-export",
   "trailingSlash": true,
-  "redirects": [
-    {
-      "source": "/a",
-      "destination": "/preview/",
-      "permanent": false
-    },
-    {
-      "source": "/b",
-      "destination": "/preview-b/",
-      "permanent": false
-    },
-    {
-      "source": "/c",
-      "destination": "/preview-c/",
-      "permanent": false
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

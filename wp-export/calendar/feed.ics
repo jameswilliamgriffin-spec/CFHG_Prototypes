@@ -1,0 +1,206 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Caribbean Family History Group//CFHG Site//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Caribbean Family History Group
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:cfhg-event-21@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20260926T130000Z
+DTEND:20260926T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2026-09-26/
+URL:http://cfhg.local/whats-on/monthly-meeting-2026-09-26/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-22@cfhg.local
+DTSTAMP:20261114T234807Z
+LAST-MODIFIED:20261114T234807Z
+DTSTART:20261031T140000Z
+DTEND:20261031T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2026-10-31/
+URL:http://cfhg.local/whats-on/monthly-meeting-2026-10-31/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-23@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20261128T140000Z
+DTEND:20261128T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2026-11-28/
+URL:http://cfhg.local/whats-on/monthly-meeting-2026-11-28/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-65@cfhg.local
+DTSTAMP:20261115T194108Z
+LAST-MODIFIED:20261115T194108Z
+DTSTART:20270116T140000Z
+DTEND:20270116T160000Z
+SUMMARY:Jamaica sub-group meeting (sample)
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/jamaica-sub-group-meeting-sample-2027-01-16/
+URL:http://cfhg.local/whats-on/jamaica-sub-group-meeting-sample-2027-01-16/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-24@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270130T140000Z
+DTEND:20270130T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-01-30/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-01-30/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-66@cfhg.local
+DTSTAMP:20261115T194108Z
+LAST-MODIFIED:20261115T194108Z
+DTSTART:20270220T140000Z
+DTEND:20270220T160000Z
+SUMMARY:Talk: finding your family in the Anglican registers (sample)
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/talk-finding-your-family-in-the-anglican-registers-sample-202
+ 7-02-20/
+URL:http://cfhg.local/whats-on/talk-finding-your-family-in-the-anglican-reg
+ isters-sample-2027-02-20/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-25@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270227T140000Z
+DTEND:20270227T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-02-27/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-02-27/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-26@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270327T140000Z
+DTEND:20270327T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-03-27/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-03-27/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-27@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270424T130000Z
+DTEND:20270424T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-04-24/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-04-24/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-28@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270626T130000Z
+DTEND:20270626T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-06-26/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-06-26/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-29@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270731T130000Z
+DTEND:20270731T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-07-31/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-07-31/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-30@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20270925T130000Z
+DTEND:20270925T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-09-25/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-09-25/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-31@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20271030T130000Z
+DTEND:20271030T150000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-10-30/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-10-30/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cfhg-event-32@cfhg.local
+DTSTAMP:20261114T234729Z
+LAST-MODIFIED:20261114T234729Z
+DTSTART:20271127T140000Z
+DTEND:20271127T160000Z
+SUMMARY:Monthly meeting
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/monthly-meeting-2027-11-27/
+URL:http://cfhg.local/whats-on/monthly-meeting-2027-11-27/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

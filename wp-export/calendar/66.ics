@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Caribbean Family History Group//CFHG Site//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Caribbean Family History Group
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:cfhg-event-66@cfhg.local
+DTSTAMP:20261115T194108Z
+LAST-MODIFIED:20261115T194108Z
+DTSTART:20270220T140000Z
+DTEND:20270220T160000Z
+SUMMARY:Talk: finding your family in the Anglican registers (sample)
+LOCATION:Solihull Core Library\, first floor computer room\, Solihull\, B91
+  3RG
+DESCRIPTION:On Zoom. Email us and we’ll send you the link.\nhttp://cfhg.l
+ ocal/whats-on/talk-finding-your-family-in-the-anglican-registers-sample-202
+ 7-02-20/
+URL:http://cfhg.local/whats-on/talk-finding-your-family-in-the-anglican-reg
+ isters-sample-2027-02-20/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,160 @@
+{
+ "who-we-are": {
+  "title": "Who we are",
+  "lead": "We love family history, and learning about and claiming our Caribbean heritage. We exist to share that, and to help you do the same.",
+  "image": "group-at-a-library-table",
+  "tone": "coral",
+  "cta": true,
+  "sections": [
+   {
+    "id": "since-2008",
+    "heading": "Helping people research since 2008",
+    "html": "<p>The group began in 2008, when courses in Caribbean family history were made from a ten-week British family history beginners’ class and reshaped for people with Caribbean heritage.</p><p>Some of our founder members are still on the committee today. Newer members have joined them, so between us we have a wide range of experience in researching ancestors across the Caribbean.</p>"
+   },
+   {
+    "id": "solihull-library",
+    "heading": "Solihull Library",
+    "html": "<p>We helped Solihull Library become an Associate Family History Centre. Inside the library you can use almost all of FamilySearch’s online Caribbean records. At home, what you can see depends on the island: Jamaica and Barbados are almost fully open.</p><p>If you would like help with your search, tell us.</p>"
+   },
+   {
+    "id": "what-we-do",
+    "heading": "What we do",
+    "html": "<p>We meet on the last Saturday of the month, at Solihull Core Library and on Zoom for anyone who can’t be there. We also go to family history fairs and cultural events around the country, and put on exhibitions such as our Windrush and Black History Month displays.</p>",
+    "shortcodes": [
+     "[cfhg_next_meeting style=\"facts\"]"
+    ]
+   },
+   {
+    "id": "who-we-work-with",
+    "heading": "Who we work with",
+    "html": "",
+    "shortcodes": [
+     "[cfhg_partners]"
+    ]
+   }
+  ]
+ },
+ "join": {
+  "title": "Join the group",
+  "lead": "Come to a meeting first and see if we’re for you. Your first visit is free.",
+  "image": "local-history-walk",
+  "tone": "sea",
+  "cta": false,
+  "sections": [
+   {
+    "id": "cost",
+    "heading": "What it costs",
+    "html": "<p>Attendance is free for members and for everyone’s first visit. After that it is £5 a visit, or £20 for a year’s membership.</p>",
+    "shortcodes": [
+     "[cfhg_prices]"
+    ]
+   },
+   {
+    "id": "membership",
+    "heading": "What membership includes",
+    "html": "<p>Members can join our specialist research groups: Jamaica, Barbados, and St Kitts and Nevis with Anguilla. They are for members only. Some meet on Zoom, and some at Solihull Core Library, where the records for certain islands can be seen.</p><p>Members can also add the surnames they are researching to our list, and we’ll put them in touch with anyone researching the same families.</p>"
+   },
+   {
+    "id": "how",
+    "heading": "How to join",
+    "html": "<p>Come to a meeting, or email us ({email}) and we’ll tell you how. Membership is paid online through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>.</p><p>Our AGM is held every May, and committee roles open up each year if you’d like to get more involved.</p>",
+    "shortcodes": [
+     "[cfhg_next_meeting style=\"facts\"]"
+    ]
+   }
+  ]
+ },
+ "contact": {
+  "title": "Contact",
+  "lead": "Email is the best way to reach us. We’re all volunteers, so a reply can take a little while.",
+  "image": "helping-with-research-at-a-laptop",
+  "tone": "gold",
+  "cta": false,
+  "sections": [
+   {
+    "id": "email",
+    "heading": "Email us",
+    "html": "<p>{email}</p><p>Ask a research question, tell us you’re coming to a meeting, ask for the Zoom link, or ask us to add your surnames to our list.</p>"
+   },
+   {
+    "id": "where",
+    "heading": "Where we meet",
+    "html": "",
+    "shortcodes": [
+     "[cfhg_next_meeting style=\"facts\"]"
+    ]
+   }
+  ]
+ },
+ "photography-and-video": {
+  "title": "Photography and video",
+  "lead": "We take photographs at our events so we can show what the group does.",
+  "image": "",
+  "tone": "coral",
+  "cta": false,
+  "draft": true,
+  "sections": [
+   {
+    "id": "at-events",
+    "heading": "At our events",
+    "html": "<p>We photograph and film our meetings, exhibitions and fairs, and use the pictures on this website and in our newsletters and posters.</p>"
+   },
+   {
+    "id": "not-appear",
+    "heading": "If you’d rather not appear",
+    "html": "<p>Ask for our non-permission form at any event, or email us ({email}) and we’ll send it to you. We’ll make sure you are left out of anything we publish.</p>"
+   }
+  ]
+ },
+ "privacy-and-cookies": {
+  "title": "Privacy and cookies",
+  "lead": "How the Caribbean Family History Group looks after your personal data.",
+  "image": "",
+  "tone": "coral",
+  "cta": false,
+  "sections": [
+   {
+    "id": "notice",
+    "heading": "",
+    "html": "<h3>Introduction</h3>\n<p>The Caribbean Family History Group (CFHG) respects your privacy and is committed to protecting your personal data.</p>\n<h3>About CFHG</h3>\n<p>The Caribbean Family History Group (hereafter referred to as CFHG) promotes the study of Caribbean family history. We have monthly meetings, attend family history fairs and cultural events in the United Kingdom and also online. This document will give you information on how the CFHG collects and processes your personal data through your use of our website, including any data you may provide through the website or directly with us when you:</p>\n<ul><li>apply for membership</li><li>join our meetings</li><li>sign up to our newsletter</li><li>access any other services we provide</li></ul>\n<h3>The data we collect about you</h3>\n<p>Personal data, or personal information, means any information about an individual from which that person can be identified.</p>\n<p>We may collect, use, store and transfer different kinds of personal data about you as follows:</p>\n<ul><li><strong>Identity Data</strong> includes title, first name, last name, username or similar identifier.</li><li><strong>Contact Data</strong> includes address, email address and telephone number(s).</li><li><strong>Financial Data –</strong>as a group we endeavour not to hold any financial details about you.  If we do take any details to complete a transaction – this is destroyed or deleted as soon as the transaction is completed.</li><li><strong>Transaction Data</strong> includes details about payments to and from you and other details of products and services you have purchased or received from us.</li><li><strong>Technical Data</strong> may include internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform and other technology on the devices you use to access our website.</li><li><strong>Usage Data</strong> may include information about how you use our website.</li><li><strong>Marketing and Communications Data</strong>includes your preferences in receiving marketing from us and your communication preferences.</li></ul>\n<h3>How is your personal data collected?</h3>\n<p>We use different methods to collect data from and about you, including:</p>\n<p>You may give us your contact details by filling in forms or by corresponding with us by post, phone, email or otherwise. This includes personal data you provide when you:</p>\n<ul><li>Apply for membership or any of our products or services;</li><li>Subscribe to our newsletter;</li><li>Provide us with historical information or submissions for our records or to assist you in a research query;</li><li>Give us some feedback;</li><li>Join us at a zoom meeting or face to face meeting. Photographs or recordings may be taken at these meetings. You have the option to turn off your camera and have/keep your name information anonymised at those times.</li></ul>\n<p>It is important that the personal data we hold about you is accurate and current. Please keep us informed if it changes during your relationship with us.</p>\n<ul><li><strong>Automated technologies or interactions.</strong>As you interact with our website, we may automatically collect Technical Data about your equipment, browsing actions and patterns. We collect this personal data by using cookies, and other similar technologies.</li><li><strong>Cookies.</strong>Our website uses small files called “Cookies” to improve your experience of the site and enable us to distinguish you from other users. The cookies we use are “analytical” cookies. They allow us to recognise and count the number of visitors and to see how visitors move around the site when they are using it. This will help us to improve the way our website works.</li><li><strong>We may sometimes use video embedding, like YouTube (3rd party) to enhance your experience of content on our site.</strong>YouTube’s privacy notice including cookie policy is available at: <a href=\"https://policies.google.com/privacy?hl=en-GB&amp;gl=uk\">https://policies.google.com/privacy?hl=en-GB&amp;gl=uk</a></li><li><strong>You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies.</strong>If you disable or refuse cookies, please note that some parts of our website may become inaccessible or not function properly.</li></ul>\n<h3>Third-party links</h3>\n<p>Our website may include links to third-party websites, plug-ins and applications. Clicking on those links or enabling those connections may allow third parties to collect or share data about you. We do not control these third-party websites and are not responsible for their privacy statements. When you leave our website, we encourage you to read the privacy notice of every website you visit.</p>\n<h3>How we store your personal data</h3>\n<p>We do not have any physical premises and CFHG is operated by volunteers who may be working from home.</p>\n<p>We will only use your personal data when the law allows us to, that is for legitimate requirements of operating a family history group.</p>\n<p>We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for and including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>\n<p>Our volunteers will process your data using their home computer. Each volunteer only holds the data necessary for their needs<strong>,</strong>and for the length of time to process the task<strong>.</strong> The data may be transferred between volunteers using personal email. Paper records may be passed by hand or posted.</p>\n<h3>Data security &amp; Process</h3>\n<p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way. In addition, we limit access of your personal data to Core Committee members, and usually only to those officers for whom the data is part of their role. We have also put in place appropriate processes to be followed by the core committee.</p>\n<h3>Do we share your data?</h3>\n<p>We do not share your data with anyone outside the CFHG other than to:</p>\n<ul><li>Researchers outside of our organisation – in order to assist you with a research query. We will not disclose your contact details unless you give us permission to do so first.</li><li>Police, HMRC, other regulatory bodies where required by law.</li></ul>\n<h3>How long will we use your personal data for?</h3>\n<p>We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements. This period of time varies between the activities for which the data has been provided.</p>\n<p>By law we must keep basic information about our members and customers (including Contact, Identity, Financial and Transaction Data) for six years after they cease being customers for tax purposes.</p>\n<h3>Opting out</h3>\n<p>You can ask us to stop sending you notification/marketing messages at any time by emailing us at: <a href=\"mailto:cfhg.sol.birm@gmail.com\">cfhg.sol.birm@gmail.com</a></p>\n<p>Where you opt out of receiving these messages, this will not apply to any immediate removal of personal data provided to us as a result of, for example, your membership.</p>\n<h3>Your legal rights</h3>\n<p>Under certain circumstances, you have rights under data protection laws in relation to your personal data. These are the right to:</p>\n<ul><li><strong>Request access to your personal data.</strong>This enables you to receive a copy of the personal data we hold about you and to check that we are lawfully processing it.</li><li><strong>Request correction of your personal data.</strong>This enables you to have any incomplete or inaccurate data we hold about you corrected.</li><li><strong>Request erasure of your personal data.</strong> This enables you to ask us to delete or remove personal data where there is no good reason for us continuing to retain and use it.</li><li><strong>Withdraw consent</strong> – where we are relying on consent to process your personal data. However, this will not affect the lawfulness of any processing carried out before you withdraw your consent. If you withdraw your consent, we may not be able to provide certain products or services to you. We will advise you if this is the case at the time of your consent withdrawal<strong>.</strong></li></ul>\n<p>If you wish to exercise any of the rights set out above, please contact us.</p>\n<h3>Concerns or Complaints</h3>\n<p>Should you at any time feel dissatisfied with how we have handled your personal data, you have the right to make a complaint to the Information Commissioner’s Office (ICO), the UK supervisory authority for data protection issues ( *<a href=\"http://www.ico.org.uk\">www.ico.org.uk</a>* ). We would, however, appreciate the chance to deal with your concerns before you approach the ICO, so please contact us by email or in writing. Once the complaint is received it will be dealt with in the first instance by the Core Committee, the management team of the CFHG. We will  endeavour to respond to and resolve all requests within one month. However, depending on the complexity, this may take longer.</p>\n<h3>Contact details</h3>\n<p>The Caribbean Family History Group</p>\n<p>Postal address: c/o Core Library Solihull, Homer Road, Solihull, West Midlands B91 3RG, England.</p>\n<p>Email address:   cfhg.sol.birm@gmail.com</p>\n<p>Telephone number: 0121 704 6934 / 07851 229235</p>\n<h3>Changes to the Privacy/GDPR Notice</h3>\n<p>We may need to update our Privacy/GDPR Notice from time to time. You can check it at any time on our website. We will alert members of any significant changes by email. The updated notice will be on our website.</p>\n<p>This Privacy/GDPR notice is an ongoing document. If you feel there is any area of your privacy that has not been covered, do notify us.</p>\n<p>Our website address is: http://caribbeanfamilyhistorygroup.org.</p>\n<h3>Version 1 – February 2021 Caribbean Family History Group</h3>"
+   }
+  ]
+ },
+ "stories": {
+  "title": "Stories and research",
+  "lead": "Talks, research tips and members’ stories from our meetings.",
+  "image": "copying-details-from-a-register",
+  "tone": "sea",
+  "cta": true,
+  "sections": [
+   {
+    "id": "all",
+    "heading": "",
+    "html": "",
+    "shortcodes": [
+     "[cfhg_story_grid]"
+    ]
+   },
+   {
+    "id": "share",
+    "heading": "Have a story to share?",
+    "html": "<p>If you’ve found something you’d like other members to see, email us ({email}) and we’ll help you write it up.</p>"
+   }
+  ]
+ },
+ "coming-soon": {
+  "title": "This part of the site is still being built",
+  "lead": "We’re still writing the Research pages, so this link doesn’t lead anywhere yet. Here’s what is ready to read.",
+  "image": "marking-a-caribbean-map",
+  "tone": "sea",
+  "cta": false,
+  "preview": true,
+  "sections": [
+   {
+    "id": "ready",
+    "heading": "In the meantime",
+    "html": "<ul><li><a href=\"/starting-your-family-tree/\">Starting your family tree</a>: the five steps, a short film, and how to fill in the charts.</li><li><a href=\"/jamaica/\">Jamaica</a>: a parish map, where to look for records, and the surnames members are researching.</li><li><a href=\"/stories/\">Stories and research</a>: talks and tips from our meetings.</li><li><a href=\"/whats-on/\">What’s on</a>: when we next meet.</li></ul><p>Researching another island? Email us ({email}) and we’ll put you in touch with a member who knows it.</p>"
+   }
+  ]
+ }
+}

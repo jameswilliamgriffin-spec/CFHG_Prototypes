@@ -1,0 +1,1054 @@
+/*
+ * CFHG Option B: second polish pass (theme 1.5.0).
+ *
+ *  1. Rhythm: one spacing step for inner pages
+ *  2. Quieter motion: sections no longer fade up one by one
+ *  3. Living photographs (assets/js/polish.js)
+ *  4. The surname ribbon ([cfhg_surname_ribbon])
+ *  5. Events: rows without separators, and the next event up front
+ *  6. Page heroes with a photograph: What's On, the guide, island pages
+ *  7. "On this page" links
+ *  8. The records timeline ([cfhg_record_timeline])
+ *  9. Small screens
+ *
+ * Loaded after main.css and ui-pass.css, so plain selectors here win.
+ */
+
+/* 1. Rhythm ------------------------------------------------------------------ */
+
+:root {
+	/* Between sections on inner pages: 60px on a phone to 104px on a desktop.
+	   Elementor pages use the same steps (104, 84 and 60px) in their settings. */
+	--cfhg-sp-page: clamp(3.75rem, 2.6rem + 4.3vw, 6.5rem);
+}
+
+/* Anything a link on the page jumps to stops clear of the header. */
+:target,
+[id^="cfhg-"],
+.cfhg-el-section[id] {
+	scroll-margin-top: calc(var(--cfhg-header-h, 6rem) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+/* Paragraphs avoid leaving one word alone on the last line. */
+p,
+li {
+	text-wrap: pretty;
+}
+
+/* 2. Quieter motion ---------------------------------------------------------- */
+
+/* Sections used to rise into place one after another. Only the snapshots
+   still settle into their tilt; everything else is simply there. */
+.cfhg-reveal-ready [data-reveal=""]:not(.is-revealed),
+.cfhg-reveal-ready [data-reveal=""]:not(.cfhg-note):not(.is-revealed) {
+	opacity: 1;
+	transform: none;
+}
+
+/* The opening heading no longer picks out one word. */
+.cfhg-hero__title em,
+.cfhg-el-hero-title em {
+	padding: 0;
+	font-style: normal;
+	font-weight: inherit;
+	background: none;
+	animation: none;
+}
+
+/* The meeting line reads as plain words: no dot between when and where. */
+.cfhg-next {
+	gap: 0.15rem 0.75rem;
+}
+
+.cfhg-next__where::before {
+	content: none;
+}
+
+.cfhg-next__where {
+	color: var(--cfhg-ink-soft);
+}
+
+.cfhg-guide__charts .cfhg-next__where,
+.cfhg-footer .cfhg-next__where {
+	color: inherit;
+}
+
+/* 3. Living photographs ------------------------------------------------------ */
+
+.cfhg-loop-wrap {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	height: 100%;
+}
+
+.cfhg-loop {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 900ms var(--cfhg-ease);
+	pointer-events: none;
+}
+
+.cfhg-loop.is-playing {
+	opacity: 1;
+}
+
+/* Where the picture drifts as the page scrolls, the film drifts with it. */
+@media (prefers-reduced-motion: no-preference) {
+	.cfhg-ui [data-cfhg-parallax] .cfhg-loop {
+		scale: 1.12;
+		translate: 0 calc((var(--cfhg-p, 0.5) - 0.5) * -8%);
+	}
+
+	@supports (animation-timeline: view()) {
+		.cfhg-ui [data-cfhg-parallax].is-css-scroll .cfhg-loop {
+			animation: ui-drift linear both;
+			animation-timeline: view();
+		}
+	}
+}
+
+/* 4. The surname ribbon ------------------------------------------------------ */
+
+.cfhg-names {
+	background: var(--cfhg-ink);
+	color: var(--cfhg-cream);
+}
+
+.cfhg-ribbon {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: center;
+	background: var(--cfhg-ink);
+	color: var(--cfhg-cream);
+}
+
+.cfhg-ribbon__label {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	padding: 1.15rem 1.5rem 1.15rem var(--cfhg-gutter);
+	font-size: var(--cfhg-fs-small);
+	font-weight: 500;
+	line-height: 1.2;
+	background: var(--cfhg-ink);
+}
+
+/* The names slip out from under the label through a short fade. */
+.cfhg-ribbon__label::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 100%;
+	width: 2.5rem;
+	background: linear-gradient(90deg, var(--cfhg-ink), transparent);
+	pointer-events: none;
+}
+
+.cfhg-ribbon__label a {
+	color: inherit;
+}
+
+.cfhg-ribbon__view {
+	display: flex;
+	overflow: hidden;
+}
+
+.cfhg-ribbon__names {
+	flex: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--cfhg-font-display);
+	font-size: clamp(1.2rem, 1rem + 0.8vw, 1.75rem);
+	letter-spacing: 0.05em;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.cfhg-ribbon__names li {
+	display: flex;
+	align-items: center;
+	padding-block: 1.1rem;
+	white-space: nowrap;
+}
+
+/* Between the names, a dot from the ring of the logo, each colour in turn. */
+.cfhg-ribbon__names li::after {
+	content: "";
+	width: 0.5em;
+	aspect-ratio: 1;
+	margin-inline: 1.1em;
+	border-radius: 50%;
+	background: var(--cfhg-coral);
+}
+
+.cfhg-ribbon__names li:nth-child(5n + 2)::after { background: var(--cfhg-gold); }
+.cfhg-ribbon__names li:nth-child(5n + 3)::after { background: var(--cfhg-green); }
+.cfhg-ribbon__names li:nth-child(5n + 4)::after { background: var(--cfhg-sea); }
+.cfhg-ribbon__names li:nth-child(5n + 5)::after { background: var(--cfhg-blue); }
+
+@media (prefers-reduced-motion: no-preference) {
+	.cfhg-ribbon__names {
+		animation: cfhg-ribbon calc(var(--cfhg-ribbon-n, 20) * 3.4s) linear infinite;
+	}
+
+	.cfhg-ribbon:hover .cfhg-ribbon__names,
+	.cfhg-ribbon:focus-within .cfhg-ribbon__names {
+		animation-play-state: paused;
+	}
+}
+
+@keyframes cfhg-ribbon {
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+/* Without motion the names are a still, wrapping list. */
+@media (prefers-reduced-motion: reduce) {
+	.cfhg-ribbon {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.cfhg-ribbon__names {
+		flex: 1;
+		flex-wrap: wrap;
+		padding: 0 var(--cfhg-gutter) 0.75rem;
+	}
+
+	.cfhg-ribbon__names li {
+		padding-block: 0.4rem;
+	}
+
+	.cfhg-ribbon__names[aria-hidden] {
+		display: none;
+	}
+}
+
+/* On a desktop the opening panel and the ribbon share the first screen. */
+@media (min-width: 900px) {
+	.cfhg-hero:has(+ .cfhg-names) {
+		min-height: min(100svh - 4rem, 56rem);
+	}
+}
+
+/* The Elementor homepage starts below the header, so it allows for that too. */
+@media (min-width: 1025px) {
+	.cfhg-el-hero:has(+ .cfhg-names) {
+		--min-height: calc(100svh - var(--cfhg-header-h, 6rem) - 4rem);
+	}
+}
+
+/* 5. Events ------------------------------------------------------------------ */
+
+.cfhg-event__meta {
+	display: grid;
+	gap: 0.1rem;
+}
+
+.cfhg-event__when {
+	color: var(--cfhg-ink);
+}
+
+.cfhg-event__group {
+	justify-self: start;
+	margin-top: 0.2rem;
+	padding: 0.2rem 0.6rem;
+	border-radius: var(--cfhg-r-pill);
+	background: var(--cfhg-sand);
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.cfhg-event__link {
+	align-items: center;
+	height: 100%;
+}
+
+/* What's On: the next event leads, full width and on ink. */
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child {
+	grid-column: 1 / -1;
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__link {
+	gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+	padding: clamp(1.1rem, 0.6rem + 1.6vw, 2rem);
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	color: var(--cfhg-cream);
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__badge {
+	--tone: var(--cfhg-highlight);
+	width: clamp(4.75rem, 3.5rem + 5vw, 7.5rem);
+	border-radius: var(--cfhg-r-md);
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__day {
+	font-size: clamp(2.2rem, 1.4rem + 3vw, 3.75rem);
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__month {
+	font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.2rem);
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__title {
+	font-size: var(--cfhg-fs-h3);
+	font-weight: 400;
+	line-height: 1.05;
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__meta,
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__summary {
+	font-size: var(--cfhg-fs-lead);
+	line-height: 1.35;
+	color: rgba(246, 241, 234, 0.82);
+}
+
+.cfhg-whats-on__upcoming .cfhg-events--upcoming > .cfhg-event:first-child .cfhg-event__when {
+	color: var(--cfhg-cream);
+}
+
+.cfhg-whats-on .cfhg-section {
+	padding-top: var(--cfhg-sp-page);
+}
+
+/* The footer brings its own space above it: the page adds none. */
+main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
+	padding-bottom: 0;
+}
+
+/* 6. Page heroes with a photograph ------------------------------------------- */
+
+/* The guide's theme template: words beside a postcard, as on What's On. */
+.cfhg-guide__hero-grid {
+	display: grid;
+	gap: var(--cfhg-sp-lg) var(--cfhg-gap);
+	align-items: center;
+}
+
+.cfhg-guide__hero-art {
+	margin: 0 1.25rem 1.25rem 0.75rem;
+}
+
+/* A hero with a postcard doesn't need the paper flower behind it as well. */
+.cfhg-guide .cfhg-page-hero:has(.cfhg-guide__hero-art)::after,
+.cfhg-whats-on__hero:has(.cfhg-whats-on__art)::after {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.cfhg-guide__hero-grid {
+		grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+	}
+}
+
+/* The postcard on an Elementor Image widget (island pages already do this). */
+.elementor-widget.cfhg-postcard .elementor-widget-container {
+	position: relative;
+	margin: 0 1.25rem 1.25rem 0.75rem;
+	padding: 0.75rem;
+	border-radius: 0.6rem;
+	background: var(--cfhg-white);
+	box-shadow: 16px 16px 0 var(--cfhg-coral), 0 30px 60px -40px rgba(16, 33, 59, 0.6);
+	transform: rotate(2deg);
+}
+
+.elementor-widget.cfhg-postcard img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0.3rem;
+}
+
+.elementor-widget.cfhg-postcard .elementor-widget-container::after {
+	content: "";
+	position: absolute;
+	top: -1.4rem;
+	left: -1.4rem;
+	width: 4.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--cfhg-white) url("../images/cfhg-logo-badge.png") center / 84% no-repeat;
+	box-shadow: 0 6px 14px rgba(16, 33, 59, 0.2);
+	transform: rotate(-10deg);
+}
+
+/* A postcard's printed edge: coral unless the page asks for sea blue or
+   gold, and a little shallower on a phone so it stays clear of the screen
+   edge. */
+.cfhg-postcard,
+.cfhg-island__art,
+.elementor-widget.cfhg-postcard .elementor-widget-container,
+.elementor-widget.cfhg-island__art .elementor-widget-container {
+	box-shadow: var(--cfhg-pc-off, 16px) var(--cfhg-pc-off, 16px) 0 var(--cfhg-pc-tone, var(--cfhg-coral)), 0 30px 60px -40px rgba(16, 33, 59, 0.6);
+}
+
+.cfhg-postcard--sea {
+	--cfhg-pc-tone: var(--cfhg-sea);
+}
+
+.cfhg-postcard--gold {
+	--cfhg-pc-tone: var(--cfhg-gold);
+}
+
+@media (max-width: 767px) {
+	.cfhg-postcard,
+	.cfhg-island__art,
+	.elementor-widget.cfhg-postcard,
+	.elementor-widget.cfhg-island__art {
+		--cfhg-pc-off: 10px;
+	}
+
+	.cfhg-postcard,
+	.cfhg-island__art,
+	.elementor-widget.cfhg-postcard .elementor-widget-container,
+	.elementor-widget.cfhg-island__art .elementor-widget-container {
+		margin: 0.75rem 1.1rem 1rem 0.5rem;
+		padding: 0.55rem;
+	}
+
+	.cfhg-postcard::after,
+	.cfhg-island__art::after,
+	.elementor-widget.cfhg-postcard .elementor-widget-container::after,
+	.elementor-widget.cfhg-island__art .elementor-widget-container::after {
+		top: -1.1rem;
+		left: -0.6rem;
+		width: 3.5rem;
+	}
+}
+
+/* An island's next event sits under its introduction only when there is one. */
+.cfhg-island__next:not(:has(.cfhg-event)) {
+	display: none;
+}
+
+/* The guide: its navy band keeps to the inner-page rhythm. */
+.cfhg-guide__charts {
+	margin-top: var(--cfhg-sp-page);
+	padding-block: var(--cfhg-sp-page);
+}
+
+/* In Elementor the band's padding is set on the section itself, so the
+   theme's own must not be added on top of it. */
+.cfhg-guide__charts.e-con {
+	padding-block: 0;
+}
+
+.cfhg-guide .cfhg-section {
+	padding-top: var(--cfhg-sp-page);
+}
+
+.cfhg-guide .cfhg-page-hero {
+	margin-bottom: 0;
+	padding-bottom: var(--cfhg-sp-sm);
+}
+
+.cfhg-island .cfhg-section {
+	padding-top: var(--cfhg-sp-page);
+}
+
+/* Island pages: the events beside the posts stay a single column, and the
+   closing card sits in the middle of the page (Elementor puts its own zero
+   margin on a container, so this has to be more specific). */
+.cfhg-island__from .cfhg-events {
+	grid-template-columns: minmax(0, 1fr);
+	margin-top: var(--cfhg-sp-sm);
+}
+
+.cfhg-island__from .cfhg-event__title {
+	font-size: var(--cfhg-fs-h4);
+}
+
+.cfhg-guide__cta .cfhg-guide__cta-card,
+.cfhg-guide__cta .e-con.cfhg-guide__cta-card {
+	margin-inline: auto;
+}
+
+/* The film: words beside a poster that opens in a lightbox. */
+.cfhg-guide__film-grid {
+	display: grid;
+	gap: var(--cfhg-sp-lg) var(--cfhg-gap);
+	align-items: center;
+}
+
+.cfhg-guide__film-copy .cfhg-lead,
+.cfhg-guide__film .elementor-widget.cfhg-lead p {
+	max-width: 32rem;
+	margin: var(--cfhg-sp-sm) 0 0;
+}
+
+.cfhg-guide__film-copy .cfhg-actions {
+	margin-top: var(--cfhg-sp-md);
+}
+
+.cfhg-film {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	aspect-ratio: 16 / 9;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	box-shadow: 0 30px 60px -40px rgba(16, 33, 59, 0.55);
+	cursor: pointer;
+}
+
+.cfhg-film img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 700ms var(--cfhg-ease);
+}
+
+.cfhg-film__play {
+	position: absolute;
+	/* In the corner, so it never sits on the poster's own title. */
+	right: clamp(0.9rem, 0.5rem + 1.5vw, 1.75rem);
+	bottom: clamp(0.9rem, 0.5rem + 1.5vw, 1.75rem);
+	width: clamp(3.5rem, 2.8rem + 2.5vw, 5rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--cfhg-highlight);
+	box-shadow: 0 10px 30px rgba(16, 33, 59, 0.35);
+	transition: scale var(--cfhg-dur) var(--cfhg-ease);
+}
+
+/* The triangle, nudged right so it looks centred in the disc. */
+.cfhg-film__play::after {
+	content: "";
+	position: absolute;
+	left: 52%;
+	top: 50%;
+	translate: -50% -50%;
+	border-style: solid;
+	border-width: 0.8rem 0 0.8rem 1.35rem;
+	border-color: transparent transparent transparent var(--cfhg-ink);
+	scale: clamp(1, 0.7rem + 0.9vw, 1.35);
+}
+
+.cfhg-film:hover img,
+.cfhg-film:focus-visible img {
+	transform: scale(1.03);
+}
+
+.cfhg-film:hover .cfhg-film__play,
+.cfhg-film:focus-visible .cfhg-film__play {
+	scale: 1.08;
+}
+
+.cfhg-film:focus-visible {
+	outline: 3px solid var(--cfhg-ink);
+	outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cfhg-film img,
+	.cfhg-film__play {
+		transition: none;
+	}
+}
+
+@media (min-width: 900px) {
+	.cfhg-guide__film-grid {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	}
+}
+
+/* The lightbox itself (assets/js/lightbox.js). */
+.cfhg-lightbox {
+	width: min(100vw - 2rem, 70rem);
+	max-width: none;
+	max-height: calc(100svh - 2rem);
+	margin: auto;
+	padding: 0;
+	border: 0;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	overflow: visible;
+}
+
+.cfhg-lightbox::backdrop {
+	background: rgba(16, 33, 59, 0.82);
+}
+
+.cfhg-lightbox video {
+	display: block;
+	width: 100%;
+	max-height: calc(100svh - 2rem);
+	aspect-ratio: 16 / 9;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+}
+
+.cfhg-lightbox__close {
+	position: absolute;
+	right: 0.5rem;
+	top: -3.25rem;
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--cfhg-white);
+	color: var(--cfhg-ink);
+	cursor: pointer;
+}
+
+.cfhg-lightbox__close:hover,
+.cfhg-lightbox__close:focus-visible {
+	background: var(--cfhg-highlight);
+}
+
+@media (max-width: 767px) {
+	/* On a phone the close button sits over the film's corner, not off the top. */
+	.cfhg-lightbox__close {
+		top: -3rem;
+		right: 0;
+	}
+}
+
+/* Information pages: a readable column of text under each heading. */
+.cfhg-page__section .elementor-widget.cfhg-el-prose,
+.cfhg-page__section .cfhg-el-prose {
+	max-width: 42rem;
+}
+
+.cfhg-el-prose h3 {
+	margin: 1.75em 0 0.4em;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+}
+
+.cfhg-el-prose p,
+.cfhg-el-prose li {
+	line-height: 1.55;
+}
+
+.cfhg-el-prose ul {
+	padding-left: 1.2em;
+}
+
+.cfhg-el-prose li + li {
+	margin-top: 0.3em;
+}
+
+/* Stories: a grid of cards. */
+.cfhg-story-grid {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-story-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.cfhg-story-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.cfhg-story-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+}
+
+.cfhg-story-card__media {
+	display: block;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: var(--cfhg-sand);
+}
+
+.cfhg-story-card__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.cfhg-story-card__body {
+	display: grid;
+	gap: 0.6rem;
+	align-content: start;
+	padding: clamp(1.1rem, 0.8rem + 1vw, 1.75rem);
+}
+
+.cfhg-story-card__meta,
+.cfhg-story-card__text {
+	margin: 0;
+	font-size: var(--cfhg-fs-small);
+	color: var(--cfhg-ink-soft);
+}
+
+.cfhg-story-card__title {
+	margin: 0;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-story-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.cfhg-story-card__title a:hover,
+.cfhg-story-card__title a:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+/* 7. "On this page" links ---------------------------------------------------- */
+
+.cfhg-jump ul,
+ul.cfhg-jump {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cfhg-jump li {
+	margin: 0;
+	padding: 0;
+}
+
+.cfhg-jump li::before {
+	content: none;
+}
+
+/* Island pages have five links: a line break after the third lets them sit
+   three then two, rather than leaving one on a line of its own. */
+.cfhg-jump__break {
+	display: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-jump__break {
+		display: block;
+		flex-basis: 100%;
+		height: 0;
+		margin: 0;
+	}
+}
+
+.cfhg-jump a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+	padding: 0.4rem 1rem;
+	border-radius: var(--cfhg-r-pill);
+	background: var(--cfhg-white);
+	box-shadow: 0 1px 0 var(--cfhg-line);
+	color: var(--cfhg-ink);
+	font-size: var(--cfhg-fs-small);
+	font-weight: 500;
+	text-decoration: none;
+	transition: background-color var(--cfhg-dur-fast) var(--cfhg-ease);
+}
+
+.cfhg-jump a:hover,
+.cfhg-jump a:focus-visible {
+	background: var(--cfhg-highlight);
+}
+
+/* 8. The records timeline ---------------------------------------------------- */
+
+.cfhg-timeline {
+	--name: 16.5rem;
+	margin-top: var(--cfhg-sp-md);
+	padding: clamp(1.25rem, 0.75rem + 2vw, 2.5rem);
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+}
+
+.cfhg-timeline__legend,
+.cfhg-timeline__notes,
+.cfhg-timeline__rows {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cfhg-timeline__legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.5rem;
+	margin-bottom: 1.5rem;
+	font-size: var(--cfhg-fs-small);
+}
+
+.cfhg-timeline__key::before {
+	content: "";
+	display: inline-block;
+	width: 0.8rem;
+	aspect-ratio: 1;
+	margin-right: 0.5rem;
+	border-radius: 50%;
+	background: var(--tone);
+	vertical-align: -0.05em;
+}
+
+.cfhg-timeline__key--vital,
+.cfhg-timeline__row--vital { --tone: var(--cfhg-blue); }
+.cfhg-timeline__key--enslaved,
+.cfhg-timeline__row--enslaved { --tone: var(--cfhg-coral); }
+.cfhg-timeline__key--land,
+.cfhg-timeline__row--land { --tone: var(--cfhg-gold); }
+.cfhg-timeline__key--journey,
+.cfhg-timeline__row--journey { --tone: var(--cfhg-green); }
+
+.cfhg-timeline__chart {
+	position: relative;
+	padding-top: 3.1rem;
+}
+
+.cfhg-timeline__plot {
+	position: absolute;
+	inset: 0 0 0 var(--name);
+	pointer-events: none;
+}
+
+.cfhg-timeline__tick {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--x);
+	padding-left: 0.35rem;
+	border-left: 1px dashed var(--cfhg-line);
+	font-size: 0.75rem;
+	line-height: 1;
+	color: var(--cfhg-ink-soft);
+}
+
+.cfhg-timeline__mark {
+	position: absolute;
+	top: 1.45rem;
+	bottom: 0;
+	left: var(--x);
+	border-left: 2px solid var(--cfhg-ink);
+}
+
+.cfhg-timeline__mark b {
+	position: absolute;
+	top: 0;
+	left: -2px;
+	padding: 0.2rem 0.45rem;
+	border-radius: 0 var(--cfhg-r-xs) var(--cfhg-r-xs) 0;
+	background: var(--cfhg-ink);
+	color: var(--cfhg-white);
+	font-size: 0.72rem;
+	font-weight: 500;
+	line-height: 1;
+}
+
+/* Every other year label hangs to the left, so close years don't collide. */
+.cfhg-timeline__mark.is-left b {
+	left: auto;
+	right: 0;
+	border-radius: var(--cfhg-r-xs) 0 0 var(--cfhg-r-xs);
+}
+
+.cfhg-timeline__rows {
+	position: relative;
+	display: grid;
+	gap: 0.5rem;
+}
+
+.cfhg-timeline__row {
+	display: grid;
+	grid-template-columns: var(--name) minmax(0, 1fr);
+	align-items: center;
+}
+
+.cfhg-timeline__name {
+	padding-right: 1rem;
+	font-size: var(--cfhg-fs-small);
+	font-weight: 500;
+	line-height: 1.25;
+}
+
+.cfhg-timeline__lane {
+	position: relative;
+	display: block;
+	height: 2rem;
+}
+
+.cfhg-timeline__bar {
+	position: absolute;
+	top: 0.2rem;
+	bottom: 0.2rem;
+	left: var(--s);
+	width: calc(var(--e) - var(--s));
+	min-width: 0.6rem;
+	border-radius: var(--cfhg-r-pill);
+	background: var(--tone);
+	transform-origin: left center;
+}
+
+/* Still being kept today: the bar runs off the end of the line. */
+.cfhg-timeline__row.is-open .cfhg-timeline__bar {
+	border-radius: var(--cfhg-r-pill) 0 0 var(--cfhg-r-pill);
+}
+
+.cfhg-timeline__years {
+	position: absolute;
+	top: 50%;
+	left: calc(var(--e) + 0.5rem);
+	translate: 0 -50%;
+	font-size: 0.78rem;
+	font-weight: 500;
+	line-height: 1;
+	white-space: nowrap;
+	color: var(--cfhg-ink);
+}
+
+.cfhg-timeline__row--before .cfhg-timeline__years {
+	left: auto;
+	right: calc(100% - var(--s) + 0.5rem);
+}
+
+.cfhg-timeline__row--inside .cfhg-timeline__years {
+	left: calc(var(--s) + 0.75rem);
+}
+
+.cfhg-timeline__notes {
+	display: grid;
+	gap: 0.35rem 2rem;
+	margin-top: 1.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--cfhg-line);
+	font-size: var(--cfhg-fs-small);
+	line-height: 1.4;
+}
+
+.cfhg-timeline__notes b {
+	margin-right: 0.35rem;
+	font-family: var(--cfhg-font-display);
+	font-size: 1.15em;
+	font-weight: 500;
+}
+
+@media (min-width: 900px) {
+	.cfhg-timeline__notes {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* The bars draw out from their first year, once, when the chart is reached. */
+@media (prefers-reduced-motion: no-preference) {
+	.cfhg-timeline.is-ready .cfhg-timeline__bar {
+		transform: scaleX(0);
+		transition: transform 900ms var(--cfhg-ease);
+		transition-delay: calc(var(--n, 0) * 70ms);
+	}
+
+	.cfhg-timeline.is-ready .cfhg-timeline__years {
+		opacity: 0;
+		transition: opacity 400ms var(--cfhg-ease);
+		transition-delay: calc(500ms + var(--n, 0) * 70ms);
+	}
+
+	.cfhg-timeline.is-ready.is-in .cfhg-timeline__bar {
+		transform: none;
+	}
+
+	.cfhg-timeline.is-ready.is-in .cfhg-timeline__years {
+		opacity: 1;
+	}
+}
+
+/* 9. Small screens ----------------------------------------------------------- */
+
+@media (max-width: 767px) {
+	.cfhg-ribbon {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.cfhg-ribbon__label {
+		padding: 0.9rem var(--cfhg-gutter) 0;
+	}
+
+	.cfhg-ribbon__label::after {
+		content: none;
+	}
+
+	.cfhg-ribbon__names li {
+		padding-block: 0.7rem 1rem;
+	}
+
+	/* The timeline: each record's name sits above its bar. */
+	.cfhg-timeline {
+		--name: 0px;
+	}
+
+	.cfhg-timeline__rows {
+		gap: 0.85rem;
+	}
+
+	.cfhg-timeline__row {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.15rem;
+	}
+
+	.cfhg-timeline__name {
+		padding-right: 0;
+	}
+
+	/* The key years: fine lines behind the words, their labels stepped down
+	   one under another so close years stay readable. */
+	.cfhg-timeline__chart {
+		padding-top: 6.1rem;
+	}
+
+	.cfhg-timeline__mark {
+		top: calc(1.45rem + var(--i, 0) * 1.4rem);
+		border-left: 1px solid rgba(16, 33, 59, 0.3);
+	}
+
+	.cfhg-timeline__mark b,
+	.cfhg-timeline__mark.is-left b {
+		right: auto;
+		left: -1px;
+		border-radius: 0 var(--cfhg-r-xs) var(--cfhg-r-xs) 0;
+	}
+
+	.cfhg-timeline__lane {
+		height: 1.7rem;
+	}
+
+	.cfhg-timeline__tick:nth-of-type(even) {
+		font-size: 0;
+	}
+}

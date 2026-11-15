@@ -76,6 +76,7 @@ function cfhg_admin_page() {
 		'home'     => __( 'The Elementor homepage has been created.', 'cfhg' ),
 		'guide'    => __( 'The five steps page has been created.', 'cfhg' ),
 		'island'   => __( 'The island page has been created.', 'cfhg' ),
+		'pages'    => __( 'The information pages have been created.', 'cfhg' ),
 		'menu'     => __( 'A starter menu has been created and assigned. Edit it in Appearance > Menus.', 'cfhg' ),
 		'error'    => __( 'Something went wrong. Please check Elementor is active and try again.', 'cfhg' ),
 	);
@@ -116,6 +117,10 @@ function cfhg_admin_page() {
 		<h2><?php esc_html_e( 'Five steps page', 'cfhg' ); ?></h2>
 		<p><?php esc_html_e( 'Creates the page "Starting your family tree", which the Start here button on the homepage links to: the five steps in full, the explainer video and how to complete the charts. With Elementor it is built from Elementor widgets so every word can be edited; without it, the page uses the CFHG Five steps guide template. Running this again rebuilds the same page.', 'cfhg' ); ?></p>
 		<?php cfhg_admin_action_form( 'cfhg_create_guide', __( 'Create the five steps page', 'cfhg' ) ); ?>
+
+		<h2><?php esc_html_e( 'Information pages', 'cfhg' ); ?></h2>
+		<p><?php esc_html_e( 'Creates Who we are, Join the group, Contact, Stories and research, Photography and video, and Privacy and cookies. With Elementor they are built from Elementor widgets so every word can be edited; the words they start with are in inc/pages-content.json. Running this again rebuilds them, replacing any edits made in Elementor.', 'cfhg' ); ?></p>
+		<?php cfhg_admin_action_form( 'cfhg_create_pages', __( 'Create the information pages', 'cfhg' ) ); ?>
 
 		<?php if ( function_exists( 'cfhg_site_island_slugs' ) && cfhg_site_island_slugs() ) : ?>
 			<h2><?php esc_html_e( 'Island pages', 'cfhg' ); ?></h2>
@@ -215,6 +220,21 @@ function cfhg_admin_create_guide() {
 	cfhg_admin_back( 'guide' );
 }
 add_action( 'admin_post_cfhg_create_guide', 'cfhg_admin_create_guide' );
+
+/**
+ * Action: create the information pages.
+ */
+function cfhg_admin_create_pages() {
+	cfhg_admin_guard( 'cfhg_create_pages' );
+	$ids = cfhg_create_content_pages();
+	foreach ( $ids as $id ) {
+		if ( is_wp_error( $id ) ) {
+			cfhg_admin_back( 'error' );
+		}
+	}
+	cfhg_admin_back( 'pages' );
+}
+add_action( 'admin_post_cfhg_create_pages', 'cfhg_admin_create_pages' );
 
 /**
  * Action: create an island page.
