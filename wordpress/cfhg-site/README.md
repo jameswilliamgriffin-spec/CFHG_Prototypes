@@ -90,7 +90,7 @@ name, email and consent stay in the admin.
 | `[cfhg_calendar_links]` | "Add all our meetings to your calendar": a `webcal://` subscription |
 | `[cfhg_surnames]` | Surnames being researched, with a search box. `island="jamaica"` for one island; `search="no"` to hide the box |
 | `[cfhg_parish_map island="jamaica"]` | The parish explorer: the map (if there is one), a button per parish, and each parish's details and surnames |
-| `[cfhg_record_finder island="jamaica"]` | "Where should I look?": suggestions in order, the old parish names to search, and whether a member researches the surname typed |
+| `[cfhg_record_finder island="jamaica"]` | "Where should I look?": suggestions in order and the old parish names to search |
 | `[cfhg_record_timeline island="jamaica"]` | "What survives, and from when": one bar per record set in the island's finder list, from 1650 to today, coloured by what it is used for, with the island's key years marked (`"timeline"` in the island file: a year and a sentence each) |
 | `[cfhg_surname_ribbon]` | A slow band of the surnames members are tracing, in capitals, first spelling of each entry. `island="jamaica"` for one island; `label="…"` for the words at the start; `url="/research/"` to make those words a link. Needs six names or more. It stands still for anyone who prefers reduced motion |
 | `[cfhg_island_sources island="jamaica"]` | The island's main record sources as cards |

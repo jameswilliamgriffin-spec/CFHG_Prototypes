@@ -1,123 +1,150 @@
 {
-	"_about": "Starting your family tree: the five steps guide page. Copy from the group's presentation 'Starting Your Family Tree - Version B'. Read by inc/guide.php (theme template and the Elementor page builder) and by scripts/build-preview-b.mjs, so all three stay the same.",
-	"slug": "starting-your-family-tree",
-	"title": "Starting your family tree",
-	"lead": "Five steps to begin your research and complete family history charts.",
-	"video": {
-		"file": "cfhg-five-steps.mp4",
-		"poster": "cfhg-five-steps-poster.jpg",
-		"label": "The five steps in a minute and a half"
-	},
-	"before": {
-		"heading": "Your family tree",
-		"questions": [
-			"Why do you want to trace it?",
-			"Who could benefit from what you discover?"
-		]
-	},
-	"steps_heading": "Five basic steps",
-	"steps": [
-		{
-			"title": "Write down what you know",
-			"question": "What do I know?",
-			"points": [
-				"Search your own memory",
-				"Ask family, friends and elders",
-				"Look through family homes and Bibles",
-				"Record details on pedigree charts and family group records"
-			],
-			"image": "sharing-an-old-photograph-on-a-bench",
-			"icon": "notepad-pencil"
-		},
-		{
-			"title": "Decide what you want to learn",
-			"question": "What do I want to know?",
-			"text": [
-				"Start with the generation closest to you. Work back one generation at a time.",
-				"Turn gaps in your knowledge into specific research questions."
-			],
-			"image": "notebook-and-old-photographs",
-			"icon": "thought-question"
-		},
-		{
-			"title": "Choose a resource",
-			"question": "Which resources?",
-			"groups": [
-				{
-					"title": "Records and documents",
-					"text": "Census, military and emigration records; microfilms; FamilySearch.org"
-				},
-				{
-					"title": "People and objects",
-					"text": "Relatives, family friends, photographs and tombstones"
-				}
-			],
-			"image": "marking-a-caribbean-map",
-			"icon": "signpost"
-		},
-		{
-			"title": "Learn from the resource",
-			"question": "What did I learn?",
-			"points": [
-				"Search the record",
-				"Question or interview the person",
-				"Study and copy details from the object",
-				"Write down what you discover"
-			],
-			"image": "copying-details-from-a-register",
-			"icon": "magnifier-record"
-		},
-		{
-			"title": "Use the information",
-			"points": [
-				"Evaluate and organise what you found",
-				"Look for new clues",
-				"Add it to your family tree or begin the five steps again",
-				"Share it with relatives and other researchers"
-			],
-			"image": "conversation-at-dusk",
-			"icon": "family-tree"
-		}
-	],
-	"charts": {
-		"heading": "Completing charts",
-		"lead": "Pedigree charts and family group records",
-		"record": {
-			"title": "Record the details clearly",
-			"points": [
-				"Use a pencil until you are certain of the facts.",
-				"Write confirmed information in pen.",
-				"Write surnames in capitals: Gordon (given name), GORDON (surname).",
-				"Use a three-letter month name to avoid date ambiguity."
-			],
-			"note": "For example, 04/05/1925 can mean 4 May or 5 April 1925."
-		},
-		"numbering": {
-			"title": "Follow the numbering",
-			"even": "numbers represent males",
-			"odd": "numbers represent females",
-			"note": "Complete the nearest generation as fully as you can before moving back. Missing details can lead to the wrong tree.",
-			"chart": [
-				["1", "You"],
-				["2", "Father"],
-				["3", "Mother"],
-				["4", "Father’s father"],
-				["5", "Father’s mother"],
-				["6", "Mother’s father"],
-				["7", "Mother’s mother"]
-			]
-		},
-		"family": {
-			"title": "Family group records",
-			"points": [
-				"Complete one record for each couple with children.",
-				"Use “Other Spouses” to indicate additional children with another partner.",
-				"Apply the same surname and date formatting rules."
-			]
-		}
-	},
-	"cta": {
-		"heading": "Stuck? Bring it to a meeting",
-		"text": "Bring your charts and your questions. Someone at the table has usually been stuck in the same place, and your first visit is free."
-	}
+ "_about": "Starting your family tree: the five steps guide page. Copy from the group's presentation 'Starting Your Family Tree - Version B'. Read by inc/guide.php (theme template and the Elementor page builder) and by scripts/build-preview-b.mjs, so all three stay the same.",
+ "slug": "starting-your-family-tree",
+ "title": "Starting your family tree",
+ "lead": "Five steps to begin your research and complete family history charts.",
+ "video": {
+  "file": "cfhg-five-steps.mp4",
+  "poster": "cfhg-five-steps-poster.jpg",
+  "label": "The five steps in a minute and a half",
+  "heading": "The five steps in a minute and a half",
+  "text": "A short film that walks through all five: start with what you already know, work back one generation at a time, and check what you find before it goes on your tree.",
+  "play": "Play the film",
+  "length": "1:31",
+  "read": "Prefer to read? Go to the steps",
+  "alt": "Play the film: The five steps in a minute and a half. It runs for one minute 31 seconds."
+ },
+ "before": {
+  "heading": "Your family tree",
+  "questions": [
+   "Why do you want to trace it?",
+   "Who could benefit from what you discover?"
+  ]
+ },
+ "steps_heading": "Five basic steps",
+ "steps": [
+  {
+   "title": "Write down what you know",
+   "question": "What do I know?",
+   "points": [
+    "Search your own memory",
+    "Ask family, friends and elders",
+    "Look through family homes and Bibles",
+    "Record details on pedigree charts and family group records"
+   ],
+   "image": "sharing-an-old-photograph-on-a-bench",
+   "icon": "notepad-pencil"
+  },
+  {
+   "title": "Decide what you want to learn",
+   "question": "What do I want to know?",
+   "text": [
+    "Start with the generation closest to you. Work back one generation at a time.",
+    "Turn gaps in your knowledge into specific research questions."
+   ],
+   "image": "notebook-and-old-photographs",
+   "icon": "thought-question"
+  },
+  {
+   "title": "Choose a resource",
+   "question": "Which resources?",
+   "groups": [
+    {
+     "title": "Records and documents",
+     "text": "Census, military and emigration records; microfilms; FamilySearch.org"
+    },
+    {
+     "title": "People and objects",
+     "text": "Relatives, family friends, photographs and tombstones"
+    }
+   ],
+   "image": "marking-a-caribbean-map",
+   "icon": "signpost"
+  },
+  {
+   "title": "Learn from the resource",
+   "question": "What did I learn?",
+   "points": [
+    "Search the record",
+    "Question or interview the person",
+    "Study and copy details from the object",
+    "Write down what you discover"
+   ],
+   "image": "copying-details-from-a-register",
+   "icon": "magnifier-record"
+  },
+  {
+   "title": "Use the information",
+   "points": [
+    "Evaluate and organise what you found",
+    "Look for new clues",
+    "Add it to your family tree or begin the five steps again",
+    "Share it with relatives and other researchers"
+   ],
+   "image": "conversation-at-dusk",
+   "icon": "family-tree"
+  }
+ ],
+ "charts": {
+  "heading": "Completing charts",
+  "lead": "Pedigree charts and family group records",
+  "record": {
+   "title": "Record the details clearly",
+   "points": [
+    "Use a pencil until you are certain of the facts.",
+    "Write confirmed information in pen.",
+    "Write surnames in capitals: Gordon (given name), GORDON (surname).",
+    "Use a three-letter month name to avoid date ambiguity."
+   ],
+   "note": "For example, 04/05/1925 can mean 4 May or 5 April 1925."
+  },
+  "numbering": {
+   "title": "Follow the numbering",
+   "even": "numbers represent males",
+   "odd": "numbers represent females",
+   "note": "Complete the nearest generation as fully as you can before moving back. Missing details can lead to the wrong tree.",
+   "chart": [
+    [
+     "1",
+     "You"
+    ],
+    [
+     "2",
+     "Father"
+    ],
+    [
+     "3",
+     "Mother"
+    ],
+    [
+     "4",
+     "Father’s father"
+    ],
+    [
+     "5",
+     "Father’s mother"
+    ],
+    [
+     "6",
+     "Mother’s father"
+    ],
+    [
+     "7",
+     "Mother’s mother"
+    ]
+   ]
+  },
+  "family": {
+   "title": "Family group records",
+   "points": [
+    "Complete one record for each couple with children.",
+    "Use “Other Spouses” to indicate additional children with another partner.",
+    "Apply the same surname and date formatting rules."
+   ]
+  }
+ },
+ "cta": {
+  "heading": "Stuck? Bring it to a meeting",
+  "text": "Bring your charts and your questions. Someone at the table has usually been stuck in the same place, and your first visit is free."
+ }
 }

@@ -461,6 +461,168 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	padding-top: var(--cfhg-sp-page);
 }
 
+/* Island pages: the events beside the posts stay a single column, and the
+   closing card sits in the middle of the page (Elementor puts its own zero
+   margin on a container, so this has to be more specific). */
+.cfhg-island__from .cfhg-events {
+	grid-template-columns: minmax(0, 1fr);
+	margin-top: var(--cfhg-sp-sm);
+}
+
+.cfhg-island__from .cfhg-event__title {
+	font-size: var(--cfhg-fs-h4);
+}
+
+.cfhg-guide__cta .cfhg-guide__cta-card,
+.cfhg-guide__cta .e-con.cfhg-guide__cta-card {
+	margin-inline: auto;
+}
+
+/* The film: words beside a poster that opens in a lightbox. */
+.cfhg-guide__film-grid {
+	display: grid;
+	gap: var(--cfhg-sp-lg) var(--cfhg-gap);
+	align-items: center;
+}
+
+.cfhg-guide__film-copy .cfhg-lead,
+.cfhg-guide__film .elementor-widget.cfhg-lead p {
+	max-width: 32rem;
+	margin: var(--cfhg-sp-sm) 0 0;
+}
+
+.cfhg-guide__film-copy .cfhg-actions {
+	margin-top: var(--cfhg-sp-md);
+}
+
+.cfhg-film {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	aspect-ratio: 16 / 9;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	box-shadow: 0 30px 60px -40px rgba(16, 33, 59, 0.55);
+	cursor: pointer;
+}
+
+.cfhg-film img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 700ms var(--cfhg-ease);
+}
+
+.cfhg-film__play {
+	position: absolute;
+	/* In the corner, so it never sits on the poster's own title. */
+	right: clamp(0.9rem, 0.5rem + 1.5vw, 1.75rem);
+	bottom: clamp(0.9rem, 0.5rem + 1.5vw, 1.75rem);
+	width: clamp(3.5rem, 2.8rem + 2.5vw, 5rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--cfhg-highlight);
+	box-shadow: 0 10px 30px rgba(16, 33, 59, 0.35);
+	transition: scale var(--cfhg-dur) var(--cfhg-ease);
+}
+
+/* The triangle, nudged right so it looks centred in the disc. */
+.cfhg-film__play::after {
+	content: "";
+	position: absolute;
+	left: 52%;
+	top: 50%;
+	translate: -50% -50%;
+	border-style: solid;
+	border-width: 0.8rem 0 0.8rem 1.35rem;
+	border-color: transparent transparent transparent var(--cfhg-ink);
+	scale: clamp(1, 0.7rem + 0.9vw, 1.35);
+}
+
+.cfhg-film:hover img,
+.cfhg-film:focus-visible img {
+	transform: scale(1.03);
+}
+
+.cfhg-film:hover .cfhg-film__play,
+.cfhg-film:focus-visible .cfhg-film__play {
+	scale: 1.08;
+}
+
+.cfhg-film:focus-visible {
+	outline: 3px solid var(--cfhg-ink);
+	outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cfhg-film img,
+	.cfhg-film__play {
+		transition: none;
+	}
+}
+
+@media (min-width: 900px) {
+	.cfhg-guide__film-grid {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	}
+}
+
+/* The lightbox itself (assets/js/lightbox.js). */
+.cfhg-lightbox {
+	width: min(100vw - 2rem, 70rem);
+	max-width: none;
+	max-height: calc(100svh - 2rem);
+	margin: auto;
+	padding: 0;
+	border: 0;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+	overflow: visible;
+}
+
+.cfhg-lightbox::backdrop {
+	background: rgba(16, 33, 59, 0.82);
+}
+
+.cfhg-lightbox video {
+	display: block;
+	width: 100%;
+	max-height: calc(100svh - 2rem);
+	aspect-ratio: 16 / 9;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-ink);
+}
+
+.cfhg-lightbox__close {
+	position: absolute;
+	right: 0.5rem;
+	top: -3.25rem;
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--cfhg-white);
+	color: var(--cfhg-ink);
+	cursor: pointer;
+}
+
+.cfhg-lightbox__close:hover,
+.cfhg-lightbox__close:focus-visible {
+	background: var(--cfhg-highlight);
+}
+
+@media (max-width: 767px) {
+	/* On a phone the close button sits over the film's corner, not off the top. */
+	.cfhg-lightbox__close {
+		top: -3rem;
+		right: 0;
+	}
+}
+
 /* 7. "On this page" links ---------------------------------------------------- */
 
 .cfhg-jump ul,
@@ -480,6 +642,21 @@ ul.cfhg-jump {
 
 .cfhg-jump li::before {
 	content: none;
+}
+
+/* Island pages have five links: a line break after the third lets them sit
+   three then two, rather than leaving one on a line of its own. */
+.cfhg-jump__break {
+	display: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-jump__break {
+		display: block;
+		flex-basis: 100%;
+		height: 0;
+		margin: 0;
+	}
 }
 
 .cfhg-jump a {

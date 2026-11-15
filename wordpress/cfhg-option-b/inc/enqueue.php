@@ -48,6 +48,16 @@ function cfhg_enqueue_assets() {
 			'strategy'  => 'defer',
 		)
 	);
+	wp_enqueue_script(
+		'cfhg-lightbox',
+		CFHG_URI . '/assets/js/lightbox.js',
+		array(),
+		CFHG_VERSION,
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
 	wp_add_inline_script( 'cfhg-polish', 'window.cfhgLoops = ' . wp_json_encode( cfhg_loop_films() ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'cfhg_enqueue_assets' );

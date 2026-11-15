@@ -196,3 +196,7 @@ plus the class below.
 - **"On this page" links:** a Text Editor widget with the CSS class `cfhg-jump` holding a bulleted list of links such as `#cfhg-island-finder`. Give each section that ID in Advanced > CSS ID.
 - **Records timeline:** a Shortcode widget, `[cfhg_record_timeline island="jamaica"]`.
 - **Section spacing on inner pages:** padding-top 104px (tablet 84px, mobile 60px), no padding-bottom; the footer brings its own space. Don't add the theme's section classes that carry their own padding (`cfhg-section`) to an Elementor container.
+
+## Added in 1.6.0: the film lightbox
+
+On the five steps page the film is a section with words on the left and its poster on the right. The poster is a Shortcode widget, `[cfhg_video_lightbox]`. Any link with the CSS class `cfhg-video-open` and a `.mp4` address opens that film in a lightbox, so the "Play the film" button (an Elementor Button with that class) opens it too. Without JavaScript the links simply open the file. The words, button labels and file come from `inc/guide-content.json` (`video`).

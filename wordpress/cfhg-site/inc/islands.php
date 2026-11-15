@@ -220,17 +220,6 @@ function cfhg_site_record_finder_shortcode( $atts ) {
 	$f  = $guide['finder'];
 	$id = wp_unique_id( 'cfhg-finder-' );
 
-	/* What the script needs: the rules, the parishes, and the surnames being researched. */
-	$people = array();
-	if ( function_exists( 'cfhg_site_surnames' ) ) {
-		foreach ( cfhg_site_surnames( $guide['slug'] ) as $row ) {
-			$people[] = array(
-				'names'  => array_values( array_filter( array_map( 'trim', explode( '/', $row['surnames'] ) ) ) ),
-				'label'  => $row['surnames'],
-				'parish' => $row['parish'],
-			);
-		}
-	}
 	$data = array(
 		'island'   => $guide['name'],
 		'records'  => $f['records'],
@@ -246,17 +235,12 @@ function cfhg_site_record_finder_shortcode( $atts ) {
 			},
 			$guide['parishes']
 		),
-		'people'   => $people,
-		'mail'     => function_exists( 'cfhg_mailto' ) ? cfhg_mailto() : '',
 		'text'     => array(
 			'tryFirst'   => __( 'Try first', 'cfhg-site' ),
 			'where'      => __( 'Where:', 'cfhg-site' ),
 			'open'       => __( 'Go to', 'cfhg-site' ),
 			'none'       => __( 'We don’t have a suggestion for that combination yet. Bring it to a meeting: it’s exactly what we’re here for.', 'cfhg-site' ),
 			'oldNames'   => __( 'Before 1867 the area was part of: %s. Search those parish names too.', 'cfhg-site' ),
-			'match'      => __( 'Someone in the group is researching %1$s (%2$s).', 'cfhg-site' ),
-			'matchAny'   => __( 'anywhere on the island', 'cfhg-site' ),
-			'matchAsk'   => __( 'Email us and we’ll put you in touch', 'cfhg-site' ),
 			'needChoice' => __( 'Choose what you’re looking for first.', 'cfhg-site' ),
 		),
 	);
@@ -280,7 +264,6 @@ function cfhg_site_record_finder_shortcode( $atts ) {
 		. '<div class="cfhg-finder__row">'
 		. '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-when">' . esc_html__( 'Roughly when?', 'cfhg-site' ) . '</label><select id="' . esc_attr( $id ) . '-when" name="when">' . $periods . '</select></p>'
 		. '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-parish">' . esc_html__( 'Which parish?', 'cfhg-site' ) . '</label><select id="' . esc_attr( $id ) . '-parish" name="parish">' . $parishes . '</select></p>'
-		. '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-surname">' . esc_html__( 'A surname (optional)', 'cfhg-site' ) . '</label><input type="text" id="' . esc_attr( $id ) . '-surname" name="surname" autocomplete="off" placeholder="' . esc_attr__( 'e.g. Grant', 'cfhg-site' ) . '"></p>'
 		. '</div>'
 		. '<p class="cfhg-finder__go"><button type="submit" class="cfhg-btn cfhg-btn--mark"><span class="cfhg-btn__label">' . esc_html__( 'Show me where to look', 'cfhg-site' ) . '</span></button></p>'
 		. '</form>'

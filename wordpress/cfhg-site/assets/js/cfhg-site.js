@@ -154,7 +154,6 @@
 			var parish = data.parishes.filter( function ( p ) {
 				return p.slug === form.elements.parish.value;
 			} )[ 0 ];
-			var surname = form.elements.surname.value.trim();
 
 			var hits = data.records.filter( function ( r ) {
 				return r.for.indexOf( looking.value ) !== -1 && r.from <= period.to && r.to >= period.from;
@@ -163,20 +162,6 @@
 			} );
 
 			var html = '';
-
-			/* Someone in the group researching that surname? */
-			if ( surname ) {
-				var q = surname.toLowerCase();
-				data.people.forEach( function ( person ) {
-					var match = person.names.some( function ( n ) {
-						return n.toLowerCase().replace( /\(|\)/g, '' ) === q || n.toLowerCase().split( /[ (]/ )[ 0 ] === q;
-					} );
-					if ( match ) {
-						html += '<p class="cfhg-finder__match"><strong>' + esc( fill( t.match, person.label, person.parish || t.matchAny ) ) + '</strong> '
-							+ ( data.mail ? '<a href="' + esc( data.mail ) + '">' + esc( t.matchAsk ) + '</a>' : '' ) + '</p>';
-					}
-				} );
-			}
 
 			if ( ! hits.length ) {
 				html += '<p class="cfhg-finder__none">' + esc( t.none ) + '</p>';

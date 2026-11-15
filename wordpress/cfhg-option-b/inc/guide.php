@@ -128,7 +128,8 @@ function cfhg_guide_numbering( $numbering ) {
 }
 
 /**
- * The explainer video, with its poster.
+ * The film's poster as a link. With JavaScript it opens in a lightbox
+ * (assets/js/lightbox.js); without, the link plays the file itself.
  *
  * @return string
  */
@@ -139,11 +140,28 @@ function cfhg_guide_video() {
 	}
 	$base = CFHG_URI . '/assets/video/';
 	return sprintf(
-		'<figure class="cfhg-guide__player"><video controls playsinline preload="metadata" poster="%1$s" width="1280" height="720"><source src="%2$s" type="video/mp4"></video><figcaption>%3$s</figcaption></figure>',
-		esc_url( $base . $c['video']['poster'] ),
+		'<a class="cfhg-film cfhg-video-open" href="%1$s" aria-label="%3$s"><img src="%2$s" width="1280" height="720" alt="" loading="lazy" decoding="async"><span class="cfhg-film__play" aria-hidden="true"></span></a>',
 		esc_url( $base . $c['video']['file'] ),
-		esc_html( $c['video']['label'] )
+		esc_url( $base . $c['video']['poster'] ),
+		esc_attr( $c['video']['alt'] )
 	);
+}
+
+/**
+ * The words beside the film: a heading, a sentence, a button that opens it,
+ * and a way past it for people who would rather read.
+ *
+ * @return string
+ */
+function cfhg_guide_film_copy() {
+	$c = cfhg_guide_content();
+	$v = $c['video'];
+	return '<h2 class="cfhg-h2" id="cfhg-guide-film-title">' . esc_html( $v['heading'] ) . '</h2>'
+		. '<p class="cfhg-lead">' . esc_html( $v['text'] ) . '</p>'
+		. '<div class="cfhg-actions">'
+		. cfhg_button( $v['play'] . ', ' . $v['length'], CFHG_URI . '/assets/video/' . $v['file'], 'mark', 'cfhg-video-open' )
+		. cfhg_button( $v['read'], '#cfhg-guide-steps', 'text' )
+		. '</div>';
 }
 
 /**
@@ -213,7 +231,7 @@ function cfhg_guide_markup() {
 		. '<nav class="cfhg-jump" aria-label="' . esc_attr__( 'On this page', 'cfhg' ) . '">' . cfhg_guide_jump_list() . '</nav></div>'
 		. '<figure class="cfhg-postcard cfhg-postcard--gold cfhg-guide__hero-art">' . cfhg_theme_image( 'filling-in-a-family-tree-chart', array( 'sizes' => '(min-width: 1024px) 42vw, 92vw', 'loading' => 'eager' ) ) . '</figure>'
 		. '</div></header>'
-		. '<div class="cfhg-container cfhg-guide__video" id="cfhg-guide-film">' . cfhg_guide_video() . '</div>'
+		. '<section class="cfhg-section cfhg-guide__film" id="cfhg-guide-film" aria-labelledby="cfhg-guide-film-title"><div class="cfhg-container cfhg-guide__film-grid"><div class="cfhg-guide__film-copy">' . cfhg_guide_film_copy() . '</div><div class="cfhg-guide__film-player">' . cfhg_guide_video() . '</div></div></section>'
 		. '<section class="cfhg-section cfhg-guide__before" aria-labelledby="cfhg-guide-before"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-before">' . esc_html( $c['before']['heading'] ) . '</h2>' . cfhg_guide_list( $c['before']['questions'], 'cfhg-guide__questions' ) . '</div></section>'
 		. '<section class="cfhg-section cfhg-guide__steps" aria-labelledby="cfhg-guide-steps"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-steps">' . esc_html( $c['steps_heading'] ) . '</h2><ol class="cfhg-guide__list">' . $steps . '</ol></div></section>'
 		. '<section class="cfhg-guide__charts" aria-labelledby="cfhg-guide-charts"><div class="cfhg-container">'
@@ -289,31 +307,42 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 		)
 	);
 
-	/* The explainer video. */
+	/* The explainer film: words on one side, the poster on the other; it opens in a lightbox. */
+	$v          = $c['video'];
 	$sections[] = cfhg_el_section(
-		'cfhg-el-guide-video',
+		'cfhg-el-guide-film cfhg-guide__film',
 		array(
-			cfhg_el_widget(
-				'video',
+			cfhg_el_row(
 				array(
-					'video_type'   => 'hosted',
-					'insert_url'   => 'yes',
-					'external_url' => array( 'url' => $base . $c['video']['file'] ),
-					'poster'       => array( 'url' => $base . $c['video']['poster'] ),
-					'controls'     => 'yes',
-					'preload'      => 'metadata',
-					'_css_classes' => 'cfhg-guide__player',
+					cfhg_el_column(
+						44,
+						array(
+							cfhg_el_heading( esc_html( $v['heading'] ), 'h2', 'cfhg-h2' ),
+							cfhg_el_text( '<p>' . esc_html( $v['text'] ) . '</p>', 'cfhg-lead' ),
+							cfhg_el_row(
+								array(
+									cfhg_el_button( $v['play'] . ', ' . $v['length'], $base . $v['file'], 'mark', 'cfhg-video-open' ),
+									cfhg_el_button( $v['read'], '#cfhg-guide-steps', 'text' ),
+								),
+								array(
+									'flex_direction_tablet' => 'row',
+									'flex_wrap'             => 'wrap',
+									'flex_align_items'      => 'center',
+									'flex_gap'              => cfhg_el_gap( 20 ),
+								)
+							),
+						),
+						array( 'flex_gap' => cfhg_el_gap( 20 ) )
+					),
+					cfhg_el_column( 50, array( cfhg_el_shortcode( '[cfhg_video_lightbox]', 'cfhg-guide__film-player' ) ) ),
+				),
+				array(
+					'flex_align_items'     => 'center',
+					'flex_justify_content' => 'space-between',
 				)
 			),
-			cfhg_el_text( '<p>' . esc_html( $c['video']['label'] ) . '</p>', 'cfhg-guide__caption' ),
 		),
-		array(
-			'padding'        => cfhg_el_box( 'px', 64, 32, 0, 32 ),
-			'padding_tablet' => cfhg_el_box( 'px', 56, 24, 0, 24 ),
-			'padding_mobile' => cfhg_el_box( 'px', 44, 18, 0, 18 ),
-			'flex_gap'       => cfhg_el_gap( 12 ),
-			'_element_id'    => 'cfhg-guide-film',
-		)
+		array_merge( cfhg_el_page_rhythm(), array( '_element_id' => 'cfhg-guide-film' ) )
 	);
 
 	/* Your family tree: two questions. */

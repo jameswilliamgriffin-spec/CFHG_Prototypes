@@ -104,8 +104,11 @@ function cfhg_island_hero_copy( $guide ) {
  */
 function cfhg_island_jump_list( $guide ) {
 	$html = '<ul>';
-	foreach ( array( 'finder', 'timeline', 'parishes', 'sources', 'names' ) as $key ) {
+	foreach ( array( 'finder', 'timeline', 'parishes', 'sources', 'names' ) as $n => $key ) {
 		$html .= '<li><a href="#cfhg-island-' . $key . '">' . esc_html( cfhg_island_say( 'jump_' . $key, $guide['name'] ) ) . '</a></li>';
+		if ( 2 === $n ) {
+			$html .= '<li class="cfhg-jump__break" aria-hidden="true"></li>';
+		}
 	}
 	return $html . '</ul>';
 }

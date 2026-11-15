@@ -7,6 +7,7 @@
  *
  *   [cfhg_next_meeting style="inline|title|facts"]
  *   [cfhg_hero_proof]
+ *   [cfhg_video_lightbox]
  *   [cfhg_prices]
  *   [cfhg_numbers]
  *   [cfhg_steps]
@@ -31,6 +32,13 @@ function cfhg_register_shortcodes() {
 		static function ( $atts ) {
 			$atts = shortcode_atts( array( 'style' => 'inline' ), $atts, 'cfhg_next_meeting' );
 			return cfhg_component_next_meeting( sanitize_key( $atts['style'] ) );
+		}
+	);
+	/* The five steps film's poster; it opens in a lightbox. */
+	add_shortcode(
+		'cfhg_video_lightbox',
+		static function () {
+			return function_exists( 'cfhg_guide_video' ) ? cfhg_guide_video() : '';
 		}
 	);
 	add_shortcode(
