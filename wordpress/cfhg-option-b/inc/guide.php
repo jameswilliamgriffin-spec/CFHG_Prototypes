@@ -164,6 +164,24 @@ function cfhg_guide_cta_inner() {
 }
 
 /**
+ * Links from the top of the guide to its parts.
+ *
+ * @return string A list.
+ */
+function cfhg_guide_jump_list() {
+	$links = array(
+		'cfhg-guide-film'   => __( 'Watch the film', 'cfhg' ),
+		'cfhg-guide-steps'  => __( 'The five steps', 'cfhg' ),
+		'cfhg-guide-charts' => __( 'Filling in the charts', 'cfhg' ),
+	);
+	$html  = '<ul>';
+	foreach ( $links as $id => $label ) {
+		$html .= '<li><a href="#' . esc_attr( $id ) . '">' . esc_html( $label ) . '</a></li>';
+	}
+	return $html . '</ul>';
+}
+
+/**
  * The whole page, for the theme template.
  *
  * @return string
@@ -190,8 +208,12 @@ function cfhg_guide_markup() {
 	$charts = $c['charts'];
 
 	return '<main id="main" class="cfhg-main cfhg-guide">'
-		. '<header class="cfhg-page-hero"><div class="cfhg-container"><h1 class="cfhg-h1 cfhg-page-hero__title">' . esc_html( $c['title'] ) . '</h1><p class="cfhg-lead cfhg-page-hero__lead">' . esc_html( $c['lead'] ) . '</p></div></header>'
-		. '<div class="cfhg-container cfhg-guide__video">' . cfhg_guide_video() . '</div>'
+		. '<header class="cfhg-page-hero"><div class="cfhg-container cfhg-guide__hero-grid">'
+		. '<div><h1 class="cfhg-h1 cfhg-page-hero__title">' . esc_html( $c['title'] ) . '</h1><p class="cfhg-lead cfhg-page-hero__lead">' . esc_html( $c['lead'] ) . '</p>'
+		. '<nav class="cfhg-jump" aria-label="' . esc_attr__( 'On this page', 'cfhg' ) . '">' . cfhg_guide_jump_list() . '</nav></div>'
+		. '<figure class="cfhg-postcard cfhg-postcard--gold cfhg-guide__hero-art">' . cfhg_theme_image( 'filling-in-a-family-tree-chart', array( 'sizes' => '(min-width: 1024px) 42vw, 92vw', 'loading' => 'eager' ) ) . '</figure>'
+		. '</div></header>'
+		. '<div class="cfhg-container cfhg-guide__video" id="cfhg-guide-film">' . cfhg_guide_video() . '</div>'
 		. '<section class="cfhg-section cfhg-guide__before" aria-labelledby="cfhg-guide-before"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-before">' . esc_html( $c['before']['heading'] ) . '</h2>' . cfhg_guide_list( $c['before']['questions'], 'cfhg-guide__questions' ) . '</div></section>'
 		. '<section class="cfhg-section cfhg-guide__steps" aria-labelledby="cfhg-guide-steps"><div class="cfhg-container"><h2 class="cfhg-h2" id="cfhg-guide-steps">' . esc_html( $c['steps_heading'] ) . '</h2><ol class="cfhg-guide__list">' . $steps . '</ol></div></section>'
 		. '<section class="cfhg-guide__charts" aria-labelledby="cfhg-guide-charts"><div class="cfhg-container">'
@@ -236,13 +258,35 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 	$sections = array();
 
 	/* Title and introduction. */
+	$hero_art   = $image( 'filling-in-a-family-tree-chart' );
+	$hero_art['settings']['_css_classes'] = 'cfhg-el-img cfhg-postcard cfhg-postcard--gold';
+	$hero_art['settings']['image_size']   = 'full';
 	$sections[] = cfhg_el_section(
 		'cfhg-el-guide-hero',
 		array(
-			cfhg_el_heading( esc_html( $c['title'] ), 'h1', 'cfhg-h1' ),
-			cfhg_el_text( '<p>' . esc_html( $c['lead'] ) . '</p>', 'cfhg-lead cfhg-el-narrow' ),
+			cfhg_el_row(
+				array(
+					cfhg_el_column(
+						50,
+						array(
+							cfhg_el_heading( esc_html( $c['title'] ), 'h1', 'cfhg-h1' ),
+							cfhg_el_text( '<p>' . esc_html( $c['lead'] ) . '</p>', 'cfhg-lead cfhg-el-narrow' ),
+							cfhg_el_text( cfhg_guide_jump_list(), 'cfhg-jump' ),
+						)
+					),
+					cfhg_el_column( 44, array( $hero_art ) ),
+				),
+				array(
+					'flex_align_items'     => 'center',
+					'flex_justify_content' => 'space-between',
+				)
+			),
 		),
-		array( 'padding' => cfhg_el_box( 'px', 160, 32, 0, 32 ) )
+		array(
+			/* The page already starts below the header: just a little air. */
+			'padding'        => cfhg_el_box( 'px', 48, 32, 0, 32 ),
+			'padding_mobile' => cfhg_el_box( 'px', 32, 18, 0, 18 ),
+		)
 	);
 
 	/* The explainer video. */
@@ -264,8 +308,11 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 			cfhg_el_text( '<p>' . esc_html( $c['video']['label'] ) . '</p>', 'cfhg-guide__caption' ),
 		),
 		array(
-			'padding'  => cfhg_el_box( 'px', 48, 32, 0, 32 ),
-			'flex_gap' => cfhg_el_gap( 12 ),
+			'padding'        => cfhg_el_box( 'px', 64, 32, 0, 32 ),
+			'padding_tablet' => cfhg_el_box( 'px', 56, 24, 0, 24 ),
+			'padding_mobile' => cfhg_el_box( 'px', 44, 18, 0, 18 ),
+			'flex_gap'       => cfhg_el_gap( 12 ),
+			'_element_id'    => 'cfhg-guide-film',
 		)
 	);
 
@@ -275,7 +322,8 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 		array(
 			cfhg_el_heading( esc_html( $c['before']['heading'] ), 'h2', 'cfhg-h2' ),
 			cfhg_el_text( cfhg_guide_list( $c['before']['questions'], 'cfhg-guide__questions' ), 'cfhg-body cfhg-el-list' ),
-		)
+		),
+		cfhg_el_page_rhythm()
 	);
 
 	/* The five steps, alternating sides. */
@@ -303,7 +351,7 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 			)
 		);
 	}
-	$sections[] = cfhg_el_section( 'cfhg-el-guide-steps cfhg-guide__steps', $steps, array( 'flex_gap' => cfhg_el_gap( 64 ) ) );
+	$sections[] = cfhg_el_section( 'cfhg-el-guide-steps cfhg-guide__steps', $steps, array_merge( cfhg_el_page_rhythm(), array( 'flex_gap' => cfhg_el_gap( 64 ), '_element_id' => 'cfhg-guide-steps' ) ) );
 
 	/* Completing charts: a navy band with three white cards. */
 	$charts     = $c['charts'];
@@ -338,9 +386,13 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 			),
 		),
 		array(
-			'padding'        => cfhg_el_box( 'px', 100, 32, 100, 32 ),
-			'padding_mobile' => cfhg_el_box( 'px', 64, 18, 64, 18 ),
-			'margin'         => cfhg_el_box( 'px', 140, 0, 0, 0 ),
+			'padding'        => cfhg_el_box( 'px', 96, 32, 96, 32 ),
+			'padding_tablet' => cfhg_el_box( 'px', 80, 24, 80, 24 ),
+			'padding_mobile' => cfhg_el_box( 'px', 56, 18, 56, 18 ),
+			'margin'         => cfhg_el_box( 'px', 104, 0, 0, 0 ),
+			'margin_tablet'  => cfhg_el_box( 'px', 84, 0, 0, 0 ),
+			'margin_mobile'  => cfhg_el_box( 'px', 60, 0, 0, 0 ),
+			'_element_id'    => 'cfhg-guide-charts',
 		)
 	);
 
@@ -374,7 +426,7 @@ function cfhg_elementor_guide_data( $image_map = array() ) {
 				array( 'css_classes' => 'cfhg-guide__cta-card' )
 			),
 		),
-		array( 'padding' => cfhg_el_box( 'px', 120, 32, 0, 32 ) )
+		cfhg_el_page_rhythm()
 	);
 
 	return cfhg_el_strip_nulls( $sections );
@@ -406,10 +458,10 @@ function cfhg_create_guide_page() {
 
 	if ( function_exists( 'cfhg_elementor_is_active' ) && cfhg_elementor_is_active() ) {
 		$images = array();
-		foreach ( $c['steps'] as $step ) {
-			$id = cfhg_import_theme_image( $step['image'] );
+		foreach ( array_merge( array( 'filling-in-a-family-tree-chart' ), wp_list_pluck( $c['steps'], 'image' ) ) as $slug ) {
+			$id = cfhg_import_theme_image( $slug );
 			if ( $id ) {
-				$images[ $step['image'] ] = $id;
+				$images[ $slug ] = $id;
 			}
 		}
 		update_post_meta( $page_id, '_elementor_edit_mode', 'builder' );

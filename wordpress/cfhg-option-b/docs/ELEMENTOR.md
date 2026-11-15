@@ -138,7 +138,11 @@ Free Elementor can't list custom content, so events go in through Shortcode widg
 | `[cfhg_events]` | Upcoming events. Add `limit="4"`, `island="jamaica"`, `group="barbados"`, `type="talk"` or `when="past"` |
 | `[cfhg_calendar_links]` | "Add all our meetings to your calendar" |
 
-An Elementor What's On page: an H1, a Text Editor for the introduction, an H2 "Coming up", `[cfhg_events when="upcoming" limit="20"]`, `[cfhg_calendar_links]`, an H2 "Recent events" and `[cfhg_events when="past" limit="12"]`. On an island page, `[cfhg_events island="jamaica" limit="4"]` lists that island's events. The `[cfhg_next_meeting]` shortcodes already show the real next event.
+An Elementor What's On page: a two-column hero (an H1, a Text Editor for the introduction, and an Image widget with the CSS class `cfhg-postcard`), an H2 "Coming up", `[cfhg_events when="upcoming" limit="20"]`, `[cfhg_calendar_links]`, an H2 "Recent events" and `[cfhg_events when="past" limit="12"]`. On an island page, `[cfhg_events island="jamaica" limit="4"]` lists that island's events. The `[cfhg_next_meeting]` shortcodes already show the real next event.
+
+## Island pages
+
+Appearance > CFHG Setup > **Create an island page** builds the page from a heading, a Text Editor and the illustration in the opening section, then one section per part, each holding a Shortcode widget: `[cfhg_record_finder island="jamaica"]`, `[cfhg_parish_map island="jamaica"]`, `[cfhg_island_sources island="jamaica"]`, `[cfhg_surnames island="jamaica"]`, then a Text Editor with the members' story cards (`<article class="cfhg-island-story">`; remove `is-placeholder` once a story is written), and the island's events and posts. The illustration Image widget has the class `cfhg-island__art` (the postcard). Running the button again rebuilds the page and replaces edits.
 
 ## Shortcodes
 
@@ -183,3 +187,12 @@ plus the class below.
 - **The background drift needs a recent browser.** In the theme, the membership photograph drifts in every browser (with a JavaScript fallback). In Elementor it's a background image, which only CSS can move, so it stays still where scroll-driven animation isn't supported.
 - **Reveal animations differ slightly.** Elements in Elementor fade in through the theme's script where the list markup is used (notes, steps, islands, partners). Use Elementor's Motion Effects for anything else.
 - **Where the lists are edited depends on the version.** In the theme version they come from the Customizer; in the Elementor version they're HTML you edit in place.
+
+## Added in 1.5.0
+
+- **Surname ribbon:** a full-width container (padding 0, CSS class `cfhg-names`) holding one Shortcode widget, `[cfhg_surname_ribbon]`, straight after the opening panel.
+- **Living photographs** need nothing in Elementor: an Image widget showing the homepage photograph or the Jamaica illustration gets its film automatically. Replace the image and the film goes.
+- **Postcard:** an Image widget with the CSS class `cfhg-postcard` (add `cfhg-postcard--sea` or `cfhg-postcard--gold` to change the printed edge).
+- **"On this page" links:** a Text Editor widget with the CSS class `cfhg-jump` holding a bulleted list of links such as `#cfhg-island-finder`. Give each section that ID in Advanced > CSS ID.
+- **Records timeline:** a Shortcode widget, `[cfhg_record_timeline island="jamaica"]`.
+- **Section spacing on inner pages:** padding-top 104px (tablet 84px, mobile 60px), no padding-bottom; the footer brings its own space. Don't add the theme's section classes that carry their own padding (`cfhg-section`) to an Elementor container.

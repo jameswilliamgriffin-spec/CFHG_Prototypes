@@ -108,7 +108,7 @@ function cfhg_site_register_content() {
 
 	register_taxonomy(
 		'cfhg_island',
-		array( 'cfhg_event', 'post' ),
+		array( 'cfhg_event', 'post', 'cfhg_surname' ),
 		array(
 			'labels'            => array(
 				'name'          => __( 'Islands', 'cfhg-site' ),

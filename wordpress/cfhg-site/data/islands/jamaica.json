@@ -1,0 +1,434 @@
+{
+	"_about": "Jamaica's island guide: parishes, where to look, and the rules for 'Where should I look?'. DRAFT written from published sources for the group to check: see the 'check' notes. Read by cfhg_site_island() in inc/islands.php.",
+	"slug": "jamaica",
+	"name": "Jamaica",
+	"draft": true,
+	"checked": "",
+	"illustration": "island-jamaica-blue-mountains",
+	"intro": "Jamaica has some of the best-kept records in the Caribbean, from Church of England registers that go back to the 1660s to civil registration from 1878. Most of us in the group are researching Jamaican families, and our Jamaica sub-group meets regularly.",
+	"map_credit": "Map data © OpenStreetMap contributors, via geoBoundaries. Licensed CC BY-SA 2.0.",
+	"parish_note": "In 1867 Jamaica's 22 parishes were merged into the 14 we know today. Records from before then use the old names, so each parish below lists the old parishes it took over.",
+	"parishes": [
+		{
+			"slug": "kingston",
+			"name": "Kingston",
+			"town": "Kingston",
+			"old": [
+				"Port Royal (part)"
+			],
+			"aliases": []
+		},
+		{
+			"slug": "st-andrew",
+			"name": "St Andrew",
+			"town": "Half Way Tree",
+			"old": [
+				"Port Royal (part)"
+			],
+			"aliases": [
+				"Saint Andrew",
+				"Half Way Tree"
+			]
+		},
+		{
+			"slug": "st-thomas",
+			"name": "St Thomas",
+			"town": "Morant Bay",
+			"old": [
+				"St Thomas in the East",
+				"St David"
+			],
+			"aliases": [
+				"Saint Thomas",
+				"Morant Bay"
+			]
+		},
+		{
+			"slug": "portland",
+			"name": "Portland",
+			"town": "Port Antonio",
+			"old": [
+				"St George"
+			],
+			"aliases": [
+				"Port Antonio"
+			]
+		},
+		{
+			"slug": "st-mary",
+			"name": "St Mary",
+			"town": "Port Maria",
+			"old": [
+				"Metcalfe"
+			],
+			"aliases": [
+				"Saint Mary",
+				"Port Maria"
+			]
+		},
+		{
+			"slug": "st-ann",
+			"name": "St Ann",
+			"town": "St Ann's Bay",
+			"old": [],
+			"aliases": [
+				"Saint Ann"
+			]
+		},
+		{
+			"slug": "trelawny",
+			"name": "Trelawny",
+			"town": "Falmouth",
+			"old": [],
+			"aliases": [
+				"Trelawney",
+				"Falmouth"
+			]
+		},
+		{
+			"slug": "st-james",
+			"name": "St James",
+			"town": "Montego Bay",
+			"old": [],
+			"aliases": [
+				"Saint James",
+				"Montego Bay"
+			]
+		},
+		{
+			"slug": "hanover",
+			"name": "Hanover",
+			"town": "Lucea",
+			"old": [],
+			"aliases": [
+				"Lucea"
+			]
+		},
+		{
+			"slug": "westmoreland",
+			"name": "Westmoreland",
+			"town": "Savanna-la-Mar",
+			"old": [],
+			"aliases": [
+				"Westmorland",
+				"Savanna-la-Mar",
+				"Savanna la Mar"
+			]
+		},
+		{
+			"slug": "st-elizabeth",
+			"name": "St Elizabeth",
+			"town": "Black River",
+			"old": [],
+			"aliases": [
+				"Saint Elizabeth",
+				"Black River"
+			]
+		},
+		{
+			"slug": "manchester",
+			"name": "Manchester",
+			"town": "Mandeville",
+			"old": [],
+			"aliases": [
+				"Mandeville"
+			]
+		},
+		{
+			"slug": "clarendon",
+			"name": "Clarendon",
+			"town": "May Pen",
+			"old": [
+				"Vere"
+			],
+			"aliases": [
+				"May Pen"
+			]
+		},
+		{
+			"slug": "st-catherine",
+			"name": "St Catherine",
+			"town": "Spanish Town",
+			"old": [
+				"St Dorothy",
+				"St John",
+				"St Thomas in the Vale"
+			],
+			"aliases": [
+				"Saint Catherine",
+				"Spanish Town",
+				"Spanishtown"
+			]
+		}
+	],
+	"parish_tip": "Church of England registers for {parish} are kept by the Registrar General's Department, with copies on FamilySearch. From 1878, births and deaths were registered with the state, parish by parish.",
+	"resources": [
+		{
+			"title": "FamilySearch",
+			"text": "Free. Church of England registers from the 1660s and civil registration from 1878, many indexed. Image access for Jamaica has recently changed, so some images may only be viewable at a FamilySearch centre or affiliate library, like Solihull Core Library.",
+			"url": "https://www.familysearch.org/search/collection/1538386",
+			"online": true,
+			"check": "Which Jamaica images are viewable at home, and which only at the library?"
+		},
+		{
+			"title": "Registrar General's Department",
+			"text": "Jamaica's official records of births, marriages and deaths, and the older church registers. Order certificates here.",
+			"url": "https://www.rgd.gov.jm",
+			"online": true,
+			"check": ""
+		},
+		{
+			"title": "Jamaica Archives, Spanish Town",
+			"text": "Wills, deeds, land records, the island's older registers and much more. Plan ahead: check opening before you go.",
+			"url": "https://jard.gov.jm",
+			"online": false,
+			"check": "Current address and opening times."
+		},
+		{
+			"title": "Slave registers and compensation records",
+			"text": "Registers of enslaved people made every three years from 1817 to 1834, at The National Archives (series T 71), and searchable on Ancestry. The Legacies of British Slavery database at UCL covers the owners and estates paid compensation.",
+			"url": "https://www.ucl.ac.uk/lbs/",
+			"online": true,
+			"check": ""
+		},
+		{
+			"title": "Jamaican Family Search",
+			"text": "Transcribed almanacs, lists of landholders and other early sources, gathered over many years.",
+			"url": "http://www.jamaicanfamilysearch.com",
+			"online": true,
+			"check": "Free and subscription parts."
+		},
+		{
+			"title": "At Solihull Core Library",
+			"text": "Solihull Libraries list the Caribbean family history films they hold, and you can use FamilySearch there at affiliate level. Ask us at a meeting and we'll show you.",
+			"url": "https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Caribbean01_FH_films.pdf",
+			"online": true,
+			"check": "Is this the current list?"
+		}
+	],
+	"finder": {
+		"periods": [
+			{
+				"id": "before-1834",
+				"label": "Before 1834",
+				"from": 1600,
+				"to": 1833
+			},
+			{
+				"id": "1834-1877",
+				"label": "1834 to 1877",
+				"from": 1834,
+				"to": 1877
+			},
+			{
+				"id": "1878-1929",
+				"label": "1878 to 1929",
+				"from": 1878,
+				"to": 1929
+			},
+			{
+				"id": "1930-on",
+				"label": "1930 or later",
+				"from": 1930,
+				"to": 2100
+			},
+			{
+				"id": "not-sure",
+				"label": "I'm not sure",
+				"from": 1600,
+				"to": 2100
+			}
+		],
+		"looking": [
+			{
+				"id": "birth",
+				"label": "A birth or baptism"
+			},
+			{
+				"id": "marriage",
+				"label": "A marriage"
+			},
+			{
+				"id": "death",
+				"label": "A death or burial"
+			},
+			{
+				"id": "enslaved",
+				"label": "An ancestor who was enslaved"
+			},
+			{
+				"id": "land",
+				"label": "Where they lived or owned land"
+			},
+			{
+				"id": "britain",
+				"label": "Their journey to Britain"
+			},
+			{
+				"id": "military",
+				"label": "Military service"
+			}
+		],
+		"records": [
+			{
+				"id": "civil",
+				"title": "Civil registration",
+				"why": "From 1878 births and deaths, and from about 1880 marriages, were registered with the state. The registers give names, dates, places and parents.",
+				"where": "FamilySearch (free), or order a certificate from the Registrar General's Department.",
+				"url": "https://www.familysearch.org/search/collection/1538386",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1878,
+				"to": 2100,
+				"rank": 1
+			},
+			{
+				"id": "anglican",
+				"title": "Church of England registers",
+				"why": "Baptisms, marriages and burials from the 1660s, parish by parish. Before 1878 this is usually the best place to start, and from the 1830s they include many formerly enslaved people.",
+				"where": "Copies on FamilySearch; originals at the Registrar General's Department.",
+				"url": "https://www.familysearch.org/en/wiki/Jamaica_Church_Records",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1660,
+				"to": 1930,
+				"rank": 2
+			},
+			{
+				"id": "nonconformist",
+				"title": "Baptist, Methodist and Moravian registers",
+				"why": "Many families joined the missionary churches around emancipation, so if a family is missing from the Anglican registers, try these.",
+				"where": "Scattered: the Jamaica Archives, church archives in Jamaica and the UK, and some on FamilySearch. Ask us: we can help you work out where.",
+				"url": "https://jard.gov.jm",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1780,
+				"to": 1930,
+				"rank": 4
+			},
+			{
+				"id": "slave-registers",
+				"title": "Slave registers, 1817 to 1834",
+				"why": "Every three years, owners had to list the people they enslaved, with names, ages, colour and country of birth. They can link a family across a generation.",
+				"where": "The National Archives (T 71), searchable on Ancestry.",
+				"url": "https://discovery.nationalarchives.gov.uk/details/r/C2584265",
+				"for": [
+					"enslaved",
+					"birth",
+					"death"
+				],
+				"from": 1817,
+				"to": 1834,
+				"rank": 1
+			},
+			{
+				"id": "compensation",
+				"title": "Compensation records and estate histories",
+				"why": "When slavery was abolished, owners, not the enslaved, were paid compensation. The records name estates, which helps you find where an enslaved ancestor lived.",
+				"where": "Legacies of British Slavery database, UCL (free).",
+				"url": "https://www.ucl.ac.uk/lbs/",
+				"for": [
+					"enslaved",
+					"land"
+				],
+				"from": 1817,
+				"to": 1845,
+				"rank": 2
+			},
+			{
+				"id": "almanacs",
+				"title": "Almanacs and lists of landholders",
+				"why": "Yearly almanacs listed officials, clergy and landholders, with the size of their land, parish by parish.",
+				"where": "Jamaican Family Search transcriptions.",
+				"url": "http://www.jamaicanfamilysearch.com",
+				"for": [
+					"land"
+				],
+				"from": 1810,
+				"to": 1880,
+				"rank": 3
+			},
+			{
+				"id": "wills",
+				"title": "Wills and deeds",
+				"why": "Wills name family and property; deeds record land changing hands. Good for landowners and for people they left land to.",
+				"where": "The Jamaica Archives in Spanish Town; some indexes on FamilySearch.",
+				"url": "https://jard.gov.jm",
+				"for": [
+					"death",
+					"land"
+				],
+				"from": 1660,
+				"to": 2100,
+				"rank": 3
+			},
+			{
+				"id": "passenger-lists",
+				"title": "Passenger lists to the UK, 1878 to 1960",
+				"why": "Ships arriving in Britain listed every passenger, including the Windrush generation, often with an age, job and address.",
+				"where": "The National Archives (BT 26), searchable on Ancestry and Findmypast.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/passenger-lists/",
+				"for": [
+					"britain"
+				],
+				"from": 1878,
+				"to": 1960,
+				"rank": 1
+			},
+			{
+				"id": "military",
+				"title": "British Army and the West India Regiment",
+				"why": "Thousands of Jamaicans served in the West India Regiments from 1795, and in the British West Indies Regiment in the First World War. Service records give birthplaces and families.",
+				"where": "The National Archives; many on Findmypast and Ancestry.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/british-army-soldiers-up-to-1913/",
+				"for": [
+					"military"
+				],
+				"from": 1795,
+				"to": 1960,
+				"rank": 1
+			},
+			{
+				"id": "gleaner",
+				"title": "The Gleaner newspaper",
+				"why": "Published since 1834: notices of births, marriages and deaths, court cases, and lists of people leaving the island.",
+				"where": "The Gleaner archive (subscription), and free at some libraries.",
+				"url": "https://gleaner.newspaperarchive.com",
+				"for": [
+					"birth",
+					"marriage",
+					"death",
+					"britain",
+					"land"
+				],
+				"from": 1834,
+				"to": 2100,
+				"rank": 5
+			}
+		],
+		"always": "Start with what your family knows, then work back one generation at a time. Bring what you find to a meeting: someone has usually been stuck in the same place."
+	},
+	"timeline": [
+		{
+			"year": 1834,
+			"label": "Slavery is abolished. Apprenticeship follows until 1838."
+		},
+		{
+			"year": 1867,
+			"label": "The 22 parishes are merged into the 14 we know today."
+		},
+		{
+			"year": 1878,
+			"label": "Civil registration of births, marriages and deaths begins."
+		}
+	]
+}

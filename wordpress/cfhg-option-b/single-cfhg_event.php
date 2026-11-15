@@ -19,7 +19,7 @@ while ( have_posts() ) :
 	}
 	$cfhg_whats_on = get_page_by_path( 'whats-on' );
 	$cfhg_mail     = cfhg_mailto();
-	$cfhg_sep      = '<span class="ui-meta-sep" aria-hidden="true"> · </span>';
+	$cfhg_sep      = ', ';
 	$cfhg_meta     = array( '<time datetime="' . esc_attr( $cfhg_e['date_iso'] ) . '">' . esc_html( $cfhg_e['date_text'] ) . '</time>' );
 	if ( $cfhg_e['time_text'] ) {
 		$cfhg_meta[] = esc_html( $cfhg_e['time_text'] );

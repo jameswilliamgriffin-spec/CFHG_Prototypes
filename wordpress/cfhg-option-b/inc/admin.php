@@ -75,6 +75,7 @@ function cfhg_admin_page() {
 		'tokens'   => __( 'The CFHG colours and fonts are now in Elementor’s Site Settings.', 'cfhg' ),
 		'home'     => __( 'The Elementor homepage has been created.', 'cfhg' ),
 		'guide'    => __( 'The five steps page has been created.', 'cfhg' ),
+		'island'   => __( 'The island page has been created.', 'cfhg' ),
 		'menu'     => __( 'A starter menu has been created and assigned. Edit it in Appearance > Menus.', 'cfhg' ),
 		'error'    => __( 'Something went wrong. Please check Elementor is active and try again.', 'cfhg' ),
 	);
@@ -115,6 +116,20 @@ function cfhg_admin_page() {
 		<h2><?php esc_html_e( 'Five steps page', 'cfhg' ); ?></h2>
 		<p><?php esc_html_e( 'Creates the page "Starting your family tree", which the Start here button on the homepage links to: the five steps in full, the explainer video and how to complete the charts. With Elementor it is built from Elementor widgets so every word can be edited; without it, the page uses the CFHG Five steps guide template. Running this again rebuilds the same page.', 'cfhg' ); ?></p>
 		<?php cfhg_admin_action_form( 'cfhg_create_guide', __( 'Create the five steps page', 'cfhg' ) ); ?>
+
+		<?php if ( function_exists( 'cfhg_site_island_slugs' ) && cfhg_site_island_slugs() ) : ?>
+			<h2><?php esc_html_e( 'Island pages', 'cfhg' ); ?></h2>
+			<p><?php esc_html_e( 'Creates a research page for an island from its guide in the CFHG Site plugin: Where should I look?, the parish explorer, the record sources, surnames, members’ stories, and the island’s events and posts. Running it again rebuilds the page, replacing any edits made in Elementor.', 'cfhg' ); ?></p>
+			<?php
+			$cfhg_islands = '<p><label for="cfhg_island_choice">' . esc_html__( 'Island', 'cfhg' ) . '</label> <select id="cfhg_island_choice" name="island">';
+			foreach ( cfhg_site_island_slugs() as $cfhg_slug ) {
+				$cfhg_guide    = cfhg_site_island( $cfhg_slug );
+				$cfhg_islands .= '<option value="' . esc_attr( $cfhg_slug ) . '">' . esc_html( $cfhg_guide ? $cfhg_guide['name'] : $cfhg_slug ) . '</option>';
+			}
+			$cfhg_islands .= '</select></p>';
+			cfhg_admin_action_form( 'cfhg_create_island', __( 'Create an island page', 'cfhg' ), $cfhg_islands );
+			?>
+		<?php endif; ?>
 
 		<h2><?php esc_html_e( '3. Homepage template file', 'cfhg' ); ?></h2>
 		<p><?php esc_html_e( 'Downloads the homepage as an Elementor template, for Elementor > Templates > Saved Templates > Import. Useful for moving the design to another site.', 'cfhg' ); ?></p>
@@ -200,6 +215,17 @@ function cfhg_admin_create_guide() {
 	cfhg_admin_back( 'guide' );
 }
 add_action( 'admin_post_cfhg_create_guide', 'cfhg_admin_create_guide' );
+
+/**
+ * Action: create an island page.
+ */
+function cfhg_admin_create_island() {
+	cfhg_admin_guard( 'cfhg_create_island' );
+	$slug    = isset( $_POST['island'] ) ? sanitize_title( wp_unslash( $_POST['island'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- checked in guard.
+	$page_id = cfhg_create_island_page( $slug );
+	cfhg_admin_back( is_wp_error( $page_id ) ? 'error' : 'island' );
+}
+add_action( 'admin_post_cfhg_create_island', 'cfhg_admin_create_island' );
 
 /**
  * Action: download the template file.

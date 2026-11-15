@@ -46,3 +46,12 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	</div>
 </section>
+<?php
+/* A slow band of the surnames members are tracing (CFHG Site plugin). */
+$cfhg_ribbon = shortcode_exists( 'cfhg_surname_ribbon' ) ? do_shortcode( '[cfhg_surname_ribbon]' ) : '';
+if ( $cfhg_ribbon ) :
+	?>
+	<section class="cfhg-names" aria-label="<?php esc_attr_e( 'Surnames our members are researching', 'cfhg' ); ?>">
+		<?php echo $cfhg_ribbon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	</section>
+<?php endif; ?>

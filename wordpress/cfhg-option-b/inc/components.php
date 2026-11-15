@@ -34,7 +34,8 @@ function cfhg_component_next_meeting( $style = 'inline', $class = '', $delay = n
 			__( 'Where', 'cfhg' )  => cfhg_mod( 'meeting_venue' ),
 			__( 'Online', 'cfhg' ) => cfhg_mod( 'meeting_online' ),
 			__( 'When', 'cfhg' )   => cfhg_mod( 'meeting_pattern' ),
-			__( 'Time', 'cfhg' )   => $time,
+			/* The big date already shows the time, so only repeat it without one. */
+			__( 'Time', 'cfhg' )   => $date ? '' : $time,
 		);
 		$html = '<dl class="cfhg-facts">';
 		foreach ( $rows as $label => $value ) {
@@ -70,7 +71,7 @@ function cfhg_component_next_meeting( $style = 'inline', $class = '', $delay = n
 	}
 
 	return sprintf(
-		'<p class="%5$s"%6$s><span class="cfhg-next__label">%1$s</span> <strong>%2$s</strong>%3$s<span class="cfhg-next__where">%4$s</span></p>',
+		'<p class="%5$s"%6$s><span class="cfhg-next__label">%1$s</span> <span class="cfhg-next__when"><strong>%2$s</strong>%3$s</span> <span class="cfhg-next__where">%4$s</span></p>',
 		esc_html( cfhg_mod( 'meeting_kicker' ) ),
 		$info['url'] ? '<a href="' . esc_url( $info['url'] ) . '">' . esc_html( wp_date( 'l j F', $ts, $tz ) ) . '</a>' : esc_html( wp_date( 'l j F', $ts, $tz ) ),
 		$time ? esc_html( ', ' . $time ) : '',
@@ -294,7 +295,7 @@ function cfhg_component_hero_proof( $class = '', $delay = null ) {
 
 /**
  * One slide in the story carousel. The first tag (the topic) joins the date
- * line, "14 October 2026 · Research"; the carousel's progress bar replaces
+ * line, "14 October 2026, Research"; the carousel's progress bar replaces
  * the old "1/3" counters.
  *
  * @param array $card  Tags, meta, title, text, url, image (escaped markup).
@@ -308,7 +309,7 @@ function cfhg_component_story_slide( $card, $index, $total ) {
 
 	$tags  = array_values( array_filter( array_map( 'strval', (array) $card['tags'] ) ) );
 	$meta  = array_filter( array( esc_html( (string) $card['meta'] ), $tags ? esc_html( $tags[0] ) : '' ) );
-	$sep   = '<span class="ui-meta-sep" aria-hidden="true"> · </span>';
+	$sep   = ', ';
 
 	return sprintf(
 		'<article class="cfhg-slide cfhg-slide--%1$s%2$s" aria-roledescription="%3$s" aria-label="%4$s">%5$s<div class="cfhg-slide__body">%6$s<h3 class="cfhg-slide__title">%7$s</h3>%8$s%9$s</div></article>',

@@ -16,6 +16,7 @@ function cfhg_enqueue_assets() {
 	wp_enqueue_style( 'cfhg-tokens', $css . 'tokens.css', array(), CFHG_VERSION );
 	wp_enqueue_style( 'cfhg-main', $css . 'main.css', array( 'cfhg-tokens' ), CFHG_VERSION );
 	wp_enqueue_style( 'cfhg-ui-pass', $css . 'ui-pass.css', array( 'cfhg-main' ), CFHG_VERSION );
+	wp_enqueue_style( 'cfhg-polish', $css . 'polish.css', array( 'cfhg-ui-pass' ), CFHG_VERSION );
 
 	wp_enqueue_script(
 		'cfhg-main',
@@ -37,8 +38,36 @@ function cfhg_enqueue_assets() {
 			'strategy'  => 'defer',
 		)
 	);
+	wp_enqueue_script(
+		'cfhg-polish',
+		CFHG_URI . '/assets/js/polish.js',
+		array(),
+		CFHG_VERSION,
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+	wp_add_inline_script( 'cfhg-polish', 'window.cfhgLoops = ' . wp_json_encode( cfhg_loop_films() ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'cfhg_enqueue_assets' );
+
+/**
+ * Theme pictures that have a short looping film of the same scene, by the
+ * picture's file name (assets/js/polish.js lays the film over the picture).
+ *
+ * @return array<string, string>
+ */
+function cfhg_loop_films() {
+	$video = CFHG_URI . '/assets/video/';
+	return apply_filters(
+		'cfhg_loop_films',
+		array(
+			'three-generations-with-an-album-on-the-sofa' => $video . 'cfhg-hero-loop.mp4',
+			'island-jamaica-blue-mountains'               => $video . 'island-jamaica-loop.mp4',
+		)
+	);
+}
 
 /**
  * Preload the two variable fonts so headings do not flash.

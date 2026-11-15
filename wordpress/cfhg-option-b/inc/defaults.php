@@ -34,7 +34,7 @@ function cfhg_defaults() {
 		'home_title'             => __( 'Caribbean Family History Group: trace your Caribbean family in Solihull and online', 'cfhg' ),
 
 		/* Opening panel: words on the left, a photograph in a large circle on the right. */
-		'hero_heading'           => __( '<em>Trace</em> your Caribbean family with people who’ve done it', 'cfhg' ),
+		'hero_heading'           => __( 'Trace your Caribbean family with people who’ve done it', 'cfhg' ),
 		'hero_text'              => __( 'We’re a volunteer group helping people trace families from Jamaica, Barbados, Trinidad, St Kitts and Nevis and right across the Caribbean. We meet on the last Saturday of the month at Solihull Core Library and on Zoom.', 'cfhg' ),
 		'hero_primary_label'     => __( 'Come to a meeting', 'cfhg' ),
 		'hero_primary_url'       => '#next-meeting',

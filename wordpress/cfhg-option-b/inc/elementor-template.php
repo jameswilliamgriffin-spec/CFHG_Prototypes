@@ -265,6 +265,20 @@ function cfhg_el_section( $class, $children, $extra = array() ) {
 }
 
 /**
+ * Section padding for inner pages: 104px above each section on a desktop,
+ * 84px on a tablet and 60px on a phone (the theme's --cfhg-sp-page).
+ *
+ * @return array
+ */
+function cfhg_el_page_rhythm() {
+	return array(
+		'padding'        => cfhg_el_box( 'px', 104, 32, 0, 32 ),
+		'padding_tablet' => cfhg_el_box( 'px', 84, 24, 0, 24 ),
+		'padding_mobile' => cfhg_el_box( 'px', 60, 18, 0, 18 ),
+	);
+}
+
+/**
  * Column container.
  *
  * @param int    $width    Desktop width in %.
@@ -468,6 +482,22 @@ function cfhg_elementor_home_data( $image_map = array() ) {
 		),
 		false
 	);
+
+	/* 1b. A slow band of the surnames members are tracing (CFHG Site plugin). */
+	if ( shortcode_exists( 'cfhg_surname_ribbon' ) ) {
+		$sections[] = cfhg_el_container(
+			array(
+				'html_tag'       => 'section',
+				'content_width'  => 'full',
+				'flex_direction' => 'column',
+				'flex_gap'       => cfhg_el_gap( 0 ),
+				'padding'        => cfhg_el_box( 'px', 0, 0, 0, 0 ),
+				'css_classes'    => 'cfhg-names',
+			),
+			array( cfhg_el_shortcode( '[cfhg_surname_ribbon]' ) ),
+			false
+		);
+	}
 
 	/* 2. Who we are: a white card between two tilted snapshots. */
 	$sections[] = cfhg_el_section(

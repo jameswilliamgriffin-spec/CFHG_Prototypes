@@ -20,16 +20,18 @@ defined( 'ABSPATH' ) || exit;
  * @return string
  */
 function cfhg_site_event_item( $e, $show_group = true ) {
-	$sep  = '<span class="ui-meta-sep" aria-hidden="true"> · </span>';
-	$meta = array( '<time datetime="' . esc_attr( $e['date_iso'] . ( $e['start'] ? 'T' . $e['start'] : '' ) ) . '">' . esc_html( $e['date_text'] ) . '</time>' );
+	/* Two plain lines: when, then where. No separators to read around. */
+	$when = '<time datetime="' . esc_attr( $e['date_iso'] . ( $e['start'] ? 'T' . $e['start'] : '' ) ) . '">' . esc_html( $e['date_text'] ) . '</time>';
 	if ( $e['time_text'] ) {
-		$meta[] = esc_html( $e['time_text'] );
+		$when .= ', ' . esc_html( $e['time_text'] );
 	}
+	$meta = '<span class="cfhg-event__when">' . $when . '</span>';
 	if ( $e['where'] ) {
-		$meta[] = esc_html( $e['where'] );
+		$meta .= '<span class="cfhg-event__where">' . esc_html( $e['where'] ) . '</span>';
 	}
+	$group = '';
 	if ( $show_group && $e['group'] && cfhg_site_settings()['next_group'] !== $e['group']->slug ) {
-		$meta[] = esc_html( $e['group']->name );
+		$group = '<span class="cfhg-event__group">' . esc_html( $e['group']->name ) . '</span>';
 	}
 
 	$flag = '';
@@ -47,9 +49,9 @@ function cfhg_site_event_item( $e, $show_group = true ) {
 		esc_html( $e['day'] ),
 		esc_html( $e['month'] ),
 		esc_html( $e['title'] ),
-		implode( $sep, $meta ),
+		$meta,
 		$e['summary'] && ! $e['is_past'] ? '<span class="cfhg-event__summary">' . esc_html( $e['summary'] ) . '</span>' : '',
-		$flag
+		$group . $flag
 	);
 }
 
@@ -83,6 +85,9 @@ function cfhg_site_events_shortcode( $atts ) {
 			'type'   => $atts['type'],
 		)
 	);
+	if ( ! $events && 'none' === $atts['empty'] ) {
+		return '';
+	}
 	if ( ! $events ) {
 		$empty = '' !== $atts['empty'] ? $atts['empty'] : ( 'past' === $when ? __( 'No past events yet.', 'cfhg-site' ) : __( 'No events are planned yet. Check back soon, or email us.', 'cfhg-site' ) );
 		return '<p class="cfhg-events__empty">' . esc_html( $empty ) . '</p>';

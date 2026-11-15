@@ -20,6 +20,25 @@ defined( 'ABSPATH' ) || exit;
  */
 function cfhg_image_manifest() {
 	return array(
+		/* Island illustrations (from Option C's set, generated for the group). */
+		'island-jamaica-blue-mountains'               => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'An illustration of Jamaica’s Blue Mountains: coffee terraces and a farmhouse on a winding road, tree ferns, and mist in the valleys below the peaks.', 'cfhg' ),
+			'focus' => '50% 50%',
+			'ext'   => 'webp',
+		),
+		'a-talk-at-the-library'                       => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'A woman giving a talk beside an old map of the Caribbean on a screen, to a small group seated in a library.', 'cfhg' ),
+			'focus' => '45% 40%',
+			'ext'   => 'webp',
+		),
+		'filling-in-a-family-tree-chart'              => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'An older woman filling in a family tree chart in pencil at a kitchen table, with old family photographs beside her.', 'cfhg' ),
+			'focus' => '60% 45%',
+			'ext'   => 'webp',
+		),
 		'three-generations-with-an-album-on-the-sofa' => array(
 			'sizes' => array( 640 => 360, 960 => 540, 1400 => 788 ),
 			'alt'   => __( 'A grandmother, her daughter and her grandson looking through a photo album together on the sofa.', 'cfhg' ),

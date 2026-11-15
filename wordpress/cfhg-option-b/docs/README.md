@@ -25,6 +25,9 @@ Appearance > Customize > CFHG homepage.
 
 Requires WordPress 6.3+ and PHP 7.4+. No build step.
 
+Version 1.4.0 adds **island pages** ("Research > Jamaica"), built from the
+CFHG Site plugin's island guides. See "Island pages" below.
+
 Version 1.3.0 works with the **CFHG Site** plugin (`wordpress/cfhg-site`),
 which adds Events. With it, "Next meeting" everywhere shows the real next
 event and links to it, each event has its own page (`single-cfhg_event.php`),
@@ -203,6 +206,68 @@ Events come from the CFHG Site plugin (see its README). The theme:
   and a "When and where" card with Add to my calendar and Ask for the Zoom
   link.
 - **What's On:** a page using the **CFHG What's On** template (Page
-  attributes > Template). It shows the page's own words, then Coming up, a
-  calendar subscription link, then Recent events.
+  attributes > Template). The hero has the title, the excerpt as its opening
+  line, a short welcome (anything typed into the page replaces it), three
+  quick facts and a photo as a postcard (the featured image, or the theme's
+  photo of a meeting). Then Coming up, a calendar subscription link, then
+  Recent events.
 - **Styles:** `assets/css/main.css` section 7.2.
+
+### The second polish pass (1.5.0)
+
+`assets/css/polish.css` and `assets/js/polish.js`, loaded after everything
+else. Nothing here needs Elementor Pro.
+
+- **Living photographs.** The homepage photograph and the Jamaica
+  illustration each have a short, silent, looping film of the same scene in
+  `assets/video`. `polish.js` lays the film over the picture and plays it
+  only while it is on screen. It goes by the picture's file name
+  (`cfhg_loop_films()` in `inc/enqueue.php`), so it works in the theme and in
+  Elementor with no setting, and swapping the picture for another turns the
+  film off. People who prefer reduced motion, or are saving data, keep the
+  still picture.
+- **The surname ribbon** under the homepage's opening panel:
+  `[cfhg_surname_ribbon]` from the CFHG Site plugin, in a section with the
+  class `cfhg-names`.
+- **Inner-page rhythm.** One step between sections, `--cfhg-sp-page` (60px
+  on a phone to 104px on a desktop). The Elementor builders use the same
+  steps through `cfhg_el_page_rhythm()`: 104, 84 and 60px. In Elementor a
+  boxed section's padding sits on its inner box, so theme CSS must not also
+  pad the same section (that was the cause of the doubled gaps).
+- **"On this page" links** (`cfhg-jump`) at the top of the guide and island
+  pages, as a plain list of links to section IDs.
+- **Postcards** (`cfhg-postcard`, with `cfhg-postcard--sea` or
+  `cfhg-postcard--gold` for the printed edge) on What's On, the guide and
+  island pages.
+- **What's On:** the next event leads on ink; event rows are two plain lines
+  (when, then where).
+- **Removed on purpose:** the single highlighted word in the opening
+  heading, the dots between bits of information, the number badges on the
+  "Where should I look?" form, and the section-by-section fade-ups (only the
+  two snapshots still settle into their tilt).
+
+
+## Island pages
+
+An island page (for example `/jamaica/`) is made from the island's guide in
+the CFHG Site plugin. Create it from Appearance > CFHG Setup > **Create an
+island page**. With Elementor it is built from Elementor widgets, so the
+group can edit the words and write the members' stories in place; without
+Elementor it uses the **CFHG Island** page template.
+
+1. **The island:** name, introduction, the sub-group's next meeting, and the
+   illustration as a tilted postcard with the palm badge sticker.
+2. **Where should I look?** (`[cfhg_record_finder]`).
+3. **Explore the parishes** (`[cfhg_parish_map]`): the map, with parishes
+   where members research shaded, and a button per parish.
+4. **The main record sources** (`[cfhg_island_sources]`).
+5. **Surnames we're researching** (`[cfhg_surnames]`).
+6. **How members researched the island:** two dashed placeholder cards, for
+   the group to replace with real accounts (named or anonymous, real photos
+   only).
+7. **From the group:** the island's events and posts.
+8. **Come along:** the next meeting and the buttons.
+
+The code is in `inc/island.php`, the styles in `assets/css/main.css` section
+7.3. Island illustrations are in the image list in `inc/images.php`
+(Jamaica's is `island-jamaica-blue-mountains`, from Option C's set).
