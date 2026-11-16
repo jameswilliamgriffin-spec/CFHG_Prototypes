@@ -75,6 +75,9 @@ function cfhg_loop_films() {
 		array(
 			'three-generations-with-an-album-on-the-sofa' => $video . 'cfhg-hero-loop.mp4',
 			'island-jamaica-blue-mountains'               => $video . 'island-jamaica-loop.mp4',
+			'island-barbados-chattel-houses'              => $video . 'island-barbados-loop.mp4',
+			'island-st-kitts-nevis-narrows'               => $video . 'island-st-kitts-nevis-loop.mp4',
+			'island-trinidad-caroni'                      => $video . 'island-trinidad-loop.mp4',
 		)
 	);
 }
@@ -123,3 +126,24 @@ function cfhg_block_editor_assets() {
 	wp_enqueue_style( 'cfhg-editor-tokens', CFHG_URI . '/assets/css/tokens.css', array(), CFHG_VERSION );
 }
 add_action( 'enqueue_block_editor_assets', 'cfhg_block_editor_assets' );
+
+/**
+ * A description for search engines and link previews, unless an SEO plugin
+ * is doing it: the page's excerpt, or the opening words of the homepage.
+ */
+function cfhg_meta_description() {
+	if ( defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) ) {
+		return;
+	}
+	$text = '';
+	if ( is_front_page() ) {
+		$text = cfhg_mod( 'hero_text' );
+	} elseif ( is_singular() && has_excerpt() ) {
+		$text = get_the_excerpt();
+	}
+	$text = trim( wp_strip_all_tags( (string) $text ) );
+	if ( '' !== $text ) {
+		echo '<meta name="description" content="' . esc_attr( wp_html_excerpt( $text, 200, '…' ) ) . '">' . "\n";
+	}
+}
+add_action( 'wp_head', 'cfhg_meta_description', 2 );

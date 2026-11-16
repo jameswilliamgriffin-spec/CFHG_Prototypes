@@ -239,14 +239,54 @@ function cfhg_create_content_pages() {
 }
 
 /**
- * [cfhg_story_grid count="12"]: the stories as a grid of cards, newest first.
+ * [cfhg_story_grid count="12" island=""]: the stories as a grid of cards,
+ * newest first. With island="jamaica" only that island's, or nothing.
  */
 add_shortcode(
 	'cfhg_story_grid',
 	static function ( $atts ) {
-		$atts  = shortcode_atts( array( 'count' => 12 ), $atts, 'cfhg_story_grid' );
-		$html  = '<ul class="cfhg-story-grid">';
-		foreach ( cfhg_story_cards( (int) $atts['count'] ) as $card ) {
+		$atts  = shortcode_atts(
+			array(
+				'count'  => 12,
+				'island' => '',
+			),
+			$atts,
+			'cfhg_story_grid'
+		);
+		$cards = array();
+		if ( $atts['island'] ) {
+			/* One island's stories: real posts only, and nothing at all if there are none. */
+			$posts = get_posts(
+				array(
+					'post_type'      => 'post',
+					'posts_per_page' => max( 1, (int) $atts['count'] ),
+					'category_name'  => sanitize_title( cfhg_mod( 'stories_category' ) ),
+					'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+						array(
+							'taxonomy' => 'cfhg_island',
+							'field'    => 'slug',
+							'terms'    => array( sanitize_title( $atts['island'] ) ),
+						),
+					),
+				)
+			);
+			foreach ( $posts as $post ) {
+				$cards[] = array(
+					'meta'  => get_the_date( '', $post ),
+					'title' => get_the_title( $post ),
+					'text'  => wp_strip_all_tags( get_the_excerpt( $post ) ),
+					'url'   => get_permalink( $post ),
+					'image' => has_post_thumbnail( $post ) ? get_the_post_thumbnail( $post, 'cfhg-card', array( 'sizes' => '(min-width: 1024px) 34vw, 90vw' ) ) : '',
+				);
+			}
+			if ( ! $cards ) {
+				return '';
+			}
+		} else {
+			$cards = cfhg_story_cards( (int) $atts['count'] );
+		}
+		$html = '<ul class="cfhg-story-grid">';
+		foreach ( $cards as $card ) {
 			$html .= '<li class="cfhg-story-card">'
 				. ( $card['image'] ? '<a class="cfhg-story-card__media" href="' . esc_url( cfhg_url( $card['url'] ) ) . '" tabindex="-1" aria-hidden="true">' . $card['image'] . '</a>' : '' )
 				. '<div class="cfhg-story-card__body">'
@@ -269,7 +309,12 @@ function cfhg_page_redirects() {
 	return apply_filters(
 		'cfhg_page_redirects',
 		array(
-			'/research/jamaica/' => '/jamaica/',
+			'/research/jamaica/'             => '/jamaica/',
+			'/research/barbados/'            => '/barbados/',
+			'/research/st-kitts-and-nevis/'  => '/st-kitts-and-nevis/',
+			'/research/trinidad-and-tobago/' => '/trinidad-and-tobago/',
+			'/research/other-islands/'       => '/other-islands/',
+			'/research/get-help/'            => '/contact/',
 		)
 	);
 }

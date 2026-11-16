@@ -75,8 +75,21 @@
 		} );
 		Array.prototype.forEach.call( paths, function ( p ) {
 			var slug = p.getAttribute( 'data-parish-path' );
+			var label = p.querySelector( 'title' );
+			/* Each shape is a button for keyboards and screen readers too. */
+			p.setAttribute( 'tabindex', '0' );
+			p.setAttribute( 'role', 'button' );
+			if ( label ) {
+				p.setAttribute( 'aria-label', label.textContent );
+			}
 			p.addEventListener( 'click', function () {
 				choose( slug, true );
+			} );
+			p.addEventListener( 'keydown', function ( ev ) {
+				if ( 'Enter' === ev.key || ' ' === ev.key ) {
+					ev.preventDefault();
+					choose( slug, true );
+				}
 			} );
 			p.addEventListener( 'mouseenter', function () {
 				box.querySelector( '.cfhg-parishes__btn[data-parish="' + slug + '"]' ).classList.add( 'is-hover' );
@@ -151,9 +164,9 @@
 			var period = data.periods.filter( function ( p ) {
 				return p.id === form.elements.when.value;
 			} )[ 0 ];
-			var parish = data.parishes.filter( function ( p ) {
+			var parish = form.elements.parish ? data.parishes.filter( function ( p ) {
 				return p.slug === form.elements.parish.value;
-			} )[ 0 ];
+			} )[ 0 ] : null;
 
 			var hits = data.records.filter( function ( r ) {
 				return r.for.indexOf( looking.value ) !== -1 && r.from <= period.to && r.to >= period.from;
@@ -179,9 +192,9 @@
 				html += '</ol>';
 			}
 
-			/* Old parish names for anything before the 1867 merger. */
-			if ( parish && parish.old.length && period.from < 1867 ) {
-				html += '<p class="cfhg-finder__tip">' + esc( fill( t.oldNames, parish.old.join( ', ' ) ) ) + '</p>';
+			/* Old area names for anything before the island's boundaries changed. */
+			if ( parish && data.changed && parish.old && parish.old.length && period.from < data.changed ) {
+				html += '<p class="cfhg-finder__tip">' + esc( fill( t.oldNames, data.changed, parish.old.join( ', ' ) ) ) + '</p>';
 			}
 			html += '<p class="cfhg-finder__always">' + esc( data.always ) + '</p>';
 

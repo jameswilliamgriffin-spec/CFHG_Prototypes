@@ -1,0 +1,386 @@
+{
+	"_about": "St Kitts and Nevis's island guide. DRAFT written from published sources and the group's own posts, for the group to check: see the 'check' notes. Read by cfhg_site_island() in inc/islands.php.",
+	"slug": "st-kitts-and-nevis",
+	"name": "St Kitts and Nevis",
+	"draft": true,
+	"checked": "",
+	"illustration": "island-st-kitts-nevis-narrows",
+	"intro": "St Kitts and Nevis are two islands that share one set of records. Early registers were lost to war, fire and hurricanes, so what survives starts later than on some islands: church baptisms from 1716, and civil registration from 1859. Our St Kitts, Nevis and Anguilla research group, for members, meets at Solihull Core Library and on Zoom.",
+	"map_credit": "Map data © OpenStreetMap contributors, via geoBoundaries. Licensed CC BY-SA 2.0.",
+	"parish_note": "St Kitts has nine parishes and Nevis has five. Many parish names include their main village, such as St Thomas Middle Island.",
+	"parishes": [
+		{
+			"slug": "christ-church-nichola-town",
+			"name": "Christ Church Nichola Town",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-anne-sandy-point",
+			"name": "St Anne Sandy Point",
+			"town": "Sandy Point",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-george-basseterre",
+			"name": "St George Basseterre",
+			"town": "Basseterre",
+			"old": [],
+			"aliases": [
+				"Basseterre"
+			],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-john-capisterre",
+			"name": "St John Capisterre",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-mary-cayon",
+			"name": "St Mary Cayon",
+			"town": "Cayon",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-paul-capisterre",
+			"name": "St Paul Capisterre",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-peter-basseterre",
+			"name": "St Peter Basseterre",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-thomas-middle-island",
+			"name": "St Thomas Middle Island",
+			"town": "Old Road",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "trinity-palmetto-point",
+			"name": "Trinity Palmetto Point",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On St Kitts."
+		},
+		{
+			"slug": "st-george-gingerland",
+			"name": "St George Gingerland",
+			"town": "",
+			"old": [],
+			"aliases": [
+				"Gingerland"
+			],
+			"note": "On Nevis."
+		},
+		{
+			"slug": "st-james-windward",
+			"name": "St James Windward",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On Nevis."
+		},
+		{
+			"slug": "st-john-figtree",
+			"name": "St John Figtree",
+			"town": "",
+			"old": [],
+			"aliases": [
+				"Figtree"
+			],
+			"note": "On Nevis."
+		},
+		{
+			"slug": "st-paul-charlestown",
+			"name": "St Paul Charlestown",
+			"town": "Charlestown",
+			"old": [],
+			"aliases": [
+				"Charlestown"
+			],
+			"note": "On Nevis."
+		},
+		{
+			"slug": "st-thomas-lowland",
+			"name": "St Thomas Lowland",
+			"town": "",
+			"old": [],
+			"aliases": [],
+			"note": "On Nevis."
+		}
+	],
+	"parish_tip": "Church of England registers for {parish} are among the St Kitts and Nevis church records on FamilySearch. The images can only be viewed at a FamilySearch centre or an affiliate library such as Solihull Core Library.",
+	"resources": [
+		{
+			"title": "FamilySearch",
+			"text": "Free. Civil registration from 1859 to 1932 and Church of England records from 1747 to 1930. You can search the indexes at home, but the images of the registers can only be viewed at a FamilySearch centre or an affiliate library.",
+			"url": "https://www.familysearch.org/search/collection/4318342",
+			"online": true,
+			"link": "Search St Kitts and Nevis on FamilySearch",
+			"check": "Confirm which collections can be viewed at home."
+		},
+		{
+			"title": "At Solihull Core Library",
+			"text": "Our St Kitts, Nevis and Anguilla group meets at the library because the register images can be viewed there. Solihull Libraries also list the Caribbean family history films they hold.",
+			"url": "https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Caribbean01_FH_films.pdf",
+			"online": true,
+			"link": "See the library's list of films",
+			"check": "Is this the current list?"
+		},
+		{
+			"title": "National Archives of St Kitts and Nevis",
+			"text": "In Basseterre. Holds government records, registers and newspapers for both islands. Write before you visit.",
+			"url": "",
+			"online": false,
+			"link": "",
+			"check": "Address, email and web address."
+		},
+		{
+			"title": "Nevis Historical and Conservation Society",
+			"text": "In Charlestown. Its archive and library cover Nevis families, estates and churches.",
+			"url": "https://www.nevisheritage.org/",
+			"online": true,
+			"link": "Visit the Nevis Historical and Conservation Society",
+			"check": "Check the web address."
+		},
+		{
+			"title": "Slave registers and compensation records",
+			"text": "Registers of enslaved people made between 1817 and 1834, at The National Archives (series T 71), and searchable on Ancestry. The Legacies of British Slavery database at UCL covers the owners and estates paid compensation.",
+			"url": "https://www.ucl.ac.uk/lbs/",
+			"online": true,
+			"link": "Search Legacies of British Slavery",
+			"check": ""
+		},
+		{
+			"title": "Findmypast",
+			"text": "Baptisms from some St Kitts and Nevis parishes, 1716 to 1881, indexed by name. A subscription site, free to use in many libraries.",
+			"url": "https://www.findmypast.co.uk/",
+			"online": true,
+			"link": "Visit Findmypast",
+			"check": ""
+		}
+	],
+	"finder": {
+		"periods": [
+			{
+				"id": "before-1834",
+				"label": "Before 1834",
+				"from": 1600,
+				"to": 1833
+			},
+			{
+				"id": "1834-1877",
+				"label": "1834 to 1877",
+				"from": 1834,
+				"to": 1877
+			},
+			{
+				"id": "1878-1929",
+				"label": "1878 to 1929",
+				"from": 1878,
+				"to": 1929
+			},
+			{
+				"id": "1930-on",
+				"label": "1930 or later",
+				"from": 1930,
+				"to": 2100
+			},
+			{
+				"id": "not-sure",
+				"label": "I'm not sure",
+				"from": 1600,
+				"to": 2100
+			}
+		],
+		"looking": [
+			{
+				"id": "birth",
+				"label": "A birth or baptism"
+			},
+			{
+				"id": "marriage",
+				"label": "A marriage"
+			},
+			{
+				"id": "death",
+				"label": "A death or burial"
+			},
+			{
+				"id": "enslaved",
+				"label": "An ancestor who was enslaved"
+			},
+			{
+				"id": "land",
+				"label": "Where they lived or owned land"
+			},
+			{
+				"id": "britain",
+				"label": "Their journey to Britain"
+			},
+			{
+				"id": "military",
+				"label": "Military service"
+			}
+		],
+		"records": [
+			{
+				"id": "civil",
+				"title": "Civil registration",
+				"why": "Births and deaths were registered from 1859 on St Kitts and from 1861 on Nevis. Marriage indexes begin in 1885 on St Kitts and 1905 on Nevis.",
+				"where": "FamilySearch (free): search the index at home, and view the registers at Solihull Core Library.",
+				"url": "https://www.familysearch.org/search/collection/4318342",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1859,
+				"to": 2100,
+				"rank": 1
+			},
+			{
+				"id": "anglican",
+				"title": "Church of England registers",
+				"why": "Baptisms, marriages and burials. Dates differ by parish and there are gaps, because early registers were lost to war, fire and hurricanes.",
+				"where": "FamilySearch and Findmypast; view the images at Solihull Core Library.",
+				"url": "https://www.familysearch.org/en/search/collection/4440822",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1716,
+				"to": 1930,
+				"rank": 2
+			},
+			{
+				"id": "missions",
+				"title": "Methodist and Moravian registers",
+				"why": "Many enslaved and free Black families were baptised and married by the Methodist and Moravian missions, not the parish church.",
+				"where": "Ask us: some are with the churches and some at the National Archives in Basseterre.",
+				"url": "",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1777,
+				"to": 1930,
+				"rank": 4
+			},
+			{
+				"id": "slave-registers",
+				"title": "Slave registers, 1817 to 1834",
+				"why": "Every few years, owners had to list the people they enslaved, with names, ages, colour and country of birth. They can link a family across a generation.",
+				"where": "The National Archives (T 71), searchable on Ancestry.",
+				"url": "https://discovery.nationalarchives.gov.uk/details/r/C2584265",
+				"for": [
+					"enslaved",
+					"birth",
+					"death"
+				],
+				"from": 1817,
+				"to": 1834,
+				"rank": 1
+			},
+			{
+				"id": "compensation",
+				"title": "Compensation records and estate histories",
+				"why": "When slavery was abolished, owners, not the enslaved, were paid compensation. The records name estates, which helps you find where an enslaved ancestor lived.",
+				"where": "Legacies of British Slavery database, UCL (free).",
+				"url": "https://www.ucl.ac.uk/lbs/",
+				"for": [
+					"enslaved",
+					"land"
+				],
+				"from": 1817,
+				"to": 1845,
+				"rank": 2
+			},
+			{
+				"id": "wills",
+				"title": "Wills and deeds",
+				"why": "Wills name family and property; deeds record land changing hands.",
+				"where": "The National Archives of St Kitts and Nevis, Basseterre.",
+				"url": "",
+				"for": [
+					"death",
+					"land"
+				],
+				"from": 1720,
+				"to": 2100,
+				"rank": 3
+			},
+			{
+				"id": "passenger-lists",
+				"title": "Passenger lists to the UK, 1878 to 1960",
+				"why": "Ships arriving in Britain listed every passenger, including the Windrush generation, often with an age, job and address.",
+				"where": "The National Archives (BT 26), searchable on Ancestry and Findmypast.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/passenger-lists/",
+				"for": [
+					"britain"
+				],
+				"from": 1878,
+				"to": 1960,
+				"rank": 1
+			},
+			{
+				"id": "military",
+				"title": "British Army and the West India Regiment",
+				"why": "Many Kittitians and Nevisians served in the West India Regiments from 1795, and in the British West Indies Regiment in the First World War. Service records give birthplaces and families.",
+				"where": "The National Archives; many on Findmypast and Ancestry.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/british-army-soldiers-up-to-1913/",
+				"for": [
+					"military"
+				],
+				"from": 1795,
+				"to": 1960,
+				"rank": 1
+			}
+		],
+		"always": "Start with what your family knows, then work back one generation at a time. Bring what you find to a meeting: someone has usually been stuck in the same place."
+	},
+	"timeline_from": 1700,
+	"timeline": [
+		{
+			"year": 1834,
+			"label": "Slavery is abolished. Apprenticeship follows until 1838."
+		},
+		{
+			"year": 1859,
+			"label": "Civil registration begins on St Kitts. Nevis follows in 1861."
+		},
+		{
+			"year": 1882,
+			"label": "St Kitts, Nevis and Anguilla are joined as one presidency."
+		}
+	],
+	"_checks": [
+		"Start dates of the Methodist (1787?) and Moravian (1777?) registers.",
+		"Earliest surviving will.",
+		"Year St Kitts, Nevis and Anguilla were joined (1882 or 1883).",
+		"When and where the sub-group now meets."
+	]
+}

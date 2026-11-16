@@ -39,6 +39,24 @@ function cfhg_image_manifest() {
 			'focus' => '60% 45%',
 			'ext'   => 'webp',
 		),
+		'island-barbados-chattel-houses'              => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'An illustration of Barbados: three chattel houses in yellow, blue and pink beside a road, with sugar cane behind them and a breadfruit tree in front.', 'cfhg' ),
+			'focus' => '50% 50%',
+			'ext'   => 'webp',
+		),
+		'island-st-kitts-nevis-narrows'               => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'An illustration of the view from St Kitts across the Narrows to the cone of Nevis Peak, with agave in flower in the foreground.', 'cfhg' ),
+			'focus' => '50% 50%',
+			'ext'   => 'webp',
+		),
+		'island-trinidad-caroni'                      => array(
+			'sizes' => array( 768 => 512, 1536 => 1024 ),
+			'alt'   => __( 'An illustration of the Caroni Swamp in Trinidad: scarlet ibis flying over the mangroves at sunset.', 'cfhg' ),
+			'focus' => '50% 50%',
+			'ext'   => 'webp',
+		),
 		'three-generations-with-an-album-on-the-sofa' => array(
 			'sizes' => array( 640 => 360, 960 => 540, 1400 => 788 ),
 			'alt'   => __( 'A grandmother, her daughter and her grandson looking through a photo album together on the sofa.', 'cfhg' ),

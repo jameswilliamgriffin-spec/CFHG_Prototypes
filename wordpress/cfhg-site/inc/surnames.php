@@ -90,7 +90,17 @@ function cfhg_site_surnames( $island = '' ) {
 		'posts_per_page' => -1,
 		'no_found_rows'  => true,
 	);
-	if ( $island ) {
+	if ( 'others' === $island && function_exists( 'cfhg_site_island_slugs' ) ) {
+		/* Every island that has no guide of its own. */
+		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			array(
+				'taxonomy' => 'cfhg_island',
+				'field'    => 'slug',
+				'terms'    => cfhg_site_island_slugs(),
+				'operator' => 'NOT IN',
+			),
+		);
+	} elseif ( $island ) {
 		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			array(
 				'taxonomy' => 'cfhg_island',
@@ -147,7 +157,7 @@ function cfhg_site_surnames_shortcode( $atts ) {
 	}
 
 	wp_enqueue_script( 'cfhg-site' );
-	$all  = '' === $atts['island'];
+	$all  = '' === $atts['island'] || 'others' === $atts['island'] || false !== strpos( $atts['island'], ',' );
 	$id   = wp_unique_id( 'cfhg-surnames-' );
 	$html = '<div class="cfhg-surnames" data-cfhg-surnames>';
 	if ( 'no' !== $atts['search'] ) {

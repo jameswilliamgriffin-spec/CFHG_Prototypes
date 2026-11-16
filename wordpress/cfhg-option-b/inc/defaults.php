@@ -117,11 +117,11 @@ function cfhg_defaults() {
 		'islands_list'           => implode(
 			"\n",
 			array(
-				__( 'Jamaica | /research/jamaica/ | Island research group', 'cfhg' ),
-				__( 'Barbados | /research/barbados/ | Island research group', 'cfhg' ),
-				__( 'St Kitts and Nevis | /research/st-kitts-and-nevis/ | Island research group', 'cfhg' ),
-				__( 'Trinidad and Tobago | /research/trinidad-and-tobago/ |', 'cfhg' ),
-				__( 'Other Caribbean islands | /research/other-islands/ |', 'cfhg' ),
+				__( 'Jamaica | /jamaica/ | Island research group', 'cfhg' ),
+				__( 'Barbados | /barbados/ | Island research group', 'cfhg' ),
+				__( 'St Kitts and Nevis | /st-kitts-and-nevis/ | Island research group', 'cfhg' ),
+				__( 'Trinidad and Tobago | /trinidad-and-tobago/ |', 'cfhg' ),
+				__( 'Other Caribbean islands | /other-islands/ |', 'cfhg' ),
 			)
 		),
 		'islands_image'          => 0,
@@ -137,7 +137,7 @@ function cfhg_defaults() {
 		'help_heading'           => __( 'Stuck? Ask us.', 'cfhg' ),
 		'help_text'              => __( 'Between us we cover Jamaica, the other islands and military records. Tell us who you’re looking for and what you’ve tried so far, and we’ll pass your question to the person best placed to help. We’re all volunteers, so a reply can take a little while.', 'cfhg' ),
 		'help_cta_label'         => __( 'Ask a research question', 'cfhg' ),
-		'help_cta_url'           => '/research/get-help/',
+		'help_cta_url'           => '/contact/',
 		'help_image'             => 0,
 
 		/* Membership: a photograph band with a large word across it. */

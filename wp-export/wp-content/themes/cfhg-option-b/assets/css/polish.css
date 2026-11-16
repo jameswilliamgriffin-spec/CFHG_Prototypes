@@ -727,6 +727,53 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	text-underline-offset: 0.2em;
 }
 
+/* A tall island (Barbados) must not make its map taller than the screen. */
+.cfhg-parishes__map svg {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	max-height: min(34rem, 72vh);
+	margin-inline: auto;
+}
+
+/* On a phone a three-column surnames table keeps to the screen. */
+@media (max-width: 599px) {
+	.cfhg-surnames__table {
+		table-layout: fixed;
+	}
+
+	.cfhg-surnames__table th,
+	.cfhg-surnames__table td {
+		padding: 0.7rem 0.6rem;
+		overflow-wrap: anywhere;
+		font-size: var(--cfhg-fs-small);
+	}
+}
+
+/* Island pages: links big enough to tap, one field in the form where the
+   island has no old area names, and no empty "stories" section. */
+.cfhg-source__link a,
+.cfhg-parish__ask a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+}
+
+@media (min-width: 900px) {
+	.cfhg-finder__row--one {
+		grid-template-columns: minmax(0, 24rem);
+	}
+}
+
+.cfhg-island__stories:not(:has(.cfhg-story-card)) {
+	display: none;
+}
+
+.cfhg-parishes__map [data-parish-path]:focus-visible {
+	outline: 3px solid var(--cfhg-ink);
+	outline-offset: -2px;
+}
+
 /* 7. "On this page" links ---------------------------------------------------- */
 
 .cfhg-jump ul,

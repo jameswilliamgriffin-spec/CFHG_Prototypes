@@ -3,7 +3,7 @@
 The Caribbean Family History Group's own content, kept in a plugin rather than
 the theme so it survives a change of design.
 
-Version 1.2.0 has **Events**, the **Island** tag, **Surname entries** and
+Version 1.3.0 has **Events**, the **Island** tag, **Surname entries** and
 **island guides** (the parish explorer, "Where should I look?" and the
 records timeline), plus the **surname ribbon** for the homepage. The
 members' upload form is planned to follow.
@@ -71,6 +71,21 @@ name, email and consent stay in the admin.
   from geoBoundaries' Jamaica ADM1 boundaries (from OpenStreetMap, licensed
   CC BY-SA 2.0), simplified, and must keep its credit line (`"map_credit"`
   in the island file). The map is CC BY-SA 2.0 too.
+
+Guides exist for Jamaica, Barbados, St Kitts and Nevis, and Trinidad and
+Tobago. All are drafts for the group to check: each file's `check` and
+`_checks` notes list what to confirm. Optional keys in an island file:
+
+- `"area": {"one": "county", "many": "counties"}` if the island's areas
+  aren't parishes (Trinidad).
+- `"areas_changed": 1867` if boundaries were redrawn (Jamaica). Only then
+  does "Where should I look?" ask for the area, and show the old names.
+- `"timeline_from": 1700` for where the records timeline starts.
+- `"link"` on a record source: the words on its link ("Search Barbados on
+  FamilySearch"). A parish can have a `"note"`.
+
+`[cfhg_surnames island="others"]` lists the surnames for every island that
+has no guide. `[cfhg_island_posts not_in="stories"]` leaves a category out.
 
 ### Adding the next island
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: CFHG Site
  * Description: The Caribbean Family History Group's own content: Events (meetings, sub-group meetings, talks and exhibitions) with an "Add a series" tool, and an Island tag shared by events and posts. Works with any theme; the CFHG themes style it.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Requires at least: 6.3
  * Requires PHP: 7.4
  * Author: Creative Alliance
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'CFHG_SITE_VERSION', '1.2.0' );
+define( 'CFHG_SITE_VERSION', '1.3.0' );
 define( 'CFHG_SITE_DIR', __DIR__ );
 define( 'CFHG_SITE_URL', plugin_dir_url( __FILE__ ) );
 

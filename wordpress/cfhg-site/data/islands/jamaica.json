@@ -168,42 +168,48 @@
 			"text": "Free. Church of England registers from the 1660s and civil registration from 1878, many indexed. Image access for Jamaica has recently changed, so some images may only be viewable at a FamilySearch centre or affiliate library, like Solihull Core Library.",
 			"url": "https://www.familysearch.org/search/collection/1538386",
 			"online": true,
-			"check": "Which Jamaica images are viewable at home, and which only at the library?"
+			"check": "Which Jamaica images are viewable at home, and which only at the library?",
+			"link": "Search Jamaica on FamilySearch"
 		},
 		{
 			"title": "Registrar General's Department",
 			"text": "Jamaica's official records of births, marriages and deaths, and the older church registers. Order certificates here.",
 			"url": "https://www.rgd.gov.jm",
 			"online": true,
-			"check": ""
+			"check": "",
+			"link": "Visit the Registrar General's Department"
 		},
 		{
 			"title": "Jamaica Archives, Spanish Town",
 			"text": "Wills, deeds, land records, the island's older registers and much more. Plan ahead: check opening before you go.",
 			"url": "https://jard.gov.jm",
 			"online": false,
-			"check": "Current address and opening times."
+			"check": "Current address and opening times.",
+			"link": "Find out about the Jamaica Archives"
 		},
 		{
 			"title": "Slave registers and compensation records",
 			"text": "Registers of enslaved people made every three years from 1817 to 1834, at The National Archives (series T 71), and searchable on Ancestry. The Legacies of British Slavery database at UCL covers the owners and estates paid compensation.",
 			"url": "https://www.ucl.ac.uk/lbs/",
 			"online": true,
-			"check": ""
+			"check": "",
+			"link": "Search Legacies of British Slavery"
 		},
 		{
 			"title": "Jamaican Family Search",
 			"text": "Transcribed almanacs, lists of landholders and other early sources, gathered over many years.",
 			"url": "http://www.jamaicanfamilysearch.com",
 			"online": true,
-			"check": "Free and subscription parts."
+			"check": "Free and subscription parts.",
+			"link": "Visit Jamaican Family Search"
 		},
 		{
 			"title": "At Solihull Core Library",
 			"text": "Solihull Libraries list the Caribbean family history films they hold, and you can use FamilySearch there at affiliate level. Ask us at a meeting and we'll show you.",
 			"url": "https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Caribbean01_FH_films.pdf",
 			"online": true,
-			"check": "Is this the current list?"
+			"check": "Is this the current list?",
+			"link": "See the library's list of films"
 		}
 	],
 	"finder": {
@@ -430,5 +436,6 @@
 			"year": 1878,
 			"label": "Civil registration of births, marriages and deaths begins."
 		}
-	]
+	],
+	"areas_changed": 1867
 }

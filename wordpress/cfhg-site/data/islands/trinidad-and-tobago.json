@@ -1,0 +1,388 @@
+{
+	"_about": "Trinidad and Tobago's island guide. DRAFT written from the notes of Ann Dardaine's talk to the group (May 2021) and published sources, for the group to check: see the 'check' notes. Read by cfhg_site_island() in inc/islands.php.",
+	"slug": "trinidad-and-tobago",
+	"name": "Trinidad and Tobago",
+	"draft": true,
+	"checked": "",
+	"illustration": "island-trinidad-caroni",
+	"intro": "Trinidad’s records reflect everyone who came: Spanish and French settlers, enslaved Africans, free Black American soldiers and, from 1845, indentured workers from India. Much of it is still on paper in Port of Spain, not online, so it helps to know what to ask for. Tobago was a separate colony until 1889 and has records of its own.",
+	"area": {
+		"one": "county",
+		"many": "counties"
+	},
+	"parish_note": "Trinidad was divided into eight counties, and each county into wards. Old records usually name the ward or the estate, so it helps to know which county that was in. Tobago is listed with them.",
+	"parishes": [
+		{
+			"slug": "st-george",
+			"name": "St George",
+			"town": "Port of Spain",
+			"old": [],
+			"aliases": [
+				"Port of Spain",
+				"Tunapuna",
+				"St Joseph",
+				"Maracas",
+				"Arima"
+			]
+		},
+		{
+			"slug": "caroni",
+			"name": "Caroni",
+			"town": "Chaguanas",
+			"old": [],
+			"aliases": [
+				"Chaguanas",
+				"Couva"
+			]
+		},
+		{
+			"slug": "st-andrew",
+			"name": "St Andrew",
+			"town": "Sangre Grande",
+			"old": [],
+			"aliases": [
+				"Sangre Grande"
+			]
+		},
+		{
+			"slug": "st-david",
+			"name": "St David",
+			"town": "Toco",
+			"old": [],
+			"aliases": [
+				"Toco"
+			]
+		},
+		{
+			"slug": "nariva",
+			"name": "Nariva",
+			"town": "Rio Claro",
+			"old": [],
+			"aliases": [
+				"Rio Claro",
+				"Biche"
+			]
+		},
+		{
+			"slug": "mayaro",
+			"name": "Mayaro",
+			"town": "Mayaro",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "victoria",
+			"name": "Victoria",
+			"town": "San Fernando",
+			"old": [],
+			"aliases": [
+				"San Fernando",
+				"Princes Town",
+				"Moruga"
+			],
+			"note": "The Merikens, free Black American soldiers who settled in 1815 and 1816, founded the Company Villages near Moruga."
+		},
+		{
+			"slug": "st-patrick",
+			"name": "St Patrick",
+			"town": "Siparia",
+			"old": [],
+			"aliases": [
+				"Siparia",
+				"Point Fortin",
+				"La Brea"
+			]
+		},
+		{
+			"slug": "tobago",
+			"name": "Tobago",
+			"town": "Scarborough",
+			"old": [],
+			"aliases": [
+				"Scarborough"
+			],
+			"note": "A separate colony until 1889, with seven parishes of its own. The state registered births and deaths here from 1868."
+		}
+	],
+	"resources": [
+		{
+			"title": "National Archives of Trinidad and Tobago",
+			"text": "In Port of Spain. Holds the slave registers, newspapers, an 1851 census, land tax assessments for 1847, 1851 and 1852, and the registers of Indian immigrants from 1845 to 1917.",
+			"url": "https://natt.gov.tt/",
+			"online": true,
+			"link": "Visit the National Archives",
+			"check": "Check the web address and how to ask for a search."
+		},
+		{
+			"title": "Registrar General’s Department",
+			"text": "Births, deaths and marriages. You apply on a form. It helps to have the mother’s name for a birth, and the district or hospital for a death.",
+			"url": "",
+			"online": false,
+			"link": "",
+			"check": "Start of civil registration: our 2021 talk notes say 1843; Solihull Libraries’ guide says 1848 for Trinidad and 1868 for Tobago. Web address for applying."
+		},
+		{
+			"title": "The churches",
+			"text": "Roman Catholic registers matter more here than on most islands, because of Trinidad’s Spanish and French past. Ask the parish church for a baptism: the baby’s name will be on the record.",
+			"url": "",
+			"online": false,
+			"link": "",
+			"check": ""
+		},
+		{
+			"title": "FamilySearch",
+			"text": "Free. Trinidad and Tobago has far fewer records online than Jamaica or Barbados, so check what is listed before you plan a search.",
+			"url": "https://www.familysearch.org/search/collection/location/1927096",
+			"online": true,
+			"link": "Search Trinidad and Tobago on FamilySearch",
+			"check": ""
+		},
+		{
+			"title": "Slave registers and compensation records",
+			"text": "Registers of enslaved people made from 1813 in Trinidad, the first in the Caribbean, and from 1819 in Tobago, up to 1834, at The National Archives (series T 71), and searchable on Ancestry. The Legacies of British Slavery database at UCL covers the owners and estates paid compensation.",
+			"url": "https://www.ucl.ac.uk/lbs/",
+			"online": true,
+			"link": "Search Legacies of British Slavery",
+			"check": ""
+		},
+		{
+			"title": "At Solihull Core Library",
+			"text": "Solihull Libraries list the Caribbean family history films they hold, and you can use FamilySearch and Ancestry there for free. Ask us at a meeting and we’ll show you.",
+			"url": "https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Caribbean01_FH_films.pdf",
+			"online": true,
+			"link": "See the library's list of films",
+			"check": "Is this the current list?"
+		}
+	],
+	"finder": {
+		"periods": [
+			{
+				"id": "before-1834",
+				"label": "Before 1834",
+				"from": 1600,
+				"to": 1833
+			},
+			{
+				"id": "1834-1877",
+				"label": "1834 to 1877",
+				"from": 1834,
+				"to": 1877
+			},
+			{
+				"id": "1878-1929",
+				"label": "1878 to 1929",
+				"from": 1878,
+				"to": 1929
+			},
+			{
+				"id": "1930-on",
+				"label": "1930 or later",
+				"from": 1930,
+				"to": 2100
+			},
+			{
+				"id": "not-sure",
+				"label": "I'm not sure",
+				"from": 1600,
+				"to": 2100
+			}
+		],
+		"looking": [
+			{
+				"id": "birth",
+				"label": "A birth or baptism"
+			},
+			{
+				"id": "marriage",
+				"label": "A marriage"
+			},
+			{
+				"id": "death",
+				"label": "A death or burial"
+			},
+			{
+				"id": "enslaved",
+				"label": "An ancestor who was enslaved"
+			},
+			{
+				"id": "indenture",
+				"label": "An ancestor who came from India"
+			},
+			{
+				"id": "land",
+				"label": "Where they lived or owned land"
+			},
+			{
+				"id": "britain",
+				"label": "Their journey to Britain"
+			},
+			{
+				"id": "military",
+				"label": "Military service"
+			}
+		],
+		"records": [
+			{
+				"id": "civil",
+				"title": "Civil registration",
+				"why": "The state registered births, deaths and marriages from 1848 in Trinidad and from 1868 in Tobago.",
+				"where": "The Registrar General’s Department. Have the mother’s name for a birth, and the district or hospital for a death.",
+				"url": "",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1848,
+				"to": 2100,
+				"rank": 1
+			},
+			{
+				"id": "church",
+				"title": "Church registers",
+				"why": "Roman Catholic and Church of England baptisms, marriages and burials. Before civil registration these are the main record of a family.",
+				"where": "The parish church. The baby’s name will be on a baptism record.",
+				"url": "",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1783,
+				"to": 2100,
+				"rank": 2
+			},
+			{
+				"id": "slave-registers",
+				"title": "Slave registers, 1813 to 1834",
+				"why": "Trinidad’s were the first in the Caribbean. Owners had to list the people they enslaved, with names, ages, colour and country of birth, and many families are listed together.",
+				"where": "The National Archives (T 71), searchable on Ancestry.",
+				"url": "https://discovery.nationalarchives.gov.uk/details/r/C2584265",
+				"for": [
+					"enslaved",
+					"birth",
+					"death"
+				],
+				"from": 1813,
+				"to": 1834,
+				"rank": 1
+			},
+			{
+				"id": "compensation",
+				"title": "Compensation records and estate histories",
+				"why": "When slavery was abolished, owners, not the enslaved, were paid compensation. The records name estates, which helps you find where an enslaved ancestor lived.",
+				"where": "Legacies of British Slavery database, UCL (free).",
+				"url": "https://www.ucl.ac.uk/lbs/",
+				"for": [
+					"enslaved",
+					"land"
+				],
+				"from": 1813,
+				"to": 1845,
+				"rank": 2
+			},
+			{
+				"id": "indenture",
+				"title": "Registers of Indian immigrants, 1845 to 1917",
+				"why": "Everyone who came from India under indenture was registered with a number, a ship and an estate. To search you need the year, the ship or the estate.",
+				"where": "The National Archives of Trinidad and Tobago.",
+				"url": "https://natt.gov.tt/",
+				"for": [
+					"indenture"
+				],
+				"from": 1845,
+				"to": 1917,
+				"rank": 1
+			},
+			{
+				"id": "land-tax",
+				"title": "Land tax assessments",
+				"why": "Lists of who held land, and where, survive for 1847, 1851 and 1852.",
+				"where": "The National Archives of Trinidad and Tobago.",
+				"url": "https://natt.gov.tt/",
+				"for": [
+					"land"
+				],
+				"from": 1847,
+				"to": 1852,
+				"rank": 2
+			},
+			{
+				"id": "wills",
+				"title": "Wills",
+				"why": "Wills name family and property. They are available from 1863; earlier ones may still be with the family.",
+				"where": "Ask the National Archives of Trinidad and Tobago where to apply.",
+				"url": "",
+				"for": [
+					"death",
+					"land"
+				],
+				"from": 1863,
+				"to": 2100,
+				"rank": 3
+			},
+			{
+				"id": "newspapers",
+				"title": "The Port of Spain Gazette and other newspapers",
+				"why": "Obituaries and notices. Copies of the Port of Spain Gazette survive from the 1820s, and the archives hold other papers too.",
+				"where": "The National Archives of Trinidad and Tobago.",
+				"url": "https://natt.gov.tt/",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1821,
+				"to": 1960,
+				"rank": 4
+			},
+			{
+				"id": "passenger-lists",
+				"title": "Passenger lists to the UK, 1878 to 1960",
+				"why": "Ships arriving in Britain listed every passenger, including the Windrush generation, often with an age, job and address.",
+				"where": "The National Archives (BT 26), searchable on Ancestry and Findmypast.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/passenger-lists/",
+				"for": [
+					"britain"
+				],
+				"from": 1878,
+				"to": 1960,
+				"rank": 1
+			},
+			{
+				"id": "military",
+				"title": "British Army and the West India Regiment",
+				"why": "Many Trinidadians and Tobagonians served in the West India Regiments from 1795, and in the British West Indies Regiment in the First World War. Service records give birthplaces and families.",
+				"where": "The National Archives; many on Findmypast and Ancestry.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/british-army-soldiers-up-to-1913/",
+				"for": [
+					"military"
+				],
+				"from": 1795,
+				"to": 1960,
+				"rank": 1
+			}
+		],
+		"always": "Start with what your family knows, then work back one generation at a time. Bring what you find to a meeting: someone has usually been stuck in the same place."
+	},
+	"timeline_from": 1750,
+	"timeline": [
+		{
+			"year": 1813,
+			"label": "Trinidad’s slave registers begin, the first in the Caribbean."
+		},
+		{
+			"year": 1845,
+			"label": "The first indentured workers arrive from India."
+		},
+		{
+			"year": 1889,
+			"label": "Tobago is joined to Trinidad."
+		}
+	],
+	"_checks": [
+		"All dates from the 2021 talk notes (1851 census, 1863 wills, Port of Spain Gazette from 1821).",
+		"Which towns and wards belong to which county.",
+		"Whether the group wants to name a researcher on the island."
+	]
+}

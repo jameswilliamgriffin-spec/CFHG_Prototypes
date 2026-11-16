@@ -26,11 +26,23 @@
 		var name = names.filter( function ( n ) {
 			return from.indexOf( n ) !== -1;
 		} )[ 0 ];
-		/* Only the large pictures: never a thumbnail of the same photograph. */
-		if ( ! name || img.closest( '.cfhg-loop-wrap, .cfhg-avatars, .cfhg-footer' ) || img.clientWidth < 240 ) {
+		if ( ! name || img.closest( '.cfhg-loop-wrap, .cfhg-avatars, .cfhg-footer' ) ) {
 			return;
 		}
+		/* Wait until the picture is on screen: its size isn't known before then. */
+		var seen = new IntersectionObserver( function ( entries ) {
+			if ( entries[ 0 ].isIntersecting ) {
+				seen.disconnect();
+				/* Only the large pictures: never a thumbnail of the same photograph. */
+				if ( img.clientWidth >= 240 ) {
+					addFilm( img, name );
+				}
+			}
+		} );
+		seen.observe( img );
+	} );
 
+	function addFilm( img, name ) {
 		var look = window.getComputedStyle( img );
 		var wrap = document.createElement( 'span' );
 		wrap.className = 'cfhg-loop-wrap';
@@ -66,5 +78,5 @@
 				film.pause();
 			}
 		}, { threshold: 0.2 } ).observe( wrap );
-	} );
+	}
 }() );

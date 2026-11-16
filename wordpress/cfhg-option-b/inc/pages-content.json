@@ -153,7 +153,39 @@
    {
     "id": "ready",
     "heading": "In the meantime",
-    "html": "<ul><li><a href=\"/starting-your-family-tree/\">Starting your family tree</a>: the five steps, a short film, and how to fill in the charts.</li><li><a href=\"/jamaica/\">Jamaica</a>: a parish map, where to look for records, and the surnames members are researching.</li><li><a href=\"/stories/\">Stories and research</a>: talks and tips from our meetings.</li><li><a href=\"/whats-on/\">What’s on</a>: when we next meet.</li></ul><p>Researching another island? Email us ({email}) and we’ll put you in touch with a member who knows it.</p>"
+    "html": "<ul><li><a href=\"/starting-your-family-tree/\">Starting your family tree</a>: the five steps, a short film, and how to fill in the charts.</li><li>Island guides for <a href=\"/jamaica/\">Jamaica</a>, <a href=\"/barbados/\">Barbados</a>, <a href=\"/st-kitts-and-nevis/\">St Kitts and Nevis</a> and <a href=\"/trinidad-and-tobago/\">Trinidad and Tobago</a>, and a page for <a href=\"/other-islands/\">other islands</a>.</li><li><a href=\"/stories/\">Stories and research</a>: talks and tips from our meetings.</li><li><a href=\"/whats-on/\">What’s on</a>: when we next meet.</li></ul><p>Researching another island? Email us ({email}) and we’ll put you in touch with a member who knows it.</p>"
+   }
+  ]
+ },
+ "other-islands": {
+  "title": "Other Caribbean islands",
+  "lead": "Our members research families right across the Caribbean, from Anguilla to Guyana. If your island doesn’t have a page of its own yet, start here.",
+  "image": "marking-a-caribbean-map",
+  "tone": "gold",
+  "cta": true,
+  "sections": [
+   {
+    "id": "every-island",
+    "heading": "Records that cover every island",
+    "html": "<ul><li><strong>Slave registers, 1813 to 1834.</strong> Every British colony kept them. They are at The National Archives (series T 71) and can be searched on Ancestry.</li><li><strong><a href=\"https://www.ucl.ac.uk/lbs/\">Legacies of British Slavery</a>.</strong> A free database of the owners and estates paid compensation when slavery ended. It helps you find where an enslaved ancestor lived.</li><li><strong>Passenger lists to the UK, 1878 to 1960.</strong> Ships arriving in Britain listed every passenger, including the Windrush generation. They are at The National Archives (BT 26), on Ancestry and Findmypast.</li><li><strong><a href=\"https://www.familysearch.org/search/\">FamilySearch</a>.</strong> Free. Search by island to see which registers have been filmed and indexed.</li><li><strong><a href=\"https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Individual_Island_Register.pdf\">Solihull Libraries’ island register</a>.</strong> Lists when the state began registering births, marriages and deaths on each island, and what can be viewed at the library.</li></ul>"
+   },
+   {
+    "id": "surnames",
+    "heading": "Surnames we’re researching",
+    "html": "",
+    "shortcodes": [
+     "[cfhg_surnames island=\"others\"]"
+    ]
+   },
+   {
+    "id": "guides",
+    "heading": "Islands with a page of their own",
+    "html": "<ul><li><a href=\"/jamaica/\">Jamaica</a></li><li><a href=\"/barbados/\">Barbados</a></li><li><a href=\"/st-kitts-and-nevis/\">St Kitts and Nevis</a></li><li><a href=\"/trinidad-and-tobago/\">Trinidad and Tobago</a></li></ul>"
+   },
+   {
+    "id": "ask",
+    "heading": "Ask us",
+    "html": "<p>Tell us the island, the names and what you’ve tried so far. Email us ({email}) and we’ll pass your question to the member who knows that island best.</p>"
    }
   ]
  }

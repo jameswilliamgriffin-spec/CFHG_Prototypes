@@ -271,3 +271,19 @@ Elementor it uses the **CFHG Island** page template.
 The code is in `inc/island.php`, the styles in `assets/css/main.css` section
 7.3. Island illustrations are in the image list in `inc/images.php`
 (Jamaica's is `island-jamaica-blue-mountains`, from Option C's set).
+
+### Island pages and information pages (1.7.0 to 1.8.2)
+
+- **Island pages** for Jamaica, Barbados, St Kitts and Nevis, and Trinidad
+  and Tobago are built from the CFHG Site plugin's guides (Appearance > CFHG
+  Setup > Create an island page). Each has its illustration with a looping
+  film, "Where should I look?", the records timeline, the areas (with a map
+  where there is one), sources, surnames, and that island's stories.
+- **Other Caribbean islands**, Who we are, Join the group, Contact, Stories
+  and research, Photography and video, and Privacy and cookies come from
+  `inc/pages-content.json` (CFHG Setup > Information pages).
+- `/research/jamaica/` and the like redirect to `/jamaica/`
+  (`cfhg_page_redirects()` in `inc/pages.php`). `/research/` itself is not
+  built yet.
+- The static copy for client review: `npm run export:wp` writes `wp-export/`,
+  which is what Vercel serves.

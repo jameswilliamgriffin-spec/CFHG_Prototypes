@@ -34,11 +34,11 @@ function cfhg_island_text() {
 	return array(
 		'finder_heading'  => __( 'Where should I look?', 'cfhg' ),
 		'finder_lead'     => __( 'Tell us a little about who you’re looking for, and we’ll suggest the records to try first.', 'cfhg' ),
-		'parish_heading'  => __( 'Explore the parishes', 'cfhg' ),
+		'parish_heading'  => __( 'Explore the {areas}', 'cfhg' ),
 		'sources_heading' => __( 'The main record sources', 'cfhg' ),
 		'names_heading'   => __( 'Surnames we’re researching in {island}', 'cfhg' ),
 		'stories_heading' => __( 'How members researched {island}', 'cfhg' ),
-		'stories_lead'    => __( 'Real accounts from people in the group: what they were looking for, where they looked, and what they found.', 'cfhg' ),
+		'stories_lead'    => __( 'Talks, tips and members’ accounts from our meetings.', 'cfhg' ),
 		'story_todo'      => __( 'Story to come. A member’s account of researching a {island} family: who they were looking for, where they looked and what they found. Named or anonymous, and with a photograph if they’d like one.', 'cfhg' ),
 		'from_heading'    => __( 'From the group', 'cfhg' ),
 		'events_heading'  => __( 'Coming up', 'cfhg' ),
@@ -49,7 +49,7 @@ function cfhg_island_text() {
 		'timeline_lead'   => __( 'Each bar is a set of records and the years it covers. Find the years your ancestor was alive, and read down to see what could name them.', 'cfhg' ),
 		'jump_finder'     => __( 'Where should I look?', 'cfhg' ),
 		'jump_timeline'   => __( 'Records by year', 'cfhg' ),
-		'jump_parishes'   => __( 'Parishes', 'cfhg' ),
+		'jump_parishes'   => __( '{Areas}', 'cfhg' ),
 		'jump_sources'    => __( 'Where to search', 'cfhg' ),
 		'jump_names'      => __( 'Surnames', 'cfhg' ),
 		'cta_heading'     => __( 'Researching {island}? Come along', 'cfhg' ),
@@ -65,8 +65,21 @@ function cfhg_island_text() {
  * @return string
  */
 function cfhg_island_say( $key, $name ) {
-	$text = cfhg_island_text();
-	return str_replace( '{island}', $name, isset( $text[ $key ] ) ? $text[ $key ] : '' );
+	$text  = cfhg_island_text();
+	$areas = __( 'parishes', 'cfhg' );
+	if ( function_exists( 'cfhg_site_island' ) && function_exists( 'cfhg_site_area_word' ) ) {
+		foreach ( cfhg_site_island_slugs() as $slug ) {
+			$guide = cfhg_site_island( $slug );
+			if ( $guide && $guide['name'] === $name ) {
+				$areas = cfhg_site_area_word( $guide, 'many' );
+			}
+		}
+	}
+	return str_replace(
+		array( '{island}', '{areas}', '{Areas}' ),
+		array( $name, $areas, ucfirst( $areas ) ),
+		isset( $text[ $key ] ) ? $text[ $key ] : ''
+	);
 }
 
 /**
@@ -120,8 +133,7 @@ function cfhg_island_jump_list( $guide ) {
  * @return string
  */
 function cfhg_island_story_placeholders( $guide ) {
-	$card = '<article class="cfhg-island-story is-placeholder"><p>' . esc_html( cfhg_island_say( 'story_todo', $guide['name'] ) ) . '</p></article>';
-	return '<div class="cfhg-island-stories">' . $card . $card . '</div>';
+	return do_shortcode( '[cfhg_story_grid island="' . esc_attr( $guide['slug'] ) . '" count="3"]' );
 }
 
 /**
@@ -162,7 +174,7 @@ function cfhg_island_markup( $slug ) {
 			'cfhg-island-from',
 			cfhg_island_say( 'from_heading', $name ),
 			'<div class="cfhg-island__from-grid"><div><h3 class="cfhg-h3">' . esc_html( cfhg_island_say( 'events_heading', $name ) ) . '</h3>' . do_shortcode( '[cfhg_events island="' . $s . '" limit="4" empty="' . esc_attr( cfhg_island_say( 'events_empty', $name ) ) . '"]' ) . '</div>'
-			. '<div><h3 class="cfhg-h3">' . esc_html( cfhg_island_say( 'posts_heading', $name ) ) . '</h3>' . do_shortcode( '[cfhg_island_posts island="' . $s . '" limit="4" empty="' . esc_attr( cfhg_island_say( 'posts_empty', $name ) ) . '"]' ) . '</div></div>'
+			. '<div><h3 class="cfhg-h3">' . esc_html( cfhg_island_say( 'posts_heading', $name ) ) . '</h3>' . do_shortcode( '[cfhg_island_posts island="' . $s . '" limit="4" not_in="stories" empty="' . esc_attr( cfhg_island_say( 'posts_empty', $name ) ) . '"]' ) . '</div></div>'
 		)
 		. '<section class="cfhg-section cfhg-guide__cta" aria-labelledby="cfhg-island-cta"><div class="cfhg-container"><div class="cfhg-card cfhg-guide__cta-card">'
 		. '<h2 class="cfhg-h2" id="cfhg-island-cta">' . esc_html( cfhg_island_say( 'cta_heading', $name ) ) . '</h2>'
@@ -249,7 +261,7 @@ function cfhg_elementor_island_data( $slug, $image_id = 0 ) {
 	$sections[] = $block( 'cfhg-island__parishes', cfhg_island_say( 'parish_heading', $name ), array( cfhg_el_shortcode( '[cfhg_parish_map island="' . $s . '"]' ) ), '', 'cfhg-island-parishes' );
 	$sections[] = $block( 'cfhg-island__sources', cfhg_island_say( 'sources_heading', $name ), array( cfhg_el_shortcode( '[cfhg_island_sources island="' . $s . '"]' ) ), '', 'cfhg-island-sources' );
 	$sections[] = $block( 'cfhg-island__names', cfhg_island_say( 'names_heading', $name ), array( cfhg_el_shortcode( '[cfhg_surnames island="' . $s . '"]' ) ), '', 'cfhg-island-names' );
-	$sections[] = $block( 'cfhg-island__stories', cfhg_island_say( 'stories_heading', $name ), array( cfhg_el_text( cfhg_island_story_placeholders( $guide ), 'cfhg-body' ) ), cfhg_island_say( 'stories_lead', $name ) );
+	$sections[] = $block( 'cfhg-island__stories', cfhg_island_say( 'stories_heading', $name ), array( cfhg_el_shortcode( '[cfhg_story_grid island="' . $s . '" count="3"]' ) ), cfhg_island_say( 'stories_lead', $name ) );
 	$sections[] = $block(
 		'cfhg-island__from',
 		cfhg_island_say( 'from_heading', $name ),
@@ -257,7 +269,7 @@ function cfhg_elementor_island_data( $slug, $image_id = 0 ) {
 			cfhg_el_row(
 				array(
 					cfhg_el_column( 48, array( cfhg_el_heading( esc_html( cfhg_island_say( 'events_heading', $name ) ), 'h3', 'cfhg-h3' ), cfhg_el_shortcode( '[cfhg_events island="' . $s . '" limit="4" empty="' . esc_attr( cfhg_island_say( 'events_empty', $name ) ) . '"]' ) ) ),
-					cfhg_el_column( 48, array( cfhg_el_heading( esc_html( cfhg_island_say( 'posts_heading', $name ) ), 'h3', 'cfhg-h3' ), cfhg_el_shortcode( '[cfhg_island_posts island="' . $s . '" limit="4" empty="' . esc_attr( cfhg_island_say( 'posts_empty', $name ) ) . '"]' ) ) ),
+					cfhg_el_column( 48, array( cfhg_el_heading( esc_html( cfhg_island_say( 'posts_heading', $name ) ), 'h3', 'cfhg-h3' ), cfhg_el_shortcode( '[cfhg_island_posts island="' . $s . '" limit="4" not_in="stories" empty="' . esc_attr( cfhg_island_say( 'posts_empty', $name ) ) . '"]' ) ) ),
 				),
 				array( 'flex_justify_content' => 'space-between' )
 			),

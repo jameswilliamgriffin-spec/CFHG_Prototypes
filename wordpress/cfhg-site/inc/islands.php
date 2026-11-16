@@ -126,12 +126,47 @@ function cfhg_site_surnames_by_parish( $island ) {
 }
 
 /**
+ * What an island calls its areas: parishes unless its guide says otherwise
+ * ("area": {"one": "county", "many": "counties"} for Trinidad).
+ *
+ * @param array  $guide Island guide.
+ * @param string $form  one or many.
+ * @return string
+ */
+function cfhg_site_area_word( $guide, $form = 'one' ) {
+	$words = array(
+		'one'  => __( 'parish', 'cfhg-site' ),
+		'many' => __( 'parishes', 'cfhg-site' ),
+	);
+	if ( ! empty( $guide['area'][ $form ] ) ) {
+		return (string) $guide['area'][ $form ];
+	}
+	return $words[ 'many' === $form ? 'many' : 'one' ];
+}
+
+/**
+ * The year an island's areas were redrawn (Jamaica: 1867), or 0.
+ *
+ * @param array $guide Island guide.
+ * @return int
+ */
+function cfhg_site_areas_changed( $guide ) {
+	return empty( $guide['areas_changed'] ) ? 0 : (int) $guide['areas_changed'];
+}
+
+/**
  * The "draft" note shown on a guide the group hasn't checked yet.
  *
  * @param array $guide Island guide.
  * @return string
  */
 function cfhg_site_draft_note( $guide ) {
+	/* Once per island on a page is enough: the first part that prints it wins. */
+	static $shown = array();
+	if ( isset( $shown[ $guide['slug'] ] ) ) {
+		return '';
+	}
+	$shown[ $guide['slug'] ] = true;
 	if ( empty( $guide['draft'] ) ) {
 		return empty( $guide['checked'] ) ? '' : '<p class="cfhg-island__checked">' . esc_html( sprintf( /* translators: %s: date. */ __( 'Last checked %s.', 'cfhg-site' ), $guide['checked'] ) ) . '</p>';
 	}
@@ -157,6 +192,8 @@ function cfhg_site_parish_map_shortcode( $atts ) {
 	$map      = file_exists( $map_file ) ? (string) file_get_contents( $map_file ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local plugin file.
 	$mail     = function_exists( 'cfhg_mailto' ) ? cfhg_mailto() : '';
 
+	$changed = cfhg_site_areas_changed( $guide );
+	$area    = cfhg_site_area_word( $guide );
 	$buttons = '';
 	$panels  = '';
 	foreach ( $guide['parishes'] as $i => $parish ) {
@@ -171,11 +208,17 @@ function cfhg_site_parish_map_shortcode( $atts ) {
 			$count ? '<span class="cfhg-parishes__count" title="' . esc_attr__( 'Surnames being researched here', 'cfhg-site' ) . '">' . (int) $count . '</span>' : ''
 		);
 
-		$body  = '<p class="cfhg-parish__town">' . esc_html( sprintf( /* translators: %s: town. */ __( 'Main town: %s', 'cfhg-site' ), $parish['town'] ) ) . '</p>';
-		if ( $parish['old'] ) {
-			$body .= '<p class="cfhg-parish__old"><strong>' . esc_html__( 'Before 1867, also search:', 'cfhg-site' ) . '</strong> ' . esc_html( implode( ', ', $parish['old'] ) ) . '</p>';
+		$body = empty( $parish['town'] ) ? '' : '<p class="cfhg-parish__town">' . esc_html( sprintf( /* translators: %s: town. */ __( 'Main town: %s', 'cfhg-site' ), $parish['town'] ) ) . '</p>';
+		if ( ! empty( $parish['old'] ) && $changed ) {
+			/* translators: %d: year. */
+			$body .= '<p class="cfhg-parish__old"><strong>' . esc_html( sprintf( __( 'Before %d, also search:', 'cfhg-site' ), $changed ) ) . '</strong> ' . esc_html( implode( ', ', $parish['old'] ) ) . '</p>';
 		}
-		$body .= '<p>' . esc_html( str_replace( '{parish}', $parish['name'], (string) $guide['parish_tip'] ) ) . '</p>';
+		if ( ! empty( $parish['note'] ) ) {
+			$body .= '<p>' . esc_html( $parish['note'] ) . '</p>';
+		}
+		if ( ! empty( $guide['parish_tip'] ) ) {
+			$body .= '<p>' . esc_html( str_replace( '{parish}', $parish['name'], (string) $guide['parish_tip'] ) ) . '</p>';
+		}
 		if ( $count ) {
 			$body .= '<h4>' . esc_html__( 'Surnames members are researching here', 'cfhg-site' ) . '</h4><ul class="cfhg-parish__surnames">';
 			foreach ( $surnames[ $slug ] as $names ) {
@@ -183,7 +226,7 @@ function cfhg_site_parish_map_shortcode( $atts ) {
 			}
 			$body .= '</ul><p class="cfhg-parish__ask">' . ( $mail ? '<a href="' . esc_url( $mail ) . '">' . esc_html__( 'Researching one of these? Email us', 'cfhg-site' ) . '</a>' : '' ) . '</p>';
 		} else {
-			$body .= '<p class="cfhg-parish__none">' . esc_html__( 'No surnames listed for this parish yet. Researching here? Tell us and we’ll add your names.', 'cfhg-site' ) . '</p>';
+			$body .= '<p class="cfhg-parish__none">' . esc_html( sprintf( /* translators: %s: parish or county. */ __( 'No surnames listed for this %s yet. Researching here? Tell us and we’ll add your names.', 'cfhg-site' ), $area ) ) . '</p>';
 		}
 		$panels .= sprintf(
 			'<section class="cfhg-parish" id="%1$s" data-parish="%2$s" aria-labelledby="%1$s-title"><h3 class="cfhg-parish__name" id="%1$s-title">%3$s</h3>%4$s</section>',
@@ -195,10 +238,10 @@ function cfhg_site_parish_map_shortcode( $atts ) {
 	}
 
 	return '<div class="cfhg-parishes' . ( $map ? ' has-map' : '' ) . '" data-cfhg-parishes>'
-		. '<p class="cfhg-parishes__note">' . esc_html( $guide['parish_note'] ) . '</p>'
+		. ( empty( $guide['parish_note'] ) ? '' : '<p class="cfhg-parishes__note">' . esc_html( $guide['parish_note'] ) . '</p>' )
 		. '<div class="cfhg-parishes__layout">'
 		. ( $map ? '<div class="cfhg-parishes__map">' . $map . ( $surnames ? '<p class="cfhg-parishes__key"><span aria-hidden="true"></span>' . esc_html__( 'Shaded: members are researching families here', 'cfhg-site' ) . '</p>' : '' ) . ( empty( $guide['map_credit'] ) ? '' : '<p class="cfhg-parishes__credit">' . esc_html( $guide['map_credit'] ) . '</p>' ) . '</div>' : '' ) // phpcs:ignore -- local SVG file.
-		. '<div class="cfhg-parishes__side"><p class="cfhg-parishes__hint">' . esc_html( $map ? __( 'Choose a parish on the map or in the list.', 'cfhg-site' ) : __( 'Choose a parish.', 'cfhg-site' ) ) . '</p><ul class="cfhg-parishes__list">' . $buttons . '</ul>'
+		. '<div class="cfhg-parishes__side"><p class="cfhg-parishes__hint">' . esc_html( sprintf( /* translators: %s: parish or county. */ $map ? __( 'Choose a %s on the map or in the list.', 'cfhg-site' ) : __( 'Choose a %s.', 'cfhg-site' ), $area ) ) . '</p><ul class="cfhg-parishes__list">' . $buttons . '</ul>'
 		. '<div class="cfhg-parishes__panels">' . $panels . '</div></div>'
 		. '</div></div>';
 }
@@ -235,12 +278,14 @@ function cfhg_site_record_finder_shortcode( $atts ) {
 			},
 			$guide['parishes']
 		),
+		'changed'  => cfhg_site_areas_changed( $guide ),
 		'text'     => array(
 			'tryFirst'   => __( 'Try first', 'cfhg-site' ),
 			'where'      => __( 'Where:', 'cfhg-site' ),
 			'open'       => __( 'Go to', 'cfhg-site' ),
 			'none'       => __( 'We don’t have a suggestion for that combination yet. Bring it to a meeting: it’s exactly what we’re here for.', 'cfhg-site' ),
-			'oldNames'   => __( 'Before 1867 the area was part of: %s. Search those parish names too.', 'cfhg-site' ),
+			/* translators: 1: year, 2: old parish names. */
+			'oldNames'   => __( 'Before %1$s the area was part of: %2$s. Search those names too.', 'cfhg-site' ),
 			'needChoice' => __( 'Choose what you’re looking for first.', 'cfhg-site' ),
 		),
 	);
@@ -261,9 +306,10 @@ function cfhg_site_record_finder_shortcode( $atts ) {
 	return '<div class="cfhg-finder" data-cfhg-finder>'
 		. '<form class="cfhg-finder__form" novalidate>'
 		. '<fieldset class="cfhg-finder__step"><legend>' . esc_html__( 'What are you looking for?', 'cfhg-site' ) . '</legend><div class="cfhg-finder__choices">' . $looking . '</div></fieldset>'
-		. '<div class="cfhg-finder__row">'
+		. '<div class="cfhg-finder__row' . ( cfhg_site_areas_changed( $guide ) ? '' : ' cfhg-finder__row--one' ) . '">'
 		. '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-when">' . esc_html__( 'Roughly when?', 'cfhg-site' ) . '</label><select id="' . esc_attr( $id ) . '-when" name="when">' . $periods . '</select></p>'
-		. '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-parish">' . esc_html__( 'Which parish?', 'cfhg-site' ) . '</label><select id="' . esc_attr( $id ) . '-parish" name="parish">' . $parishes . '</select></p>'
+		/* The area only matters where old names differ, so only ask for it there. */
+		. ( cfhg_site_areas_changed( $guide ) ? '<p class="cfhg-finder__step"><label for="' . esc_attr( $id ) . '-parish">' . esc_html( sprintf( /* translators: %s: parish or county. */ __( 'Which %s?', 'cfhg-site' ), cfhg_site_area_word( $guide ) ) ) . '</label><select id="' . esc_attr( $id ) . '-parish" name="parish">' . $parishes . '</select></p>' : '' )
 		. '</div>'
 		. '<p class="cfhg-finder__go"><button type="submit" class="cfhg-btn cfhg-btn--mark"><span class="cfhg-btn__label">' . esc_html__( 'Show me where to look', 'cfhg-site' ) . '</span></button></p>'
 		. '</form>'
@@ -290,7 +336,7 @@ function cfhg_site_island_sources_shortcode( $atts ) {
 	$html = '<ul class="cfhg-sources">';
 	foreach ( $guide['resources'] as $r ) {
 		$html .= '<li class="cfhg-source"><h3 class="cfhg-source__title">' . esc_html( $r['title'] ) . '</h3><p>' . esc_html( $r['text'] ) . '</p>'
-			. ( $r['url'] ? '<p class="cfhg-source__link"><a href="' . esc_url( $r['url'] ) . '" rel="noopener">' . esc_html( $r['online'] ? __( 'Visit the website', 'cfhg-site' ) : __( 'Find out more', 'cfhg-site' ) ) . '</a></p>' : '' )
+			. ( $r['url'] ? '<p class="cfhg-source__link"><a href="' . esc_url( $r['url'] ) . '" rel="noopener">' . esc_html( ! empty( $r['link'] ) ? $r['link'] : ( $r['online'] ? __( 'Visit the website', 'cfhg-site' ) : __( 'Find out more', 'cfhg-site' ) ) ) . '</a></p>' : '' )
 			. '</li>';
 	}
 	return $html . '</ul>' . cfhg_site_draft_note( $guide );
@@ -313,7 +359,7 @@ function cfhg_site_record_timeline_shortcode( $atts ) {
 	}
 	wp_enqueue_script( 'cfhg-site' );
 
-	$from = 1650;
+	$from = empty( $guide['timeline_from'] ) ? 1650 : (int) $guide['timeline_from'];
 	$to   = (int) ( ceil( ( (int) gmdate( 'Y' ) + 1 ) / 10 ) * 10 );
 	$pos  = static function ( $year ) use ( $from, $to ) {
 		return round( ( max( $from, min( $to, (int) $year ) ) - $from ) / ( $to - $from ) * 100, 2 );
@@ -326,6 +372,7 @@ function cfhg_site_record_timeline_shortcode( $atts ) {
 		'death'    => array( 'vital', '' ),
 		'land'     => array( 'land', __( 'Land and property', 'cfhg-site' ) ),
 		'britain'  => array( 'journey', __( 'Journeys and service', 'cfhg-site' ) ),
+		'indenture' => array( 'journey', '' ),
 		'military' => array( 'journey', '' ),
 	);
 	$records = $guide['finder']['records'];
@@ -355,6 +402,9 @@ function cfhg_site_record_timeline_shortcode( $atts ) {
 			? sprintf( __( '%d to today', 'cfhg-site' ), (int) $r['from'] )
 			/* translators: 1: first year, 2: last year. */
 			: sprintf( __( '%1$d to %2$d', 'cfhg-site' ), (int) $r['from'], (int) $r['to'] );
+		if ( (int) $r['from'] === (int) $r['to'] ) {
+			$years = (string) (int) $r['from'];
+		}
 		/* The years go after the bar, before it, or inside it: wherever there is room. */
 		$place = $pos( $r['to'] ) <= 60 ? 'after' : ( $pos( $r['from'] ) >= 30 ? 'before' : 'inside' );
 		$rows .= '<li class="cfhg-timeline__row cfhg-timeline__row--' . esc_attr( $kind ) . ' cfhg-timeline__row--' . $place . ( $open ? ' is-open' : '' ) . '" style="--s:' . $pos( $r['from'] ) . '%;--e:' . $pos( $r['to'] ) . '%;--n:' . (int) $n . '">'
@@ -364,7 +414,7 @@ function cfhg_site_record_timeline_shortcode( $atts ) {
 	}
 
 	$ticks = '';
-	for ( $y = 1700; $y < $to; $y += 50 ) {
+	for ( $y = (int) ( ceil( ( $from + 1 ) / 50 ) * 50 ); $y < $to; $y += 50 ) {
 		$ticks .= '<span class="cfhg-timeline__tick" style="--x:' . $pos( $y ) . '%">' . $y . '</span>';
 	}
 	$marks = '';
@@ -403,14 +453,17 @@ function cfhg_site_island_posts_shortcode( $atts ) {
 			'island' => '',
 			'limit'  => 3,
 			'empty'  => '',
+			'not_in' => '',
 		),
 		$atts,
 		'cfhg_island_posts'
 	);
+	$skip  = $atts['not_in'] ? get_category_by_slug( sanitize_title( $atts['not_in'] ) ) : null;
 	$posts = get_posts(
 		array(
 			'post_type'      => 'post',
 			'posts_per_page' => (int) $atts['limit'],
+			'category__not_in' => $skip ? array( (int) $skip->term_id ) : array(),
 			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				array(
 					'taxonomy' => 'cfhg_island',

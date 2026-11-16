@@ -1,0 +1,355 @@
+{
+	"_about": "Barbados's island guide. DRAFT written from published sources and the group's own posts, for the group to check: see the 'check' notes. Read by cfhg_site_island() in inc/islands.php.",
+	"slug": "barbados",
+	"name": "Barbados",
+	"draft": true,
+	"checked": "",
+	"illustration": "island-barbados-chattel-houses",
+	"intro": "Barbados has some of the oldest registers in the Caribbean: Church of England baptisms, marriages and burials go back to 1637 in some parishes. The eleven parishes have hardly changed since the 1640s, so the parish in an old record is the one on the map today. Our Barbados research group, for members, meets on Zoom each month.",
+	"map_credit": "Map data from geoBoundaries and Wikimedia Commons. Licensed CC BY 2.5.",
+	"parish_note": "Barbados has had the same eleven parishes since the 1640s. How far back the registers go differs from parish to parish.",
+	"parishes": [
+		{
+			"slug": "christ-church",
+			"name": "Christ Church",
+			"town": "Oistins",
+			"old": [],
+			"aliases": [
+				"Christchurch"
+			],
+			"note": "Registers survive from 1637, the earliest on the island."
+		},
+		{
+			"slug": "st-andrew",
+			"name": "St Andrew",
+			"town": "Belleplaine",
+			"old": [],
+			"aliases": [],
+			"note": "No registers survive from before 1825."
+		},
+		{
+			"slug": "st-george",
+			"name": "St George",
+			"town": "",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-james",
+			"name": "St James",
+			"town": "Holetown",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-john",
+			"name": "St John",
+			"town": "",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-joseph",
+			"name": "St Joseph",
+			"town": "Bathsheba",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-lucy",
+			"name": "St Lucy",
+			"town": "",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-michael",
+			"name": "St Michael",
+			"town": "Bridgetown",
+			"old": [],
+			"aliases": [
+				"Bridgetown"
+			]
+		},
+		{
+			"slug": "st-peter",
+			"name": "St Peter",
+			"town": "Speightstown",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-philip",
+			"name": "St Philip",
+			"town": "Six Cross Roads",
+			"old": [],
+			"aliases": []
+		},
+		{
+			"slug": "st-thomas",
+			"name": "St Thomas",
+			"town": "",
+			"old": [],
+			"aliases": []
+		}
+	],
+	"parish_tip": "Church of England registers for {parish} are on FamilySearch, with the originals at the Department of Archives.",
+	"resources": [
+		{
+			"title": "FamilySearch",
+			"text": "Free. Church of England records from 1637 to 1887, and parish register transcripts for 1900 to 1931. Our Barbados group found some of these locked and asked FamilySearch to open them: they can now be viewed anywhere in the world.",
+			"url": "https://www.familysearch.org/search/collection/location/1927094?region=Barbados",
+			"online": true,
+			"link": "Search Barbados on FamilySearch",
+			"check": "Which Barbados collections are indexed, and which are images only?"
+		},
+		{
+			"title": "Barbados Department of Archives",
+			"text": "At Black Rock, St Michael. Holds the original parish registers, wills from the 1640s, deeds and plantation records.",
+			"url": "",
+			"online": false,
+			"link": "",
+			"check": "Web address, and whether researchers can write in."
+		},
+		{
+			"title": "Registration Department",
+			"text": "The state registered births from 1890 and deaths from 1925. Order certificates from the Registration Department in Bridgetown.",
+			"url": "",
+			"online": false,
+			"link": "",
+			"check": "Did civil registration of marriages begin in 1890 or 1930? Sources differ. Web address for ordering certificates."
+		},
+		{
+			"title": "Slave registers and compensation records",
+			"text": "Registers of enslaved people made between 1817 and 1834, at The National Archives (series T 71), and searchable on Ancestry. The Legacies of British Slavery database at UCL covers the owners and estates paid compensation.",
+			"url": "https://www.ucl.ac.uk/lbs/",
+			"online": true,
+			"link": "Search Legacies of British Slavery",
+			"check": ""
+		},
+		{
+			"title": "Findmypast",
+			"text": "Barbados baptisms from 1637 to 1891 and marriages from 1637 to 1887, indexed by name. A subscription site, free to use in many libraries.",
+			"url": "https://www.findmypast.co.uk/",
+			"online": true,
+			"link": "Visit Findmypast",
+			"check": ""
+		},
+		{
+			"title": "At Solihull Core Library",
+			"text": "Solihull Libraries list the Caribbean family history films they hold, and you can use FamilySearch there at affiliate level. Ancestry is free to use in the library and includes English settlers in Barbados from 1637 to 1800.",
+			"url": "https://www.solihull.gov.uk/sites/default/files/migrated/libraries_Caribbean01_FH_films.pdf",
+			"online": true,
+			"link": "See the library's list of films",
+			"check": "Is this the current list?"
+		}
+	],
+	"finder": {
+		"periods": [
+			{
+				"id": "before-1834",
+				"label": "Before 1834",
+				"from": 1600,
+				"to": 1833
+			},
+			{
+				"id": "1834-1877",
+				"label": "1834 to 1877",
+				"from": 1834,
+				"to": 1877
+			},
+			{
+				"id": "1878-1929",
+				"label": "1878 to 1929",
+				"from": 1878,
+				"to": 1929
+			},
+			{
+				"id": "1930-on",
+				"label": "1930 or later",
+				"from": 1930,
+				"to": 2100
+			},
+			{
+				"id": "not-sure",
+				"label": "I'm not sure",
+				"from": 1600,
+				"to": 2100
+			}
+		],
+		"looking": [
+			{
+				"id": "birth",
+				"label": "A birth or baptism"
+			},
+			{
+				"id": "marriage",
+				"label": "A marriage"
+			},
+			{
+				"id": "death",
+				"label": "A death or burial"
+			},
+			{
+				"id": "enslaved",
+				"label": "An ancestor who was enslaved"
+			},
+			{
+				"id": "land",
+				"label": "Where they lived or owned land"
+			},
+			{
+				"id": "britain",
+				"label": "Their journey to Britain"
+			},
+			{
+				"id": "military",
+				"label": "Military service"
+			}
+		],
+		"records": [
+			{
+				"id": "civil",
+				"title": "Civil registration",
+				"why": "The state registered births from 1890 and deaths from 1925. The registers give names, dates, places and parents.",
+				"where": "FamilySearch has transcripts for 1900 to 1931. Order certificates from the Registration Department in Bridgetown.",
+				"url": "https://www.familysearch.org/search/collection/location/1927094?region=Barbados",
+				"for": [
+					"birth",
+					"death"
+				],
+				"from": 1890,
+				"to": 2100,
+				"rank": 1
+			},
+			{
+				"id": "anglican",
+				"title": "Church of England registers",
+				"why": "Baptisms, marriages and burials, from 1637 in the oldest parishes. Before 1890 these are the main record of a birth, and they are the record of a marriage throughout.",
+				"where": "FamilySearch (free) and Findmypast; originals at the Department of Archives.",
+				"url": "https://www.familysearch.org/search/collection/location/1927094?region=Barbados",
+				"for": [
+					"birth",
+					"marriage",
+					"death"
+				],
+				"from": 1637,
+				"to": 1931,
+				"rank": 2
+			},
+			{
+				"id": "slave-registers",
+				"title": "Slave registers, 1817 to 1834",
+				"why": "Every few years, owners had to list the people they enslaved, with names, ages, colour and country of birth. They can link a family across a generation.",
+				"where": "The National Archives (T 71), searchable on Ancestry.",
+				"url": "https://discovery.nationalarchives.gov.uk/details/r/C2584265",
+				"for": [
+					"enslaved",
+					"birth",
+					"death"
+				],
+				"from": 1817,
+				"to": 1834,
+				"rank": 1
+			},
+			{
+				"id": "compensation",
+				"title": "Compensation records and estate histories",
+				"why": "When slavery was abolished, owners, not the enslaved, were paid compensation. The records name estates, which helps you find where an enslaved ancestor lived.",
+				"where": "Legacies of British Slavery database, UCL (free).",
+				"url": "https://www.ucl.ac.uk/lbs/",
+				"for": [
+					"enslaved",
+					"land"
+				],
+				"from": 1817,
+				"to": 1845,
+				"rank": 2
+			},
+			{
+				"id": "wills",
+				"title": "Wills and deeds",
+				"why": "Wills name family and property; deeds record land changing hands. Barbados wills survive from the 1640s.",
+				"where": "The Barbados Department of Archives, Black Rock.",
+				"url": "",
+				"for": [
+					"death",
+					"land"
+				],
+				"from": 1647,
+				"to": 2100,
+				"rank": 3
+			},
+			{
+				"id": "census",
+				"title": "Censuses of 1679 and 1715",
+				"why": "They name landholders and white households, parish by parish. Enslaved people were counted but not named.",
+				"where": "The National Archives, Kew; transcripts have been published.",
+				"url": "",
+				"for": [
+					"land"
+				],
+				"from": 1679,
+				"to": 1715,
+				"rank": 4
+			},
+			{
+				"id": "newspapers",
+				"title": "The Barbados Mercury and the Barbadian",
+				"why": "Notices of deaths, sales and people who had escaped slavery. The Barbados Mercury from 1783 to 1848 has been digitised by the British Library.",
+				"where": "British Library Endangered Archives Programme (free).",
+				"url": "https://eap.bl.uk/",
+				"for": [
+					"death",
+					"enslaved",
+					"land"
+				],
+				"from": 1783,
+				"to": 1861,
+				"rank": 4
+			},
+			{
+				"id": "passenger-lists",
+				"title": "Passenger lists to the UK, 1878 to 1960",
+				"why": "Ships arriving in Britain listed every passenger, including the Windrush generation, often with an age, job and address.",
+				"where": "The National Archives (BT 26), searchable on Ancestry and Findmypast.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/passenger-lists/",
+				"for": [
+					"britain"
+				],
+				"from": 1878,
+				"to": 1960,
+				"rank": 1
+			},
+			{
+				"id": "military",
+				"title": "British Army and the West India Regiment",
+				"why": "Many Barbadians served in the West India Regiments from 1795, and in the British West Indies Regiment in the First World War. Service records give birthplaces and families.",
+				"where": "The National Archives; many on Findmypast and Ancestry.",
+				"url": "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/british-army-soldiers-up-to-1913/",
+				"for": [
+					"military"
+				],
+				"from": 1795,
+				"to": 1960,
+				"rank": 1
+			}
+		],
+		"always": "Start with what your family knows, then work back one generation at a time. Bring what you find to a meeting: someone has usually been stuck in the same place."
+	},
+	"timeline_from": 1620,
+	"timeline": [
+		{
+			"year": 1637,
+			"label": "The oldest surviving parish register begins, in Christ Church."
+		},
+		{
+			"year": 1834,
+			"label": "Slavery is abolished. Apprenticeship follows until 1838."
+		},
+		{
+			"year": 1890,
+			"label": "The state begins registering births. Deaths follow in 1925."
+		}
+	]
+}
