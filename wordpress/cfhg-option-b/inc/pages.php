@@ -54,7 +54,8 @@ function cfhg_pages_plain_html( $page ) {
 		$html .= $s['heading'] ? '<h2>' . esc_html( $s['heading'] ) . '</h2>' : '';
 		$html .= cfhg_pages_text( $s['html'] );
 		foreach ( isset( $s['buttons'] ) ? $s['buttons'] : array() as $button ) {
-			$html .= '<p><a href="' . esc_url( cfhg_url( $button[1] ) ) . '">' . esc_html( $button[0] ) . '</a></p>';
+			$url   = '{mailto}' === $button[1] ? cfhg_mailto() : cfhg_url( $button[1] );
+			$html .= $url ? '<p><a href="' . esc_url( $url ) . '">' . esc_html( $button[0] ) . '</a></p>' : '';
 		}
 		foreach ( isset( $s['shortcodes'] ) ? $s['shortcodes'] : array() as $code ) {
 			$html .= $code;
@@ -160,7 +161,10 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 			$items[] = cfhg_el_text( cfhg_pages_text( $s['html'] ), empty( $s['wide'] ) ? 'cfhg-body cfhg-el-prose' : 'cfhg-body cfhg-el-wide' );
 		}
 		foreach ( isset( $s['buttons'] ) ? $s['buttons'] : array() as $i => $button ) {
-			$items[] = cfhg_el_button( $button[0], $button[1], 0 === $i ? 'mark' : 'text' );
+			$url = '{mailto}' === $button[1] ? cfhg_mailto() : $button[1];
+			if ( $url ) {
+				$items[] = cfhg_el_button( $button[0], $url, 0 === $i ? 'mark' : 'text' );
+			}
 		}
 		foreach ( isset( $s['shortcodes'] ) ? $s['shortcodes'] : array() as $code ) {
 			$items[] = cfhg_el_shortcode( $code );

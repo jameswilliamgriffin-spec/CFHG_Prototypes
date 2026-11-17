@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'CFHG_VERSION', '1.12.0' );
+define( 'CFHG_VERSION', '1.13.0' );
 define( 'CFHG_DIR', get_template_directory() );
 define( 'CFHG_URI', get_template_directory_uri() );
 

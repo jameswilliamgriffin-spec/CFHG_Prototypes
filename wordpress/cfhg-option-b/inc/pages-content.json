@@ -141,33 +141,63 @@
  },
  "join": {
   "title": "Join the group",
-  "lead": "Come to a meeting first and see if we’re for you. Your first visit is free.",
+  "lead": "Come to a meeting first and see if we’re for you. If you like it, membership is £20 a year, and every meeting after that is free.",
   "image": "local-history-walk",
   "tone": "sea",
-  "cta": false,
+  "cta": true,
   "sections": [
+   {
+    "id": "how",
+    "heading": "How to join",
+    "html": "<ol class=\"cfhg-join-steps\"><li class=\"cfhg-join-step\"><h3 class=\"cfhg-join-step__title\">Come along for free</h3><p>Your first visit is free, at Solihull Core Library or on Zoom. Bring a name, a photograph or a question, and see if we’re for you.</p></li><li class=\"cfhg-join-step\"><h3 class=\"cfhg-join-step__title\">Join online</h3><p>Membership is £20 a year, paid through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>. Or email us and we’ll tell you other ways to pay.</p></li><li class=\"cfhg-join-step\"><h3 class=\"cfhg-join-step__title\">Start researching with us</h3><p>We’ll send you the Zoom links, add you to the island research groups you’d like to join, and put your surnames on our list.</p></li></ol>",
+    "wide": true
+   },
    {
     "id": "cost",
     "heading": "What it costs",
-    "html": "<p>Attendance is free for members and for everyone’s first visit. After that it is £5 a visit, or £20 for a year’s membership.</p>",
+    "html": "",
     "shortcodes": [
      "[cfhg_prices]"
     ]
    },
    {
-    "id": "membership",
-    "heading": "What membership includes",
-    "html": "<p>Members can join our specialist research groups: Jamaica, Barbados, and St Kitts and Nevis with Anguilla. They are for members only. Some meet on Zoom, and some at Solihull Core Library, where the records for certain islands can be seen.</p><p>Members can also add the surnames they are researching to our list, and we’ll put them in touch with anyone researching the same families.</p>"
+    "id": "get",
+    "heading": "What you get",
+    "html": "<ul class=\"cfhg-do-cards\"><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/calendar.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Every meeting, free</h3><p>Members come to all our monthly meetings at no charge, in Solihull or on Zoom. Visitors pay £5 after their first time.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/three-islands.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Island research groups</h3><p>Members-only groups for Jamaica, Barbados, and St Kitts and Nevis with Anguilla, working through the records together.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/family-tree.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Your surnames on our list</h3><p>We add the names you’re researching, and put you in touch with anyone researching the same families.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/magnifier-record.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Help from people who’ve done it</h3><p>Some of us have been researching for more than forty years. Bring the record you’re stuck on and someone will usually know where to look next.</p></li></ul>",
+    "wide": true
    },
    {
-    "id": "how",
-    "heading": "How to join",
-    "html": "<p>Come to a meeting, or email us ({email}) and we’ll tell you how. Membership is paid online through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>.</p><p>Our AGM is held every May, and committee roles open up each year if you’d like to get more involved.</p>",
-    "shortcodes": [
-     "[cfhg_next_meeting style=\"facts\"]"
+    "id": "involved",
+    "style": "band",
+    "image": "a-talk-at-the-library",
+    "heading": "Want to get more involved?",
+    "html": "<p>Our AGM is held every May, and committee roles open up each year. Members also help at our exhibitions and open days, and some give talks about their own research.</p>",
+    "buttons": [
+     [
+      "Email us about helping",
+      "{mailto}"
+     ]
     ]
+   },
+   {
+    "id": "questions",
+    "heading": "Questions people ask",
+    "html": "<div class=\"cfhg-faq\"><details class=\"cfhg-faq__item\"><summary>Do I need any experience?</summary><p>No. Some of us started a few months ago. You don’t need a subscription either: a notebook, some patience and the people in your family who remember are enough to begin. <a href=\"/starting-your-family-tree/\">Start with the five steps</a>.</p></details><details class=\"cfhg-faq__item\"><summary>I don’t live near Solihull. Can I still join?</summary><p>Yes. Every meeting is on Zoom as well as in the library, and members join us from across the UK, the USA, Jamaica and Trinidad.</p></details><details class=\"cfhg-faq__item\"><summary>Can I come before I decide?</summary><p>Yes. Your first visit is free. After that it’s £5 a visit until you join.</p></details><details class=\"cfhg-faq__item\"><summary>How do I pay?</summary><p>Online through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>. If you’d rather pay another way, email us ({email}).</p></details><details class=\"cfhg-faq__item\"><summary>Who runs the group?</summary><p>Volunteers. Our committee is elected at the AGM every May, and new people are always welcome to help.</p></details></div>",
+    "wide": true
    }
-  ]
+  ],
+  "intro": "We’re a friendly group of volunteers. Some of us are experts in a particular island or in military records; some started a few months ago. Everyone is welcome.",
+  "hero_buttons": [
+   [
+    "Come to a meeting",
+    "/#next-meeting"
+   ],
+   [
+    "Join online",
+    "https://www.parishchest.com/caribbean-family-history-group-5498.php"
+   ]
+  ],
+  "image_width": 40
  },
  "contact": {
   "title": "Contact",

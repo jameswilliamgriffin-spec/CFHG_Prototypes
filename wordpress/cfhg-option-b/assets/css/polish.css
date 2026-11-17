@@ -1101,6 +1101,145 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	vertical-align: middle;
 }
 
+/* Join: three steps, numbered because they happen in order. */
+.cfhg-join-steps {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: cfhg-join;
+}
+
+@media (min-width: 900px) {
+	.cfhg-join-steps {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.cfhg-join-step {
+	--tone: var(--cfhg-coral);
+	position: relative;
+	padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+	padding-top: clamp(4.75rem, 4rem + 2vw, 5.75rem);
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+	counter-increment: cfhg-join;
+}
+
+.cfhg-join-step:nth-child(2) { --tone: var(--cfhg-gold); }
+.cfhg-join-step:nth-child(3) { --tone: var(--cfhg-green); }
+
+.cfhg-join-step::before {
+	content: counter(cfhg-join);
+	position: absolute;
+	top: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+	left: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+	display: grid;
+	place-items: center;
+	width: 2.9rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--tone);
+	color: var(--cfhg-ink);
+	font-family: var(--cfhg-font-display);
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 1;
+}
+
+/* An arrow between the steps on a desktop, pointing to the next one. */
+@media (min-width: 900px) {
+	.cfhg-join-step:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		top: calc(clamp(1.25rem, 1rem + 1vw, 1.75rem) + 1.45rem);
+		right: calc(var(--cfhg-gap) * -0.5 - 0.6rem);
+		z-index: 1;
+		width: 1.2rem;
+		height: 1.2rem;
+		background: var(--cfhg-arrow-ink) center / contain no-repeat;
+	}
+}
+
+.cfhg-join-step__title {
+	margin: 0 0 0.5rem;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-join-step p {
+	margin: 0;
+	line-height: 1.5;
+	color: var(--cfhg-ink-soft);
+}
+
+/* Questions people ask: open one at a time to read the answer. */
+.cfhg-faq {
+	display: grid;
+	gap: 0.75rem;
+	max-width: 52rem;
+	margin-top: var(--cfhg-sp-sm);
+}
+
+.cfhg-faq__item {
+	border-radius: var(--cfhg-r-md);
+	background: var(--cfhg-white);
+}
+
+.cfhg-faq__item summary {
+	position: relative;
+	display: block;
+	padding: 1.1rem 3.5rem 1.1rem 1.4rem;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.2;
+	list-style: none;
+	cursor: pointer;
+}
+
+.cfhg-faq__item summary::-webkit-details-marker {
+	display: none;
+}
+
+.cfhg-faq__item summary::after {
+	content: "+";
+	position: absolute;
+	top: 50%;
+	right: 1.2rem;
+	display: grid;
+	place-items: center;
+	width: 1.9rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--cfhg-highlight);
+	font-size: 1.3rem;
+	line-height: 1;
+	translate: 0 -50%;
+	transition: rotate var(--cfhg-dur) var(--cfhg-ease);
+}
+
+.cfhg-faq__item[open] summary::after {
+	rotate: 45deg;
+}
+
+.cfhg-faq__item summary:focus-visible {
+	outline: 3px solid var(--cfhg-ink);
+	outline-offset: 2px;
+	border-radius: var(--cfhg-r-md);
+}
+
+.cfhg-faq__item p {
+	margin: 0;
+	padding: 0 1.4rem 1.3rem;
+	line-height: 1.55;
+	color: var(--cfhg-ink-soft);
+}
+
 /* Stories: a grid of cards. */
 .cfhg-story-grid {
 	display: grid;
