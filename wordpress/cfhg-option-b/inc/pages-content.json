@@ -182,8 +182,17 @@
    {
     "id": "questions",
     "heading": "Questions people ask",
-    "html": "<div class=\"cfhg-faq\"><details class=\"cfhg-faq__item\"><summary>Do I need any experience?</summary><p>No. Some of us started a few months ago. You don’t need a subscription either: a notebook, some patience and the people in your family who remember are enough to begin. <a href=\"/starting-your-family-tree/\">Start with the five steps</a>.</p></details><details class=\"cfhg-faq__item\"><summary>I don’t live near Solihull. Can I still join?</summary><p>Yes. Every meeting is on Zoom as well as in the library, and members join us from across the UK, the USA, Jamaica and Trinidad.</p></details><details class=\"cfhg-faq__item\"><summary>Can I come before I decide?</summary><p>Yes. Your first visit is free. After that it’s £5 a visit until you join.</p></details><details class=\"cfhg-faq__item\"><summary>How do I pay?</summary><p>Online through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>. If you’d rather pay another way, email us ({email}).</p></details><details class=\"cfhg-faq__item\"><summary>Who runs the group?</summary><p>Volunteers. Our committee is elected at the AGM every May, and new people are always welcome to help.</p></details></div>",
-    "wide": true
+    "html": "<p>The things people most often want to know before they come along or join.</p><p>Can’t see your question? Email us ({email}) or ask anyone at a meeting. We’re always happy to talk.</p>",
+    "wide": false,
+    "style": "split",
+    "aside_plain": true,
+    "aside_html": "<div class=\"cfhg-faq\"><details class=\"cfhg-faq__item\"><summary>Do I need any experience?</summary><p>No. Some of us started a few months ago. You don’t need a subscription either: a notebook, some patience and the people in your family who remember are enough to begin. <a href=\"/starting-your-family-tree/\">Start with the five steps</a>.</p></details><details class=\"cfhg-faq__item\"><summary>I don’t live near Solihull. Can I still join?</summary><p>Yes. Every meeting is on Zoom as well as in the library, and members join us from across the UK, the USA, Jamaica and Trinidad.</p></details><details class=\"cfhg-faq__item\"><summary>Can I come before I decide?</summary><p>Yes. Your first visit is free. After that it’s £5 a visit until you join.</p></details><details class=\"cfhg-faq__item\"><summary>How do I pay?</summary><p>Online through <a href=\"https://www.parishchest.com/caribbean-family-history-group-5498.php\">the Parish Chest</a>. If you’d rather pay another way, email us ({email}).</p></details><details class=\"cfhg-faq__item\"><summary>Who runs the group?</summary><p>Volunteers. Our committee is elected at the AGM every May, and new people are always welcome to help.</p></details></div>",
+    "buttons": [
+     [
+      "Ask us a question",
+      "/contact/"
+     ]
+    ]
    }
   ],
   "intro": "We’re a friendly group of volunteers. Some of us are experts in a particular island or in military records; some started a few months ago. Everyone is welcome.",

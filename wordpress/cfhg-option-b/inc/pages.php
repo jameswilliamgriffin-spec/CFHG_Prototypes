@@ -53,6 +53,7 @@ function cfhg_pages_plain_html( $page ) {
 	foreach ( $page['sections'] as $s ) {
 		$html .= $s['heading'] ? '<h2>' . esc_html( $s['heading'] ) . '</h2>' : '';
 		$html .= cfhg_pages_text( $s['html'] );
+		$html .= empty( $s['aside_html'] ) ? '' : cfhg_pages_text( $s['aside_html'] );
 		foreach ( isset( $s['buttons'] ) ? $s['buttons'] : array() as $button ) {
 			$url   = '{mailto}' === $button[1] ? cfhg_mailto() : cfhg_url( $button[1] );
 			$html .= $url ? '<p><a href="' . esc_url( $url ) . '">' . esc_html( $button[0] ) . '</a></p>' : '';
@@ -172,16 +173,23 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 		/* Split: the words on the left, and a card (a form, say) on the right. */
 		if ( ! empty( $s['style'] ) && 'split' === $s['style'] ) {
 			$aside = array();
+			if ( ! empty( $s['aside_html'] ) ) {
+				$aside[] = cfhg_el_text( cfhg_pages_text( $s['aside_html'] ), 'cfhg-body cfhg-el-wide' );
+			}
 			foreach ( isset( $s['aside'] ) ? $s['aside'] : array() as $code ) {
 				$aside[] = cfhg_el_shortcode( $code );
 			}
+			/* "aside_plain": the right-hand side sits on the page, not on a white card. */
+			$right = empty( $s['aside_plain'] )
+				? cfhg_el_card( $aside, array( 'css_classes' => 'cfhg-page__aside', 'width' => cfhg_el_size( 50, '%' ), 'width_tablet' => cfhg_el_size( 100, '%' ) ) )
+				: cfhg_el_column( 54, $aside, array( 'css_classes' => 'cfhg-page__aside-plain' ) );
 			$sections[] = cfhg_el_section(
 				'cfhg-el-page-section cfhg-page__section cfhg-page__split',
 				array(
 					cfhg_el_row(
 						array(
-							cfhg_el_column( 44, $items, array( 'flex_gap' => cfhg_el_gap( 20 ) ) ),
-							cfhg_el_card( $aside, array( 'css_classes' => 'cfhg-page__aside', 'width' => cfhg_el_size( 50, '%' ), 'width_tablet' => cfhg_el_size( 100, '%' ) ) ),
+							cfhg_el_column( empty( $s['aside_plain'] ) ? 44 : 38, $items, array( 'flex_gap' => cfhg_el_gap( 20 ) ) ),
+							$right,
 						),
 						array(
 							'flex_align_items'     => 'flex-start',

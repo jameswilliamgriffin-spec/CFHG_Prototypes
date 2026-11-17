@@ -1185,6 +1185,15 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	margin-top: var(--cfhg-sp-sm);
 }
 
+/* Beside its heading, the questions start level with the heading. */
+.cfhg-page__aside-plain .cfhg-faq {
+	margin-top: 0;
+}
+
+.cfhg-page__split .cfhg-el-prose p {
+	color: var(--cfhg-ink-soft);
+}
+
 .cfhg-faq__item {
 	border-radius: var(--cfhg-r-md);
 	background: var(--cfhg-white);
