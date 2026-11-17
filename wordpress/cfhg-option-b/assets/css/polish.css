@@ -948,6 +948,12 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	color: var(--cfhg-ink-soft);
 }
 
+/* What's On: posts from our events, between what's coming and what's past. */
+.cfhg-whats-on__news-lead {
+	max-width: 38rem;
+	margin: var(--cfhg-sp-xs) 0 var(--cfhg-sp-md);
+}
+
 /* Stories: a grid of cards. */
 .cfhg-story-grid {
 	display: grid;

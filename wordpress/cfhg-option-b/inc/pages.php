@@ -308,22 +308,44 @@ function cfhg_create_content_pages() {
 }
 
 /**
- * [cfhg_story_grid count="12" island=""]: the stories as a grid of cards,
- * newest first. With island="jamaica" only that island's, or nothing.
+ * [cfhg_story_grid count="12" island="" category=""]: the stories as a grid
+ * of cards, newest first. With island="jamaica" only that island's stories;
+ * with category="events" that category's posts. Either way, nothing if none.
  */
 add_shortcode(
 	'cfhg_story_grid',
 	static function ( $atts ) {
 		$atts  = shortcode_atts(
 			array(
-				'count'  => 12,
-				'island' => '',
+				'count'    => 12,
+				'island'   => '',
+				'category' => '',
 			),
 			$atts,
 			'cfhg_story_grid'
 		);
 		$cards = array();
-		if ( $atts['island'] ) {
+		if ( $atts['category'] ) {
+			/* Another category's posts (events on What's On): real posts only, or nothing. */
+			foreach ( get_posts(
+				array(
+					'post_type'      => 'post',
+					'posts_per_page' => max( 1, (int) $atts['count'] ),
+					'category_name'  => sanitize_title( $atts['category'] ),
+				)
+			) as $post ) {
+				$cards[] = array(
+					'meta'  => get_the_date( '', $post ),
+					'title' => get_the_title( $post ),
+					'text'  => wp_strip_all_tags( get_the_excerpt( $post ) ),
+					'url'   => get_permalink( $post ),
+					'image' => has_post_thumbnail( $post ) ? get_the_post_thumbnail( $post, 'cfhg-card', array( 'sizes' => '(min-width: 1024px) 34vw, 90vw' ) ) : '',
+				);
+			}
+			if ( ! $cards ) {
+				return '';
+			}
+		} elseif ( $atts['island'] ) {
 			/* One island's stories: real posts only, and nothing at all if there are none. */
 			$posts = get_posts(
 				array(

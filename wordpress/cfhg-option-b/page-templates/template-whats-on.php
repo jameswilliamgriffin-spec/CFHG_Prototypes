@@ -11,8 +11,9 @@
  * photo of a talk at the library.
  *
  * In Elementor, build the same with Shortcode widgets:
- * [cfhg_events when="upcoming" limit="20"], [cfhg_calendar_links] and
- * [cfhg_events when="past" limit="12"].
+ * [cfhg_events when="upcoming" limit="5"], [cfhg_calendar_links],
+ * [cfhg_story_grid category="events" count="3"] (posts in the Events
+ * category) and [cfhg_events when="past" limit="12"].
  *
  * @package CFHG
  */
@@ -64,10 +65,23 @@ get_header();
 		<section class="cfhg-section cfhg-whats-on__upcoming" aria-labelledby="cfhg-whats-on-next">
 			<div class="cfhg-container">
 				<h2 class="cfhg-h2" id="cfhg-whats-on-next"><?php esc_html_e( 'Coming up', 'cfhg' ); ?></h2>
-				<?php echo do_shortcode( '[cfhg_events when="upcoming" limit="20"]' ); ?>
+				<?php echo do_shortcode( '[cfhg_events when="upcoming" limit="5"]' ); ?>
 				<?php echo do_shortcode( '[cfhg_calendar_links]' ); ?>
 			</div>
 		</section>
+		<?php
+		/* Posts in the Events category: reports, photos and news from our events. */
+		$cfhg_event_posts = shortcode_exists( 'cfhg_story_grid' ) ? do_shortcode( '[cfhg_story_grid category="' . esc_attr( apply_filters( 'cfhg_events_category', 'events' ) ) . '" count="3"]' ) : '';
+		if ( $cfhg_event_posts ) :
+			?>
+			<section class="cfhg-section cfhg-whats-on__news" aria-labelledby="cfhg-whats-on-news">
+				<div class="cfhg-container">
+					<h2 class="cfhg-h2" id="cfhg-whats-on-news"><?php esc_html_e( 'From our events', 'cfhg' ); ?></h2>
+					<p class="cfhg-lead cfhg-whats-on__news-lead"><?php esc_html_e( 'Photos and write-ups from our exhibitions, open days and talks.', 'cfhg' ); ?></p>
+					<?php echo $cfhg_event_posts; // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				</div>
+			</section>
+		<?php endif; ?>
 		<section class="cfhg-section cfhg-whats-on__past" aria-labelledby="cfhg-whats-on-past">
 			<div class="cfhg-container">
 				<h2 class="cfhg-h2" id="cfhg-whats-on-past"><?php esc_html_e( 'Recent events', 'cfhg' ); ?></h2>
