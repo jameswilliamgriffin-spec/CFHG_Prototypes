@@ -75,7 +75,6 @@ function cfhg_loop_films() {
 		array(
 			'three-generations-with-an-album-on-the-sofa' => $video . 'cfhg-hero-loop.mp4',
 			'island-jamaica-blue-mountains'               => $video . 'island-jamaica-loop.mp4',
-			'group-at-a-library-table'                    => $video . 'group-at-a-library-table-loop.mp4',
 			'island-barbados-chattel-houses'              => $video . 'island-barbados-loop.mp4',
 			'island-st-kitts-nevis-narrows'               => $video . 'island-st-kitts-nevis-loop.mp4',
 			'island-trinidad-caroni'                      => $video . 'island-trinidad-loop.mp4',
