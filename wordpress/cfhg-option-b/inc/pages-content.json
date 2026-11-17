@@ -227,14 +227,14 @@
  },
  "stories": {
   "title": "Stories and research",
-  "lead": "Talks, research tips and members’ stories from our meetings.",
+  "lead": "Talks, research tips and members’ stories from our meetings: what people were looking for, where they looked, and what they found.",
   "image": "copying-details-from-a-register",
   "tone": "sea",
   "cta": true,
   "sections": [
    {
     "id": "all",
-    "heading": "",
+    "heading": "Latest stories",
     "html": "",
     "shortcodes": [
      "[cfhg_story_grid]"
@@ -245,7 +245,37 @@
     "heading": "Have a story to share?",
     "html": "<p>If you’ve found something you’d like other members to see, email us ({email}) and we’ll help you write it up.</p>"
    }
-  ]
+  ],
+  "intro": "Read how one of our committee traced his family from Portugal to Jamaica, what a Trinidad genealogist told us about the archives in Port of Spain, and how our Barbados group got locked records opened for everyone.",
+  "hero_links": [
+   [
+    "Jamaica",
+    "/jamaica/"
+   ],
+   [
+    "Barbados",
+    "/barbados/"
+   ],
+   [
+    "Trinidad and Tobago",
+    "/trinidad-and-tobago/"
+   ],
+   [
+    "St Kitts and Nevis",
+    "/st-kitts-and-nevis/"
+   ]
+  ],
+  "hero_buttons": [
+   [
+    "Read the stories",
+    "#cfhg-page-all"
+   ],
+   [
+    "Share your story",
+    "#cfhg-page-share"
+   ]
+  ],
+  "image_width": 40
  },
  "coming-soon": {
   "title": "This part of the site is still being built",

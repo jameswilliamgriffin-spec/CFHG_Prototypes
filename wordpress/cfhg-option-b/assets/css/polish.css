@@ -1072,6 +1072,13 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	outline-offset: -2px;
 }
 
+/* A second paragraph in an opening sits a touch quieter than the first. */
+.cfhg-page-hero__intro p {
+	max-width: 38rem;
+	margin: 0;
+	color: var(--cfhg-ink-soft);
+}
+
 /* Quick links in an opening: a little more room above them, and the
    button row below sits close. */
 .cfhg-jump--hero ul {

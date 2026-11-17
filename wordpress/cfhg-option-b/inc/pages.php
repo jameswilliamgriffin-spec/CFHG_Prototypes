@@ -80,6 +80,10 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 		cfhg_el_heading( esc_html( $page['title'] ), 'h1', 'cfhg-h1' ),
 		cfhg_el_text( '<p>' . esc_html( $page['lead'] ) . '</p>', 'cfhg-lead cfhg-el-narrow' ),
 	);
+	/* Optional: a second, plainer paragraph under the opening line ("intro"). */
+	if ( ! empty( $page['intro'] ) ) {
+		$copy[] = cfhg_el_text( '<p>' . esc_html( $page['intro'] ) . '</p>', 'cfhg-body cfhg-el-narrow cfhg-page-hero__intro' );
+	}
 	/* Optional: quick links under the opening line ("hero_links": [[label, url], …]). */
 	if ( ! empty( $page['hero_links'] ) ) {
 		$links = '<ul>';
