@@ -211,3 +211,10 @@ Pages built from `inc/pages-content.json` can now use, per section:
 - In the page itself: `"hero_buttons"`, `"hero_links"` (pill links under the opening line) and `"image_width"`.
 
 The Who we are timeline is an ordered list in a Text Editor (`<ol class="cfhg-milestones">`, each `<li class="cfhg-milestone">` holding a year, a title and a sentence), and What we do is a list of `cfhg-do-card` items with an icon from `assets/images/icons/`. Edit them in the Text Editor's Code tab.
+
+## Added in 1.12.0: Contact and its form
+
+- **Contact Form 7** is required for the form (Plugins > Add New). The theme makes one form, "CFHG contact form", the first time the Contact page is built: name, email, what it's about, message, sent to the group's email address with Reply-To set to the sender. Edit it in Contact > Contact Forms. The Shortcode widget `[cfhg_contact_form]` shows it, styled to match the site; without Contact Form 7 it shows the email address instead.
+- `"style": "split"` with `"aside": [shortcodes]` puts a section's words on the left and a white card on the right (the form on Contact).
+- `assets/images/icons/envelope.svg` joins the sticker icons.
+- What's On shows the next five meetings, then posts from the **Events** category (`[cfhg_story_grid category="events" count="3"]`). Give any post about a meeting, talk, exhibition or open day that category.

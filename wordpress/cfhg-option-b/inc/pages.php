@@ -165,6 +165,31 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 		foreach ( isset( $s['shortcodes'] ) ? $s['shortcodes'] : array() as $code ) {
 			$items[] = cfhg_el_shortcode( $code );
 		}
+		/* Split: the words on the left, and a card (a form, say) on the right. */
+		if ( ! empty( $s['style'] ) && 'split' === $s['style'] ) {
+			$aside = array();
+			foreach ( isset( $s['aside'] ) ? $s['aside'] : array() as $code ) {
+				$aside[] = cfhg_el_shortcode( $code );
+			}
+			$sections[] = cfhg_el_section(
+				'cfhg-el-page-section cfhg-page__section cfhg-page__split',
+				array(
+					cfhg_el_row(
+						array(
+							cfhg_el_column( 44, $items, array( 'flex_gap' => cfhg_el_gap( 20 ) ) ),
+							cfhg_el_card( $aside, array( 'css_classes' => 'cfhg-page__aside', 'width' => cfhg_el_size( 50, '%' ), 'width_tablet' => cfhg_el_size( 100, '%' ) ) ),
+						),
+						array(
+							'flex_align_items'     => 'flex-start',
+							'flex_justify_content' => 'space-between',
+						)
+					),
+				),
+				array_merge( cfhg_el_page_rhythm(), array( '_element_id' => 'cfhg-page-' . $s['id'] ) )
+			);
+			continue;
+		}
+
 		/* A band: full width, on a photograph darkened to ink, with big words. */
 		if ( ! empty( $s['style'] ) && 'band' === $s['style'] ) {
 			$image_id = ! empty( $s['image'] ) ? cfhg_import_theme_image( $s['image'] ) : 0;
@@ -476,5 +501,75 @@ add_action(
 			wp_safe_redirect( home_url( $map[ $path ] ), 301 );
 			exit;
 		}
+	}
+);
+
+/**
+ * The contact form (Contact Form 7). Made once, by name, with the group's
+ * own fields and its email address as the recipient; edit it afterwards in
+ * Contact > Contact Forms.
+ *
+ * @return int Form ID, or 0 without Contact Form 7.
+ */
+function cfhg_contact_form_id() {
+	if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
+		return 0;
+	}
+	$title    = 'CFHG contact form';
+	$existing = get_posts(
+		array(
+			'post_type'      => 'wpcf7_contact_form',
+			'title'          => $title,
+			'posts_per_page' => 1,
+			'post_status'    => 'any',
+		)
+	);
+	if ( $existing ) {
+		return (int) $existing[0]->ID;
+	}
+	$form = WPCF7_ContactForm::get_template( array( 'title' => $title ) );
+	$form->set_properties(
+		array(
+			'form' => implode(
+				"\n",
+				array(
+					'<div class="cfhg-form">',
+					'<p class="cfhg-form__field"><label for="cfhg-cf-name">Your name</label>[text* your-name id:cfhg-cf-name autocomplete:name]</p>',
+					'<p class="cfhg-form__field"><label for="cfhg-cf-email">Your email</label>[email* your-email id:cfhg-cf-email autocomplete:email]</p>',
+					'<p class="cfhg-form__field"><label for="cfhg-cf-about">What is it about?</label>[select your-subject id:cfhg-cf-about "A research question" "Coming to a meeting" "Joining the group" "Adding my surnames to the list" "Something else"]</p>',
+					'<p class="cfhg-form__field"><label for="cfhg-cf-message">Your message</label>[textarea* your-message id:cfhg-cf-message x6]</p>',
+					'<p class="cfhg-form__note">We only use your details to reply to you. Read our <a href="/privacy-and-cookies/">privacy notice</a>.</p>',
+					'<p class="cfhg-form__go">[submit class:cfhg-form__send "Send your message"]</p>',
+					'</div>',
+				)
+			),
+			'mail' => array(
+				'active'             => true,
+				'subject'            => '[_site_title]: [your-subject] from [your-name]',
+				'sender'             => '[_site_title] <wordpress@[_site_domain]>',
+				'recipient'          => sanitize_email( cfhg_mod( 'contact_email' ) ) ? sanitize_email( cfhg_mod( 'contact_email' ) ) : '[_site_admin_email]',
+				'body'               => "From: [your-name] <[your-email]>\nAbout: [your-subject]\n\n[your-message]\n\n-- \nSent from the contact form on [_site_title] ([_site_url])",
+				'additional_headers' => 'Reply-To: [your-email]',
+				'attachments'        => '',
+				'use_html'           => false,
+				'exclude_blank'      => false,
+			),
+		)
+	);
+	return (int) $form->save();
+}
+
+/**
+ * [cfhg_contact_form]: the contact form, or the email address without
+ * Contact Form 7.
+ */
+add_shortcode(
+	'cfhg_contact_form',
+	static function () {
+		$id = cfhg_contact_form_id();
+		if ( ! $id ) {
+			return cfhg_pages_text( '<p>Email us: {email}</p>' );
+		}
+		return '<div class="cfhg-contact-form"><h2 class="cfhg-h3 cfhg-contact-form__title">' . esc_html__( 'Send us a message', 'cfhg' ) . '</h2>' . do_shortcode( '[contact-form-7 id="' . (int) $id . '" html_class="cfhg-cf7"]' ) . '</div>';
 	}
 );

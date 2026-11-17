@@ -171,15 +171,25 @@
  },
  "contact": {
   "title": "Contact",
-  "lead": "Email is the best way to reach us. We’re all volunteers, so a reply can take a little while.",
+  "lead": "Whether you’re just starting out, stuck on a record, or want to come to a meeting, we’d love to hear from you.",
   "image": "helping-with-research-at-a-laptop",
   "tone": "gold",
   "cta": false,
   "sections": [
    {
-    "id": "email",
-    "heading": "Email us",
-    "html": "<p>{email}</p><p>Ask a research question, tell us you’re coming to a meeting, ask for the Zoom link, or ask us to add your surnames to our list.</p>"
+    "id": "message",
+    "style": "split",
+    "heading": "Get in touch",
+    "html": "<ul class=\"cfhg-ways\"><li class=\"cfhg-way\"><img class=\"cfhg-way__icon\" src=\"{theme}/assets/images/icons/envelope.svg\" alt=\"\" width=\"56\" height=\"56\"><div><h3 class=\"cfhg-way__title\">Email us</h3><p>{email}<br>The quickest way to reach us. We’re all volunteers, so a reply can take a few days.</p></div></li><li class=\"cfhg-way\"><img class=\"cfhg-way__icon\" src=\"{theme}/assets/images/icons/calendar.svg\" alt=\"\" width=\"56\" height=\"56\"><div><h3 class=\"cfhg-way__title\">Come to a meeting</h3><p>The last Saturday of the month at Solihull Core Library, 2pm to 4pm, or on Zoom. Your first visit is free.</p></div></li><li class=\"cfhg-way\"><img class=\"cfhg-way__icon\" src=\"{theme}/assets/images/icons/magnifier-record.svg\" alt=\"\" width=\"56\" height=\"56\"><div><h3 class=\"cfhg-way__title\">Ask a research question</h3><p>Tell us who you’re looking for and what you’ve tried. We’ll pass it to the member who knows that island or record best.</p></div></li></ul>",
+    "wide": true,
+    "aside": [
+     "[cfhg_contact_form]"
+    ]
+   },
+   {
+    "id": "research",
+    "heading": "Asking about your research?",
+    "html": "<p>It helps to tell us:</p><ul><li><strong>Who</strong> you’re looking for: names, and other spellings you’ve seen.</li><li><strong>Roughly when</strong> they were born, married or died.</li><li><strong>Where:</strong> the island, and the parish or town if you know it.</li><li><strong>What you’ve tried</strong> so far, so we don’t send you back to the same records.</li></ul><p>You may also find your answer in our island guides: <a href=\"/jamaica/\">Jamaica</a>, <a href=\"/barbados/\">Barbados</a>, <a href=\"/st-kitts-and-nevis/\">St Kitts and Nevis</a>, <a href=\"/trinidad-and-tobago/\">Trinidad and Tobago</a> and <a href=\"/other-islands/\">other islands</a>.</p>"
    },
    {
     "id": "where",
@@ -189,7 +199,19 @@
      "[cfhg_next_meeting style=\"facts\"]"
     ]
    }
-  ]
+  ],
+  "intro": "Send us a message below or email us directly. If it’s about your research, the more you can tell us, the better we can help.",
+  "hero_buttons": [
+   [
+    "Send us a message",
+    "#cfhg-page-message"
+   ],
+   [
+    "See what’s on",
+    "/whats-on/"
+   ]
+  ],
+  "image_width": 40
  },
  "photography-and-video": {
   "title": "Photography and video",
