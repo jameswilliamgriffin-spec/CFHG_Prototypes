@@ -44,7 +44,7 @@ const status = new Map(); // path -> 200 | 404 | { redirect: path }
 const pages = new Map(); // path -> html
 const ics = new Map(); // id -> text
 const assets = new Set();
-const queue = ['/', COMING];
+const queue = ['/'];
 
 async function get(url, init = {}) {
 	for (let attempt = 0; attempt < 3; attempt++) {
@@ -69,7 +69,12 @@ const toPath = (href) => {
 	return u;
 };
 
-/* 1. Crawl the pages. */
+/* 1. Crawl the pages. The coming-soon page is only fetched if something links nowhere. */
+for (let pass = 0; pass < 2; pass++) {
+if (pass === 1) {
+	if (![...status.values()].includes(404) || status.has(COMING)) break;
+	queue.push(COMING);
+}
 while (queue.length) {
 	const path = queue.shift();
 	if (status.has(path)) continue;
@@ -96,6 +101,7 @@ while (queue.length) {
 		if (SKIP_PAGE.test(u.pathname) || /\.[a-z0-9]{2,4}$/i.test(u.pathname)) continue;
 		if (!status.has(u.pathname)) queue.push(u.pathname);
 	}
+}
 }
 const nf = await get(`${BASE}/this-page-does-not-exist-404/`);
 if (nf.status === 404) pages.set('/__404__', await nf.text());

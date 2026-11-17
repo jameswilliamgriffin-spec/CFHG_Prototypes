@@ -624,7 +624,8 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 }
 
 /* Information pages: a readable column of text under each heading. */
-.cfhg-page__section .elementor-widget.cfhg-el-prose,
+/* Elementor's own rule is .e-con.e-con > .e-con-inner > .elementor-widget, so this needs one more class. */
+.cfhg-page__section.e-con.e-con .elementor-widget.cfhg-el-prose,
 .cfhg-page__section .cfhg-el-prose {
 	max-width: 42rem;
 }
@@ -648,6 +649,102 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 
 .cfhg-el-prose li + li {
 	margin-top: 0.3em;
+}
+
+/* Research: a card for each island, its illustration on top. */
+.cfhg-island-cards {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-island-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.cfhg-island-cards {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.cfhg-island-card__link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+	color: inherit;
+	text-decoration: none;
+	transition: transform var(--cfhg-dur) var(--cfhg-ease), box-shadow var(--cfhg-dur) var(--cfhg-ease);
+}
+
+.cfhg-island-card__link:hover,
+.cfhg-island-card__link:focus-visible {
+	transform: translateY(-3px);
+	box-shadow: 0 18px 36px -24px rgba(16, 33, 59, 0.5);
+}
+
+.cfhg-island-card__link:focus-visible {
+	outline: 3px solid var(--cfhg-ink);
+	outline-offset: 3px;
+}
+
+.cfhg-island-card__media {
+	display: block;
+	aspect-ratio: 3 / 2;
+	overflow: hidden;
+	background: var(--cfhg-sand);
+}
+
+.cfhg-island-card__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 700ms var(--cfhg-ease);
+}
+
+.cfhg-island-card__link:hover img {
+	transform: scale(1.04);
+}
+
+.cfhg-island-card__body {
+	display: grid;
+	gap: 0.5rem;
+	padding: clamp(1.1rem, 0.8rem + 1vw, 1.6rem);
+	border-top: 4px solid var(--tone, var(--cfhg-coral));
+}
+
+.cfhg-island-card:nth-child(5n + 2) { --tone: var(--cfhg-gold); }
+.cfhg-island-card:nth-child(5n + 3) { --tone: var(--cfhg-green); }
+.cfhg-island-card:nth-child(5n + 4) { --tone: var(--cfhg-sea); }
+.cfhg-island-card:nth-child(5n + 5) { --tone: var(--cfhg-blue); }
+
+.cfhg-island-card__name {
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.1;
+	text-transform: uppercase;
+}
+
+.cfhg-island-card__text {
+	font-size: var(--cfhg-fs-small);
+	line-height: 1.45;
+	color: var(--cfhg-ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cfhg-island-card__link,
+	.cfhg-island-card__media img {
+		transition: none;
+	}
 }
 
 /* Stories: a grid of cards. */

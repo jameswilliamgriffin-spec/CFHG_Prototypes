@@ -1,4 +1,47 @@
 {
+ "research": {
+  "title": "Research",
+  "lead": "Every island kept its records differently, so where you start depends on where your family came from. Here is where to begin, island by island.",
+  "image": "notebook-and-old-photographs",
+  "tone": "coral",
+  "cta": true,
+  "sections": [
+   {
+    "id": "start",
+    "heading": "New to family history?",
+    "html": "<p>You don’t need a subscription or any experience. Start with <a href=\"/starting-your-family-tree/\">the five steps</a>: write down what you know, decide what you want to find out, and work back one generation at a time.</p>"
+   },
+   {
+    "id": "islands",
+    "heading": "Research by island",
+    "html": "<p>Each guide covers the key records, the archives, what you can search online, and the surnames members are researching there. Each has a “Where should I look?” tool: tell it who you’re looking for and roughly when, and it suggests the records to try first.</p>",
+    "shortcodes": [
+     "[cfhg_island_cards]"
+    ]
+   },
+   {
+    "id": "names",
+    "heading": "Surnames we’re researching",
+    "html": "<p>Researching one of these families? Email us and we’ll put you in touch with the member researching them.</p>",
+    "shortcodes": [
+     "[cfhg_surnames]"
+    ]
+   },
+   {
+    "id": "stories",
+    "heading": "Talks and tips from our meetings",
+    "html": "<p>More in <a href=\"/stories/\">Stories and research</a>.</p>",
+    "shortcodes": [
+     "[cfhg_story_grid count=\"3\"]"
+    ]
+   },
+   {
+    "id": "ask",
+    "heading": "Stuck? Ask us",
+    "html": "<p>Between us we cover Jamaica, the other islands and military records. Tell us who you’re looking for and what you’ve tried so far, and we’ll pass your question to the person best placed to help. Email us ({email}). We’re all volunteers, so a reply can take a little while.</p><p>At Solihull Core Library you can use FamilySearch and Ancestry for free, and see records for some islands that aren’t online at home. Come to a meeting and we’ll show you.</p>"
+   }
+  ]
+ },
  "who-we-are": {
   "title": "Who we are",
   "lead": "We love family history, and learning about and claiming our Caribbean heritage. We exist to share that, and to help you do the same.",

@@ -300,6 +300,53 @@ add_shortcode(
 );
 
 /**
+ * [cfhg_island_cards]: a card for each island guide, with its illustration
+ * and opening sentence, then one for the other islands. The guides come
+ * from the CFHG Site plugin; an island's page is at /{slug}/.
+ */
+add_shortcode(
+	'cfhg_island_cards',
+	static function () {
+		$cards = array();
+		if ( function_exists( 'cfhg_site_island_slugs' ) ) {
+			$order = array( 'jamaica', 'barbados', 'st-kitts-and-nevis', 'trinidad-and-tobago' );
+			$slugs = cfhg_site_island_slugs();
+			usort(
+				$slugs,
+				static function ( $a, $b ) use ( $order ) {
+					$x = array_search( $a, $order, true );
+					$y = array_search( $b, $order, true );
+					return ( false === $x ? 99 : $x ) <=> ( false === $y ? 99 : $y );
+				}
+			);
+			foreach ( $slugs as $slug ) {
+				$guide = cfhg_site_island( $slug );
+				if ( ! $guide || ! get_page_by_path( $slug ) ) {
+					continue;
+				}
+				$first   = preg_split( '/(?<=[.!?])\s+/', trim( $guide['intro'] ) )[0];
+				$cards[] = array( $guide['name'], '/' . $slug . '/', $guide['illustration'], $first );
+			}
+		}
+		if ( get_page_by_path( 'other-islands' ) ) {
+			$cards[] = array( __( 'Other Caribbean islands', 'cfhg' ), '/other-islands/', 'marking-a-caribbean-map', __( 'From Anguilla to Guyana: the records that cover every island, and the surnames members are researching.', 'cfhg' ) );
+		}
+		if ( ! $cards ) {
+			return cfhg_component_islands();
+		}
+		$html = '<ul class="cfhg-island-cards">';
+		foreach ( $cards as $card ) {
+			list( $name, $url, $image, $text ) = $card;
+			$html .= '<li class="cfhg-island-card"><a class="cfhg-island-card__link" href="' . esc_url( cfhg_url( $url ) ) . '">'
+				. '<span class="cfhg-island-card__media">' . cfhg_theme_image( $image, array( 'sizes' => '(min-width: 1100px) 30vw, (min-width: 700px) 46vw, 92vw', 'alt' => '' ) ) . '</span>'
+				. '<span class="cfhg-island-card__body"><span class="cfhg-island-card__name">' . esc_html( $name ) . '</span>'
+				. '<span class="cfhg-island-card__text">' . esc_html( $text ) . '</span></span></a></li>';
+		}
+		return $html . '</ul>';
+	}
+);
+
+/**
  * Addresses that lead to a page which lives somewhere else. The Jamaica page
  * is at /jamaica/ until the Research section exists to hold it.
  *
