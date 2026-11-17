@@ -27,6 +27,12 @@ function cfhg_image_manifest() {
 			'focus' => '50% 50%',
 			'ext'   => 'webp',
 		),
+		'an-exhibition-at-the-library'                => array(
+			'sizes' => array( 800 => 450, 1600 => 900 ),
+			'alt'   => __( 'Visitors at a family history exhibition in a library, an older woman pointing out an old photograph on a display board to a teenage boy.', 'cfhg' ),
+			'focus' => '55% 45%',
+			'ext'   => 'webp',
+		),
 		'a-talk-at-the-library'                       => array(
 			'sizes' => array( 768 => 512, 1536 => 1024 ),
 			'alt'   => __( 'A woman giving a talk beside an old map of the Caribbean on a screen, to a small group seated in a library.', 'cfhg' ),

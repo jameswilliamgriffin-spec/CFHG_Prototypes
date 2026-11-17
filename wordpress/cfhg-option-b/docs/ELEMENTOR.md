@@ -200,3 +200,14 @@ plus the class below.
 ## Added in 1.6.0: the film lightbox
 
 On the five steps page the film is a section with words on the left and its poster on the right. The poster is a Shortcode widget, `[cfhg_video_lightbox]`. Any link with the CSS class `cfhg-video-open` and a `.mp4` address opens that film in a lightbox, so the "Play the film" button (an Elementor Button with that class) opens it too. Without JavaScript the links simply open the file. The words, button labels and file come from `inc/guide-content.json` (`video`).
+
+## Added in 1.10.0: richer information pages
+
+Pages built from `inc/pages-content.json` can now use, per section:
+
+- `"style": "band"` with `"image"`: a full-width Container with a classic background image, a #10213B overlay at 0.72, padding 140px top and bottom (110 tablet, 80 mobile) and the CSS class `cfhg-band`. Its heading becomes big cream type.
+- `"buttons": [[label, url], …]`: Button widgets; the first is highlighter yellow, the rest are text links.
+- `"wide": true`: the Text Editor gets the class `cfhg-el-wide` instead of `cfhg-el-prose`, so cards and timelines use the full width while plain paragraphs keep to a readable width.
+- In the page itself: `"hero_buttons"`, `"hero_links"` (pill links under the opening line) and `"image_width"`.
+
+The Who we are timeline is an ordered list in a Text Editor (`<ol class="cfhg-milestones">`, each `<li class="cfhg-milestone">` holding a year, a title and a sentence), and What we do is a list of `cfhg-do-card` items with an icon from `assets/images/icons/`. Edit them in the Text Editor's Code tab.

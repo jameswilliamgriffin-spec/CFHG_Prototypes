@@ -1,16 +1,11 @@
 {
  "research": {
   "title": "Research",
-  "lead": "Every island kept its records differently, so where you start depends on where your family came from. Here is where to begin, island by island.",
+  "lead": "Every island kept its records differently, so where you start depends on where your family came from. Pick an island, or if you’re new to this, start with the five steps.",
   "image": "notebook-and-old-photographs",
   "tone": "coral",
   "cta": true,
   "sections": [
-   {
-    "id": "start",
-    "heading": "New to family history?",
-    "html": "<p>You don’t need a subscription or any experience. Start with <a href=\"/starting-your-family-tree/\">the five steps</a>: write down what you know, decide what you want to find out, and work back one generation at a time.</p>"
-   },
    {
     "id": "islands",
     "heading": "Research by island",
@@ -40,29 +35,85 @@
     "heading": "Stuck? Ask us",
     "html": "<p>Between us we cover Jamaica, the other islands and military records. Tell us who you’re looking for and what you’ve tried so far, and we’ll pass your question to the person best placed to help. Email us ({email}). We’re all volunteers, so a reply can take a little while.</p><p>At Solihull Core Library you can use FamilySearch and Ancestry for free, and see records for some islands that aren’t online at home. Come to a meeting and we’ll show you.</p>"
    }
-  ]
+  ],
+  "hero_links": [
+   [
+    "Jamaica",
+    "/jamaica/"
+   ],
+   [
+    "Barbados",
+    "/barbados/"
+   ],
+   [
+    "St Kitts and Nevis",
+    "/st-kitts-and-nevis/"
+   ],
+   [
+    "Trinidad and Tobago",
+    "/trinidad-and-tobago/"
+   ],
+   [
+    "Other islands",
+    "/other-islands/"
+   ]
+  ],
+  "hero_buttons": [
+   [
+    "Start with the five steps",
+    "/starting-your-family-tree/"
+   ],
+   [
+    "Ask us a question",
+    "#cfhg-page-ask"
+   ]
+  ],
+  "image_width": 38
  },
  "who-we-are": {
   "title": "Who we are",
-  "lead": "We love family history, and learning about and claiming our Caribbean heritage. We exist to share that, and to help you do the same.",
+  "lead": "Volunteers helping people trace their Caribbean families, in Solihull and online, since 2008. We love family history, and we’re here to help you find yours.",
   "image": "group-at-a-library-table",
   "tone": "coral",
   "cta": true,
   "sections": [
    {
-    "id": "since-2008",
-    "heading": "Helping people research since 2008",
-    "html": "<p>The group began in 2008, when courses in Caribbean family history were made from a ten-week British family history beginners’ class and reshaped for people with Caribbean heritage.</p><p>Some of our founder members are still on the committee today. Newer members have joined them, so between us we have a wide range of experience in researching ancestors across the Caribbean.</p>"
+    "id": "numbers",
+    "heading": "The group in numbers",
+    "html": "",
+    "shortcodes": [
+     "[cfhg_numbers]"
+    ]
    },
    {
-    "id": "solihull-library",
-    "heading": "Solihull Library",
-    "html": "<p>We helped Solihull Library become an Associate Family History Centre. Inside the library you can use almost all of FamilySearch’s online Caribbean records. At home, what you can see depends on the island: Jamaica and Barbados are almost fully open.</p><p>If you would like help with your search, tell us.</p>"
+    "id": "story",
+    "heading": "Our story so far",
+    "html": "<p>Some of our founder members are still on the committee today. Newer members have joined them, so between us we have a wide range of experience in researching ancestors across the Caribbean.</p><ol class=\"cfhg-milestones\"><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2008</p><h3 class=\"cfhg-milestone__title\">The group begins</h3><p>Courses in Caribbean family history are made from a ten-week British beginners’ class, reshaped for people with Caribbean heritage.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2010</p><h3 class=\"cfhg-milestone__title\">Working with WAWI</h3><p>We start working alongside the WAWI Project (Why Are West Indians in this Country). Together we host the Windrush Dinner and Dance every June.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2011</p><h3 class=\"cfhg-milestone__title\">Records at the library</h3><p>At our request, Solihull Libraries become a FamilySearch affiliate. Every Solihull library now gives free access to FamilySearch’s digitised records.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2021</p><h3 class=\"cfhg-milestone__title\">Records unlocked</h3><p>Our Barbados group finds that registers they need on FamilySearch are locked, and asks for them to be opened. They can now be viewed anywhere in the world.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2022</p><h3 class=\"cfhg-milestone__title\">Our first open day</h3><p>A Black History Month exhibition and open day at Solihull Library, on tracing ancestors from the period of slavery.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2023</p><h3 class=\"cfhg-milestone__title\">75 years of Windrush</h3><p>A free exhibition at Solihull Library through October, honouring the Windrush generation.</p></li><li class=\"cfhg-milestone\"><p class=\"cfhg-milestone__year\">2025</p><h3 class=\"cfhg-milestone__title\">A visit from the Mayor</h3><p>The Mayor of Solihull visits our Black History Month exhibition and open day.</p></li></ol>",
+    "wide": true
+   },
+   {
+    "id": "aim",
+    "style": "band",
+    "image": "an-exhibition-at-the-library",
+    "heading": "Our aim is to make Caribbean family history open to everyone.",
+    "html": "<p>That’s why our exhibitions and open days are free, why your first meeting is free, and why we meet on Zoom as well as in Solihull. Members now join us from across the UK, the USA, Jamaica and Trinidad.</p>",
+    "buttons": [
+     [
+      "See what’s on",
+      "/whats-on/"
+     ]
+    ]
    },
    {
     "id": "what-we-do",
     "heading": "What we do",
-    "html": "<p>We meet on the last Saturday of the month, at Solihull Core Library and on Zoom for anyone who can’t be there. We also go to family history fairs and cultural events around the country, and put on exhibitions such as our Windrush and Black History Month displays.</p>",
+    "html": "<ul class=\"cfhg-do-cards\"><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/calendar.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Monthly meetings</h3><p>On the last Saturday of the month, at Solihull Core Library and on Zoom. Bring a name, a photograph or a question.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/three-islands.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Island research groups</h3><p>Members-only groups for Jamaica, Barbados, and St Kitts and Nevis with Anguilla, working through the records together.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/book-stack.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Exhibitions and open days</h3><p>Free exhibitions for Black History Month and Windrush, with open days where anyone can ask about their family.</p></li><li class=\"cfhg-do-card\"><img class=\"cfhg-do-card__icon\" src=\"{theme}/assets/images/icons/magnifier-record.svg\" alt=\"\" width=\"64\" height=\"64\"><h3 class=\"cfhg-do-card__title\">Help with your research</h3><p>Tell us who you’re looking for and what you’ve tried. We’ll pass your question to the member who knows that island or record best.</p></li></ul>",
+    "wide": true
+   },
+   {
+    "id": "solihull-library",
+    "heading": "Where we meet",
+    "html": "<p>Solihull Core Library is an Associate Family History Centre. Inside you can use almost all of FamilySearch’s online Caribbean records. At home, what you can see depends on the island: Jamaica and Barbados are almost fully open.</p>",
     "shortcodes": [
      "[cfhg_next_meeting style=\"facts\"]"
     ]
@@ -75,7 +126,18 @@
      "[cfhg_partners]"
     ]
    }
-  ]
+  ],
+  "hero_buttons": [
+   [
+    "Come to a meeting",
+    "/#next-meeting"
+   ],
+   [
+    "Join the group",
+    "/join/"
+   ]
+  ],
+  "image_width": 44
  },
  "join": {
   "title": "Join the group",

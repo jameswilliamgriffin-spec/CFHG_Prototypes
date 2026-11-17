@@ -747,6 +747,207 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 	}
 }
 
+/* Wide text (cards, a timeline): any plain paragraph still reads at a
+   comfortable width. */
+.cfhg-el-wide .elementor-widget-container > p {
+	max-width: 42rem;
+}
+
+/* Our story: years along a line. */
+.cfhg-milestones {
+	--line: var(--cfhg-line);
+	display: grid;
+	gap: 2rem var(--cfhg-gap);
+	margin: var(--cfhg-sp-md) 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: none;
+}
+
+.cfhg-milestone {
+	position: relative;
+	padding-top: 2.4rem;
+}
+
+/* The line, and a dot in the logo colours for each year. */
+.cfhg-milestone::before {
+	content: "";
+	position: absolute;
+	top: 0.55rem;
+	left: 0;
+	right: calc(var(--cfhg-gap) * -1);
+	height: 2px;
+	background: var(--line);
+}
+
+.cfhg-milestone:last-child::before {
+	right: 0;
+}
+
+.cfhg-milestone::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1.2rem;
+	aspect-ratio: 1;
+	border: 3px solid var(--cfhg-cream);
+	border-radius: 50%;
+	background: var(--tone, var(--cfhg-coral));
+	box-shadow: 0 0 0 2px var(--tone, var(--cfhg-coral));
+}
+
+.cfhg-milestone:nth-child(5n + 2) { --tone: var(--cfhg-gold); }
+.cfhg-milestone:nth-child(5n + 3) { --tone: var(--cfhg-green); }
+.cfhg-milestone:nth-child(5n + 4) { --tone: var(--cfhg-sea); }
+.cfhg-milestone:nth-child(5n + 5) { --tone: var(--cfhg-blue); }
+
+.cfhg-milestone__year {
+	margin: 0;
+	font-family: var(--cfhg-font-display);
+	font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem);
+	font-weight: 400;
+	line-height: 1;
+	color: var(--cfhg-ink);
+}
+
+.cfhg-milestone__title {
+	margin: 0.6rem 0 0.4rem;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-milestone p:not(.cfhg-milestone__year) {
+	margin: 0;
+	font-size: var(--cfhg-fs-small);
+	line-height: 1.5;
+	color: var(--cfhg-ink-soft);
+}
+
+@media (min-width: 700px) {
+	.cfhg-milestones {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.cfhg-milestones {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+/* On a phone the line runs down the side instead. */
+@media (max-width: 699px) {
+	.cfhg-milestones {
+		gap: 0;
+	}
+
+	.cfhg-milestone {
+		padding: 0 0 2rem 2.2rem;
+	}
+
+	.cfhg-milestone::before {
+		top: 0.6rem;
+		bottom: 0;
+		left: 0.55rem;
+		right: auto;
+		width: 2px;
+		height: auto;
+	}
+
+	.cfhg-milestone:last-child::before {
+		display: none;
+	}
+
+	.cfhg-milestone__year {
+		font-size: 2.4rem;
+	}
+}
+
+/* A band: big words on a darkened photograph. */
+.cfhg-band {
+	color: var(--cfhg-cream);
+}
+
+.cfhg-band .elementor-heading-title,
+.cfhg-band h2 {
+	max-width: 18em;
+	color: var(--cfhg-cream);
+	font-size: clamp(2.1rem, 1.3rem + 3vw, 4.4rem);
+	line-height: 1;
+	text-wrap: balance;
+}
+
+.cfhg-band.e-con.e-con .elementor-widget.cfhg-el-prose {
+	max-width: 40rem;
+}
+
+.cfhg-band p {
+	font-size: var(--cfhg-fs-lead);
+	line-height: 1.45;
+	color: rgba(246, 241, 234, 0.9);
+}
+
+/* What we do: four cards, each with its sticker. */
+.cfhg-do-cards {
+	display: grid;
+	gap: var(--cfhg-gap);
+	margin: var(--cfhg-sp-sm) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 700px) {
+	.cfhg-do-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.cfhg-do-cards {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.cfhg-do-card {
+	position: relative;
+	padding: clamp(1.4rem, 1rem + 1vw, 2rem);
+	border-radius: var(--cfhg-r-lg);
+	background: var(--cfhg-white);
+	border-top: 6px solid var(--tone, var(--cfhg-coral));
+}
+
+.cfhg-do-card:nth-child(4n + 2) { --tone: var(--cfhg-gold); }
+.cfhg-do-card:nth-child(4n + 3) { --tone: var(--cfhg-green); }
+.cfhg-do-card:nth-child(4n + 4) { --tone: var(--cfhg-sea); }
+
+.cfhg-do-card__icon {
+	display: block;
+	width: 3.6rem;
+	height: auto;
+	margin: 0 0 1rem;
+	transform: rotate(-6deg);
+}
+
+.cfhg-do-card__title {
+	margin: 0 0 0.5rem;
+	font-family: var(--cfhg-font-display);
+	font-size: var(--cfhg-fs-h4);
+	font-weight: 500;
+	line-height: 1.15;
+	text-transform: uppercase;
+}
+
+.cfhg-do-card p {
+	margin: 0;
+	font-size: var(--cfhg-fs-small);
+	line-height: 1.5;
+	color: var(--cfhg-ink-soft);
+}
+
 /* Stories: a grid of cards. */
 .cfhg-story-grid {
 	display: grid;
@@ -869,6 +1070,25 @@ main.cfhg-main.cfhg-whats-on:not(.cfhg-main--home) {
 .cfhg-parishes__map [data-parish-path]:focus-visible {
 	outline: 3px solid var(--cfhg-ink);
 	outline-offset: -2px;
+}
+
+/* Quick links in an opening: a little more room above them, and the
+   button row below sits close. */
+.cfhg-jump--hero ul {
+	margin-top: 0.25rem;
+}
+
+/* An opening with a postcard: the words and picture share the height, so
+   a large picture doesn't leave the words floating in space. */
+.cfhg-el-page-hero .e-con-inner > .e-con {
+	align-items: center;
+}
+
+@media (min-width: 1025px) {
+	.cfhg-el-page-hero .cfhg-postcard img {
+		max-height: 30rem;
+		object-fit: cover;
+	}
 }
 
 /* 7. "On this page" links ---------------------------------------------------- */

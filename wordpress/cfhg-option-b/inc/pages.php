@@ -39,7 +39,7 @@ function cfhg_pages_content() {
 function cfhg_pages_text( $html ) {
 	$email = sanitize_email( cfhg_mod( 'contact_email' ) );
 	$link  = $email ? '<a href="mailto:' . esc_attr( antispambot( $email ) ) . '">' . esc_html( antispambot( $email ) ) . '</a>' : '';
-	return str_replace( '{email}', $link, $html );
+	return str_replace( array( '{email}', '{theme}' ), array( $link, CFHG_URI ), $html );
 }
 
 /**
@@ -53,6 +53,9 @@ function cfhg_pages_plain_html( $page ) {
 	foreach ( $page['sections'] as $s ) {
 		$html .= $s['heading'] ? '<h2>' . esc_html( $s['heading'] ) . '</h2>' : '';
 		$html .= cfhg_pages_text( $s['html'] );
+		foreach ( isset( $s['buttons'] ) ? $s['buttons'] : array() as $button ) {
+			$html .= '<p><a href="' . esc_url( cfhg_url( $button[1] ) ) . '">' . esc_html( $button[0] ) . '</a></p>';
+		}
 		foreach ( isset( $s['shortcodes'] ) ? $s['shortcodes'] : array() as $code ) {
 			$html .= $code;
 		}
@@ -77,12 +80,36 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 		cfhg_el_heading( esc_html( $page['title'] ), 'h1', 'cfhg-h1' ),
 		cfhg_el_text( '<p>' . esc_html( $page['lead'] ) . '</p>', 'cfhg-lead cfhg-el-narrow' ),
 	);
-	$hero = array( cfhg_el_column( $page['image'] ? 50 : 100, $copy ) );
+	/* Optional: quick links under the opening line ("hero_links": [[label, url], …]). */
+	if ( ! empty( $page['hero_links'] ) ) {
+		$links = '<ul>';
+		foreach ( $page['hero_links'] as $link ) {
+			$links .= '<li><a href="' . esc_url( cfhg_url( $link[1] ) ) . '">' . esc_html( $link[0] ) . '</a></li>';
+		}
+		$copy[] = cfhg_el_text( $links . '</ul>', 'cfhg-jump cfhg-jump--hero' );
+	}
+	/* Optional: one button and one text link ("hero_buttons": [[label, url], [label, url]]). */
+	if ( ! empty( $page['hero_buttons'] ) ) {
+		$buttons = array();
+		foreach ( $page['hero_buttons'] as $i => $button ) {
+			$buttons[] = cfhg_el_button( $button[0], $button[1], 0 === $i ? 'mark' : 'text' );
+		}
+		$copy[] = cfhg_el_row(
+			$buttons,
+			array(
+				'flex_direction_tablet' => 'row',
+				'flex_wrap'             => 'wrap',
+				'flex_align_items'      => 'center',
+				'flex_gap'              => cfhg_el_gap( 20 ),
+			)
+		);
+	}
+	$hero = array( cfhg_el_column( $page['image'] ? 52 : 100, $copy, array( 'flex_gap' => cfhg_el_gap( 24 ) ) ) );
 	if ( $page['image'] ) {
 		$manifest = cfhg_image_manifest();
 		$tone     = in_array( $page['tone'], array( 'sea', 'gold' ), true ) ? ' cfhg-postcard--' . $page['tone'] : '';
 		$hero[]   = cfhg_el_column(
-			44,
+			empty( $page['image_width'] ) ? 44 : (int) $page['image_width'],
 			array(
 				cfhg_el_widget(
 					'image',
@@ -125,10 +152,48 @@ function cfhg_elementor_content_page_data( $slug, $image_id = 0 ) {
 			$items[] = cfhg_el_heading( esc_html( $s['heading'] ), 'h2', 'cfhg-h2' );
 		}
 		if ( $s['html'] ) {
-			$items[] = cfhg_el_text( cfhg_pages_text( $s['html'] ), 'cfhg-body cfhg-el-prose' );
+			/* Prose keeps to a readable width; "wide" HTML (cards, a timeline) uses the full width. */
+			$items[] = cfhg_el_text( cfhg_pages_text( $s['html'] ), empty( $s['wide'] ) ? 'cfhg-body cfhg-el-prose' : 'cfhg-body cfhg-el-wide' );
+		}
+		foreach ( isset( $s['buttons'] ) ? $s['buttons'] : array() as $i => $button ) {
+			$items[] = cfhg_el_button( $button[0], $button[1], 0 === $i ? 'mark' : 'text' );
 		}
 		foreach ( isset( $s['shortcodes'] ) ? $s['shortcodes'] : array() as $code ) {
 			$items[] = cfhg_el_shortcode( $code );
+		}
+		/* A band: full width, on a photograph darkened to ink, with big words. */
+		if ( ! empty( $s['style'] ) && 'band' === $s['style'] ) {
+			$image_id = ! empty( $s['image'] ) ? cfhg_import_theme_image( $s['image'] ) : 0;
+			$url      = $image_id ? wp_get_attachment_image_url( $image_id, 'full' ) : ( empty( $s['image'] ) ? '' : cfhg_theme_image_url( $s['image'] ) );
+			$sections[] = cfhg_el_section(
+				'cfhg-el-page-section cfhg-band',
+				$items,
+				array(
+					'_element_id'                  => 'cfhg-page-' . $s['id'],
+					'flex_gap'                     => cfhg_el_gap( 24 ),
+					'margin'                       => cfhg_el_box( 'px', 104, 0, 0, 0 ),
+					'margin_tablet'                => cfhg_el_box( 'px', 84, 0, 0, 0 ),
+					'margin_mobile'                => cfhg_el_box( 'px', 60, 0, 0, 0 ),
+					'padding'                      => cfhg_el_box( 'px', 140, 32, 140, 32 ),
+					'padding_tablet'               => cfhg_el_box( 'px', 110, 24, 110, 24 ),
+					'padding_mobile'               => cfhg_el_box( 'px', 80, 18, 80, 18 ),
+					'background_background'        => 'classic',
+					'background_color'             => '#10213B',
+					'background_image'             => array(
+						'url' => $url,
+						'id'  => $image_id ? $image_id : '',
+					),
+					'background_position'          => 'center center',
+					'background_size'              => 'cover',
+					'background_overlay_background' => 'classic',
+					'background_overlay_color'     => '#10213B',
+					'background_overlay_opacity'   => array(
+						'unit' => 'px',
+						'size' => 0.72,
+					),
+				)
+			);
+			continue;
 		}
 		$sections[] = cfhg_el_section(
 			'cfhg-el-page-section cfhg-page__section',
