@@ -2,8 +2,75 @@ const $ = id => document.getElementById(id);
 let pages = [], current = 0, blocks = [], notes = {}, progress = {};
 const reviewerId = localStorage.getItem('cfhg-reviewer-id') || crypto.randomUUID();
 localStorage.setItem('cfhg-reviewer-id', reviewerId);
-$('name').value = localStorage.getItem('cfhg-reviewer-name') || '';
-$('name').addEventListener('input', e => localStorage.setItem('cfhg-reviewer-name', e.target.value));
+const nameInput = $('name');
+const drafts = new Map();
+let pageLoad = 0;
+nameInput.value = localStorage.getItem('cfhg-reviewer-name') || '';
+nameInput.addEventListener('input', () => {
+  localStorage.setItem('cfhg-reviewer-name', nameInput.value);
+  for (const draft of drafts.values()) {
+    if (draft.text !== null) draft.schedule();
+  }
+});
+nameInput.addEventListener('change', () => {
+  for (const draft of drafts.values()) draft.save();
+});
+
+function draftFor(page, blockId) {
+  const key = 'cfhg-review-draft:' + JSON.stringify([reviewerId, page, blockId]);
+  if (drafts.has(key)) return drafts.get(key);
+  let text = localStorage.getItem(key);
+  let timer, saving = false;
+  const draft = {
+    status: null,
+    get text() { return text; },
+    update(value) {
+      text = value;
+      localStorage.setItem(key, value);
+      draft.schedule();
+    },
+    schedule() {
+      clearTimeout(timer);
+      draft.report(nameInput.value.trim() ? 'Unsaved' : 'Draft kept here. Enter your name to save.');
+      timer = setTimeout(draft.save, 500);
+    },
+    report(message) {
+      if (draft.status) draft.status.textContent = message;
+    },
+    async save() {
+      clearTimeout(timer);
+      if (text === null || saving) return;
+      const name = nameInput.value.trim();
+      if (!name) {
+        draft.report('Draft kept here. Enter your name to save.');
+        return;
+      }
+      const submitted = text;
+      saving = true;
+      draft.report('Saving…');
+      try {
+        const result = await api('feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page, blockId, reviewerId, name, text: submitted })
+        });
+        if (pages[current]?.path === page) notes[reviewerId + ':' + blockId] = JSON.stringify(result.note);
+        if (text === submitted && localStorage.getItem(key) === submitted) {
+          localStorage.removeItem(key);
+          text = null;
+          draft.report('Saved');
+        }
+      } catch (error) {
+        draft.report(error.message + '. Draft kept here. Edit to retry.');
+      } finally {
+        saving = false;
+        if (text !== null && text !== submitted) draft.schedule();
+      }
+    }
+  };
+  drafts.set(key, draft);
+  return draft;
+}
 
 async function api(path, options) {
   const response = await fetch('/api/' + path, { credentials:'same-origin', ...options });
@@ -58,21 +125,14 @@ function renderBlocks() {
     head.append(title,type);
     const preview = document.createElement('p'); preview.className='block-preview'; preview.textContent=block.preview;
     const editor = document.createElement('textarea'); editor.placeholder='Type a change or request…'; editor.setAttribute('aria-label','Feedback for '+block.title);
-    editor.value = all.find(n => n.blockId === block.id && n.reviewerId === reviewerId)?.text || '';
+    const draft = draftFor(pagePath, block.id);
+    editor.value = draft.text ?? all.find(n => n.blockId === block.id && n.reviewerId === reviewerId)?.text ?? '';
     const status = document.createElement('div'); status.className='save-state';
-    let timer, version=0;
-    async function save() {
-      const name = $('name').value.trim();
-      if (!name) { status.textContent='Enter your name to save'; $('name').focus(); return; }
-      const thisVersion=++version; status.textContent='Saving…';
-      try {
-        const result=await api('feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({page:pagePath,blockId:block.id,reviewerId,name,text:editor.value})});
-        notes[reviewerId+':'+block.id]=JSON.stringify(result.note);
-        if (thisVersion===version) status.textContent='Saved';
-      } catch { if (thisVersion===version) status.textContent='Could not save — edit to retry'; }
-    }
-    editor.addEventListener('input',()=>{clearTimeout(timer);status.textContent='Unsaved';timer=setTimeout(()=>{timer=null;save();},800);});
-    editor.addEventListener('blur',()=>{if(timer){clearTimeout(timer);timer=null;save();}});
+    status.setAttribute('role', 'status');
+    draft.status = status;
+    if (draft.text !== null) draft.schedule();
+    editor.addEventListener('input', () => draft.update(editor.value));
+    editor.addEventListener('blur', draft.save);
     card.addEventListener('click',e=>{if(e.target===editor)return;block.element.scrollIntoView({behavior:'smooth',block:'center'});block.element.style.outline='3px solid #2d8584';setTimeout(()=>block.element.style.outline='',1800);});
     card.append(head,preview,editor,status);
     for (const note of all.filter(n=>n.blockId===block.id && n.reviewerId!==reviewerId && n.text)) {
@@ -98,14 +158,20 @@ function isReviewed(page) {
   try { return JSON.parse(progress[page] || '{}').reviewed === true; } catch { return false; }
 }
 async function openPage(index) {
+  const load = ++pageLoad;
   current=index;const page=pages[index];history.replaceState(null,'','#'+encodeURIComponent(page.path));
   $('page-title').textContent=page.title;$('live-link').href='https://cfhgprototypes.vercel.app'+page.path;
   $('previous').disabled=index===0;$('next').disabled=index===pages.length-1;
   renderPages();$('feedback-list').replaceChildren();$('block-count').textContent='Loading…';
   const frame=$('preview');frame.onload=async()=>{
-    blocks=scanPreview();
-    try { notes=(await api('feedback?page='+encodeURIComponent(page.path))).notes; } catch { notes={}; }
+    const pageBlocks=scanPreview();
+    let pageNotes={}, loadError=false;
+    try { pageNotes=(await api('feedback?page='+encodeURIComponent(page.path))).notes; } catch { loadError=true; }
+    if (load !== pageLoad) return;
+    blocks=pageBlocks;
+    notes=pageNotes;
     renderBlocks();
+    if (loadError) $('block-count').textContent='Could not load saved feedback';
   };
   frame.src='/site'+page.path;
 }
