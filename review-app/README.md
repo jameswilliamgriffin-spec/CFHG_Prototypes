@@ -1,10 +1,10 @@
 # CFHG website review app
 
-This app displays the main site pages and five island research guides from `../wp-export` beside per-block feedback. Story posts, event details, and policy pages are omitted from review navigation. It is a separate Vercel project; the public site remains deployed from the repository root.
+This app displays the main site pages and five island research guides from `../wp-export` beside per-block feedback. Story posts, event details, and policy pages are omitted from review navigation. Reviewers choose pages from a dropdown and mark each page reviewed; progress is saved per reviewer and shown in the dropdown. It is a separate Vercel project; the public site remains deployed from the repository root.
 
 ## Local preview
 
-From this directory, run `npm run build` then `npm run dev`. Open `http://127.0.0.1:3108/`. The local-only access code is `local-review`. Local notes are stored in `.local-feedback.json`, which is ignored by Git.
+From this directory, run `npm run build` then `npm run dev`. Open `http://127.0.0.1:3108/`. The local-only access code is `local-review`. Local notes and review progress are stored in ignored `.local-feedback.json` and `.local-progress.json` files.
 
 ## Vercel setup
 

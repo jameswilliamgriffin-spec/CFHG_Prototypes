@@ -1,11 +1,11 @@
 import { createServer } from 'node:http';
 import { readFileSync, existsSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
-import login from './api/login.js';import feedback from './api/feedback.js';import exportData from './api/export.js';
+import login from './api/login.js';import feedback from './api/feedback.js';import exportData from './api/export.js';import progress from './api/progress.js';
 process.env.LOCAL_REVIEW_STORE='1';process.env.REVIEW_ACCESS_CODE ||= 'local-review';
 const root=new URL('./dist/',import.meta.url).pathname;
 const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2','.ics':'text/calendar'};
-const handlers={'/api/login':login,'/api/feedback':feedback,'/api/export':exportData};
+const handlers={'/api/login':login,'/api/feedback':feedback,'/api/export':exportData,'/api/progress':progress};
 createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   if(handlers[url.pathname]){

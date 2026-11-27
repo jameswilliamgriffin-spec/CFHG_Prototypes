@@ -1,5 +1,5 @@
 const $ = id => document.getElementById(id);
-let pages = [], current = 0, blocks = [], notes = {};
+let pages = [], current = 0, blocks = [], notes = {}, progress = {};
 const reviewerId = localStorage.getItem('cfhg-reviewer-id') || crypto.randomUUID();
 localStorage.setItem('cfhg-reviewer-id', reviewerId);
 $('name').value = localStorage.getItem('cfhg-reviewer-name') || '';
@@ -82,9 +82,20 @@ function renderBlocks() {
   }
 }
 function renderPages() {
-  const filter=$('page-search').value.toLowerCase();const nav=$('pages');nav.replaceChildren();
-  pages.forEach((page,index)=>{if(!(page.navTitle+' '+page.path).toLowerCase().includes(filter))return;const button=document.createElement('button');button.type='button';button.textContent=page.navTitle;button.className=[index===current?'active':'',page.depth?'subpage':''].filter(Boolean).join(' ');button.onclick=()=>openPage(index);nav.append(button);});
-  $('page-count').textContent=`${current+1} of ${pages.length} pages`;
+  const select=$('pages');select.replaceChildren();let islandGroup;
+  pages.forEach((page,index)=>{
+    const option=document.createElement('option');option.value=String(index);
+    option.textContent=`${isReviewed(page.path)?'✓':'○'} ${page.navTitle}`;
+    if(page.depth){if(!islandGroup){islandGroup=document.createElement('optgroup');islandGroup.label='Research · island guides';select.append(islandGroup);}islandGroup.append(option);}
+    else{islandGroup=null;select.append(option);}
+  });
+  select.value=String(current);
+  const left=pages.filter(page=>!isReviewed(page.path)).length;
+  $('page-count').textContent=`${left} page${left===1?'':'s'} left to review`;
+  $('reviewed').checked=isReviewed(pages[current].path);
+}
+function isReviewed(page) {
+  try { return JSON.parse(progress[page] || '{}').reviewed === true; } catch { return false; }
 }
 async function openPage(index) {
   current=index;const page=pages[index];history.replaceState(null,'','#'+encodeURIComponent(page.path));
@@ -99,10 +110,21 @@ async function openPage(index) {
   frame.src='/site'+page.path;
 }
 $('previous').onclick=()=>openPage(current-1);$('next').onclick=()=>openPage(current+1);
-$('page-search').addEventListener('input',renderPages);
+$('pages').addEventListener('change',e=>openPage(Number(e.target.value)));
+$('reviewed').addEventListener('change',async e=>{
+  const name=$('name').value.trim();const page=pages[current].path;const reviewed=e.target.checked;
+  if(!name){e.target.checked=!reviewed;$('reviewed-status').textContent='Enter your name first';$('name').focus();return;}
+  e.target.disabled=true;$('reviewed-status').textContent='Saving…';
+  try{await api('progress',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reviewerId,page,reviewed,name})});
+    progress[page]=JSON.stringify({reviewed,name});renderPages();$('reviewed-status').textContent='Saved';
+  }catch{if(pages[current].path===page)e.target.checked=!reviewed;$('reviewed-status').textContent='Could not save — try again';}
+  finally{e.target.disabled=false;}
+});
 $('login-form').addEventListener('submit',async e=>{e.preventDefault();$('login-error').textContent='';try{await api('login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:$('code').value})});$('login').hidden=true;$('app').hidden=false;await start();}catch(error){$('login-error').textContent=error.message;}});
 async function start() {
   pages=await (await fetch('/pages.json')).json();
+  try { progress=(await api('progress?reviewerId='+encodeURIComponent(reviewerId))).progress; }
+  catch { progress={};$('reviewed-status').textContent='Could not load review progress'; }
   const hash=decodeURIComponent(location.hash.slice(1));
   await openPage(Math.max(0,pages.findIndex(p=>p.path===hash)));
 }

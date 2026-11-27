@@ -13,6 +13,7 @@ wordpress/*.zip
 node_modules/
 review-app/dist/
 review-app/.local-feedback.json
+review-app/.local-progress.json
 .claude/
 .playwright-mcp/
 
