@@ -11,6 +11,8 @@ image-sources/
 # Build artefacts and local tooling
 wordpress/*.zip
 node_modules/
+review-app/dist/
+review-app/.local-feedback.json
 .claude/
 .playwright-mcp/
 

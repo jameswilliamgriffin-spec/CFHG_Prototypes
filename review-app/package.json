@@ -1,0 +1,1 @@
+{"name":"cfhg-review-app","private":true,"type":"module","scripts":{"build":"node build.mjs","dev":"node dev-server.mjs"},"engines":{"node":">=20"}}
