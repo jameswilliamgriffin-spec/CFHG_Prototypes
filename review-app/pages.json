@@ -1,0 +1,68 @@
+[
+  {
+    "path": "/",
+    "title": "Trace your Caribbean family with people who’ve done it",
+    "navTitle": "Home",
+    "depth": 0
+  },
+  {
+    "path": "/research/",
+    "title": "Research",
+    "navTitle": "Research",
+    "depth": 0
+  },
+  {
+    "path": "/jamaica/",
+    "title": "Jamaica",
+    "navTitle": "Jamaica",
+    "depth": 1
+  },
+  {
+    "path": "/barbados/",
+    "title": "Barbados",
+    "navTitle": "Barbados",
+    "depth": 1
+  },
+  {
+    "path": "/st-kitts-and-nevis/",
+    "title": "St Kitts and Nevis",
+    "navTitle": "St Kitts and Nevis",
+    "depth": 1
+  },
+  {
+    "path": "/trinidad-and-tobago/",
+    "title": "Trinidad and Tobago",
+    "navTitle": "Trinidad and Tobago",
+    "depth": 1
+  },
+  {
+    "path": "/other-islands/",
+    "title": "Other Caribbean islands",
+    "navTitle": "Other Caribbean islands",
+    "depth": 1
+  },
+  {
+    "path": "/whats-on/",
+    "title": "What’s On",
+    "navTitle": "What’s On",
+    "depth": 0
+  },
+  {
+    "path": "/who-we-are/",
+    "title": "Who we are",
+    "navTitle": "Who We Are",
+    "depth": 0
+  },
+  {
+    "path": "/join/",
+    "title": "Join the group",
+    "navTitle": "Join the group",
+    "depth": 0
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact",
+    "navTitle": "Contact",
+    "depth": 0
+  }
+]
