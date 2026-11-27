@@ -24,14 +24,14 @@ function pathFor(node, main) {
 function scanPreview() {
   const doc = $('preview').contentDocument;
   if (!doc) return [];
-  const main = doc.querySelector('main');
+  const main = doc.querySelector('main, [data-elementor-type="wp-page"], #content');
   if (!main) return [];
   doc.addEventListener('click', e => { if (e.target.closest('a')) e.preventDefault(); }, true);
   const candidates = [...main.querySelectorAll('section, article, li, p')];
   const result = candidates.filter(el => {
     const text = el.innerText?.replace(/\s+/g,' ').trim() || '';
     if (text.length < 20 || el.closest('nav,form')) return false;
-    if (el.tagName === 'P' && el.closest('li')) return false;
+    if (el.tagName === 'P' && el.closest('section,article,li')) return false;
     if (el.tagName === 'SECTION' && el.querySelectorAll('section').length > 0 && !el.querySelector(':scope > h1,:scope > h2,:scope > h3')) return false;
     return true;
   }).map(el => {
@@ -83,7 +83,7 @@ function renderBlocks() {
 }
 function renderPages() {
   const filter=$('page-search').value.toLowerCase();const nav=$('pages');nav.replaceChildren();
-  pages.forEach((page,index)=>{if(!(page.title+' '+page.path).toLowerCase().includes(filter))return;const button=document.createElement('button');button.type='button';button.textContent=page.title;button.className=index===current?'active':'';button.onclick=()=>openPage(index);nav.append(button);});
+  pages.forEach((page,index)=>{if(!(page.navTitle+' '+page.path).toLowerCase().includes(filter))return;const button=document.createElement('button');button.type='button';button.textContent=page.navTitle;button.className=[index===current?'active':'',page.depth?'subpage':''].filter(Boolean).join(' ');button.onclick=()=>openPage(index);nav.append(button);});
   $('page-count').textContent=`${current+1} of ${pages.length} pages`;
 }
 async function openPage(index) {

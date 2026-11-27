@@ -1,6 +1,6 @@
 # CFHG website review app
 
-This app displays the 34 pages in `../wp-export` beside per-block feedback. It is a separate Vercel project; the public site remains deployed from the repository root.
+This app displays the main site pages and five island research guides from `../wp-export` beside per-block feedback. Story posts, event details, and policy pages are omitted from review navigation. It is a separate Vercel project; the public site remains deployed from the repository root.
 
 ## Local preview
 

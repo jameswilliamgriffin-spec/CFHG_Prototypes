@@ -25,13 +25,25 @@ function walk(dir) {
   }
 }
 walk(source);
-pages.sort((a,b) => a.path === '/' ? -1 : b.path === '/' ? 1 : a.path.localeCompare(b.path));
-const titleCounts = new Map();
-for (const page of pages) titleCounts.set(page.title, (titleCounts.get(page.title) || 0) + 1);
-for (const page of pages) if (titleCounts.get(page.title) > 1) {
-  const date = page.path.match(/(\d{4}-\d{2}-\d{2})/);
-  page.title += date ? ` · ${date[1]}` : ` · ${page.path}`;
-}
+const navigation = [
+  ['/', 'Home', 0],
+  ['/research/', 'Research', 0],
+  ['/jamaica/', 'Jamaica', 1],
+  ['/barbados/', 'Barbados', 1],
+  ['/st-kitts-and-nevis/', 'St Kitts and Nevis', 1],
+  ['/trinidad-and-tobago/', 'Trinidad and Tobago', 1],
+  ['/other-islands/', 'Other Caribbean islands', 1],
+  ['/whats-on/', 'What’s On', 0],
+  ['/who-we-are/', 'Who We Are', 0],
+  ['/join/', 'Join the group', 0],
+  ['/contact/', 'Contact', 0],
+];
+const selected = navigation.map(([path, navTitle, depth]) => {
+  const page = pages.find(page => page.path === path);
+  if (!page) throw new Error(`Missing review page: ${path}`);
+  return { ...page, navTitle, depth };
+});
+pages.splice(0, pages.length, ...selected);
 writeFileSync(join(dist, 'pages.json'), JSON.stringify(pages));
 writeFileSync(join(root, 'pages.json'), JSON.stringify(pages, null, 2) + '\n');
 console.log(`Built review app with ${pages.length} pages.`);

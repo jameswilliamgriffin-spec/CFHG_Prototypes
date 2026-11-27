@@ -1,138 +1,68 @@
 [
   {
     "path": "/",
-    "title": "Trace your Caribbean family with people who’ve done it"
-  },
-  {
-    "path": "/75-years-of-windrush/",
-    "title": "75 years of Windrush: our exhibition at Solihull Library"
-  },
-  {
-    "path": "/barbados-getting-back-another-generation/",
-    "title": "Barbados: getting back another generation together"
-  },
-  {
-    "path": "/barbados/",
-    "title": "Barbados"
-  },
-  {
-    "path": "/black-history-month-with-the-royal-college-of-nursing/",
-    "title": "Black History Month with the Royal College of Nursing"
-  },
-  {
-    "path": "/contact/",
-    "title": "Contact"
-  },
-  {
-    "path": "/jamaica/",
-    "title": "Jamaica"
-  },
-  {
-    "path": "/join/",
-    "title": "Join the group"
-  },
-  {
-    "path": "/open-day-and-workshop-2025/",
-    "title": "Open day and workshop, with a visit from the Mayor"
-  },
-  {
-    "path": "/other-islands/",
-    "title": "Other Caribbean islands"
-  },
-  {
-    "path": "/photography-and-video/",
-    "title": "Photography and video"
-  },
-  {
-    "path": "/portugal-to-jamaica/",
-    "title": "Tracing a family from Portugal to Jamaica"
-  },
-  {
-    "path": "/privacy-and-cookies/",
-    "title": "Privacy and cookies"
+    "title": "Trace your Caribbean family with people who’ve done it",
+    "navTitle": "Home",
+    "depth": 0
   },
   {
     "path": "/research/",
-    "title": "Research"
+    "title": "Research",
+    "navTitle": "Research",
+    "depth": 0
   },
   {
-    "path": "/researching-trinidad/",
-    "title": "Researching Trinidad: what the archives hold"
+    "path": "/jamaica/",
+    "title": "Jamaica",
+    "navTitle": "Jamaica",
+    "depth": 1
   },
   {
-    "path": "/sample-a-morning-with-the-jamaica-archives-in-spanish-town/",
-    "title": "Sample: a morning with the Jamaica Archives in Spanish Town"
-  },
-  {
-    "path": "/sample-story-tracing-a-great-grandmother-from-kingston-to-birmingham/",
-    "title": "Sample story: tracing a great-grandmother from Kingston to Birmingham"
-  },
-  {
-    "path": "/sample-what-the-1867-parish-changes-mean-for-your-search/",
-    "title": "Sample: what the 1867 parish changes mean for your search"
+    "path": "/barbados/",
+    "title": "Barbados",
+    "navTitle": "Barbados",
+    "depth": 1
   },
   {
     "path": "/st-kitts-and-nevis/",
-    "title": "St Kitts and Nevis"
-  },
-  {
-    "path": "/starting-your-family-tree/",
-    "title": "Starting your family tree"
-  },
-  {
-    "path": "/stories/",
-    "title": "Stories and research"
-  },
-  {
-    "path": "/tracing-ancestors-back-to-slavery/",
-    "title": "Tracing ancestors back to the period of slavery"
-  },
-  {
-    "path": "/tracing-your-ancestors-from-the-slavery-period/",
-    "title": "Tracing your ancestors from the slavery period"
+    "title": "St Kitts and Nevis",
+    "navTitle": "St Kitts and Nevis",
+    "depth": 1
   },
   {
     "path": "/trinidad-and-tobago/",
-    "title": "Trinidad and Tobago"
+    "title": "Trinidad and Tobago",
+    "navTitle": "Trinidad and Tobago",
+    "depth": 1
+  },
+  {
+    "path": "/other-islands/",
+    "title": "Other Caribbean islands",
+    "navTitle": "Other Caribbean islands",
+    "depth": 1
   },
   {
     "path": "/whats-on/",
-    "title": "What’s On"
-  },
-  {
-    "path": "/whats-on/jamaica-sub-group-meeting-sample-2027-01-16/",
-    "title": "Jamaica sub-group meeting (sample)"
-  },
-  {
-    "path": "/whats-on/monthly-meeting-2026-09-26/",
-    "title": "Monthly meeting · 2026-09-26"
-  },
-  {
-    "path": "/whats-on/monthly-meeting-2026-10-31/",
-    "title": "Monthly meeting · 2026-10-31"
-  },
-  {
-    "path": "/whats-on/monthly-meeting-2026-11-28/",
-    "title": "Monthly meeting · 2026-11-28"
-  },
-  {
-    "path": "/whats-on/monthly-meeting-2027-01-30/",
-    "title": "Monthly meeting · 2027-01-30"
-  },
-  {
-    "path": "/whats-on/monthly-meeting-2027-02-27/",
-    "title": "Monthly meeting · 2027-02-27"
-  },
-  {
-    "path": "/whats-on/talk-finding-your-family-in-the-anglican-registers-sample-2027-02-20/",
-    "title": "Talk: finding your family in the Anglican registers (sample)"
+    "title": "What’s On",
+    "navTitle": "What’s On",
+    "depth": 0
   },
   {
     "path": "/who-we-are/",
-    "title": "Who we are"
+    "title": "Who we are",
+    "navTitle": "Who We Are",
+    "depth": 0
   },
   {
-    "path": "/windrush-day-2024/",
-    "title": "Windrush Day"
+    "path": "/join/",
+    "title": "Join the group",
+    "navTitle": "Join the group",
+    "depth": 0
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact",
+    "navTitle": "Contact",
+    "depth": 0
   }
 ]
